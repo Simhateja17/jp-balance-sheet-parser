@@ -68,3 +68,26 @@ def evaluate(output, golds: List[Gold]) -> List[Result]:
         status = "wrong_value" if not value_ok else ("exact" if role_ok else "wrong_role")
         results.append(Result(g, status, flagged, value_ok, role_ok))
     return results
+
+
+def gold_page(template_path):
+    """The gold values as a Page, so the same identity checks can judge the gold itself."""
+    from bsparser.amounts import parse_amount
+    from bsparser.page import Page, Row
+
+    periods: List[str] = []
+    rows: List[Row] = []
+    for line in Path(template_path).read_text(encoding="utf-8").splitlines():
+        if line.startswith("| #"):
+            periods = PERIOD_COLUMN.findall(line)
+        elif re.match(r"^\| \d+ \|", line):
+            cells = _cells(line)
+            path = [p for p in cells[1].split("/") if p]
+            role = cells[4]
+            row = Row(id=f"r{cells[0]}", label=cells[2], level=len(path), role=role, path=path,
+                      values=[parse_amount(raw) for raw in cells[6:6 + len(periods)] if raw])
+            if role in ("contra", "net") and path:
+                gross = [r for r in rows if r.label == path[-1] and r.role == "item"]
+                row.parent = gross[-1].id if gross else None
+            rows.append(row)
+    return Page(rows=rows, periods=periods)

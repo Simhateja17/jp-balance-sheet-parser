@@ -73,3 +73,29 @@ def test_gold_typed_with_ascii_digits_spaces_or_a_plain_dash_still_matches_the_p
     assert [r.status for r in results] == ["exact", "exact", "exact"]
     (still_wrong,) = evaluate(out, [gold("貸倒引当金", "(0)")])  # a different mark is not the same text
     assert still_wrong.status == "wrong_value"
+
+
+FULL_TEMPLATE = """| # | path | label (as printed) | label_en (translation) | role | why tricky | raw 2025-03-31 | raw 2026-03-31 |
+|---|------|--------------------|------------------------|------|------------|----------------|----------------|
+| 1 | | 資産の部 | Assets | header | | | |
+| 2 | 資産の部 | 固定資産 | Fixed assets | header | | | |
+| 3 | 資産の部/固定資産 | 建物 | Buildings | item | | 1,000 | 2,000 |
+| 4 | 資産の部/固定資産/建物 | 減価償却累計額 | Accumulated depreciation | contra | | △400 | △500 |
+| 5 | 資産の部/固定資産/建物 | 建物（純額） | Buildings, net | net | | 600 | 1,500 |
+"""
+
+
+def test_gold_page_rebuilds_rows_values_and_gross_links_so_the_same_checks_can_run(tmp_path):
+    from bsparser.checks import run_checks
+    from bsparser.gold import gold_page
+
+    path = tmp_path / "template.md"
+    path.write_text(FULL_TEMPLATE, encoding="utf-8")
+    page = gold_page(path)
+    assert page.periods == ["2025-03-31", "2026-03-31"]
+    assert [r.id for r in page.rows] == ["r1", "r2", "r3", "r4", "r5"]
+    assert page.rows[3].parent == "r3" and page.rows[4].parent == "r3"
+    assert [a.value for a in page.rows[3].values] == [-400, -500]
+    checks = run_checks(page)
+    assert [(c.label, c.period, c.difference, c.status) for c in checks] == [
+        ("建物（純額）", "2025-03-31", 0, "pass"), ("建物（純額）", "2026-03-31", 0, "pass")]
