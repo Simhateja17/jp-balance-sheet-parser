@@ -222,3 +222,22 @@ def test_wrapped_label_with_only_one_signal_is_flagged_but_not_merged():
     first = page.rows[labels.index("Electronically recorded monetary")]
     assert first.role == "header"  # still typed by the rules, but flagged
     assert [(i.kind, i.row_id) for i in page.issues] == [("possible_wrapped_label", first.id)]
+
+
+def test_row_at_an_indent_off_the_regular_grid_is_flagged_by_name():
+    from bsparser.page import parse_lines
+    from bsparser.pdf_lines import Line
+
+    lines = [
+        Line("(in thousands of yen)", 400.0, 70.0),
+        Line("(Mar. 31, 2025) (Mar. 31, 2026)", 300.0, 94.0),
+        Line("Assets", 60.0, 120.0),
+        Line("Current assets", 72.0, 134.0),
+        Line("Cash", 84.0, 148.0, ["100", "200"]),
+        Line("Notes receivable", 96.0, 162.0, ["300", "400"]),
+        Line("Other", 108.0, 176.0, ["500", "600"]),
+        Line("Odd indent", 90.0, 190.0, ["700", "800"]),  # half a step off the 12-point grid
+    ]
+    page = parse_lines(lines)
+    odd = [r for r in page.rows if r.label == "Odd indent"][0]
+    assert [(i.kind, i.row_id) for i in page.issues] == [("irregular_indent", odd.id)]

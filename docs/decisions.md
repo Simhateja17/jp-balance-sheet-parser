@@ -35,7 +35,7 @@
 - The allowance sits inside the current-assets sum, so the sum checks already treat it as an item. The gold template row 12 and the English fixture data use `item`.
 
 ## D11. Depth, sections and roles from the page (agreed, implemented as tested)
-- Indent levels come from clustering the left x positions of labels, with a tolerance of a few points (2.0), never exact equality and never fixed pixel steps. An x that fits no level is flagged (not yet implemented).
+- Indent levels come from clustering the left x positions of labels, with a tolerance of a few points (2.0), never exact equality and never fixed pixel steps. An x that fits no level is flagged: the step between levels is the median gap between level centres (needs at least three levels). A level whose centre is off the grid by more than max(tolerance, 0.25 of a step) gets an `irregular_indent` issue naming its rows. It is informational: it does not change the page status, and a wrong result on such a row counts as flagged (D15).
 - Roles come from depth, neighbours and label patterns, written test by test.
 - Subtotal: English labels START with "Total"; Japanese labels END with 合計. Both tested.
 - Grand total (one level under the top section header, e.g. Total assets / 資産合計) has role `total`, not `subtotal`.

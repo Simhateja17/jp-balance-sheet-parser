@@ -3,7 +3,7 @@ from dataclasses import dataclass, field
 from typing import List, Optional
 
 from bsparser.amounts import Amount, parse_amount
-from bsparser.levels import assign_levels
+from bsparser.levels import assign_levels, irregular_levels
 from bsparser.pdf_lines import Line, extract_lines
 from bsparser.periods import find_periods, find_unsupported_eras
 from bsparser.units import find_unit
@@ -104,6 +104,11 @@ def build_page(lines: List[Line]) -> Page:
                 row.parent = gross.id
         rows.append(row)
         stack.append(row)
+    odd_levels = set(irregular_levels([line.x0 for line in lines], LEVEL_TOLERANCE))
+    for row in rows:
+        if row.level in odd_levels:
+            issues.append(Issue("irregular_indent", row.id,
+                                f"{row.label!r}: indent is far from the page's regular level step; role and path may be wrong"))
     infos = [LineInfo(r.label, bool(r.values), r.level, line.top) for r, line in zip(rows, lines)]
     for flag in find_possible_wrapped(infos):
         issues.append(Issue("possible_wrapped_label", rows[flag.index].id,
