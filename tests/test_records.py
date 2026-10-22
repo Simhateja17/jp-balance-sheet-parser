@@ -25,3 +25,14 @@ def test_one_record_per_value_row_per_period_with_the_d1_fields():
         "warnings": [],
     }]
     assert len(records) == 37 * 2  # 43 rows minus 6 headers, two periods
+
+
+def test_parent_links_stay_inside_the_same_period_and_nil_keeps_its_raw_text():
+    records = make_records(parse_page(FIXTURE_PDF))
+    by_id = {r["id"]: r for r in records}
+    contra = by_id["r17|2025-03-31"]
+    assert contra["label"] == "Accumulated depreciation"
+    assert contra["parent"] == "r16|2025-03-31"
+    assert by_id[contra["parent"]]["label"] == "Buildings and structures"
+    nil = [r for r in records if r["label"] == "Construction in progress" and r["period"] == "2025-03-31"][0]
+    assert (nil["value"], nil["kind"], nil["raw"]) == (None, "nil", "-")
