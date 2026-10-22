@@ -9,3 +9,9 @@ def test_lone_dash_is_nil_not_zero():
     amount = parse_amount("-")
     assert amount.value is None
     assert amount.kind == "nil"
+
+
+def test_dash_before_digits_is_negative_not_nil():
+    amount = parse_amount("-1,234")
+    assert amount.value == -1234
+    assert amount.kind == "value"
