@@ -38,3 +38,12 @@ def test_write_outputs_writes_the_json_source_of_truth_and_a_csv_view_of_the_rec
     assert rows[0]["path"] == "Assets / Current assets" and rows[0]["value"] == "2002429"
     nil = [r for r in rows if r["label"] == "Construction in progress"][0]
     assert (nil["value"], nil["kind"]) == ("", "nil")  # nil stays empty in CSV, never 0
+
+
+def test_command_line_entry_writes_both_files_and_returns_zero(tmp_path, capsys):
+    from bsparser.__main__ import main
+
+    assert main([str(FIXTURE_PDF), str(tmp_path)]) == 0
+    assert sorted(p.name for p in tmp_path.iterdir()) == [
+        "english_balance_sheet.json", "english_balance_sheet.records.csv"]
+    assert "status: ok" in capsys.readouterr().out
