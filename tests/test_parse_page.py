@@ -82,3 +82,8 @@ def test_rows_carry_one_parsed_value_per_period_column():
     allowance = row_named(page, "Allowance for doubtful accounts")
     assert [(a.value, a.kind) for a in allowance.values] == [(-2979, "value"), (0, "value")]
     assert row_named(page, "Current assets").values == []
+
+
+def test_periods_come_from_the_english_column_header_in_column_order():
+    page = parse_page(FIXTURE_PDF)
+    assert page.periods == ["2025-03-31", "2026-03-31"]

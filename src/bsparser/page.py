@@ -5,6 +5,7 @@ from typing import List, Optional
 from bsparser.amounts import Amount, parse_amount
 from bsparser.levels import assign_levels
 from bsparser.pdf_lines import Line, extract_lines
+from bsparser.periods import find_periods
 from bsparser.roles import classify_role
 
 YEAR = re.compile(r"(?:19|20)\d{2}")
@@ -33,6 +34,7 @@ class Issue:
 class Page:
     rows: List[Row] = field(default_factory=list)
     issues: List[Issue] = field(default_factory=list)
+    periods: List[str] = field(default_factory=list)
 
 
 NET_SUFFIXES = ("\uff08\u7d14\u984d\uff09", ", net")  # （純額）, ", net"
@@ -42,13 +44,13 @@ def _is_gross_plus_net(gross_label: str, net_label: str) -> bool:
     return any(net_label == gross_label + suffix for suffix in NET_SUFFIXES)
 
 
-def _table_lines(lines: List[Line]) -> List[Line]:
+def _split_header(lines: List[Line]):
     """Rows start below the last header line that carries two or more years."""
     start = 0
     for i, line in enumerate(lines):
         if len(YEAR.findall(line.label)) >= 2:
             start = i + 1
-    return lines[start:]
+    return lines[:start], lines[start:]
 
 
 def build_page(lines: List[Line]) -> Page:
@@ -75,4 +77,7 @@ def build_page(lines: List[Line]) -> Page:
 
 
 def parse_page(pdf_path) -> Page:
-    return build_page(_table_lines(extract_lines(pdf_path)))
+    header, table = _split_header(extract_lines(pdf_path))
+    page = build_page(table)
+    page.periods = find_periods(" ".join(line.label for line in header))
+    return page
