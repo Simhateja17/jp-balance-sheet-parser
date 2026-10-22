@@ -41,3 +41,23 @@ def test_correct_value_is_exact_and_a_wrong_value_on_a_clean_page_is_a_silent_er
     results = evaluate(out, [gold("現金及び預金", "608,281"), gold("現金及び預金", "608,282")])
     assert [r.status for r in results] == ["exact", "wrong_value"]
     assert [r.flagged for r in results] == [False, False]  # page status ok, so the wrong one is silent
+
+
+def test_key_that_matches_nothing_or_several_records_is_never_a_guess():
+    out = build_output(REAL_PDF)
+    missing = evaluate(out, [gold("現金及び預金", "608,281", path=("資産の部", "固定資産"))])
+    assert [r.status for r in missing] == ["not_found"]
+    doubled = {"status": "ok", "records": [out["records"][0], out["records"][0]]}
+    first = out["records"][0]
+    several = evaluate(doubled, [gold(first["label"], first["raw"], first["period"], path=first["path"])])
+    assert [r.status for r in several] == ["ambiguous"]
+
+
+def test_structure_layer_is_separate_from_the_value_layer():
+    out = build_output(REAL_PDF)
+    (right_value_wrong_role,) = evaluate(out, [gold("現金及び預金", "608,281", role="subtotal")])
+    assert (right_value_wrong_role.status, right_value_wrong_role.value_ok, right_value_wrong_role.role_ok) == (
+        "wrong_role", True, False)
+    (wrong_value_right_role,) = evaluate(out, [gold("現金及び預金", "1", role="item")])
+    assert (wrong_value_right_role.status, wrong_value_right_role.value_ok, wrong_value_right_role.role_ok) == (
+        "wrong_value", False, True)

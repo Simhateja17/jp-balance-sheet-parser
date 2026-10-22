@@ -41,6 +41,8 @@ class Result:
     gold: Gold
     status: str  # exact | wrong_value | wrong_role | not_found | ambiguous
     flagged: bool  # the parser warned about this record, its row, or the whole page
+    value_ok: bool = False  # layer 1: the printed text matches exactly
+    role_ok: bool = False  # layer 2: the role matches (the path is part of the key)
 
 
 def evaluate(output, golds: List[Gold]) -> List[Result]:
@@ -53,6 +55,8 @@ def evaluate(output, golds: List[Gold]) -> List[Result]:
             continue
         rec = matches[0]
         flagged = bool(rec["warnings"]) or output["status"] != "ok"
-        status = "exact" if rec["raw"] == g.raw else "wrong_value"
-        results.append(Result(g, status, flagged))
+        value_ok = rec["raw"] == g.raw
+        role_ok = rec["role"] == g.role
+        status = "wrong_value" if not value_ok else ("exact" if role_ok else "wrong_role")
+        results.append(Result(g, status, flagged, value_ok, role_ok))
     return results
