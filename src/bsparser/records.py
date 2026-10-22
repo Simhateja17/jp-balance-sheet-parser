@@ -12,6 +12,11 @@ def make_records(page: Page) -> List[Dict]:
             continue  # a column-count mismatch is already an issue; nothing is assigned by guess
         for period, amount in zip(page.periods, row.values):
             label_en, label_en_source = english_label(row.label)
+            warnings = []
+            if amount.kind == "unreadable":
+                warnings.append(f"unreadable value: could not parse {amount.raw!r}")
+            if label_en_source == "missing":
+                warnings.append("translation_missing")
             records.append({
                 "id": f"{row.id}|{period}",
                 "path": list(row.path),
@@ -25,6 +30,6 @@ def make_records(page: Page) -> List[Dict]:
                 "kind": amount.kind,
                 "raw": amount.raw,
                 "unit": page.unit,
-                "warnings": [f"unreadable value: could not parse {amount.raw!r}"] if amount.kind == "unreadable" else [],
+                "warnings": warnings,
             })
     return records

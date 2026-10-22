@@ -52,3 +52,21 @@ def test_unreadable_value_record_keeps_raw_text_and_carries_a_warning():
     assert (bad["value"], bad["kind"], bad["raw"]) == (None, "unreadable", "1,2x4")
     assert bad["warnings"] == ["unreadable value: could not parse '1,2x4'"]
     assert good["warnings"] == []
+
+
+def test_missing_translation_is_null_with_a_warning_and_does_not_change_status():
+    from bsparser.checks import run_checks
+    from bsparser.page import parse_lines
+    from bsparser.pdf_lines import Line
+    from bsparser.status import page_status
+
+    page = parse_lines([
+        Line("（単位：千円）", 400.0, 70.0),
+        Line("(2025年３月31日) (2026年３月31日)", 300.0, 94.0),
+        Line("資産の部", 60.0, 120.0),
+        Line("謎の科目", 72.0, 134.0, ["100", "200"]),
+    ])
+    first, second = make_records(page)
+    assert (first["label_en"], first["label_en_source"]) == (None, "missing")
+    assert first["warnings"] == ["translation_missing"]
+    assert page_status(page, run_checks(page)) == "ok"

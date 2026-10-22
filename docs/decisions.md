@@ -8,6 +8,14 @@
 - `label_en` is a translation for the human reader only. It is marked as a translation and is never used in any check or matching.
 - `parent` links a contra (accumulated depreciation) or net line to its item. Exact semantics: see D2.
 
+## D14. English labels for Japanese pages (agreed)
+- `data/labels_ja_en.json` maps each Japanese label printed on the page to an English reading label. Seeded from the `label_en` column of the gold template (36 distinct labels, no clashes between repeated labels).
+- Review status is stated honestly. The translations were written by Claude. The reviewer session then checked them (docs/translation-check.md): 43 of 43 ok, none wrong, none unsure. The file says `reviewed_by_reviewer_session`, not "hand-checked". Two optional alternatives it suggested (関係会社株式, 退職給付に係る資産) are kept in `review_suggestions_not_applied`.
+- `label_en_source` is `original` (English page), `translation_reviewed` / `translation_unreviewed` (by the file's review status), or `missing`.
+- A Japanese label not in the dictionary gets `label_en: null` and the record warning `translation_missing`. Never a guess. A missing translation never changes the page status or any check.
+- Any LLM-suggested entry goes through review before it enters the file.
+- `label_en` is for reading only. It is never used in matching, gold keys, parity or checks.
+
 ## D13. What gets committed (agreed)
 - `docs/prompts.md` (the prompt log written by the user's hook) is committed at the end of every step, together with that step's code, because it is part of the submission.
 - `outputs/` is NOT committed during the build. At the end, the final outputs for the real Japanese PDF and the English fixture are committed, so reviewers can see results without running anything.
