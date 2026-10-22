@@ -87,3 +87,9 @@ def test_rows_carry_one_parsed_value_per_period_column():
 def test_periods_come_from_the_english_column_header_in_column_order():
     page = parse_page(FIXTURE_PDF)
     assert page.periods == ["2025-03-31", "2026-03-31"]
+
+
+def test_unit_is_read_from_the_header_and_kept_as_printed():
+    page = parse_page(FIXTURE_PDF)
+    assert page.unit == "thousand_yen"
+    assert page.unit_raw == "in thousands of yen"

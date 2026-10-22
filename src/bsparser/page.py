@@ -6,6 +6,7 @@ from bsparser.amounts import Amount, parse_amount
 from bsparser.levels import assign_levels
 from bsparser.pdf_lines import Line, extract_lines
 from bsparser.periods import find_periods
+from bsparser.units import find_unit
 from bsparser.roles import classify_role
 
 YEAR = re.compile(r"(?:19|20)\d{2}")
@@ -35,6 +36,8 @@ class Page:
     rows: List[Row] = field(default_factory=list)
     issues: List[Issue] = field(default_factory=list)
     periods: List[str] = field(default_factory=list)
+    unit: Optional[str] = None
+    unit_raw: str = ""
 
 
 NET_SUFFIXES = ("\uff08\u7d14\u984d\uff09", ", net")  # （純額）, ", net"
@@ -79,5 +82,9 @@ def build_page(lines: List[Line]) -> Page:
 def parse_page(pdf_path) -> Page:
     header, table = _split_header(extract_lines(pdf_path))
     page = build_page(table)
-    page.periods = find_periods(" ".join(line.label for line in header))
+    header_text = " ".join(line.label for line in header)
+    page.periods = find_periods(header_text)
+    found = find_unit(header_text)
+    if found:
+        page.unit, page.unit_raw = found
     return page
