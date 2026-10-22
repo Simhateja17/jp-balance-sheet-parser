@@ -12,4 +12,8 @@ def parse_amount(raw: str) -> Amount:
     text = raw.strip()
     if text == "-":
         return Amount(value=None, kind="nil")
-    return Amount(value=int(text.replace(",", "")), kind="value")
+    negative = text.startswith("(") and text.endswith(")")
+    if negative:
+        text = text[1:-1]
+    value = int(text.replace(",", ""))
+    return Amount(value=-value if negative else value, kind="value")

@@ -15,3 +15,7 @@ def test_dash_before_digits_is_negative_not_nil():
     amount = parse_amount("-1,234")
     assert amount.value == -1234
     assert amount.kind == "value"
+
+
+def test_parentheses_are_negative():
+    assert parse_amount("(1,234)").value == -1234
