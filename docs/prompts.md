@@ -38,3 +38,11 @@ of a few points, not exact equality.
 </pasted_content id="0814">
 ```
 
+## 2026-10-22 11:23
+
+```
+Yes, parent for both goes to the gross row above. Add a check: the net
+row's label should be the gross row's label plus the "net" suffix. If it
+isn't, flag it instead of linking blindly. Then go ahead with parse_page.
+```
+
