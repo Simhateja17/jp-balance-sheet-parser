@@ -69,3 +69,18 @@ def test_difference_equal_to_the_bound_passes_and_one_more_fails():
     over = check_for(checks, "Total current assets", "2026-03-31")
     assert (on_bound.difference, on_bound.bound, on_bound.status) == (2, 2, "pass")
     assert (over.difference, over.bound, over.status) == (3, 2, "failed")
+
+
+def test_check_with_an_unreadable_value_is_skipped_with_a_reason_not_failed():
+    from bsparser.amounts import Amount
+
+    page = synthetic_page("600", "600")
+    other = [r for r in page.rows if r.label == "Other"][0]
+    other.values[0] = Amount(value=None, kind="unreadable", raw="3,0x0")
+    checks = run_checks(page)
+    skipped = check_for(checks, "Total current assets", "2025-03-31")
+    assert skipped.status == "skipped"
+    assert other.id in skipped.reason and "unreadable" in skipped.reason
+    assert (skipped.expected, skipped.printed, skipped.difference) == (None, None, None)
+    still_checked = check_for(checks, "Total current assets", "2026-03-31")
+    assert (still_checked.status, still_checked.difference) == ("pass", 0)
