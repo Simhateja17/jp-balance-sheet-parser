@@ -8,6 +8,15 @@
 - `label_en` is a translation for the human reader only. It is marked as a translation and is never used in any check or matching.
 - `parent` links a contra (accumulated depreciation) or net line to its item. Exact semantics: see D2.
 
+## D11. Depth, sections and roles from the page (agreed, implemented as tested)
+- Indent levels come from clustering the left x positions of labels, with a tolerance of a few points (2.0), never exact equality and never fixed pixel steps. An x that fits no level is flagged (not yet implemented).
+- Roles come from depth, neighbours and label patterns, written test by test.
+- Subtotal: English labels START with "Total"; Japanese labels END with 合計. Both tested.
+- Grand total (one level under the top section header, e.g. Total assets / 資産合計) has role `total`, not `subtotal`.
+- Contra: 減価償却累計額 / "Accumulated depreciation". Net: （純額） full-width as printed (D1, label check) / ", net" in English.
+- A label with no values is NOT always a header: a long label wrapped over two lines has no values on its first line. Such lines are flagged as a possible wrapped label, not silently typed. Two signals: the next line is at the same level and has values; or the next line is much closer than the usual line spacing (below 0.7 of the median gap).
+- Observed: the real PDF writes nil as full-width － (U+FF0D) and negative as △ (U+25B3); both are handled.
+
 ## D10. Build order and cuts (agreed)
 Deadline Sun 25 Oct 2026, 11:59 pm IST. One vertical slice at a time (one failing test, minimal code, commit on green).
 1. Gold values filled by the user from the page image (data/gold/), and the English synthetic fixture.
