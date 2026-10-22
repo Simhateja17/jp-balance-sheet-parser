@@ -84,3 +84,24 @@ def test_check_with_an_unreadable_value_is_skipped_with_a_reason_not_failed():
     assert (skipped.expected, skipped.printed, skipped.difference) == (None, None, None)
     still_checked = check_for(checks, "Total current assets", "2026-03-31")
     assert (still_checked.status, still_checked.difference) == ("pass", 0)
+
+
+def test_net_check_with_an_unreadable_gross_is_skipped_not_a_crash():
+    from bsparser.amounts import Amount
+    from bsparser.page import parse_lines
+    from bsparser.pdf_lines import Line
+
+    page = parse_lines([
+        Line("(in thousands of yen)", 400.0, 70.0),
+        Line("(Mar. 31, 2025) (Mar. 31, 2026)", 300.0, 94.0),
+        Line("Assets", 60.0, 120.0),
+        Line("Fixed assets", 72.0, 134.0),
+        Line("Buildings", 84.0, 148.0, ["1,000", "2,000"]),
+        Line("Accumulated depreciation", 96.0, 162.0, ["(400)", "(500)"]),
+        Line("Buildings, net", 96.0, 176.0, ["600", "1,500"]),
+    ])
+    gross = [r for r in page.rows if r.label == "Buildings"][0]
+    gross.values[0] = Amount(value=None, kind="unreadable", raw="1,0x0")
+    checks = run_checks(page)
+    assert check_for(checks, "Buildings, net", "2025-03-31").status == "skipped"
+    assert check_for(checks, "Buildings, net", "2026-03-31").status == "pass"

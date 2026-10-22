@@ -36,7 +36,13 @@ def run_checks(page: Page) -> List[Check]:
         contra = [r for r in page.rows if r.role == "contra" and r.parent == row.parent]
         gross = by_id[row.parent]
         for p, period in enumerate(page.periods):
-            expected = gross.values[p].value + sum(c.values[p].value for c in contra)
+            unreadable = [r for r in [gross, row] + contra if r.values[p].kind == "unreadable"]
+            if unreadable:
+                ids = ", ".join(r.id for r in unreadable)
+                checks.append(Check(row.label, row.id, period, None, None, None, 0, 0, "skipped",
+                                    f"unreadable value in {ids}"))
+                continue
+            expected = gross.values[p].value + sum(c.values[p].value or 0 for c in contra)
             printed = row.values[p].value
             checks.append(Check(row.label, row.id, period, expected, printed, printed - expected,
                                 allowed_bound(2), 2,
