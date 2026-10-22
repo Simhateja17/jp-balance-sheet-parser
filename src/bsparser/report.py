@@ -33,3 +33,14 @@ def summarise(output, golds: List[Gold], parser: List[Result], baseline: List[Re
             "parser_flagged_errors": _share(sum(r.flagged for r in wrong), len(idx)),
         }
     return table
+
+
+def render_markdown(title: str, table: Dict[str, Dict[str, str]]) -> str:
+    lines = [f"### {title}", "",
+             "| slice | parser (value + role) | parser (value only) | first-match baseline (value only) "
+             "| parser silent errors | parser flagged errors |",
+             "|---|---|---|---|---|---|"]
+    for name, row in table.items():
+        lines.append(f"| {name} | {row['parser_exact']} | {row['parser_value_exact']} | {row['baseline_exact']} "
+                     f"| {row['parser_silent_errors']} | {row['parser_flagged_errors']} |")
+    return "\n".join(lines) + "\n"

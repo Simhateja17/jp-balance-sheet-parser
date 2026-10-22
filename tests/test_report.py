@@ -36,3 +36,17 @@ def test_parser_and_baseline_are_compared_on_the_value_layer_the_baseline_has_no
     assert table["all"]["parser_exact"] == "2 of 3 (67%)"  # value and role
     assert table["all"]["parser_value_exact"] == "3 of 3 (100%)"  # value only, like the baseline
     assert table["all"]["baseline_exact"] == "2 of 3 (67%)"  # value only
+
+
+def test_markdown_table_has_one_row_per_slice_and_keeps_the_counts():
+    from bsparser.report import render_markdown
+
+    out = build_output(REAL_PDF)
+    table = summarise(out, GOLDS, evaluate(out, GOLDS), first_match(REAL_PDF, GOLDS))
+    text = render_markdown("Japanese page", table)
+    lines = text.splitlines()
+    assert lines[0] == "### Japanese page"
+    assert lines[2].startswith("| slice | parser (value + role) | parser (value only) | first-match baseline")
+    assert len(lines) == 4 + len(table)
+    assert "| all | 3 of 3 (100%) | 3 of 3 (100%) | 2 of 3 (67%) |" in text
+    assert "—" not in text  # style: no em dashes
