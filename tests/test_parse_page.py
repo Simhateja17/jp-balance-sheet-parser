@@ -54,3 +54,17 @@ def test_net_row_whose_label_is_not_gross_plus_net_suffix_is_flagged_not_linked(
     assert net.parent is None
     assert [(i.kind, i.row_id) for i in page.issues] == [("net_label_mismatch", "r5")]
     assert page.rows[3].parent == "r3"
+
+
+def test_parse_page_matches_the_fixture_data_row_by_row():
+    import json
+
+    data = json.loads(
+        (FIXTURE_PDF.with_suffix(".json")).read_text(encoding="utf-8")
+    )["rows"]
+    page = parse_page(FIXTURE_PDF)
+    assert page.issues == []
+    for row, want in zip(page.rows, data):
+        assert (row.label, row.level) == (want["label"], want["depth"])
+        if row.label != "Allowance for doubtful accounts":  # role undecided, see D1/D12
+            assert row.role == want["role"], row.label
