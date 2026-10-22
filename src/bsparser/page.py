@@ -93,4 +93,9 @@ def parse_lines(lines: List[Line]) -> Page:
         page.unit, page.unit_raw = found
     else:
         page.issues.append(Issue("unit_missing", "", "no known unit found in the header; none assumed"))
+    for row in page.rows:
+        if row.values and len(row.values) != len(page.periods):
+            page.issues.append(Issue(
+                "column_count_mismatch", row.id,
+                f"{len(row.values)} values but {len(page.periods)} period columns; none assigned by guess"))
     return page

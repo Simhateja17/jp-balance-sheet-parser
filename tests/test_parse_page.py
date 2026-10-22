@@ -109,3 +109,19 @@ def test_missing_unit_is_an_issue_and_never_defaults():
     assert page.unit is None
     assert page.unit_raw == ""
     assert [i.kind for i in page.issues] == ["unit_missing"]
+
+
+def test_row_with_fewer_values_than_period_columns_is_an_issue_naming_the_row():
+    from bsparser.page import parse_lines
+    from bsparser.pdf_lines import Line
+
+    lines = [
+        Line("(in thousands of yen)", 400.0, 70.0),
+        Line("(Mar. 31, 2025) (Mar. 31, 2026)", 300.0, 94.0),
+        Line("Assets", 60.0, 120.0),
+        Line("Cash", 72.0, 134.0, ["100", "200"]),
+        Line("Notes receivable", 72.0, 148.0, ["300"]),
+    ]
+    page = parse_lines(lines)
+    assert [(i.kind, i.row_id) for i in page.issues] == [("column_count_mismatch", "r3")]
+    assert page.rows[1].values and len(page.rows[1].values) == 2
