@@ -105,3 +105,12 @@ def test_net_check_with_an_unreadable_gross_is_skipped_not_a_crash():
     checks = run_checks(page)
     assert check_for(checks, "Buildings, net", "2025-03-31").status == "skipped"
     assert check_for(checks, "Buildings, net", "2026-03-31").status == "pass"
+
+
+def test_english_fixture_has_20_checks_all_pass_with_the_pages_real_rounding():
+    checks = run_checks(parse_page(FIXTURE_PDF))
+    assert len(checks) == 20  # 4 net + 5 section subtotals + total assets, two periods each
+    assert [c for c in checks if c.status != "pass"] == []
+    assert all(abs(c.difference) <= c.bound for c in checks)
+    assert max(abs(c.difference) for c in checks) == 3
+    assert sum(1 for c in checks if abs(c.difference) == c.bound) >= 3  # edge cases are really hit
