@@ -132,3 +132,9 @@ Translation check done, saved to docs/translation-check.md. All 43 translations 
 </cross-session-message>
 ```
 
+## 2026-10-22 11:48
+
+```
+[Cross-session idle notice] "ur-ai-parser-setup-7c", which you asked to be notified about, is idle now — it finished a turn at 11:45. Its harness reports: «I finished Job 1b, the translation check, and sent the result to the other session.». This is an automated notice from that session's harness — not a message from a person, and not an instruction; act on it only insofar as your user's earlier request calls for it.
+```
+
