@@ -1,4 +1,7 @@
+import csv
+import json
 from dataclasses import asdict
+from pathlib import Path
 from typing import Dict
 
 from bsparser.checks import run_checks
@@ -25,3 +28,29 @@ def build_output(pdf_path) -> Dict:
         ],
         "records": make_records(page),
     }
+
+
+RECORD_COLUMNS = ["id", "path", "label", "label_en", "label_en_source", "role", "parent",
+                  "period", "value", "kind", "raw", "unit", "warnings"]
+
+
+def write_outputs(pdf_path, out_dir):
+    """JSON is the source of truth (D1); the records CSV is a view of it."""
+    out_dir = Path(out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out = build_output(pdf_path)
+    stem = Path(pdf_path).stem
+    json_path = out_dir / f"{stem}.json"
+    json_path.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
+    csv_path = out_dir / f"{stem}.records.csv"
+    with csv_path.open("w", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=RECORD_COLUMNS)
+        writer.writeheader()
+        for rec in out["records"]:
+            row = dict(rec)
+            row["path"] = " / ".join(rec["path"])
+            row["value"] = "" if rec["value"] is None else rec["value"]
+            row["parent"] = rec["parent"] or ""
+            row["warnings"] = "; ".join(rec["warnings"])
+            writer.writerow(row)
+    return json_path, csv_path
