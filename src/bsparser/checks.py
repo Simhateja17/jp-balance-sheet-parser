@@ -44,6 +44,9 @@ def run_checks(page: Page) -> List[Check]:
             if r.role == "item" and r.values and r.path == row.path:
                 nets = [n for n in page.rows if n.role == "net" and n.parent == r.id]
                 contributors.append(nets[0] if nets else r)
+            elif (r.role == "subtotal" and len(r.path) == len(row.path) + 1
+                  and r.path[:len(row.path)] == row.path):
+                contributors.append(r)  # a sub-section total feeds the total above it
         for p, period in enumerate(page.periods):
             amounts = [c.values[p].value for c in contributors if c.values[p].value is not None]
             expected = sum(amounts)
