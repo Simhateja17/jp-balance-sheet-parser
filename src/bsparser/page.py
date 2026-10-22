@@ -80,11 +80,17 @@ def build_page(lines: List[Line]) -> Page:
 
 
 def parse_page(pdf_path) -> Page:
-    header, table = _split_header(extract_lines(pdf_path))
+    return parse_lines(extract_lines(pdf_path))
+
+
+def parse_lines(lines: List[Line]) -> Page:
+    header, table = _split_header(lines)
     page = build_page(table)
     header_text = " ".join(line.label for line in header)
     page.periods = find_periods(header_text)
     found = find_unit(header_text)
     if found:
         page.unit, page.unit_raw = found
+    else:
+        page.issues.append(Issue("unit_missing", "", "no known unit found in the header; none assumed"))
     return page

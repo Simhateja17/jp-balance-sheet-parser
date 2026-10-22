@@ -93,3 +93,19 @@ def test_unit_is_read_from_the_header_and_kept_as_printed():
     page = parse_page(FIXTURE_PDF)
     assert page.unit == "thousand_yen"
     assert page.unit_raw == "in thousands of yen"
+
+
+def test_missing_unit_is_an_issue_and_never_defaults():
+    from bsparser.page import parse_lines
+    from bsparser.pdf_lines import Line
+
+    lines = [
+        Line("Consolidated balance sheet", 60.0, 80.0),
+        Line("(Mar. 31, 2025) (Mar. 31, 2026)", 300.0, 94.0),
+        Line("Assets", 60.0, 120.0),
+        Line("Cash", 72.0, 134.0, ["100", "200"]),
+    ]
+    page = parse_lines(lines)
+    assert page.unit is None
+    assert page.unit_raw == ""
+    assert [i.kind for i in page.issues] == ["unit_missing"]
