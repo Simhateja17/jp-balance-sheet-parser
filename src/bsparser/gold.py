@@ -34,3 +34,25 @@ def load_gold(template_path) -> List[Gold]:
                 if raw:
                     gold.append(Gold(path, cells[2], cells[4], period, raw))
     return gold
+
+
+@dataclass
+class Result:
+    gold: Gold
+    status: str  # exact | wrong_value | wrong_role | not_found | ambiguous
+    flagged: bool  # the parser warned about this record, its row, or the whole page
+
+
+def evaluate(output, golds: List[Gold]) -> List[Result]:
+    results = []
+    for g in golds:
+        matches = [r for r in output["records"]
+                   if r["path"] == g.path and r["label"] == g.label and r["period"] == g.period]
+        if len(matches) != 1:
+            results.append(Result(g, "not_found" if not matches else "ambiguous", True))
+            continue
+        rec = matches[0]
+        flagged = bool(rec["warnings"]) or output["status"] != "ok"
+        status = "exact" if rec["raw"] == g.raw else "wrong_value"
+        results.append(Result(g, status, flagged))
+    return results

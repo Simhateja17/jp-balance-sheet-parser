@@ -22,3 +22,22 @@ def test_only_filled_cells_become_gold_records_keyed_by_path_label_and_period(tm
     assert zero.raw == "△0"
     nil = [g for g in gold if g.label == "建設仮勘定" and g.period == "2025-03-31"][0]
     assert nil.raw == "－"
+
+
+from pathlib import Path
+
+from bsparser.gold import Gold, evaluate
+from bsparser.output import build_output
+
+REAL_PDF = Path(__file__).parent.parent / "data" / "balance_sheet_after_correction.pdf"
+
+
+def gold(label, raw, period="2026-03-31", role="item", path=("資産の部", "流動資産")):
+    return Gold(list(path), label, role, period, raw)
+
+
+def test_correct_value_is_exact_and_a_wrong_value_on_a_clean_page_is_a_silent_error():
+    out = build_output(REAL_PDF)
+    results = evaluate(out, [gold("現金及び預金", "608,281"), gold("現金及び預金", "608,282")])
+    assert [r.status for r in results] == ["exact", "wrong_value"]
+    assert [r.flagged for r in results] == [False, False]  # page status ok, so the wrong one is silent
