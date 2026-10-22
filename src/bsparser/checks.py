@@ -36,4 +36,18 @@ def run_checks(page: Page) -> List[Check]:
             printed = row.values[p].value
             checks.append(Check(row.label, row.id, period, expected, printed, printed - expected,
                                 allowed_bound(2), 2, "pass"))
+    for row in page.rows:
+        if row.role not in ("subtotal", "total"):
+            continue
+        contributors = []
+        for r in page.rows:
+            if r.role == "item" and r.values and r.path == row.path:
+                nets = [n for n in page.rows if n.role == "net" and n.parent == r.id]
+                contributors.append(nets[0] if nets else r)
+        for p, period in enumerate(page.periods):
+            amounts = [c.values[p].value for c in contributors if c.values[p].value is not None]
+            expected = sum(amounts)
+            printed = row.values[p].value
+            checks.append(Check(row.label, row.id, period, expected, printed, printed - expected,
+                                allowed_bound(len(amounts)), len(amounts), "pass"))
     return checks
