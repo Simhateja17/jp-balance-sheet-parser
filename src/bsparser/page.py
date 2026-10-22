@@ -21,8 +21,23 @@ class Row:
 
 
 @dataclass
+class Issue:
+    kind: str
+    row_id: str
+    message: str
+
+
+@dataclass
 class Page:
     rows: List[Row] = field(default_factory=list)
+    issues: List[Issue] = field(default_factory=list)
+
+
+NET_SUFFIXES = ("\uff08\u7d14\u984d\uff09", ", net")  # （純額）, ", net"
+
+
+def _is_gross_plus_net(gross_label: str, net_label: str) -> bool:
+    return any(net_label == gross_label + suffix for suffix in NET_SUFFIXES)
 
 
 def _table_lines(lines: List[Line]) -> List[Line]:
@@ -34,9 +49,10 @@ def _table_lines(lines: List[Line]) -> List[Line]:
     return lines[start:]
 
 
-def build_rows(lines: List[Line]) -> List[Row]:
+def build_page(lines: List[Line]) -> Page:
     levels = assign_levels([line.x0 for line in lines], LEVEL_TOLERANCE)
     rows: List[Row] = []
+    issues: List[Issue] = []
     stack: List[Row] = []  # nearest preceding row at each shallower level
     for n, (line, level) in enumerate(zip(lines, levels), start=1):
         while stack and stack[-1].level >= level:
@@ -44,11 +60,16 @@ def build_rows(lines: List[Line]) -> List[Row]:
         role = classify_role(line.label, has_values=bool(line.amounts), level=level)
         row = Row(id=f"r{n}", label=line.label, level=level, role=role, path=[r.label for r in stack])
         if role in ("contra", "net") and stack:
-            row.parent = stack[-1].id
+            gross = stack[-1]
+            if role == "net" and not _is_gross_plus_net(gross.label, row.label):
+                issues.append(Issue("net_label_mismatch", row.id,
+                                    f"net label {row.label!r} is not {gross.label!r} plus a net suffix; not linked"))
+            else:
+                row.parent = gross.id
         rows.append(row)
         stack.append(row)
-    return rows
+    return Page(rows=rows, issues=issues)
 
 
 def parse_page(pdf_path) -> Page:
-    return Page(rows=build_rows(_table_lines(extract_lines(pdf_path))))
+    return build_page(_table_lines(extract_lines(pdf_path)))
