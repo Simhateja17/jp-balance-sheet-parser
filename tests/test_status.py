@@ -39,3 +39,14 @@ def test_unreadable_outranks_failed_and_both_issues_are_listed():
     assert sorted(c.status for c in checks) == ["failed", "skipped"]
     assert [i.kind for i in page.issues] == ["unreadable_value"]
     assert page_status(page, checks) == "unreadable"
+
+
+def test_unsupported_era_alone_makes_the_page_unreadable():
+    page = parse_lines([
+        Line("（単位：千円）", 400.0, 70.0),
+        Line("(平成30年３月31日) (平成31年３月31日)", 300.0, 94.0),
+        Line("資産の部", 60.0, 120.0),
+        Line("流動資産", 72.0, 134.0),
+    ])
+    assert [i.kind for i in page.issues] == ["unsupported_era", "unsupported_era"]
+    assert page_status(page, run_checks(page)) == "unreadable"

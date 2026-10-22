@@ -4,7 +4,7 @@ from bsparser.checks import Check
 from bsparser.page import Page
 
 # D6/D9: the page status is the worst issue. unreadable over failed over ok.
-UNREADABLE_ISSUES = {"unreadable_value", "unit_missing", "column_count_mismatch"}
+UNREADABLE_ISSUES = {"unreadable_value", "unit_missing", "column_count_mismatch", "unsupported_era"}
 FAILED_ISSUES = {"net_label_mismatch"}
 
 
