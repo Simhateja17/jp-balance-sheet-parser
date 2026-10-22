@@ -27,6 +27,7 @@ def summarise(output, golds: List[Gold], parser: List[Result], baseline: List[Re
         wrong = [parser[i] for i in idx if parser[i].status != "exact"]
         table[name] = {
             "parser_exact": _share(sum(parser[i].status == "exact" for i in idx), len(idx)),
+            "parser_value_exact": _share(sum(parser[i].value_ok for i in idx), len(idx)),
             "baseline_exact": _share(sum(baseline[i].status == "exact" for i in idx), len(idx)),
             "parser_silent_errors": _share(sum(not r.flagged for r in wrong), len(idx)),
             "parser_flagged_errors": _share(sum(r.flagged for r in wrong), len(idx)),
