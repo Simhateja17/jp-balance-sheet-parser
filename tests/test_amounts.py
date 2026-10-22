@@ -33,3 +33,10 @@ def test_triangle_is_negative_and_triangle_zero_is_zero_not_nil():
     zero = parse_amount("△0")
     assert zero.value == 0
     assert zero.kind == "value"
+
+
+def test_garbage_is_unreadable_and_keeps_raw_text():
+    amount = parse_amount("1,2x4")
+    assert amount.value is None
+    assert amount.kind == "unreadable"
+    assert amount.raw == "1,2x4"
