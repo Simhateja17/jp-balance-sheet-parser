@@ -4,7 +4,7 @@ from typing import List, Optional
 from bsparser.amounts import Amount, parse_amount
 from bsparser.levels import assign_levels
 from bsparser.pdf_lines import Line, extract_lines
-from bsparser.periods import find_periods
+from bsparser.periods import find_periods, find_unsupported_eras
 from bsparser.units import find_unit
 from bsparser.roles import classify_role
 
@@ -49,7 +49,7 @@ def _split_header(lines: List[Line]):
     """Rows start below the last header line that carries two or more period dates."""
     start = 0
     for i, line in enumerate(lines):
-        if len(find_periods(line.label)) >= 2:
+        if len(find_periods(line.label)) + len(find_unsupported_eras(line.label)) >= 2:
             start = i + 1
     return lines[:start], lines[start:]
 
@@ -86,6 +86,8 @@ def parse_lines(lines: List[Line]) -> Page:
     page = build_page(table)
     header_text = " ".join(line.label for line in header)
     page.periods = find_periods(header_text)
+    for era_date in find_unsupported_eras(header_text):
+        page.issues.append(Issue("unsupported_era", "", f"{era_date}: only Reiwa dates are converted; no period assumed"))
     found = find_unit(header_text)
     if found:
         page.unit, page.unit_raw = found

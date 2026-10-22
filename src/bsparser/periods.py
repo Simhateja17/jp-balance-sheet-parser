@@ -24,3 +24,11 @@ def find_periods(text: str) -> List[str]:
         year = 1 if m.group(1) == "\u5143" else int(m.group(1))
         found.append((m.start(), f"{REIWA_FIRST_YEAR + year - 1:04d}-{int(m.group(2)):02d}-{int(m.group(3)):02d}"))
     return [iso for _, iso in sorted(found)]
+
+
+OTHER_ERA_DATE = re.compile("(?:\u5e73\u6210|\u662d\u548c|\u5927\u6b63|\u660e\u6cbb) ?(?:\u5143|\\d{1,2}) ?\u5e74 ?\\d{1,2} ?\u6708 ?\\d{1,2} ?\u65e5")
+
+
+def find_unsupported_eras(text: str) -> List[str]:
+    """Dates in eras other than Reiwa (平成, 昭和, 大正, 明治): found and flagged, never converted."""
+    return OTHER_ERA_DATE.findall(unicodedata.normalize("NFKC", text))

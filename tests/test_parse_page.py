@@ -163,3 +163,13 @@ def test_reiwa_header_splits_the_page_and_gives_the_periods():
     assert [r.label for r in page.rows] == ["資産の部", "流動資産", "現金及び預金"]
     assert page.unit == "thousand_yen"
     assert page.issues == []
+
+
+def test_other_japanese_eras_are_flagged_and_never_converted():
+    from bsparser.page import parse_lines
+
+    page = parse_lines(header_lines("(平成30年３月31日) (平成31年３月31日)"))
+    assert page.periods == []  # no guess
+    kinds = [i.kind for i in page.issues]
+    assert kinds.count("unsupported_era") == 2
+    assert [r.label for r in page.rows] == ["資産の部", "流動資産", "現金及び預金"]  # split still found
