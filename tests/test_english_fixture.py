@@ -25,3 +25,15 @@ def test_fixture_keeps_the_pages_real_rounding_on_current_assets():
     rows = load_fixture()["rows"]
     assert section_difference(rows, "Current assets", "Total current assets", 0) == 3
     assert section_difference(rows, "Current assets", "Total current assets", 1) == 2
+
+
+def test_fixture_pdf_has_a_text_layer_with_the_english_labels_and_marks():
+    import pdfplumber
+
+    pdf_path = FIXTURE.with_suffix(".pdf")
+    with pdfplumber.open(pdf_path) as pdf:
+        assert len(pdf.pages) == 1
+        text = pdf.pages[0].extract_text()
+    assert "Total assets" in text
+    assert "(1,923,585)" in text
+    assert "in thousands of yen" in text
