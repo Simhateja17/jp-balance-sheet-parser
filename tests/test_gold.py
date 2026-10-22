@@ -99,3 +99,16 @@ def test_gold_page_rebuilds_rows_values_and_gross_links_so_the_same_checks_can_r
     checks = run_checks(page)
     assert [(c.label, c.period, c.difference, c.status) for c in checks] == [
         ("建物（純額）", "2025-03-31", 0, "pass"), ("建物（純額）", "2026-03-31", 0, "pass")]
+
+
+GOLD_TEMPLATE = Path(__file__).parent.parent / "data" / "gold" / "balance_sheet_after_correction.template.md"
+
+
+def test_the_real_gold_values_satisfy_the_accounting_identities_with_the_strict_bound():
+    from bsparser.checks import run_checks
+    from bsparser.gold import gold_page
+
+    checks = run_checks(gold_page(GOLD_TEMPLATE))
+    assert len(checks) == 20
+    failing = [(c.label, c.period, c.difference, c.bound, c.status) for c in checks if c.status != "pass"]
+    assert failing == []
