@@ -141,3 +141,25 @@ def test_unreadable_value_becomes_an_issue_naming_the_row_and_keeps_raw_text():
     notes = page.rows[1]
     assert [(a.value, a.kind, a.raw) for a in notes.values] == [(None, "unreadable", "1,2x4"), (200, "value", "200")]
     assert [(i.kind, i.row_id) for i in page.issues] == [("unreadable_value", "r2")]
+
+
+def header_lines(date_line):
+    from bsparser.pdf_lines import Line
+
+    return [
+        Line("（単位：千円）", 400.0, 70.0),
+        Line(date_line, 300.0, 94.0),
+        Line("資産の部", 60.0, 120.0),
+        Line("流動資産", 72.0, 134.0),
+        Line("現金及び預金", 84.0, 148.0, ["100", "200"]),
+    ]
+
+
+def test_reiwa_header_splits_the_page_and_gives_the_periods():
+    from bsparser.page import parse_lines
+
+    page = parse_lines(header_lines("(令和７年３月31日) (令和８年３月31日)"))
+    assert page.periods == ["2025-03-31", "2026-03-31"]
+    assert [r.label for r in page.rows] == ["資産の部", "流動資産", "現金及び預金"]
+    assert page.unit == "thousand_yen"
+    assert page.issues == []

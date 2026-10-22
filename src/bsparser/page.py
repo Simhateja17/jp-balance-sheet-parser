@@ -1,4 +1,3 @@
-import re
 from dataclasses import dataclass, field
 from typing import List, Optional
 
@@ -9,7 +8,6 @@ from bsparser.periods import find_periods
 from bsparser.units import find_unit
 from bsparser.roles import classify_role
 
-YEAR = re.compile(r"(?:19|20)\d{2}")
 LEVEL_TOLERANCE = 2.0  # points
 
 
@@ -48,10 +46,10 @@ def _is_gross_plus_net(gross_label: str, net_label: str) -> bool:
 
 
 def _split_header(lines: List[Line]):
-    """Rows start below the last header line that carries two or more years."""
+    """Rows start below the last header line that carries two or more period dates."""
     start = 0
     for i, line in enumerate(lines):
-        if len(YEAR.findall(line.label)) >= 2:
+        if len(find_periods(line.label)) >= 2:
             start = i + 1
     return lines[:start], lines[start:]
 
