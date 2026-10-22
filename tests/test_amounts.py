@@ -26,3 +26,10 @@ def test_em_dash_and_fullwidth_dash_are_nil():
         amount = parse_amount(mark)
         assert amount.value is None, mark
         assert amount.kind == "nil", mark
+
+
+def test_triangle_is_negative_and_triangle_zero_is_zero_not_nil():
+    assert parse_amount("△1,923,585").value == -1923585
+    zero = parse_amount("△0")
+    assert zero.value == 0
+    assert zero.kind == "value"

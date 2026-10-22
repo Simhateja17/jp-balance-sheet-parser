@@ -17,5 +17,8 @@ def parse_amount(raw: str) -> Amount:
     negative = text.startswith("(") and text.endswith(")")
     if negative:
         text = text[1:-1]
+    elif text.startswith("\u25b3"):
+        negative = True
+        text = text[1:]
     value = int(text.replace(",", ""))
     return Amount(value=-value if negative else value, kind="value")
