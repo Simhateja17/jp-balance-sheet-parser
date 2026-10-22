@@ -33,7 +33,7 @@ Deadline Sun 25 Oct 2026, 11:59 pm IST. One vertical slice at a time (one failin
 6. Vision fallback prototype with selection logic (D7), then the plain-LLM baseline (D8).
 - Core, never cut: steps 1 to 5. Cut order when time runs short: plain-LLM baseline, then vision prototype, then the messy English variant. Nothing Japanese is cut before the messy English variant.
 - The report always states what was built and what was not.
-- AI log: `/export` into docs/ai-log/ at the end of EVERY phase (CLAUDE.md phases 1 to 4), and a final one with at least an hour to spare. The user runs `/export`; Claude reminds at each phase end.
+- AI log (changed): no per-phase `/export`, and no reminders. At the end the user copies the full session logs from ~/.claude/projects into docs/ai-log/, with at least an hour to spare before the deadline.
 
 ## D9. Unit, period, column count (agreed)
 - Unit and period are read from the page header. No default is ever assumed. A missing or unrecognised unit is an issue and the page is `unreadable`.
