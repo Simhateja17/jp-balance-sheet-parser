@@ -36,3 +36,19 @@ def test_parent_links_stay_inside_the_same_period_and_nil_keeps_its_raw_text():
     assert by_id[contra["parent"]]["label"] == "Buildings and structures"
     nil = [r for r in records if r["label"] == "Construction in progress" and r["period"] == "2025-03-31"][0]
     assert (nil["value"], nil["kind"], nil["raw"]) == (None, "nil", "-")
+
+
+def test_unreadable_value_record_keeps_raw_text_and_carries_a_warning():
+    from bsparser.page import parse_lines
+    from bsparser.pdf_lines import Line
+
+    page = parse_lines([
+        Line("(in thousands of yen)", 400.0, 70.0),
+        Line("(Mar. 31, 2025) (Mar. 31, 2026)", 300.0, 94.0),
+        Line("Assets", 60.0, 120.0),
+        Line("Notes receivable", 72.0, 134.0, ["1,2x4", "200"]),
+    ])
+    bad, good = make_records(page)
+    assert (bad["value"], bad["kind"], bad["raw"]) == (None, "unreadable", "1,2x4")
+    assert bad["warnings"] == ["unreadable value: could not parse '1,2x4'"]
+    assert good["warnings"] == []

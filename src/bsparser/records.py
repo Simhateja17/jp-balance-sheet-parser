@@ -23,6 +23,6 @@ def make_records(page: Page) -> List[Dict]:
                 "kind": amount.kind,
                 "raw": amount.raw,
                 "unit": page.unit,
-                "warnings": [],
+                "warnings": [f"unreadable value: could not parse {amount.raw!r}"] if amount.kind == "unreadable" else [],
             })
     return records
