@@ -46,3 +46,54 @@ row's label should be the gross row's label plus the "net" suffix. If it
 isn't, flag it instead of linking blindly. Then go ahead with parse_page.
 ```
 
+## 2026-10-22 11:27
+
+```
+Yes, make it an item. In the decision note, say that in accounting terms
+it is a contra-asset, but our "contra" role is reserved for lines with a
+gross row on the page. Then attach values, periods and the unit next.
+```
+
+## 2026-10-22 11:30
+
+```
+<pasted_content id="0814">
+Good. Skip the export reminders: I'll copy the full session logs from
+~/.claude/projects into docs/ai-log/ at the end. Please update D10 to
+say that. Continue with the long per-period records, then the identity
+checks with the strict bound.
+</pasted_content id="0814">
+```
+
+## 2026-10-22 11:33
+
+```
+Continue
+```
+
+## 2026-10-22 11:37
+
+```
+<pasted_content id="0814">
+All three calls are fine. Nil not counted toward the bound is correct,
+since a nil has no rounding error, so add that to D4. For the gap: yes,
+add the test. A token that is mostly digits and commas but has a stray
+character (like 1,2x4) should become an unreadable value with its raw
+text kept, not part of the label. Then continue with page status and
+JSON output.
+</pasted_content id="0814">
+```
+
+## 2026-10-22 11:41
+
+```
+<pasted_content id="0814">
+The severity mapping is fine. For outputs/: don't commit it during the
+build, but at the end commit the final outputs for the real Japanese PDF
+and the English fixture, so reviewers can see results without running
+anything. For docs/prompts.md: commit it at the end of each step along
+with the code, since it's part of my submission. Continue with the
+Japanese header on the real PDF.
+</pasted_content id="0814">
+```
+

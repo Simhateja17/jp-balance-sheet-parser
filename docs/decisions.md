@@ -8,6 +8,10 @@
 - `label_en` is a translation for the human reader only. It is marked as a translation and is never used in any check or matching.
 - `parent` links a contra (accumulated depreciation) or net line to its item. Exact semantics: see D2.
 
+## D13. What gets committed (agreed)
+- `docs/prompts.md` (the prompt log written by the user's hook) is committed at the end of every step, together with that step's code, because it is part of the submission.
+- `outputs/` is NOT committed during the build. At the end, the final outputs for the real Japanese PDF and the English fixture are committed, so reviewers can see results without running anything.
+
 ## D12. Role of the allowance row (agreed)
 - 貸倒引当金 / Allowance for doubtful accounts has role `item` with a negative value.
 - In accounting terms it is a contra-asset. Our `contra` role is narrower: it is reserved for lines that have a gross row on the page (the 減価償却累計額 lines), because only those get a `parent` link (D2).
