@@ -97,3 +97,38 @@ Japanese header on the real PDF.
 </pasted_content id="0814">
 ```
 
+## 2026-10-22 11:45
+
+```
+<pasted_content id="0814">
+Yes, use a dictionary seeded from the template. But call it "reviewed by
+the reviewer session", not "hand-checked": the English translations were
+written by you and nobody has checked them yet.
+
+Send this to the reviewer session : "Job 1b: in
+data/gold/balance_sheet_after_correction.template.md, check the English
+translation column against the Japanese labels on the page image. For
+each row, mark ok, wrong (give a better translation) or unsure. Save to
+docs/translation-check.md." Show me the message you sent.
+
+When the reviewer's file is back, apply its fixes to the dictionary. Then
+move on to the gold values and the accuracy report.
+</pasted_content id="0814">
+```
+
+## 2026-10-22 11:45
+
+```
+<cross-session-message from="uds:/tmp/cc-socks/84685.sock" from-name="ur-ai-parser-setup-d6" from-mode="prompting">
+Job 1b: in data/gold/balance_sheet_after_correction.template.md, check the English translation column against the Japanese labels on the page image. For each row, mark ok, wrong (give a better translation) or unsure. Save to docs/translation-check.md.
+</cross-session-message>
+```
+
+## 2026-10-22 11:45
+
+```
+<cross-session-message from="uds:/tmp/cc-socks/94896.sock" from-name="ur-ai-parser-setup-7c" from-mode="prompting">
+Translation check done, saved to docs/translation-check.md. All 43 translations are ok, none wrong and none unsure. Optional wording: row 37 関係会社株式 is more precisely "Shares of subsidiaries and associates", and row 39 is often written "Retirement benefit asset". Both current versions are acceptable.
+</cross-session-message>
+```
+
