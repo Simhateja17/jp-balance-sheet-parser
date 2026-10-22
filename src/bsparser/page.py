@@ -8,7 +8,7 @@ from bsparser.pdf_lines import Line, extract_lines
 from bsparser.periods import find_periods, find_unsupported_eras
 from bsparser.units import find_unit
 from bsparser.roles import classify_role
-from bsparser.wrapped import TIGHT_RATIO
+from bsparser.wrapped import TIGHT_RATIO, LineInfo, find_possible_wrapped
 
 LEVEL_TOLERANCE = 2.0  # points
 
@@ -104,6 +104,10 @@ def build_page(lines: List[Line]) -> Page:
                 row.parent = gross.id
         rows.append(row)
         stack.append(row)
+    infos = [LineInfo(r.label, bool(r.values), r.level, line.top) for r, line in zip(rows, lines)]
+    for flag in find_possible_wrapped(infos):
+        issues.append(Issue("possible_wrapped_label", rows[flag.index].id,
+                            f"{rows[flag.index].label!r}: {flag.reason}; not merged"))
     for position in merged_at:
         issues.append(Issue("wrapped_label_merged", rows[position].id,
                             f"label {rows[position].label!r} was wrapped over two lines and merged"))

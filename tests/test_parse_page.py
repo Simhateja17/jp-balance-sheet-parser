@@ -211,3 +211,14 @@ def test_wrapped_label_with_both_signals_is_merged_into_one_row_and_flagged():
     merged = page.rows[labels.index("Electronically recorded monetary claims")]
     assert merged.role == "item" and [a.value for a in merged.values] == [300, 400]
     assert [(i.kind, i.row_id) for i in page.issues] == [("wrapped_label_merged", merged.id)]
+
+
+def test_wrapped_label_with_only_one_signal_is_flagged_but_not_merged():
+    from bsparser.page import parse_lines
+
+    page = parse_lines(wrapped_lines(second_label_x=84.0, gap=14.0))  # same level, values, but normal spacing
+    labels = [r.label for r in page.rows]
+    assert "Electronically recorded monetary" in labels and "claims" in labels  # not merged, no guess
+    first = page.rows[labels.index("Electronically recorded monetary")]
+    assert first.role == "header"  # still typed by the rules, but flagged
+    assert [(i.kind, i.row_id) for i in page.issues] == [("possible_wrapped_label", first.id)]
