@@ -1,3 +1,4 @@
+import re
 from dataclasses import dataclass, field
 from typing import List, Optional
 
@@ -7,6 +8,7 @@ from bsparser.pdf_lines import Line, extract_lines
 from bsparser.periods import find_periods, find_unsupported_eras
 from bsparser.units import find_unit
 from bsparser.roles import classify_role
+from bsparser.wrapped import TIGHT_RATIO
 
 LEVEL_TOLERANCE = 2.0  # points
 
@@ -54,7 +56,35 @@ def _split_header(lines: List[Line]):
     return lines[:start], lines[start:]
 
 
+def _join(first: str, second: str) -> str:
+    cjk = re.compile("[\u3040-\u30ff\u3400-\u9fff]")
+    return first + second if cjk.search(first[-1:]) or cjk.search(second[:1]) else f"{first} {second}"
+
+
+def _merge_wrapped(lines: List[Line]):
+    """Merge a no-value line with the next line when both signals agree: much tighter spacing than usual,
+    the same level or deeper, and the next line carries the values. Returns (lines, merged line positions)."""
+    gaps = sorted(b.top - a.top for a, b in zip(lines, lines[1:]))
+    usual = gaps[len(gaps) // 2] if gaps else 0.0
+    merged_lines: List[Line] = []
+    merged_at: List[int] = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        nxt = lines[i + 1] if i + 1 < len(lines) else None
+        if (nxt is not None and not line.amounts and nxt.amounts
+                and nxt.top - line.top < TIGHT_RATIO * usual and nxt.x0 >= line.x0 - LEVEL_TOLERANCE):
+            merged_at.append(len(merged_lines))
+            merged_lines.append(Line(_join(line.label, nxt.label), line.x0, line.top, nxt.amounts))
+            i += 2
+        else:
+            merged_lines.append(line)
+            i += 1
+    return merged_lines, merged_at
+
+
 def build_page(lines: List[Line]) -> Page:
+    lines, merged_at = _merge_wrapped(lines)
     levels = assign_levels([line.x0 for line in lines], LEVEL_TOLERANCE)
     rows: List[Row] = []
     issues: List[Issue] = []
@@ -74,6 +104,9 @@ def build_page(lines: List[Line]) -> Page:
                 row.parent = gross.id
         rows.append(row)
         stack.append(row)
+    for position in merged_at:
+        issues.append(Issue("wrapped_label_merged", rows[position].id,
+                            f"label {rows[position].label!r} was wrapped over two lines and merged"))
     return Page(rows=rows, issues=issues)
 
 

@@ -183,3 +183,31 @@ def test_line_without_a_label_such_as_the_page_number_is_not_a_row_but_is_record
     assert [r.label for r in page.rows] == ["資産の部", "流動資産", "現金及び預金"]
     assert [i.kind for i in page.issues] == ["ignored_line"]
     assert "'-', '4', '-'" in page.issues[0].message
+
+
+def wrapped_lines(second_label_x=84.0, gap=8.0):
+    from bsparser.pdf_lines import Line
+
+    return [
+        Line("(in thousands of yen)", 400.0, 70.0),
+        Line("(Mar. 31, 2025) (Mar. 31, 2026)", 300.0, 94.0),
+        Line("Assets", 60.0, 120.0),
+        Line("Current assets", 72.0, 134.0),
+        Line("Cash and deposits", 84.0, 148.0, ["100", "200"]),
+        Line("Electronically recorded monetary", 84.0, 162.0),
+        Line("claims", second_label_x, 162.0 + gap, ["300", "400"]),
+        Line("Notes receivable", 84.0, 184.0, ["500", "600"]),
+        Line("Other", 84.0, 198.0, ["700", "800"]),
+    ]
+
+
+def test_wrapped_label_with_both_signals_is_merged_into_one_row_and_flagged():
+    from bsparser.page import parse_lines
+
+    page = parse_lines(wrapped_lines(second_label_x=84.0, gap=8.0))
+    labels = [r.label for r in page.rows]
+    assert "Electronically recorded monetary claims" in labels
+    assert "Electronically recorded monetary" not in labels and "claims" not in labels
+    merged = page.rows[labels.index("Electronically recorded monetary claims")]
+    assert merged.role == "item" and [a.value for a in merged.values] == [300, 400]
+    assert [(i.kind, i.row_id) for i in page.issues] == [("wrapped_label_merged", merged.id)]
