@@ -27,8 +27,8 @@ Deadline: Sun 25 Oct 2026, 11:59 pm IST. The full AI chat log is part of the sub
 
 ## Commands
 - Install: `pip install -r requirements.txt`
-- Test: `python -m pytest -q --tb=short`
-- Layout: src/parser/, tests/, data/, docs/, outputs/
+- Test: `.venv/bin/python -m pytest -q --tb=short`
+- Layout: src/bsparser/ (not `parser`, which clashes with the Python 3.9 stdlib), tests/, data/, docs/, outputs/
 
 ## Style
 Short and dense. No em dashes in any written text.
