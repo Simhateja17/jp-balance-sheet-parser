@@ -173,3 +173,13 @@ def test_other_japanese_eras_are_flagged_and_never_converted():
     kinds = [i.kind for i in page.issues]
     assert kinds.count("unsupported_era") == 2
     assert [r.label for r in page.rows] == ["資産の部", "流動資産", "現金及び預金"]  # split still found
+
+
+def test_line_without_a_label_such_as_the_page_number_is_not_a_row_but_is_recorded():
+    from bsparser.page import parse_lines
+    from bsparser.pdf_lines import Line
+
+    page = parse_lines(header_lines("(2025年３月31日) (2026年３月31日)") + [Line("", 286.7, 800.0, ["-", "4", "-"])])
+    assert [r.label for r in page.rows] == ["資産の部", "流動資産", "現金及び預金"]
+    assert [i.kind for i in page.issues] == ["ignored_line"]
+    assert "'-', '4', '-'" in page.issues[0].message

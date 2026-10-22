@@ -83,7 +83,10 @@ def parse_page(pdf_path) -> Page:
 
 def parse_lines(lines: List[Line]) -> Page:
     header, table = _split_header(lines)
-    page = build_page(table)
+    ignored = [line for line in table if not line.label]
+    page = build_page([line for line in table if line.label])
+    for line in ignored:
+        page.issues.append(Issue("ignored_line", "", f"line without a label ignored (page number?): amounts {line.amounts}"))
     header_text = " ".join(line.label for line in header)
     page.periods = find_periods(header_text)
     for era_date in find_unsupported_eras(header_text):
