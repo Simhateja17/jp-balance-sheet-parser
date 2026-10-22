@@ -94,6 +94,10 @@ def parse_lines(lines: List[Line]) -> Page:
     else:
         page.issues.append(Issue("unit_missing", "", "no known unit found in the header; none assumed"))
     for row in page.rows:
+        for amount in row.values:
+            if amount.kind == "unreadable":
+                page.issues.append(Issue("unreadable_value", row.id, f"could not parse {amount.raw!r}; kept as raw text"))
+    for row in page.rows:
         if row.values and len(row.values) != len(page.periods):
             page.issues.append(Issue(
                 "column_count_mismatch", row.id,

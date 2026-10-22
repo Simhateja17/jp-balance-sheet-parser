@@ -125,3 +125,19 @@ def test_row_with_fewer_values_than_period_columns_is_an_issue_naming_the_row():
     page = parse_lines(lines)
     assert [(i.kind, i.row_id) for i in page.issues] == [("column_count_mismatch", "r3")]
     assert page.rows[1].values and len(page.rows[1].values) == 2
+
+
+def test_unreadable_value_becomes_an_issue_naming_the_row_and_keeps_raw_text():
+    from bsparser.page import parse_lines
+    from bsparser.pdf_lines import Line
+
+    lines = [
+        Line("(in thousands of yen)", 400.0, 70.0),
+        Line("(Mar. 31, 2025) (Mar. 31, 2026)", 300.0, 94.0),
+        Line("Assets", 60.0, 120.0),
+        Line("Notes receivable", 72.0, 134.0, ["1,2x4", "200"]),
+    ]
+    page = parse_lines(lines)
+    notes = page.rows[1]
+    assert [(a.value, a.kind, a.raw) for a in notes.values] == [(None, "unreadable", "1,2x4"), (200, "value", "200")]
+    assert [(i.kind, i.row_id) for i in page.issues] == [("unreadable_value", "r2")]
