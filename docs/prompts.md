@@ -23,3 +23,18 @@ generated PDF, so the tests don't depend on regenerating it.
 </pasted_content id="0814">
 ```
 
+## 2026-10-22 11:21
+
+```
+<pasted_content id="0814">
+Yes, with three fixes. First, Japanese subtotal labels END with the
+"total" word, for example the current assets total, they don't start
+with it. English "Total ..." starts with it. Test both. Second, the grand
+total (total assets) should get role "total", not "subtotal". Third, a
+label with no values isn't always a header: a long label wrapped onto
+two lines also has no values on its first line. Flag that case instead of
+treating it as a header, and cluster x positions with a small tolerance
+of a few points, not exact equality.
+</pasted_content id="0814">
+```
+
