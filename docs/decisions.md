@@ -77,6 +77,7 @@ Deadline Sun 25 Oct 2026, 11:59 pm IST. One vertical slice at a time (one failin
 - Three layers, reported separately: (1) cell exactness vs gold (value, nil vs 0, sign), (2) structure vs gold (path, role), (3) accounting identities with no gold.
 - Headline: share of gold records matched exactly on layers 1 and 2. Silent errors (wrong and unflagged) are counted apart from flagged ones.
 - Identity tolerance, set up front, strict bound: allowed difference = floor(0.5 x (items + 1)). Items are rounded and so is the printed subtotal, so both count. Applies to EVERY sum check: section subtotals, gross + contra = net, current + fixed = total assets. Anything above the bound is a FAILURE, not a warning.
+- Nil items do not count toward the item number in the bound: a nil has no rounding error. Only rows with a printed number count. Each check reports how many items it counted.
 - Every check is reported with its difference AND the allowed bound next to it, even when it passes.
 - Test for the edge: a page where values sit exactly on the bound (difference equal to the bound passes, bound + 1 fails), including an odd item count where the strict and the naive rule differ (3 items: bound 2, not 1).
 - Gold comes from the printed page, read by the user from the PDF image, never from the text the parser reads. 20 to 30 records. Must include: nil (－), the zero with a negative mark (△0), repeated labels (その他, リース資産, 減価償却累計額), and the depreciation and net lines.
