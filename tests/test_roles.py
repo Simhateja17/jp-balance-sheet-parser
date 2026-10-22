@@ -24,3 +24,8 @@ def test_label_without_values_is_a_header():
 def test_accumulated_depreciation_is_contra_in_both_languages():
     assert classify_role("Accumulated depreciation", has_values=True, level=4) == "contra"
     assert classify_role("減価償却累計額", has_values=True, level=4) == "contra"
+
+
+def test_net_lines_are_net_in_both_languages():
+    assert classify_role("Buildings and structures, net", has_values=True, level=4) == "net"
+    assert classify_role("建物及び構築物（純額）", has_values=True, level=4) == "net"
