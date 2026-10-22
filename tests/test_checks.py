@@ -25,3 +25,13 @@ def test_section_subtotal_sums_its_items_and_reports_the_pages_rounding():
         "pass", 5863681, 5863684, 3, 5, 10)
     current = check_for(checks, "Total current assets", "2026-03-31")
     assert (current.difference, current.bound) == (2, 5)
+
+
+def test_property_subtotal_uses_net_lines_and_sits_exactly_on_the_bound():
+    checks = run_checks(parse_page(FIXTURE_PDF))
+    c = check_for(checks, "Total property, plant and equipment", "2026-03-31")
+    # items: buildings net, machinery net, land, lease net, construction in progress, other net
+    assert (c.status, c.difference, c.bound, c.items) == ("pass", 3, 3, 6)
+    prior = check_for(checks, "Total property, plant and equipment", "2025-03-31")
+    # construction in progress is nil in 2025: no rounded number, so it is not counted
+    assert (prior.difference, prior.bound, prior.items) == (1, 3, 5)
