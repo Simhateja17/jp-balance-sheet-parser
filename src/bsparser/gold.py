@@ -62,7 +62,9 @@ def evaluate(output, golds: List[Gold]) -> List[Result]:
             results.append(Result(g, "not_found" if not matches else "ambiguous", True))
             continue
         rec = matches[0]
-        flagged = bool(rec["warnings"]) or output["status"] != "ok"
+        row_id = rec["id"].split("|")[0]
+        row_has_issue = any(i["row_id"] == row_id for i in output.get("issues", []))
+        flagged = bool(rec["warnings"]) or output["status"] != "ok" or row_has_issue
         value_ok = _same_text(rec["raw"], g.raw)
         role_ok = rec["role"] == g.role
         status = "wrong_value" if not value_ok else ("exact" if role_ok else "wrong_role")

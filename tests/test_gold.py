@@ -112,3 +112,15 @@ def test_the_real_gold_values_satisfy_the_accounting_identities_with_the_strict_
     assert len(checks) == 20
     failing = [(c.label, c.period, c.difference, c.bound, c.status) for c in checks if c.status != "pass"]
     assert failing == []
+
+
+def test_wrong_value_on_a_row_that_has_an_issue_is_flagged_not_silent():
+    record = {"id": "r3|2026-03-31", "path": ["資産の部", "流動資産"], "label": "現金及び預金",
+              "period": "2026-03-31", "raw": "999", "role": "item", "warnings": []}
+    output = {"status": "ok", "records": [record],
+              "issues": [{"kind": "possible_wrapped_label", "row_id": "r3", "message": ""}]}
+    (flagged,) = evaluate(output, [gold("現金及び預金", "608,281")])
+    assert (flagged.status, flagged.flagged) == ("wrong_value", True)
+    output["issues"] = [{"kind": "ignored_line", "row_id": "", "message": ""}]
+    (silent,) = evaluate(output, [gold("現金及び預金", "608,281")])
+    assert (silent.status, silent.flagged) == ("wrong_value", False)  # an issue on another row does not flag it
