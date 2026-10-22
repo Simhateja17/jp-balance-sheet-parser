@@ -1,0 +1,601 @@
+{
+ "unit": "thousand_yen",
+ "unit_raw": "in thousands of yen",
+ "periods": [
+  "2025-03-31",
+  "2026-03-31"
+ ],
+ "rows": [
+  {
+   "depth": 0,
+   "role": "header",
+   "label": "Assets",
+   "values": null
+  },
+  {
+   "depth": 1,
+   "role": "header",
+   "label": "Current assets",
+   "values": null
+  },
+  {
+   "depth": 2,
+   "role": "item",
+   "label": "Cash and deposits",
+   "values": [
+    {
+     "raw": "2,002,429",
+     "value": 2002429
+    },
+    {
+     "raw": "608,281",
+     "value": 608281
+    }
+   ]
+  },
+  {
+   "depth": 2,
+   "role": "item",
+   "label": "Notes receivable",
+   "values": [
+    {
+     "raw": "20,659",
+     "value": 20659
+    },
+    {
+     "raw": "26,333",
+     "value": 26333
+    }
+   ]
+  },
+  {
+   "depth": 2,
+   "role": "item",
+   "label": "Accounts receivable",
+   "values": [
+    {
+     "raw": "2,019,476",
+     "value": 2019476
+    },
+    {
+     "raw": "884,339",
+     "value": 884339
+    }
+   ]
+  },
+  {
+   "depth": 2,
+   "role": "item",
+   "label": "Electronically recorded monetary claims",
+   "values": [
+    {
+     "raw": "564,667",
+     "value": 564667
+    },
+    {
+     "raw": "370,468",
+     "value": 370468
+    }
+   ]
+  },
+  {
+   "depth": 2,
+   "role": "item",
+   "label": "Merchandise and finished goods",
+   "values": [
+    {
+     "raw": "589,488",
+     "value": 589488
+    },
+    {
+     "raw": "1,019,663",
+     "value": 1019663
+    }
+   ]
+  },
+  {
+   "depth": 2,
+   "role": "item",
+   "label": "Work in process",
+   "values": [
+    {
+     "raw": "186,748",
+     "value": 186748
+    },
+    {
+     "raw": "55,344",
+     "value": 55344
+    }
+   ]
+  },
+  {
+   "depth": 2,
+   "role": "item",
+   "label": "Raw materials and supplies",
+   "values": [
+    {
+     "raw": "370,403",
+     "value": 370403
+    },
+    {
+     "raw": "136,082",
+     "value": 136082
+    }
+   ]
+  },
+  {
+   "depth": 2,
+   "role": "item",
+   "label": "Short-term loans receivable",
+   "values": [
+    {
+     "raw": "7,530",
+     "value": 7530
+    },
+    {
+     "raw": "30,000",
+     "value": 30000
+    }
+   ]
+  },
+  {
+   "depth": 2,
+   "role": "item",
+   "label": "Other",
+   "values": [
+    {
+     "raw": "105,260",
+     "value": 105260
+    },
+    {
+     "raw": "246,895",
+     "value": 246895
+    }
+   ]
+  },
+  {
+   "depth": 2,
+   "role": "contra",
+   "label": "Allowance for doubtful accounts",
+   "values": [
+    {
+     "raw": "(2,979)",
+     "value": -2979
+    },
+    {
+     "raw": "(0)",
+     "value": 0
+    }
+   ]
+  },
+  {
+   "depth": 2,
+   "role": "subtotal",
+   "label": "Total current assets",
+   "values": [
+    {
+     "raw": "5,863,684",
+     "value": 5863684
+    },
+    {
+     "raw": "3,377,407",
+     "value": 3377407
+    }
+   ]
+  },
+  {
+   "depth": 1,
+   "role": "header",
+   "label": "Non-current assets",
+   "values": null
+  },
+  {
+   "depth": 2,
+   "role": "header",
+   "label": "Property, plant and equipment",
+   "values": null
+  },
+  {
+   "depth": 3,
+   "role": "item",
+   "label": "Buildings and structures",
+   "values": [
+    {
+     "raw": "2,121,360",
+     "value": 2121360
+    },
+    {
+     "raw": "1,880,082",
+     "value": 1880082
+    }
+   ]
+  },
+  {
+   "depth": 4,
+   "role": "contra",
+   "label": "Accumulated depreciation",
+   "values": [
+    {
+     "raw": "(1,923,585)",
+     "value": -1923585
+    },
+    {
+     "raw": "(1,640,253)",
+     "value": -1640253
+    }
+   ]
+  },
+  {
+   "depth": 4,
+   "role": "net",
+   "label": "Buildings and structures, net",
+   "values": [
+    {
+     "raw": "197,775",
+     "value": 197775
+    },
+    {
+     "raw": "239,828",
+     "value": 239828
+    }
+   ]
+  },
+  {
+   "depth": 3,
+   "role": "item",
+   "label": "Machinery, equipment and vehicles",
+   "values": [
+    {
+     "raw": "4,024,922",
+     "value": 4024922
+    },
+    {
+     "raw": "2,250,799",
+     "value": 2250799
+    }
+   ]
+  },
+  {
+   "depth": 4,
+   "role": "contra",
+   "label": "Accumulated depreciation",
+   "values": [
+    {
+     "raw": "(3,634,165)",
+     "value": -3634165
+    },
+    {
+     "raw": "(1,914,091)",
+     "value": -1914091
+    }
+   ]
+  },
+  {
+   "depth": 4,
+   "role": "net",
+   "label": "Machinery, equipment and vehicles, net",
+   "values": [
+    {
+     "raw": "390,757",
+     "value": 390757
+    },
+    {
+     "raw": "336,708",
+     "value": 336708
+    }
+   ]
+  },
+  {
+   "depth": 3,
+   "role": "item",
+   "label": "Land",
+   "values": [
+    {
+     "raw": "768,976",
+     "value": 768976
+    },
+    {
+     "raw": "705,403",
+     "value": 705403
+    }
+   ]
+  },
+  {
+   "depth": 3,
+   "role": "item",
+   "label": "Lease assets",
+   "values": [
+    {
+     "raw": "210,746",
+     "value": 210746
+    },
+    {
+     "raw": "213,939",
+     "value": 213939
+    }
+   ]
+  },
+  {
+   "depth": 4,
+   "role": "contra",
+   "label": "Accumulated depreciation",
+   "values": [
+    {
+     "raw": "(147,599)",
+     "value": -147599
+    },
+    {
+     "raw": "(172,066)",
+     "value": -172066
+    }
+   ]
+  },
+  {
+   "depth": 4,
+   "role": "net",
+   "label": "Lease assets, net",
+   "values": [
+    {
+     "raw": "63,146",
+     "value": 63146
+    },
+    {
+     "raw": "41,872",
+     "value": 41872
+    }
+   ]
+  },
+  {
+   "depth": 3,
+   "role": "item",
+   "label": "Construction in progress",
+   "values": [
+    {
+     "raw": "-",
+     "value": null
+    },
+    {
+     "raw": "4,553",
+     "value": 4553
+    }
+   ]
+  },
+  {
+   "depth": 3,
+   "role": "item",
+   "label": "Other",
+   "values": [
+    {
+     "raw": "848,814",
+     "value": 848814
+    },
+    {
+     "raw": "446,126",
+     "value": 446126
+    }
+   ]
+  },
+  {
+   "depth": 4,
+   "role": "contra",
+   "label": "Accumulated depreciation",
+   "values": [
+    {
+     "raw": "(840,375)",
+     "value": -840375
+    },
+    {
+     "raw": "(421,883)",
+     "value": -421883
+    }
+   ]
+  },
+  {
+   "depth": 4,
+   "role": "net",
+   "label": "Other, net",
+   "values": [
+    {
+     "raw": "8,439",
+     "value": 8439
+    },
+    {
+     "raw": "24,243",
+     "value": 24243
+    }
+   ]
+  },
+  {
+   "depth": 3,
+   "role": "subtotal",
+   "label": "Total property, plant and equipment",
+   "values": [
+    {
+     "raw": "1,429,094",
+     "value": 1429094
+    },
+    {
+     "raw": "1,352,610",
+     "value": 1352610
+    }
+   ]
+  },
+  {
+   "depth": 2,
+   "role": "header",
+   "label": "Intangible assets",
+   "values": null
+  },
+  {
+   "depth": 3,
+   "role": "item",
+   "label": "Lease assets",
+   "values": [
+    {
+     "raw": "34,190",
+     "value": 34190
+    },
+    {
+     "raw": "21,402",
+     "value": 21402
+    }
+   ]
+  },
+  {
+   "depth": 3,
+   "role": "item",
+   "label": "Other",
+   "values": [
+    {
+     "raw": "10,070",
+     "value": 10070
+    },
+    {
+     "raw": "14,466",
+     "value": 14466
+    }
+   ]
+  },
+  {
+   "depth": 3,
+   "role": "subtotal",
+   "label": "Total intangible assets",
+   "values": [
+    {
+     "raw": "44,261",
+     "value": 44261
+    },
+    {
+     "raw": "35,869",
+     "value": 35869
+    }
+   ]
+  },
+  {
+   "depth": 2,
+   "role": "header",
+   "label": "Investments and other assets",
+   "values": null
+  },
+  {
+   "depth": 3,
+   "role": "item",
+   "label": "Investment securities",
+   "values": [
+    {
+     "raw": "44,180",
+     "value": 44180
+    },
+    {
+     "raw": "218,836",
+     "value": 218836
+    }
+   ]
+  },
+  {
+   "depth": 3,
+   "role": "item",
+   "label": "Shares of affiliates",
+   "values": [
+    {
+     "raw": "1,123",
+     "value": 1123
+    },
+    {
+     "raw": "1,123",
+     "value": 1123
+    }
+   ]
+  },
+  {
+   "depth": 3,
+   "role": "item",
+   "label": "Long-term loans receivable",
+   "values": [
+    {
+     "raw": "-",
+     "value": null
+    },
+    {
+     "raw": "62,000",
+     "value": 62000
+    }
+   ]
+  },
+  {
+   "depth": 3,
+   "role": "item",
+   "label": "Assets related to retirement benefits",
+   "values": [
+    {
+     "raw": "18,404",
+     "value": 18404
+    },
+    {
+     "raw": "16,435",
+     "value": 16435
+    }
+   ]
+  },
+  {
+   "depth": 3,
+   "role": "item",
+   "label": "Other",
+   "values": [
+    {
+     "raw": "133,361",
+     "value": 133361
+    },
+    {
+     "raw": "70,967",
+     "value": 70967
+    }
+   ]
+  },
+  {
+   "depth": 3,
+   "role": "subtotal",
+   "label": "Total investments and other assets",
+   "values": [
+    {
+     "raw": "197,069",
+     "value": 197069
+    },
+    {
+     "raw": "369,362",
+     "value": 369362
+    }
+   ]
+  },
+  {
+   "depth": 2,
+   "role": "subtotal",
+   "label": "Total non-current assets",
+   "values": [
+    {
+     "raw": "1,670,426",
+     "value": 1670426
+    },
+    {
+     "raw": "1,757,841",
+     "value": 1757841
+    }
+   ]
+  },
+  {
+   "depth": 1,
+   "role": "total",
+   "label": "Total assets",
+   "values": [
+    {
+     "raw": "7,534,110",
+     "value": 7534110
+    },
+    {
+     "raw": "5,135,249",
+     "value": 5135249
+    }
+   ]
+  }
+ ]
+}

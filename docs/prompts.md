@@ -12,3 +12,14 @@ that net lines are matched with the full-width brackets.
 </pasted_content id="0814">
 ```
 
+## 2026-10-22 11:18
+
+```
+<pasted_content id="0814">
+Yes. One addition: keep the page's real rounding differences in the
+fixture numbers (the subtotals that are off by 1 to 3), so the tolerance
+check gets tested on English too. And commit the data file and the
+generated PDF, so the tests don't depend on regenerating it.
+</pasted_content id="0814">
+```
+
