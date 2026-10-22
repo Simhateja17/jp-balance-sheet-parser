@@ -66,5 +66,4 @@ def test_parse_page_matches_the_fixture_data_row_by_row():
     assert page.issues == []
     for row, want in zip(page.rows, data):
         assert (row.label, row.level) == (want["label"], want["depth"])
-        if row.label != "Allowance for doubtful accounts":  # role undecided, see D1/D12
-            assert row.role == want["role"], row.label
+        assert row.role == want["role"], row.label

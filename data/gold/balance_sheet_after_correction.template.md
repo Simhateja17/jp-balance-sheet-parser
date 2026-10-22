@@ -25,7 +25,7 @@ Periods: 前連結会計年度 = 2025-03-31, 当連結会計年度 = 2026-03-31.
 | 9 | 資産の部/流動資産 | 原材料及び貯蔵品 | Raw materials and supplies | item | | | |
 | 10 | 資産の部/流動資産 | 短期貸付金 | Short-term loans receivable | item | | | |
 | 11 | 資産の部/流動資産 | その他 | Other | item | repeated label | | |
-| 12 | 資産の部/流動資産 | 貸倒引当金 | Allowance for doubtful accounts | contra | negative mark, check both years | | |
+| 12 | 資産の部/流動資産 | 貸倒引当金 | Allowance for doubtful accounts | item | negative mark, check both years | | |
 | 13 | 資産の部/流動資産 | 流動資産合計 | Total current assets | subtotal | sum check | | |
 | 14 | 資産の部 | 固定資産 | Non-current assets | header | | | |
 | 15 | 資産の部/固定資産 | 有形固定資産 | Property, plant and equipment | header | | | |

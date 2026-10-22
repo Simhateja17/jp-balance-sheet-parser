@@ -8,6 +8,11 @@
 - `label_en` is a translation for the human reader only. It is marked as a translation and is never used in any check or matching.
 - `parent` links a contra (accumulated depreciation) or net line to its item. Exact semantics: see D2.
 
+## D12. Role of the allowance row (agreed)
+- 貸倒引当金 / Allowance for doubtful accounts has role `item` with a negative value.
+- In accounting terms it is a contra-asset. Our `contra` role is narrower: it is reserved for lines that have a gross row on the page (the 減価償却累計額 lines), because only those get a `parent` link (D2).
+- The allowance sits inside the current-assets sum, so the sum checks already treat it as an item. The gold template row 12 and the English fixture data use `item`.
+
 ## D11. Depth, sections and roles from the page (agreed, implemented as tested)
 - Indent levels come from clustering the left x positions of labels, with a tolerance of a few points (2.0), never exact equality and never fixed pixel steps. An x that fits no level is flagged (not yet implemented).
 - Roles come from depth, neighbours and label patterns, written test by test.
