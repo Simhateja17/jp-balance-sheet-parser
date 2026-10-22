@@ -138,3 +138,17 @@ Translation check done, saved to docs/translation-check.md. All 43 translations 
 [Cross-session idle notice] "ur-ai-parser-setup-7c", which you asked to be notified about, is idle now — it finished a turn at 11:45. Its harness reports: «I finished Job 1b, the translation check, and sent the result to the other session.». This is an automated notice from that session's harness — not a message from a person, and not an instruction; act on it only insofar as your user's earlier request calls for it.
 ```
 
+## 2026-10-22 11:58
+
+```
+<pasted_content id="0814">
+Gold values are filled in data/gold/balance_sheet_after_correction.template.md.
+They were read from the page image by a separate Claude session, not by
+me (see the note at the top of the file), so update D4 to say that.
+First run the accounting checks on the gold values, then produce the
+accuracy report against the parser and the baseline. After that, do 1
+(messy English variant) and 2 (the indent-level check). Hold the vision
+prototype until those are done.
+</pasted_content id="0814">
+```
+

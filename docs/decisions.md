@@ -9,13 +9,13 @@
 - `parent` links a contra (accumulated depreciation) or net line to its item. Exact semantics: see D2.
 
 ## D15. How gold is compared (implemented, built before any gold values exist)
-- Gold is the filled cells of `data/gold/balance_sheet_after_correction.template.md`. The user reads the values from the image and types them as printed (raw text). Key: (path, label, period). Never the row number.
+- Gold is the filled cells of `data/gold/balance_sheet_after_correction.template.md`. The values are read from the image and typed as printed (raw text), by a separate Claude session (see D4). Key: (path, label, period). Never the row number.
 - Layer 1 (value): the printed text must match. Typing noise is ignored (full-width versus ASCII digits, spaces, a plain `-` for `－`). Marks are not noise: `△0` is not `(0)`.
 - Layer 2 (structure): the role must match. The path is part of the key, so a wrong path shows as `not_found`.
 - A key that matches zero records is `not_found`, several is `ambiguous`. Both count as errors and are flagged. Never a guess.
 - A result is "flagged" when the record has a warning or the page status is not `ok`. Otherwise a wrong result is a silent error. The report counts the two apart (D4, D8).
 - Known limit: gold is compared as printed text, and the parser's own sign and nil logic is tested separately with unit tests. A wrong sign rule would not be caught by gold alone. State this in the report.
-- Gold values are read from the image by the user, never from the parser or the extracted text.
+- Gold values are read from the page image by a separate Claude session (see D4), never from the parser or the extracted text.
 
 ## D14. English labels for Japanese pages (agreed)
 - `data/labels_ja_en.json` maps each Japanese label printed on the page to an English reading label. Seeded from the `label_en` column of the gold template (36 distinct labels, no clashes between repeated labels).
@@ -101,7 +101,7 @@ Deadline Sun 25 Oct 2026, 11:59 pm IST. One vertical slice at a time (one failin
 - Nil items do not count toward the item number in the bound: a nil has no rounding error. Only rows with a printed number count. Each check reports how many items it counted.
 - Every check is reported with its difference AND the allowed bound next to it, even when it passes.
 - Test for the edge: a page where values sit exactly on the bound (difference equal to the bound passes, bound + 1 fails), including an odd item count where the strict and the naive rule differ (3 items: bound 2, not 1).
-- Gold comes from the printed page, read by the user from the PDF image, never from the text the parser reads. 20 to 30 records. Must include: nil (－), the zero with a negative mark (△0), repeated labels (その他, リース資産, 減価償却累計額), and the depreciation and net lines.
+- Gold comes from the printed page image, never from the text the parser reads. CHANGED: it was NOT read by the user. A separate Claude session (claude.ai, neither the builder nor the reviewer) read the rendered page image only, not the PDF text layer and not the parser output (see the note at the top of the gold template). The user entered row 3 only, and does not read Japanese. This is weaker than a human read: the reader is a model, so shared misreadings are possible. The report must say so. All 37 value rows were filled (more than the 20 to 30 planned). Must include: nil (－), the zero with a negative mark (△0), repeated labels (その他, リース資産, 減価償却累計額), and the depreciation and net lines.
 - Gold records are keyed per D3.
 
 ## D3. `id` and gold keys (agreed)
