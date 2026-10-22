@@ -6,6 +6,8 @@ def _is_total_label(label: str) -> bool:
 
 
 def classify_role(label: str, has_values: bool, level: int) -> str:
+    if not has_values:
+        return "header"  # a wrapped label can look like this; see wrapped.py
     if _is_total_label(label):
         return "total" if level == GRAND_TOTAL_LEVEL else "subtotal"
     return "item"

@@ -14,3 +14,8 @@ def test_grand_total_is_total_not_subtotal():
     assert classify_role("Total assets", has_values=True, level=1) == "total"
     assert classify_role("資産合計", has_values=True, level=1) == "total"
     assert classify_role("固定資産合計", has_values=True, level=2) == "subtotal"
+
+
+def test_label_without_values_is_a_header():
+    assert classify_role("Current assets", has_values=False, level=1) == "header"
+    assert classify_role("流動資産", has_values=False, level=1) == "header"
