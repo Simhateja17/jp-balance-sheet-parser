@@ -10,4 +10,6 @@ def classify_role(label: str, has_values: bool, level: int) -> str:
         return "header"  # a wrapped label can look like this; see wrapped.py
     if _is_total_label(label):
         return "total" if level == GRAND_TOTAL_LEVEL else "subtotal"
+    if label.startswith("Accumulated depreciation") or label.startswith("\u6e1b\u4fa1\u511f\u5374\u7d2f\u8a08\u984d"):
+        return "contra"  # 減価償却累計額
     return "item"

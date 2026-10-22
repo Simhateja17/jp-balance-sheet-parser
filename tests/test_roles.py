@@ -19,3 +19,8 @@ def test_grand_total_is_total_not_subtotal():
 def test_label_without_values_is_a_header():
     assert classify_role("Current assets", has_values=False, level=1) == "header"
     assert classify_role("流動資産", has_values=False, level=1) == "header"
+
+
+def test_accumulated_depreciation_is_contra_in_both_languages():
+    assert classify_role("Accumulated depreciation", has_values=True, level=4) == "contra"
+    assert classify_role("減価償却累計額", has_values=True, level=4) == "contra"
