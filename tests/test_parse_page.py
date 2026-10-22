@@ -67,3 +67,18 @@ def test_parse_page_matches_the_fixture_data_row_by_row():
     for row, want in zip(page.rows, data):
         assert (row.label, row.level) == (want["label"], want["depth"])
         assert row.role == want["role"], row.label
+
+
+def row_named(page, label, nth=0):
+    return [r for r in page.rows if r.label == label][nth]
+
+
+def test_rows_carry_one_parsed_value_per_period_column():
+    page = parse_page(FIXTURE_PDF)
+    cash = row_named(page, "Cash and deposits")
+    assert [(a.value, a.kind) for a in cash.values] == [(2002429, "value"), (608281, "value")]
+    cip = row_named(page, "Construction in progress")
+    assert [(a.value, a.kind) for a in cip.values] == [(None, "nil"), (4553, "value")]
+    allowance = row_named(page, "Allowance for doubtful accounts")
+    assert [(a.value, a.kind) for a in allowance.values] == [(-2979, "value"), (0, "value")]
+    assert row_named(page, "Current assets").values == []

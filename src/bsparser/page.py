@@ -2,6 +2,7 @@ import re
 from dataclasses import dataclass, field
 from typing import List, Optional
 
+from bsparser.amounts import Amount, parse_amount
 from bsparser.levels import assign_levels
 from bsparser.pdf_lines import Line, extract_lines
 from bsparser.roles import classify_role
@@ -18,6 +19,7 @@ class Row:
     role: str
     path: List[str]
     parent: Optional[str] = None
+    values: List[Amount] = field(default_factory=list)
 
 
 @dataclass
@@ -58,7 +60,8 @@ def build_page(lines: List[Line]) -> Page:
         while stack and stack[-1].level >= level:
             stack.pop()
         role = classify_role(line.label, has_values=bool(line.amounts), level=level)
-        row = Row(id=f"r{n}", label=line.label, level=level, role=role, path=[r.label for r in stack])
+        row = Row(id=f"r{n}", label=line.label, level=level, role=role, path=[r.label for r in stack],
+                  values=[parse_amount(a) for a in line.amounts])
         if role in ("contra", "net") and stack:
             gross = stack[-1]
             if role == "net" and not _is_gross_plus_net(gross.label, row.label):
