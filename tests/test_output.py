@@ -47,3 +47,19 @@ def test_command_line_entry_writes_both_files_and_returns_zero(tmp_path, capsys)
     assert sorted(p.name for p in tmp_path.iterdir()) == [
         "english_balance_sheet.json", "english_balance_sheet.records.csv"]
     assert "status: ok" in capsys.readouterr().out
+
+
+REAL_PDF = Path(__file__).parent.parent / "data" / "balance_sheet_after_correction.pdf"
+
+
+def test_japanese_rows_and_records_carry_the_reviewed_translation_marked_as_such():
+    out = build_output(REAL_PDF)
+    cash_row = out["rows"][2]
+    assert (cash_row["label"], cash_row["label_en"], cash_row["label_en_source"]) == (
+        "現金及び預金", "Cash and deposits", "translation_reviewed")
+    cash = [r for r in out["records"] if r["label"] == "現金及び預金" and r["period"] == "2026-03-31"][0]
+    assert (cash["label_en"], cash["label_en_source"], cash["value"]) == (
+        "Cash and deposits", "translation_reviewed", 608281)
+    assert all(r["label_en"] for r in out["records"])  # every label on this page is in the dictionary
+    english = build_output(FIXTURE_PDF)
+    assert {r["label_en_source"] for r in english["records"]} == {"original"}
