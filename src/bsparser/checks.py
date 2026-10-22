@@ -23,6 +23,10 @@ def allowed_bound(items: int) -> int:
     return (items + 1) // 2
 
 
+def _status(difference: int, bound: int) -> str:
+    return "failed" if abs(difference) > bound else "pass"
+
+
 def run_checks(page: Page) -> List[Check]:
     by_id = {r.id: r for r in page.rows}
     checks = []
@@ -35,7 +39,8 @@ def run_checks(page: Page) -> List[Check]:
             expected = gross.values[p].value + sum(c.values[p].value for c in contra)
             printed = row.values[p].value
             checks.append(Check(row.label, row.id, period, expected, printed, printed - expected,
-                                allowed_bound(2), 2, "pass"))
+                                allowed_bound(2), 2,
+                                _status(printed - expected, allowed_bound(2))))
     for row in page.rows:
         if row.role not in ("subtotal", "total"):
             continue
@@ -52,5 +57,6 @@ def run_checks(page: Page) -> List[Check]:
             expected = sum(amounts)
             printed = row.values[p].value
             checks.append(Check(row.label, row.id, period, expected, printed, printed - expected,
-                                allowed_bound(len(amounts)), len(amounts), "pass"))
+                                allowed_bound(len(amounts)), len(amounts),
+                                _status(printed - expected, allowed_bound(len(amounts)))))
     return checks

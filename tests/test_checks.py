@@ -44,3 +44,28 @@ def test_totals_of_subtotals_current_plus_fixed_and_the_strict_bound_edge():
     assert (fixed.status, fixed.difference, fixed.bound, fixed.items) == ("pass", 2, 2, 3)
     total = check_for(checks, "Total assets", "2026-03-31")
     assert (total.status, total.difference, total.bound, total.items) == ("pass", 1, 1, 2)
+
+
+def synthetic_page(total_prior, total_current):
+    from bsparser.page import parse_lines
+    from bsparser.pdf_lines import Line
+
+    return parse_lines([
+        Line("(in thousands of yen)", 400.0, 70.0),
+        Line("(Mar. 31, 2025) (Mar. 31, 2026)", 300.0, 94.0),
+        Line("Assets", 60.0, 120.0),
+        Line("Current assets", 72.0, 134.0),
+        Line("Cash", 84.0, 148.0, ["100", "100"]),
+        Line("Notes receivable", 84.0, 162.0, ["200", "200"]),
+        Line("Other", 84.0, 176.0, ["300", "300"]),
+        Line("Total current assets", 84.0, 190.0, [total_prior, total_current]),
+    ])
+
+
+def test_difference_equal_to_the_bound_passes_and_one_more_fails():
+    # 3 items: strict bound is 2 (the naive 0.5-per-item rule would give 1)
+    checks = run_checks(synthetic_page("602", "603"))
+    on_bound = check_for(checks, "Total current assets", "2025-03-31")
+    over = check_for(checks, "Total current assets", "2026-03-31")
+    assert (on_bound.difference, on_bound.bound, on_bound.status) == (2, 2, "pass")
+    assert (over.difference, over.bound, over.status) == (3, 2, "failed")
