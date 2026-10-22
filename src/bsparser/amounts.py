@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 from typing import Optional
 
+NIL_MARKS = {"-", "\u2014", "\uff0d"}
+
 
 @dataclass(frozen=True)
 class Amount:
@@ -10,7 +12,7 @@ class Amount:
 
 def parse_amount(raw: str) -> Amount:
     text = raw.strip()
-    if text == "-":
+    if text in NIL_MARKS:
         return Amount(value=None, kind="nil")
     negative = text.startswith("(") and text.endswith(")")
     if negative:

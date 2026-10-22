@@ -19,3 +19,10 @@ def test_dash_before_digits_is_negative_not_nil():
 
 def test_parentheses_are_negative():
     assert parse_amount("(1,234)").value == -1234
+
+
+def test_em_dash_and_fullwidth_dash_are_nil():
+    for mark in ("\u2014", "\uff0d"):
+        amount = parse_amount(mark)
+        assert amount.value is None, mark
+        assert amount.kind == "nil", mark
