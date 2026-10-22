@@ -1,4 +1,5 @@
 import re
+import unicodedata
 from dataclasses import dataclass
 from pathlib import Path
 from typing import List
@@ -45,6 +46,13 @@ class Result:
     role_ok: bool = False  # layer 2: the role matches (the path is part of the key)
 
 
+def _same_text(printed: str, typed: str) -> bool:
+    """Width and spacing are typing noise (full-width digits, a plain dash for －). Marks are not: △0 is not (0)."""
+    def norm(text):
+        return unicodedata.normalize("NFKC", text).replace(" ", "")
+    return norm(printed) == norm(typed)
+
+
 def evaluate(output, golds: List[Gold]) -> List[Result]:
     results = []
     for g in golds:
@@ -55,7 +63,7 @@ def evaluate(output, golds: List[Gold]) -> List[Result]:
             continue
         rec = matches[0]
         flagged = bool(rec["warnings"]) or output["status"] != "ok"
-        value_ok = rec["raw"] == g.raw
+        value_ok = _same_text(rec["raw"], g.raw)
         role_ok = rec["role"] == g.role
         status = "wrong_value" if not value_ok else ("exact" if role_ok else "wrong_role")
         results.append(Result(g, status, flagged, value_ok, role_ok))

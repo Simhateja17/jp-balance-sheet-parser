@@ -8,6 +8,15 @@
 - `label_en` is a translation for the human reader only. It is marked as a translation and is never used in any check or matching.
 - `parent` links a contra (accumulated depreciation) or net line to its item. Exact semantics: see D2.
 
+## D15. How gold is compared (implemented, built before any gold values exist)
+- Gold is the filled cells of `data/gold/balance_sheet_after_correction.template.md`. The user reads the values from the image and types them as printed (raw text). Key: (path, label, period). Never the row number.
+- Layer 1 (value): the printed text must match. Typing noise is ignored (full-width versus ASCII digits, spaces, a plain `-` for `－`). Marks are not noise: `△0` is not `(0)`.
+- Layer 2 (structure): the role must match. The path is part of the key, so a wrong path shows as `not_found`.
+- A key that matches zero records is `not_found`, several is `ambiguous`. Both count as errors and are flagged. Never a guess.
+- A result is "flagged" when the record has a warning or the page status is not `ok`. Otherwise a wrong result is a silent error. The report counts the two apart (D4, D8).
+- Known limit: gold is compared as printed text, and the parser's own sign and nil logic is tested separately with unit tests. A wrong sign rule would not be caught by gold alone. State this in the report.
+- Gold values are read from the image by the user, never from the parser or the extracted text.
+
 ## D14. English labels for Japanese pages (agreed)
 - `data/labels_ja_en.json` maps each Japanese label printed on the page to an English reading label. Seeded from the `label_en` column of the gold template (36 distinct labels, no clashes between repeated labels).
 - Review status is stated honestly. The translations were written by Claude. The reviewer session then checked them (docs/translation-check.md): 43 of 43 ok, none wrong, none unsure. The file says `reviewed_by_reviewer_session`, not "hand-checked". Two optional alternatives it suggested (関係会社株式, 退職給付に係る資産) are kept in `review_suggestions_not_applied`.

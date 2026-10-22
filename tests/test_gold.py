@@ -61,3 +61,15 @@ def test_structure_layer_is_separate_from_the_value_layer():
     (wrong_value_right_role,) = evaluate(out, [gold("現金及び預金", "1", role="item")])
     assert (wrong_value_right_role.status, wrong_value_right_role.value_ok, wrong_value_right_role.role_ok) == (
         "wrong_value", False, True)
+
+
+def test_gold_typed_with_ascii_digits_spaces_or_a_plain_dash_still_matches_the_printed_text():
+    out = build_output(REAL_PDF)
+    nil_path = ("資産の部", "固定資産", "有形固定資産")
+    typed_plain_dash = gold("建設仮勘定", "-", period="2025-03-31", path=nil_path)
+    typed_with_spaces = gold("現金及び預金", "608, 281")
+    typed_fullwidth_digits = gold("現金及び預金", "６０８，２８１")
+    results = evaluate(out, [typed_plain_dash, typed_with_spaces, typed_fullwidth_digits])
+    assert [r.status for r in results] == ["exact", "exact", "exact"]
+    (still_wrong,) = evaluate(out, [gold("貸倒引当金", "(0)")])  # a different mark is not the same text
+    assert still_wrong.status == "wrong_value"
