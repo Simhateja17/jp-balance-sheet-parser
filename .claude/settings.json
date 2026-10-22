@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -m pytest -q --tb=short >&2; rc=$?; if [ $rc -eq 5 ]; then exit 0; fi; if [ $rc -ne 0 ]; then exit 2; fi",
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  }
+}
