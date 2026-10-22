@@ -41,6 +41,8 @@
 - Grand total (one level under the top section header, e.g. Total assets / 資産合計) has role `total`, not `subtotal`.
 - Contra: 減価償却累計額 / "Accumulated depreciation". Net: （純額） full-width as printed (D1, label check) / ", net" in English.
 - A label with no values is NOT always a header: a long label wrapped over two lines has no values on its first line. Such lines are flagged as a possible wrapped label, not silently typed. Two signals: the next line is at the same level and has values; or the next line is much closer than the usual line spacing (below 0.7 of the median gap).
+- Wrapped labels (decided while building, beyond the first D11 text): when BOTH signals agree (the next line is much closer than usual, at the same level or deeper, and carries the values) the two lines are merged into one row and a `wrapped_label_merged` issue names it. With only ONE signal the lines are not merged: a `possible_wrapped_label` issue names the no-value row. Neither issue changes the page status. A wrong result on a row that has an issue counts as flagged, not silent (D15). Japanese pieces are joined without a space, English with one.
+- Messy English fixture (`data/fixtures/english_balance_sheet_messy.pdf`, same data): value columns shifted right of the header, small x jitter on the labels, one wrapped label with a hanging indent. It must parse to the same labels, roles, levels, parents and values as the clean fixture, with exactly one `wrapped_label_merged` issue.
 - Observed: the real PDF writes nil as full-width － (U+FF0D) and negative as △ (U+25B3); both are handled.
 
 ## D10. Build order and cuts (agreed)
