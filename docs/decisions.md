@@ -8,6 +8,27 @@
 - `label_en` is a translation for the human reader only. It is marked as a translation and is never used in any check or matching.
 - `parent` links a contra (accumulated depreciation) or net line to its item. Exact semantics: see D2.
 
+## D21. Held-out fixes, full list (PROPOSED: waiting for the owner to confirm before any code)
+Already agreed and only restated here: D17 aggregate contra line; D18 rounding setting (`round`, `cut`, `unstated`) with the shared cover hint and a recorded source; D19 net-suffix lines (stand-alone ones are items with a note); D20 page numbers (last line, pure pattern only).
+Also agreed (Q22): a group check. An `item` that has its own value and indented detail lines directly below it must equal the sum of those detail lines, with the same bound, status and skip rules. Detail lines introduced by うち, (うち or "of which" are not components: no check, and a note. The group line stays an `item` with no `parent`. Seen on the bank page: 有形固定資産 and 無形固定資産.
+
+From the other pages (the owner's findings):
+1. Never crash. Any check that cannot be computed becomes `skipped` with a reason, never an exception: a printed total that is nil (4098 page 11, 2452 page 10), a row with fewer values than period columns (4224 page 8), any missing value. As a safety net, an exception raised inside one check becomes a skipped check carrying the error text, and the page still returns its other results.
+2. A total with nothing to add up (total liabilities and net assets, 4098 p7, 2452 p7, bank p6) is never `failed` for lack of components. It is skipped with a reason, or better, checked as total liabilities plus total net assets (item 5).
+3. A subtotal with no heading above it adds only what comes since the previous subtotal (bank page 6). The section's final total then adds the earlier subtotals plus any items not covered by one. Note: for 純資産の部合計 that means 株主資本合計 + その他の包括利益累計額合計 + 非支配株主持分, not only the items since the last subtotal. Headed sections are unchanged.
+4. Total assets must equal total liabilities plus net assets (holds on all four companies, per the owner).
+
+Added by Claude while tracing the causes, to be confirmed:
+5. Nil marks: add the long horizontal bar U+2015 (the cause of the 4224 page 8 crash), the en dash U+2013 and the minus sign U+2212 when they stand alone. They are nil, like hyphen, em dash and full-width dash. Before digits, behaviour is unchanged.
+6. Total labels are recognised by exact printed wording, never by `label_en`: total assets (資産合計, 資産の部合計, Total assets); total liabilities (負債合計, 負債の部合計, Total liabilities); total net assets (純資産合計, 純資産の部合計, Total net assets, Total equity); total liabilities and net assets (負債純資産合計, 負債及び純資産合計, 負債及び純資産の部合計, Total liabilities and net assets, Total liabilities and equity). Note 純資産合計 contains 資産合計, so matching is on the whole label. Unlisted wording means the cross checks are skipped with a reason, never guessed.
+7. The statement of changes in equity (4098 p11, 2452 p10) is a matrix of 5 to 8 amount columns and is out of scope. It must not crash. It will report its column-count issues as today.
+
+Proposed design for items 2 and 4, because the pieces sit on different pages (assets | liabilities and net assets; for the bank, assets and liabilities | net assets):
+- The parser stays page by page and unchanged. The page, the held-out script and the command line gather consecutive pages into one statement: after the assets page, include the next pages (up to 2) that have the same unit and periods and carry liabilities or net assets headings or totals.
+- Statement-level checks, per period: (a) total assets = total liabilities and net assets, EXACT (bound 0, because the two printed numbers are the same amount printed twice and round or cut to the same integer); (b) total liabilities and net assets = total liabilities + total net assets, with the bound for two items under the rounding setting (round 1, cut 2). The two pieces may come from different pages. If a piece is not found the check is skipped and the reason names it.
+- Statement status is the worst of the page statuses and the cross checks (unreadable over failed over ok). The JSON gets a `statement` object (pages, cross checks, status); the per-page outputs keep their shape.
+- On a single page, a total whose components are not all there is skipped with that reason; the statement-level check does the real work.
+
 ## D20. Page numbers (agreed)
 - A label-only line is a page number, and is left out of the table, only when both hold: it is the LAST line of the table region (below every real row), and after width normalisation it is only a page number (a number alone, a number between dashes with or without spaces such as -5- or - 5 -, full-width forms, "Page 5", "5/12").
 - It is ignored the way unlabeled lines are today, with an informational `ignored_line` issue that says it looks like a page number. The issue does not change the page status.
