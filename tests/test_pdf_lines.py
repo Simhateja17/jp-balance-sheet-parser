@@ -40,3 +40,23 @@ def test_year_and_ordinary_words_are_not_mistaken_for_garbled_amounts():
     (line,) = lines_from_words(words)
     assert line.amounts == []
     assert line.label == "(Mar. 31, 2025) Q3"
+
+
+def test_the_day_and_year_that_finish_a_date_stay_in_the_label_not_amounts():
+    from bsparser.pdf_lines import lines_from_words
+
+    words = [word(t, 300.0 + 30 * i, 120.0) for i, t in enumerate(
+        ["As", "of", "March", "31,", "2025", "As", "of", "March", "31,", "2026"])]
+    (line,) = lines_from_words(words)
+    assert line.label == "As of March 31, 2025 As of March 31, 2026"
+    assert line.amounts == []
+
+
+def test_a_row_with_a_date_in_its_label_keeps_its_real_amounts():
+    from bsparser.pdf_lines import lines_from_words
+
+    words = [word(t, 60.0 + 40 * i, 200.0) for i, t in enumerate(["Balance", "at", "March", "31,", "2025"])]
+    words += [word("100", 420.0, 200.0), word("200", 520.0, 200.0)]
+    (line,) = lines_from_words(words)
+    assert line.label == "Balance at March 31, 2025"
+    assert line.amounts == ["100", "200"]

@@ -4,6 +4,7 @@ from typing import List
 import pdfplumber
 
 from bsparser.amounts import parse_amount
+from bsparser.periods import find_periods
 
 LINE_TOLERANCE = 2.0  # points: words whose tops differ by less sit on one line
 
@@ -33,6 +34,18 @@ def extract_lines(pdf_path) -> List[Line]:
     return lines_from_words(words)
 
 
+def _keep_date_tail_in_label(row: List[dict], split: int) -> int:
+    """`As of March 31, 2025  As of March 31, 2026`: the last two tokens (31, and 2026) look like amounts but finish
+    a date. Move just enough leading amount tokens back into the label to complete the date. A row such as
+    `Balance at March 31, 2025  100  200` keeps its amounts, because they add no date."""
+    label_text = " ".join(w["text"] for w in row[:split])
+    dates = len(find_periods(label_text))
+    for k in range(1, len(row) - split + 1):
+        if len(find_periods(label_text + " " + " ".join(w["text"] for w in row[split:split + k]))) > dates:
+            return split + k
+    return split
+
+
 def lines_from_words(words: List[dict]) -> List[Line]:
     rows: List[List[dict]] = []
     for word in sorted(words, key=lambda w: (w["top"], w["x0"])):
@@ -46,6 +59,7 @@ def lines_from_words(words: List[dict]) -> List[Line]:
         split = len(row)
         while split > 0 and _is_amount(row[split - 1]["text"]):
             split -= 1
+        split = _keep_date_tail_in_label(row, split)
         lines.append(Line(
             label=" ".join(w["text"] for w in row[:split]),
             x0=row[0]["x0"],
