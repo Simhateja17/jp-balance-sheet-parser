@@ -46,11 +46,11 @@ RECORD_COLUMNS = ["id", "path", "label", "label_en", "label_en_source", "role", 
                   "period", "value", "kind", "raw", "unit", "warnings"]
 
 
-def write_outputs(pdf_path, out_dir):
+def write_outputs(pdf_path, out_dir, output=None):
     """JSON is the source of truth (D1); the records CSV is a view of it."""
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
-    out = build_output(pdf_path)
+    out = output if output is not None else build_output(pdf_path)
     stem = Path(pdf_path).stem
     json_path = out_dir / f"{stem}.json"
     json_path.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")

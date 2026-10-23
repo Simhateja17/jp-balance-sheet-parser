@@ -75,3 +75,26 @@ def test_output_records_the_rounding_mode_and_where_it_came_from():
     hinted = build_output(FIXTURE_PDF, rounding="cut", rounding_source="cover_sentence",
                           rounding_sentence="（百万円未満切捨て）")
     assert hinted["rounding_sentence"] == "（百万円未満切捨て）"
+
+
+def test_command_line_rounding_flag_defaults_to_the_cover_hint_and_records_user_choices(tmp_path, capsys):
+    from bsparser.__main__ import main
+
+    heldout = Path(__file__).parent.parent / "data" / "heldout" / "140120260416505142.pdf"
+    assert main([str(heldout), str(tmp_path)]) == 0  # --rounding defaults to auto
+    saved = json.loads((tmp_path / "140120260416505142.json").read_text(encoding="utf-8"))
+    assert (saved["page"], saved["rounding"], saved["rounding_source"]) == (6, "cut", "cover_sentence")
+    assert "rounding: cut (cover_sentence)" in capsys.readouterr().out
+    assert main([str(heldout), str(tmp_path), "--rounding", "round", "--page", "6"]) == 0
+    saved = json.loads((tmp_path / "140120260416505142.json").read_text(encoding="utf-8"))
+    assert (saved["rounding"], saved["rounding_source"]) == ("round", "user")
+
+
+def test_command_line_rejects_an_unknown_rounding_value(tmp_path):
+    import pytest
+
+    from bsparser.__main__ import main
+
+    with pytest.raises(SystemExit) as stop:
+        main([str(FIXTURE_PDF), str(tmp_path), "--rounding", "sometimes"])
+    assert stop.value.code == 2
