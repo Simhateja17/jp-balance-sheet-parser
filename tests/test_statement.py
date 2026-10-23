@@ -75,3 +75,24 @@ def test_a_statement_is_built_from_the_assets_page_and_the_following_pages_with_
         ("2025-03-31", "pass"), ("2025-03-31", "pass"), ("2026-03-31", "pass"), ("2026-03-31", "pass")]
     assert [p["status"] for p in out["pages"]] == ["ok", "ok"]
     assert out["status"] == "ok"
+
+
+import pytest
+
+
+@pytest.mark.parametrize("name,first_page,pages,rounding", [
+    ("140120260416505142.pdf", 6, [6, 7], "cut"),          # 4098
+    ("140120260513529466.pdf", 7, [7, 8], "cut"),          # 4224
+    ("140120260514535920.pdf", 6, [6, 7], "unstated"),     # 2452: cut-off stated for another unit
+    ("tanshin202603.pdf", 5, [5, 6], "cut"),               # bank: liabilities on page 5, net assets on page 6
+])
+def test_all_four_held_out_statements_hold_together_across_pages(name, first_page, pages, rounding):
+    from bsparser.analyse import analyse_statement
+
+    out = analyse_statement(HELDOUT / name)
+    assert [p["page"] for p in out["pages"]] == pages
+    assert out["rounding"] == rounding
+    statuses = {(c["label"][:12], c["period"]): (c["status"], c["difference"]) for c in out["cross_checks"]}
+    assert len(out["cross_checks"]) == 4 and {s for s, _ in statuses.values()} == {"pass"}, statuses
+    assert [p["status"] for p in out["pages"]] == ["ok"] * len(pages)
+    assert out["status"] == "ok"
