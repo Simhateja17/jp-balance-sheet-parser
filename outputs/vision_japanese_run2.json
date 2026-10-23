@@ -1,6 +1,10 @@
 {
  "source": "vision run 2",
  "status": "ok",
+ "rounding": "unstated",
+ "rounding_source": "unstated",
+ "rounding_sentence": "",
+ "rounding_note": "rounding: unstated, strict bound used",
  "unit": "thousand_yen",
  "unit_raw": "単位：千円",
  "periods": [
@@ -259,7 +263,8 @@
    "role": "header",
    "level": 0,
    "parent": null,
-   "path": []
+   "path": [],
+   "notes": []
   },
   {
    "id": "r2",
@@ -271,7 +276,8 @@
    "parent": null,
    "path": [
     "資産の部"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r3",
@@ -284,7 +290,8 @@
    "path": [
     "資産の部",
     "流動資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r4",
@@ -297,7 +304,8 @@
    "path": [
     "資産の部",
     "流動資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r5",
@@ -310,7 +318,8 @@
    "path": [
     "資産の部",
     "流動資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r6",
@@ -323,7 +332,8 @@
    "path": [
     "資産の部",
     "流動資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r7",
@@ -336,7 +346,8 @@
    "path": [
     "資産の部",
     "流動資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r8",
@@ -349,7 +360,8 @@
    "path": [
     "資産の部",
     "流動資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r9",
@@ -362,7 +374,8 @@
    "path": [
     "資産の部",
     "流動資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r10",
@@ -375,7 +388,8 @@
    "path": [
     "資産の部",
     "流動資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r11",
@@ -388,7 +402,8 @@
    "path": [
     "資産の部",
     "流動資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r12",
@@ -401,7 +416,8 @@
    "path": [
     "資産の部",
     "流動資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r13",
@@ -414,7 +430,8 @@
    "path": [
     "資産の部",
     "流動資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r14",
@@ -426,7 +443,8 @@
    "parent": null,
    "path": [
     "資産の部"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r15",
@@ -439,7 +457,8 @@
    "path": [
     "資産の部",
     "固定資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r16",
@@ -453,7 +472,8 @@
     "資産の部",
     "固定資産",
     "有形固定資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r17",
@@ -468,7 +488,8 @@
     "固定資産",
     "有形固定資産",
     "建物及び構築物"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r18",
@@ -483,7 +504,8 @@
     "固定資産",
     "有形固定資産",
     "建物及び構築物"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r19",
@@ -497,7 +519,8 @@
     "資産の部",
     "固定資産",
     "有形固定資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r20",
@@ -512,7 +535,8 @@
     "固定資産",
     "有形固定資産",
     "機械装置及び運搬具"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r21",
@@ -527,7 +551,8 @@
     "固定資産",
     "有形固定資産",
     "機械装置及び運搬具"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r22",
@@ -541,7 +566,8 @@
     "資産の部",
     "固定資産",
     "有形固定資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r23",
@@ -555,7 +581,8 @@
     "資産の部",
     "固定資産",
     "有形固定資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r24",
@@ -570,7 +597,8 @@
     "固定資産",
     "有形固定資産",
     "リース資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r25",
@@ -585,7 +613,8 @@
     "固定資産",
     "有形固定資産",
     "リース資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r26",
@@ -599,7 +628,8 @@
     "資産の部",
     "固定資産",
     "有形固定資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r27",
@@ -613,7 +643,8 @@
     "資産の部",
     "固定資産",
     "有形固定資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r28",
@@ -628,7 +659,8 @@
     "固定資産",
     "有形固定資産",
     "その他"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r29",
@@ -643,7 +675,8 @@
     "固定資産",
     "有形固定資産",
     "その他"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r30",
@@ -657,7 +690,8 @@
     "資産の部",
     "固定資産",
     "有形固定資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r31",
@@ -670,7 +704,8 @@
    "path": [
     "資産の部",
     "固定資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r32",
@@ -684,7 +719,8 @@
     "資産の部",
     "固定資産",
     "無形固定資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r33",
@@ -698,7 +734,8 @@
     "資産の部",
     "固定資産",
     "無形固定資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r34",
@@ -712,7 +749,8 @@
     "資産の部",
     "固定資産",
     "無形固定資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r35",
@@ -725,7 +763,8 @@
    "path": [
     "資産の部",
     "固定資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r36",
@@ -739,7 +778,8 @@
     "資産の部",
     "固定資産",
     "投資その他の資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r37",
@@ -753,7 +793,8 @@
     "資産の部",
     "固定資産",
     "投資その他の資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r38",
@@ -767,7 +808,8 @@
     "資産の部",
     "固定資産",
     "投資その他の資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r39",
@@ -781,7 +823,8 @@
     "資産の部",
     "固定資産",
     "投資その他の資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r40",
@@ -795,7 +838,8 @@
     "資産の部",
     "固定資産",
     "投資その他の資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r41",
@@ -809,7 +853,8 @@
     "資産の部",
     "固定資産",
     "投資その他の資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r42",
@@ -822,7 +867,8 @@
    "path": [
     "資産の部",
     "固定資産"
-   ]
+   ],
+   "notes": []
   },
   {
    "id": "r43",
@@ -834,7 +880,8 @@
    "parent": null,
    "path": [
     "資産の部"
-   ]
+   ],
+   "notes": []
   }
  ],
  "records": [
@@ -854,7 +901,8 @@
    "kind": "value",
    "raw": "2,002,429",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r3|2026-03-31",
@@ -872,7 +920,8 @@
    "kind": "value",
    "raw": "608,281",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r4|2025-03-31",
@@ -890,7 +939,8 @@
    "kind": "value",
    "raw": "20,659",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r4|2026-03-31",
@@ -908,7 +958,8 @@
    "kind": "value",
    "raw": "26,333",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r5|2025-03-31",
@@ -926,7 +977,8 @@
    "kind": "value",
    "raw": "2,019,476",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r5|2026-03-31",
@@ -944,7 +996,8 @@
    "kind": "value",
    "raw": "884,339",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r6|2025-03-31",
@@ -962,7 +1015,8 @@
    "kind": "value",
    "raw": "564,667",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r6|2026-03-31",
@@ -980,7 +1034,8 @@
    "kind": "value",
    "raw": "370,468",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r7|2025-03-31",
@@ -998,7 +1053,8 @@
    "kind": "value",
    "raw": "589,488",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r7|2026-03-31",
@@ -1016,7 +1072,8 @@
    "kind": "value",
    "raw": "1,019,663",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r8|2025-03-31",
@@ -1034,7 +1091,8 @@
    "kind": "value",
    "raw": "186,748",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r8|2026-03-31",
@@ -1052,7 +1110,8 @@
    "kind": "value",
    "raw": "55,344",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r9|2025-03-31",
@@ -1070,7 +1129,8 @@
    "kind": "value",
    "raw": "370,403",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r9|2026-03-31",
@@ -1088,7 +1148,8 @@
    "kind": "value",
    "raw": "136,082",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r10|2025-03-31",
@@ -1106,7 +1167,8 @@
    "kind": "value",
    "raw": "7,530",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r10|2026-03-31",
@@ -1124,7 +1186,8 @@
    "kind": "value",
    "raw": "30,000",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r11|2025-03-31",
@@ -1142,7 +1205,8 @@
    "kind": "value",
    "raw": "105,260",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r11|2026-03-31",
@@ -1160,7 +1224,8 @@
    "kind": "value",
    "raw": "246,895",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r12|2025-03-31",
@@ -1178,7 +1243,8 @@
    "kind": "value",
    "raw": "△2,979",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r12|2026-03-31",
@@ -1196,7 +1262,8 @@
    "kind": "value",
    "raw": "△0",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r13|2025-03-31",
@@ -1214,7 +1281,8 @@
    "kind": "value",
    "raw": "5,863,684",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r13|2026-03-31",
@@ -1232,7 +1300,8 @@
    "kind": "value",
    "raw": "3,377,407",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r16|2025-03-31",
@@ -1251,7 +1320,8 @@
    "kind": "value",
    "raw": "2,121,360",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r16|2026-03-31",
@@ -1270,7 +1340,8 @@
    "kind": "value",
    "raw": "1,880,082",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r17|2025-03-31",
@@ -1290,7 +1361,8 @@
    "kind": "value",
    "raw": "△1,923,585",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r17|2026-03-31",
@@ -1310,7 +1382,8 @@
    "kind": "value",
    "raw": "△1,640,253",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r18|2025-03-31",
@@ -1330,7 +1403,8 @@
    "kind": "value",
    "raw": "197,775",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r18|2026-03-31",
@@ -1350,7 +1424,8 @@
    "kind": "value",
    "raw": "239,828",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r19|2025-03-31",
@@ -1369,7 +1444,8 @@
    "kind": "value",
    "raw": "4,024,922",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r19|2026-03-31",
@@ -1388,7 +1464,8 @@
    "kind": "value",
    "raw": "2,250,799",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r20|2025-03-31",
@@ -1408,7 +1485,8 @@
    "kind": "value",
    "raw": "△3,634,165",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r20|2026-03-31",
@@ -1428,7 +1506,8 @@
    "kind": "value",
    "raw": "△1,914,091",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r21|2025-03-31",
@@ -1448,7 +1527,8 @@
    "kind": "value",
    "raw": "390,757",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r21|2026-03-31",
@@ -1468,7 +1548,8 @@
    "kind": "value",
    "raw": "336,708",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r22|2025-03-31",
@@ -1487,7 +1568,8 @@
    "kind": "value",
    "raw": "768,976",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r22|2026-03-31",
@@ -1506,7 +1588,8 @@
    "kind": "value",
    "raw": "705,403",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r23|2025-03-31",
@@ -1525,7 +1608,8 @@
    "kind": "value",
    "raw": "210,746",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r23|2026-03-31",
@@ -1544,7 +1628,8 @@
    "kind": "value",
    "raw": "213,939",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r24|2025-03-31",
@@ -1564,7 +1649,8 @@
    "kind": "value",
    "raw": "△147,599",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r24|2026-03-31",
@@ -1584,7 +1670,8 @@
    "kind": "value",
    "raw": "△172,066",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r25|2025-03-31",
@@ -1604,7 +1691,8 @@
    "kind": "value",
    "raw": "63,146",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r25|2026-03-31",
@@ -1624,7 +1712,8 @@
    "kind": "value",
    "raw": "41,872",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r26|2025-03-31",
@@ -1643,7 +1732,8 @@
    "kind": "nil",
    "raw": "－",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r26|2026-03-31",
@@ -1662,7 +1752,8 @@
    "kind": "value",
    "raw": "4,553",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r27|2025-03-31",
@@ -1681,7 +1772,8 @@
    "kind": "value",
    "raw": "848,814",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r27|2026-03-31",
@@ -1700,7 +1792,8 @@
    "kind": "value",
    "raw": "446,126",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r28|2025-03-31",
@@ -1720,7 +1813,8 @@
    "kind": "value",
    "raw": "△840,375",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r28|2026-03-31",
@@ -1740,7 +1834,8 @@
    "kind": "value",
    "raw": "△421,883",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r29|2025-03-31",
@@ -1760,7 +1855,8 @@
    "kind": "value",
    "raw": "8,439",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r29|2026-03-31",
@@ -1780,7 +1876,8 @@
    "kind": "value",
    "raw": "24,243",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r30|2025-03-31",
@@ -1799,7 +1896,8 @@
    "kind": "value",
    "raw": "1,429,094",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r30|2026-03-31",
@@ -1818,7 +1916,8 @@
    "kind": "value",
    "raw": "1,352,610",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r32|2025-03-31",
@@ -1837,7 +1936,8 @@
    "kind": "value",
    "raw": "34,190",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r32|2026-03-31",
@@ -1856,7 +1956,8 @@
    "kind": "value",
    "raw": "21,402",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r33|2025-03-31",
@@ -1875,7 +1976,8 @@
    "kind": "value",
    "raw": "10,070",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r33|2026-03-31",
@@ -1894,7 +1996,8 @@
    "kind": "value",
    "raw": "14,466",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r34|2025-03-31",
@@ -1913,7 +2016,8 @@
    "kind": "value",
    "raw": "44,261",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r34|2026-03-31",
@@ -1932,7 +2036,8 @@
    "kind": "value",
    "raw": "35,869",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r36|2025-03-31",
@@ -1951,7 +2056,8 @@
    "kind": "value",
    "raw": "44,180",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r36|2026-03-31",
@@ -1970,7 +2076,8 @@
    "kind": "value",
    "raw": "218,836",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r37|2025-03-31",
@@ -1989,7 +2096,8 @@
    "kind": "value",
    "raw": "1,123",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r37|2026-03-31",
@@ -2008,7 +2116,8 @@
    "kind": "value",
    "raw": "1,123",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r38|2025-03-31",
@@ -2027,7 +2136,8 @@
    "kind": "nil",
    "raw": "－",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r38|2026-03-31",
@@ -2046,7 +2156,8 @@
    "kind": "value",
    "raw": "62,000",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r39|2025-03-31",
@@ -2065,7 +2176,8 @@
    "kind": "value",
    "raw": "18,404",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r39|2026-03-31",
@@ -2084,7 +2196,8 @@
    "kind": "value",
    "raw": "16,435",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r40|2025-03-31",
@@ -2103,7 +2216,8 @@
    "kind": "value",
    "raw": "133,361",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r40|2026-03-31",
@@ -2122,7 +2236,8 @@
    "kind": "value",
    "raw": "70,967",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r41|2025-03-31",
@@ -2141,7 +2256,8 @@
    "kind": "value",
    "raw": "197,069",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r41|2026-03-31",
@@ -2160,7 +2276,8 @@
    "kind": "value",
    "raw": "369,362",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r42|2025-03-31",
@@ -2178,7 +2295,8 @@
    "kind": "value",
    "raw": "1,670,426",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r42|2026-03-31",
@@ -2196,7 +2314,8 @@
    "kind": "value",
    "raw": "1,757,841",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r43|2025-03-31",
@@ -2213,7 +2332,8 @@
    "kind": "value",
    "raw": "7,534,110",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   },
   {
    "id": "r43|2026-03-31",
@@ -2230,7 +2350,8 @@
    "kind": "value",
    "raw": "5,135,249",
    "unit": "thousand_yen",
-   "warnings": []
+   "warnings": [],
+   "notes": []
   }
  ]
 }

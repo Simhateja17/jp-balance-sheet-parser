@@ -72,6 +72,26 @@ What the four runs show:
 - **Rounding is not always rounding.** In all 32 non-structural checks across the four files (excluding the 6 structural failures) the printed total is never below the sum of its items: every difference is zero or positive. The original page, in thousand yen, had both signs (for example -1 on net lines). The project owner read the cover pages: 4098, 4224 and the bank (8544) say amounts below one million yen are cut off (切り捨て), not rounded. 2452 says the same only for its summary in millions; its balance sheet is in thousands, so its rounding is not stated. So the file 1 current-assets difference of 5 (strict bound 4) is the cut-off, not an extraction error. D4's strict bound assumes rounding, so on these filings it can report a false failure. This is a limit of the tolerance rule today, not of the extraction.
 - **Page numbers are not handled in general.** `- 4 -` and `4` were dropped as unlabeled lines, but `-5-` survived as a row.
 
+## Held-out filings, after the fixes
+
+All the fixes agreed in D17 to D21 were built one failing test at a time, then the four filings were rerun through the same path a user gets (`scripts/run_heldout.py`, the same `analyse_statement` used by the page and the command line, nothing picked by hand). Raw results: `outputs/heldout_after/`.
+
+| file | pages read | status | checks passed per page | cross-page checks | rounding used | what changed |
+|---|---|---|---|---|---|---|
+| 140120260416505142.pdf (4098) | 6, 7 | ok | 10 of 10, 14 of 14 | 4 of 4 | cut (cover sentence) | The four stand-alone 純額 lines are items with a note (D19). The current-assets difference of 5 is within the cut-off bound (7 items). |
+| 140120260513529466.pdf (4224) | 7, 8 | ok | 12 of 12, 14 of 14 | 4 of 4 | cut (cover sentence) | The aggregate 減価償却累計額 line counts in the section sum (D17). The page number `-5-` is left out (D20). The long bar U+2015 is a nil, so page 8 no longer crashes. |
+| 140120260514535920.pdf (2452) | 6, 7 | ok | 12 of 12, 14 of 14 | 4 of 4 | unstated (the cover's cut-off is in millions, the sheet is in thousands) | Aggregate contra line (D17). The strict bound is used and still passes: one cross-page difference sits exactly on its bound (1). |
+| tanshin202603.pdf (8544, bank) | 5, 6 | ok | 8 of 8, 6 of 6 plus 2 skipped | 4 of 4 | cut (cover sentence) | Group checks for 有形固定資産 and 無形固定資産 (4 checks became 8). Headingless subtotals add only their run (page 6). 負債及び純資産の部合計 is skipped on page 6 because 負債の部合計 is on page 5, and checked across pages. |
+
+The two equity statement pages (4098 page 11, 2452 page 10), which crashed, now return a result without an exception: status `unreadable`, every check skipped with a reason, column-count issues listed. They are matrices with 5 to 8 amount columns, a layout this parser does not read.
+
+What the after table does and does not show:
+- **These four files are now development data.** They were used to find the bugs, so passing them is no longer a held-out result. The honest held-out test is the next set of filings.
+- **Still no gold for them.** `ok` means every identity check and cross-page check holds, which is strong evidence on the totals but not a cell-by-cell accuracy measure.
+- **Total assets equals total liabilities and net assets holds exactly on all four**, as the project owner stated. The check is exact (bound 0) because it is the same amount printed twice.
+- **The cut-off bound is deliberately loose** (`|difference| <= items`). Every difference we saw is zero or positive, so a tighter one-sided bound would have passed as well.
+- **The cover hint depends on its wording.** It looks for 百万円未満, 千円未満 or 円未満 followed by 切捨て or 切り捨て on the first three pages, and only counts it when the unit equals the balance sheet's unit. Other wording gives `unstated`, never a guess.
+
 ## Why the baseline loses on repeated labels
 
 The baseline is deliberately naive: take the first line whose label matches, ignore the section, take the number in the column. It is exact on every unique label. All 14 of its errors are repeated labels after the first: その他 appears under current assets, tangible assets, intangible assets and investments; リース資産 under tangible and intangible; 減価償却累計額 under three gross items. First-match returns the first occurrence's number for every later one. The parser keeps the section path (from indentation levels clustered per page) and links each contra and net row to its gross row, so the same label in a different place is a different cell.
@@ -82,10 +102,11 @@ The baseline is also tied to this layout: it reads the same text lines as the pa
 
 - **Gold is not fully independent.** The gold values were read from the page image by a separate Claude chat, not by a human. That chat had already seen this page's text through Google Drive earlier (as reported by the project owner), so its reading is not independent of the text layer the parser reads. A shared misreading is possible. Partial mitigation: the gold passes all 20 accounting identities.
 - **Nobody who reads Japanese checked anything.** The labels in the gold template were transcribed by Claude and then checked by another Claude session against the image (`docs/label-check.md`). The English translations were written by Claude and checked by the same reviewer session (`docs/translation-check.md`). No human reader of Japanese has verified the labels, the translations, or the gold. The owner does not read Japanese.
-- **The page is in-sample.** Every parser rule was developed against this one page, so 100% here is not evidence about other filings. The messy English variant is a held-out layout, but I built it myself. Real held-out filings are the missing test.
+- **Everything measured so far is in-sample.** Every parser rule was first developed on the original page. The four later filings found real gaps, and the fixes were built against them, so they are development data too. The messy English variant is a held-out layout, but I built it myself. A new set of filings, ideally including an English one and a real scan, is the missing test.
 - **Comparison is on printed text.** The parser's own sign and nil rules are covered by unit tests, not by gold. A wrong rule that also appears in the gold typing would not be caught.
-- **Scope.** One page, text-layer PDF, assets half only. Out of scope and flagged where cheap: multi-page tables, liabilities and equity on another page, other statements, merged cells. Eras other than Reiwa are flagged, not converted. A Japanese label missing from the translation dictionary gets `label_en: null` and a warning.
+- **Scope.** Text-layer PDFs only. A statement is read from the assets page plus up to 2 following pages that carry liabilities or net assets wording and have the same unit and periods; a statement spread wider than that, or on pages without that wording, is not joined. Still out of scope: other statements (the statement of changes in equity is a matrix this parser does not read and reports as unreadable), merged cells, and scanned pages (the vision fallback is a prototype and is not wired into the page or the statement path). Eras other than Reiwa are flagged, not converted. A Japanese label missing from the translation dictionary gets `label_en: null` and a warning. All real filings tested so far are Japanese 決算短信 consolidated balance sheets.
 - **Strict tolerance can hide real errors** of one or two units on small sections. It is reported with every check so the reader can see the margin.
+- **The tolerance depends on the rounding mode, which the balance sheet page does not state.** It comes from the cover when the cover names the same unit, from the user when chosen, and otherwise defaults to `unstated` (the strict rounding bound). The output records which. Using the wrong mode can give a false failure (strict on a cut-off filing) or hide a small real error (cut-off on a rounding filing).
 
 ## Scanned pages and the vision fallback (design, D7)
 

@@ -1,0 +1,2776 @@
+{
+ "source": "data/heldout/140120260514535920.pdf",
+ "status": "ok",
+ "rounding": "unstated",
+ "rounding_source": "unstated",
+ "rounding_sentence": "百万円未満切捨て",
+ "rounding_note": "the cover says '百万円未満切捨て' (cut-off in million_yen) but the balance sheet is in thousand_yen: rounding is not stated for this unit",
+ "pages": [
+  {
+   "source": "data/heldout/140120260514535920.pdf",
+   "status": "ok",
+   "rounding": "unstated",
+   "rounding_source": "unstated",
+   "rounding_sentence": "百万円未満切捨て",
+   "rounding_note": "the cover says '百万円未満切捨て' (cut-off in million_yen) but the balance sheet is in thousand_yen: rounding is not stated for this unit",
+   "unit": "thousand_yen",
+   "unit_raw": "単位：千円",
+   "periods": [
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "issues": [
+    {
+     "kind": "ignored_line",
+     "row_id": "",
+     "message": "line without a label ignored (page number?): amounts ['4']"
+    }
+   ],
+   "checks": [
+    {
+     "label": "流動資産合計",
+     "row_id": "r6",
+     "period": "2025-03-31",
+     "expected": 177780,
+     "printed": 177781,
+     "difference": 1,
+     "bound": 2,
+     "items": 3,
+     "status": "pass",
+     "reason": ""
+    },
+    {
+     "label": "流動資産合計",
+     "row_id": "r6",
+     "period": "2026-03-31",
+     "expected": 193214,
+     "printed": 193215,
+     "difference": 1,
+     "bound": 2,
+     "items": 3,
+     "status": "pass",
+     "reason": ""
+    },
+    {
+     "label": "有形固定資産合計",
+     "row_id": "r13",
+     "period": "2025-03-31",
+     "expected": 27392,
+     "printed": 27392,
+     "difference": 0,
+     "bound": 2,
+     "items": 4,
+     "status": "pass",
+     "reason": ""
+    },
+    {
+     "label": "有形固定資産合計",
+     "row_id": "r13",
+     "period": "2026-03-31",
+     "expected": 1250,
+     "printed": 1251,
+     "difference": 1,
+     "bound": 2,
+     "items": 4,
+     "status": "pass",
+     "reason": ""
+    },
+    {
+     "label": "無形固定資産合計",
+     "row_id": "r17",
+     "period": "2025-03-31",
+     "expected": 3864,
+     "printed": 3865,
+     "difference": 1,
+     "bound": 1,
+     "items": 2,
+     "status": "pass",
+     "reason": ""
+    },
+    {
+     "label": "無形固定資産合計",
+     "row_id": "r17",
+     "period": "2026-03-31",
+     "expected": 1234,
+     "printed": 1235,
+     "difference": 1,
+     "bound": 1,
+     "items": 2,
+     "status": "pass",
+     "reason": ""
+    },
+    {
+     "label": "投資その他の資産合計",
+     "row_id": "r23",
+     "period": "2025-03-31",
+     "expected": 67382,
+     "printed": 67384,
+     "difference": 2,
+     "bound": 2,
+     "items": 4,
+     "status": "pass",
+     "reason": ""
+    },
+    {
+     "label": "投資その他の資産合計",
+     "row_id": "r23",
+     "period": "2026-03-31",
+     "expected": 79674,
+     "printed": 79676,
+     "difference": 2,
+     "bound": 2,
+     "items": 4,
+     "status": "pass",
+     "reason": ""
+    },
+    {
+     "label": "固定資産合計",
+     "row_id": "r24",
+     "period": "2025-03-31",
+     "expected": 98641,
+     "printed": 98642,
+     "difference": 1,
+     "bound": 2,
+     "items": 3,
+     "status": "pass",
+     "reason": ""
+    },
+    {
+     "label": "固定資産合計",
+     "row_id": "r24",
+     "period": "2026-03-31",
+     "expected": 82162,
+     "printed": 82162,
+     "difference": 0,
+     "bound": 2,
+     "items": 3,
+     "status": "pass",
+     "reason": ""
+    },
+    {
+     "label": "資産合計",
+     "row_id": "r25",
+     "period": "2025-03-31",
+     "expected": 276423,
+     "printed": 276423,
+     "difference": 0,
+     "bound": 1,
+     "items": 2,
+     "status": "pass",
+     "reason": ""
+    },
+    {
+     "label": "資産合計",
+     "row_id": "r25",
+     "period": "2026-03-31",
+     "expected": 275377,
+     "printed": 275378,
+     "difference": 1,
+     "bound": 1,
+     "items": 2,
+     "status": "pass",
+     "reason": ""
+    }
+   ],
+   "rows": [
+    {
+     "id": "r1",
+     "label": "資産の部",
+     "label_en": "Assets",
+     "label_en_source": "translation_reviewed",
+     "role": "header",
+     "level": 0,
+     "parent": null,
+     "path": [],
+     "notes": []
+    },
+    {
+     "id": "r2",
+     "label": "流動資産",
+     "label_en": "Current assets",
+     "label_en_source": "translation_reviewed",
+     "role": "header",
+     "level": 1,
+     "parent": null,
+     "path": [
+      "資産の部"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r3",
+     "label": "現金及び預金",
+     "label_en": "Cash and deposits",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "資産の部",
+      "流動資産"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r4",
+     "label": "売掛金及び契約資産",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "資産の部",
+      "流動資産"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r5",
+     "label": "その他",
+     "label_en": "Other",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "資産の部",
+      "流動資産"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r6",
+     "label": "流動資産合計",
+     "label_en": "Total current assets",
+     "label_en_source": "translation_reviewed",
+     "role": "subtotal",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "資産の部",
+      "流動資産"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r7",
+     "label": "固定資産",
+     "label_en": "Non-current assets",
+     "label_en_source": "translation_reviewed",
+     "role": "header",
+     "level": 1,
+     "parent": null,
+     "path": [
+      "資産の部"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r8",
+     "label": "有形固定資産",
+     "label_en": "Property, plant and equipment",
+     "label_en_source": "translation_reviewed",
+     "role": "header",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "資産の部",
+      "固定資産"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r9",
+     "label": "建物及び構築物",
+     "label_en": "Buildings and structures",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "資産の部",
+      "固定資産",
+      "有形固定資産"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r10",
+     "label": "機械装置及び運搬具",
+     "label_en": "Machinery, equipment and vehicles",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "資産の部",
+      "固定資産",
+      "有形固定資産"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r11",
+     "label": "その他",
+     "label_en": "Other",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "資産の部",
+      "固定資産",
+      "有形固定資産"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r12",
+     "label": "減価償却累計額及び減損損失累計額",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "contra",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "資産の部",
+      "固定資産",
+      "有形固定資産"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r13",
+     "label": "有形固定資産合計",
+     "label_en": "Total property, plant and equipment",
+     "label_en_source": "translation_reviewed",
+     "role": "subtotal",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "資産の部",
+      "固定資産",
+      "有形固定資産"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r14",
+     "label": "無形固定資産",
+     "label_en": "Intangible assets",
+     "label_en_source": "translation_reviewed",
+     "role": "header",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "資産の部",
+      "固定資産"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r15",
+     "label": "のれん",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "資産の部",
+      "固定資産",
+      "無形固定資産"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r16",
+     "label": "その他",
+     "label_en": "Other",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "資産の部",
+      "固定資産",
+      "無形固定資産"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r17",
+     "label": "無形固定資産合計",
+     "label_en": "Total intangible assets",
+     "label_en_source": "translation_reviewed",
+     "role": "subtotal",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "資産の部",
+      "固定資産",
+      "無形固定資産"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r18",
+     "label": "投資その他の資産",
+     "label_en": "Investments and other assets",
+     "label_en_source": "translation_reviewed",
+     "role": "header",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "資産の部",
+      "固定資産"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r19",
+     "label": "投資有価証券",
+     "label_en": "Investment securities",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "資産の部",
+      "固定資産",
+      "投資その他の資産"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r20",
+     "label": "繰延税金資産",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "資産の部",
+      "固定資産",
+      "投資その他の資産"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r21",
+     "label": "保険積立金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "資産の部",
+      "固定資産",
+      "投資その他の資産"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r22",
+     "label": "その他",
+     "label_en": "Other",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "資産の部",
+      "固定資産",
+      "投資その他の資産"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r23",
+     "label": "投資その他の資産合計",
+     "label_en": "Total investments and other assets",
+     "label_en_source": "translation_reviewed",
+     "role": "subtotal",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "資産の部",
+      "固定資産",
+      "投資その他の資産"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r24",
+     "label": "固定資産合計",
+     "label_en": "Total non-current assets",
+     "label_en_source": "translation_reviewed",
+     "role": "subtotal",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "資産の部",
+      "固定資産"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r25",
+     "label": "資産合計",
+     "label_en": "Total assets",
+     "label_en_source": "translation_reviewed",
+     "role": "total",
+     "level": 1,
+     "parent": null,
+     "path": [
+      "資産の部"
+     ],
+     "notes": []
+    }
+   ],
+   "records": [
+    {
+     "id": "r3|2025-03-31",
+     "path": [
+      "資産の部",
+      "流動資産"
+     ],
+     "label": "現金及び預金",
+     "label_en": "Cash and deposits",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 135520,
+     "kind": "value",
+     "raw": "135,520",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r3|2026-03-31",
+     "path": [
+      "資産の部",
+      "流動資産"
+     ],
+     "label": "現金及び預金",
+     "label_en": "Cash and deposits",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 120304,
+     "kind": "value",
+     "raw": "120,304",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r4|2025-03-31",
+     "path": [
+      "資産の部",
+      "流動資産"
+     ],
+     "label": "売掛金及び契約資産",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 39362,
+     "kind": "value",
+     "raw": "39,362",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r4|2026-03-31",
+     "path": [
+      "資産の部",
+      "流動資産"
+     ],
+     "label": "売掛金及び契約資産",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 67206,
+     "kind": "value",
+     "raw": "67,206",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r5|2025-03-31",
+     "path": [
+      "資産の部",
+      "流動資産"
+     ],
+     "label": "その他",
+     "label_en": "Other",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 2898,
+     "kind": "value",
+     "raw": "2,898",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r5|2026-03-31",
+     "path": [
+      "資産の部",
+      "流動資産"
+     ],
+     "label": "その他",
+     "label_en": "Other",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 5704,
+     "kind": "value",
+     "raw": "5,704",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r6|2025-03-31",
+     "path": [
+      "資産の部",
+      "流動資産"
+     ],
+     "label": "流動資産合計",
+     "label_en": "Total current assets",
+     "label_en_source": "translation_reviewed",
+     "role": "subtotal",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 177781,
+     "kind": "value",
+     "raw": "177,781",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r6|2026-03-31",
+     "path": [
+      "資産の部",
+      "流動資産"
+     ],
+     "label": "流動資産合計",
+     "label_en": "Total current assets",
+     "label_en_source": "translation_reviewed",
+     "role": "subtotal",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 193215,
+     "kind": "value",
+     "raw": "193,215",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r9|2025-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "有形固定資産"
+     ],
+     "label": "建物及び構築物",
+     "label_en": "Buildings and structures",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 3490,
+     "kind": "value",
+     "raw": "3,490",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r9|2026-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "有形固定資産"
+     ],
+     "label": "建物及び構築物",
+     "label_en": "Buildings and structures",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 3490,
+     "kind": "value",
+     "raw": "3,490",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r10|2025-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "有形固定資産"
+     ],
+     "label": "機械装置及び運搬具",
+     "label_en": "Machinery, equipment and vehicles",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 61458,
+     "kind": "value",
+     "raw": "61,458",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r10|2026-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "有形固定資産"
+     ],
+     "label": "機械装置及び運搬具",
+     "label_en": "Machinery, equipment and vehicles",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 61977,
+     "kind": "value",
+     "raw": "61,977",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r11|2025-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "有形固定資産"
+     ],
+     "label": "その他",
+     "label_en": "Other",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 4561,
+     "kind": "value",
+     "raw": "4,561",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r11|2026-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "有形固定資産"
+     ],
+     "label": "その他",
+     "label_en": "Other",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 4561,
+     "kind": "value",
+     "raw": "4,561",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r12|2025-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "有形固定資産"
+     ],
+     "label": "減価償却累計額及び減損損失累計額",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "contra",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": -42117,
+     "kind": "value",
+     "raw": "△42,117",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r12|2026-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "有形固定資産"
+     ],
+     "label": "減価償却累計額及び減損損失累計額",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "contra",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": -68778,
+     "kind": "value",
+     "raw": "△68,778",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r13|2025-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "有形固定資産"
+     ],
+     "label": "有形固定資産合計",
+     "label_en": "Total property, plant and equipment",
+     "label_en_source": "translation_reviewed",
+     "role": "subtotal",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 27392,
+     "kind": "value",
+     "raw": "27,392",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r13|2026-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "有形固定資産"
+     ],
+     "label": "有形固定資産合計",
+     "label_en": "Total property, plant and equipment",
+     "label_en_source": "translation_reviewed",
+     "role": "subtotal",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 1251,
+     "kind": "value",
+     "raw": "1,251",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r15|2025-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "無形固定資産"
+     ],
+     "label": "のれん",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 3506,
+     "kind": "value",
+     "raw": "3,506",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r15|2026-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "無形固定資産"
+     ],
+     "label": "のれん",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 876,
+     "kind": "value",
+     "raw": "876",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r16|2025-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "無形固定資産"
+     ],
+     "label": "その他",
+     "label_en": "Other",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 358,
+     "kind": "value",
+     "raw": "358",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r16|2026-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "無形固定資産"
+     ],
+     "label": "その他",
+     "label_en": "Other",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 358,
+     "kind": "value",
+     "raw": "358",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r17|2025-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "無形固定資産"
+     ],
+     "label": "無形固定資産合計",
+     "label_en": "Total intangible assets",
+     "label_en_source": "translation_reviewed",
+     "role": "subtotal",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 3865,
+     "kind": "value",
+     "raw": "3,865",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r17|2026-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "無形固定資産"
+     ],
+     "label": "無形固定資産合計",
+     "label_en": "Total intangible assets",
+     "label_en_source": "translation_reviewed",
+     "role": "subtotal",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 1235,
+     "kind": "value",
+     "raw": "1,235",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r19|2025-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "投資その他の資産"
+     ],
+     "label": "投資有価証券",
+     "label_en": "Investment securities",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 8560,
+     "kind": "value",
+     "raw": "8,560",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r19|2026-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "投資その他の資産"
+     ],
+     "label": "投資有価証券",
+     "label_en": "Investment securities",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 10229,
+     "kind": "value",
+     "raw": "10,229",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r20|2025-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "投資その他の資産"
+     ],
+     "label": "繰延税金資産",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 1086,
+     "kind": "value",
+     "raw": "1,086",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r20|2026-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "投資その他の資産"
+     ],
+     "label": "繰延税金資産",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 4432,
+     "kind": "value",
+     "raw": "4,432",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r21|2025-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "投資その他の資産"
+     ],
+     "label": "保険積立金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 51620,
+     "kind": "value",
+     "raw": "51,620",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r21|2026-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "投資その他の資産"
+     ],
+     "label": "保険積立金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 58897,
+     "kind": "value",
+     "raw": "58,897",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r22|2025-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "投資その他の資産"
+     ],
+     "label": "その他",
+     "label_en": "Other",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 6116,
+     "kind": "value",
+     "raw": "6,116",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r22|2026-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "投資その他の資産"
+     ],
+     "label": "その他",
+     "label_en": "Other",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 6116,
+     "kind": "value",
+     "raw": "6,116",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r23|2025-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "投資その他の資産"
+     ],
+     "label": "投資その他の資産合計",
+     "label_en": "Total investments and other assets",
+     "label_en_source": "translation_reviewed",
+     "role": "subtotal",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 67384,
+     "kind": "value",
+     "raw": "67,384",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r23|2026-03-31",
+     "path": [
+      "資産の部",
+      "固定資産",
+      "投資その他の資産"
+     ],
+     "label": "投資その他の資産合計",
+     "label_en": "Total investments and other assets",
+     "label_en_source": "translation_reviewed",
+     "role": "subtotal",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 79676,
+     "kind": "value",
+     "raw": "79,676",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r24|2025-03-31",
+     "path": [
+      "資産の部",
+      "固定資産"
+     ],
+     "label": "固定資産合計",
+     "label_en": "Total non-current assets",
+     "label_en_source": "translation_reviewed",
+     "role": "subtotal",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 98642,
+     "kind": "value",
+     "raw": "98,642",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r24|2026-03-31",
+     "path": [
+      "資産の部",
+      "固定資産"
+     ],
+     "label": "固定資産合計",
+     "label_en": "Total non-current assets",
+     "label_en_source": "translation_reviewed",
+     "role": "subtotal",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 82162,
+     "kind": "value",
+     "raw": "82,162",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r25|2025-03-31",
+     "path": [
+      "資産の部"
+     ],
+     "label": "資産合計",
+     "label_en": "Total assets",
+     "label_en_source": "translation_reviewed",
+     "role": "total",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 276423,
+     "kind": "value",
+     "raw": "276,423",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r25|2026-03-31",
+     "path": [
+      "資産の部"
+     ],
+     "label": "資産合計",
+     "label_en": "Total assets",
+     "label_en_source": "translation_reviewed",
+     "role": "total",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 275378,
+     "kind": "value",
+     "raw": "275,378",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    }
+   ],
+   "page": 6,
+   "pages_total": 13
+  },
+  {
+   "source": "data/heldout/140120260514535920.pdf",
+   "status": "ok",
+   "rounding": "unstated",
+   "rounding_source": "unstated",
+   "rounding_sentence": "百万円未満切捨て",
+   "rounding_note": "the cover says '百万円未満切捨て' (cut-off in million_yen) but the balance sheet is in thousand_yen: rounding is not stated for this unit",
+   "unit": "thousand_yen",
+   "unit_raw": "単位：千円",
+   "periods": [
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "issues": [
+    {
+     "kind": "ignored_line",
+     "row_id": "",
+     "message": "line without a label ignored (page number?): amounts ['5']"
+    }
+   ],
+   "checks": [
+    {
+     "label": "流動負債合計",
+     "row_id": "r10",
+     "period": "2025-03-31",
+     "expected": 57340,
+     "printed": 57343,
+     "difference": 3,
+     "bound": 4,
+     "items": 7,
+     "status": "pass",
+     "reason": ""
+    },
+    {
+     "label": "流動負債合計",
+     "row_id": "r10",
+     "period": "2026-03-31",
+     "expected": 65063,
+     "printed": 65066,
+     "difference": 3,
+     "bound": 4,
+     "items": 7,
+     "status": "pass",
+     "reason": ""
+    },
+    {
+     "label": "固定負債合計",
+     "row_id": "r14",
+     "period": "2025-03-31",
+     "expected": 47723,
+     "printed": 47723,
+     "difference": 0,
+     "bound": 1,
+     "items": 2,
+     "status": "pass",
+     "reason": ""
+    },
+    {
+     "label": "固定負債合計",
+     "row_id": "r14",
+     "period": "2026-03-31",
+     "expected": 60001,
+     "printed": 60001,
+     "difference": 0,
+     "bound": 1,
+     "items": 2,
+     "status": "pass",
+     "reason": ""
+    },
+    {
+     "label": "負債合計",
+     "row_id": "r15",
+     "period": "2025-03-31",
+     "expected": 105066,
+     "printed": 105066,
+     "difference": 0,
+     "bound": 1,
+     "items": 2,
+     "status": "pass",
+     "reason": ""
+    },
+    {
+     "label": "負債合計",
+     "row_id": "r15",
+     "period": "2026-03-31",
+     "expected": 125067,
+     "printed": 125067,
+     "difference": 0,
+     "bound": 1,
+     "items": 2,
+     "status": "pass",
+     "reason": ""
+    },
+    {
+     "label": "株主資本合計",
+     "row_id": "r22",
+     "period": "2025-03-31",
+     "expected": 168984,
+     "printed": 168984,
+     "difference": 0,
+     "bound": 2,
+     "items": 4,
+     "status": "pass",
+     "reason": ""
+    },
+    {
+     "label": "株主資本合計",
+     "row_id": "r22",
+     "period": "2026-03-31",
+     "expected": 146875,
+     "printed": 146875,
+     "difference": 0,
+     "bound": 2,
+     "items": 4,
+     "status": "pass",
+     "reason": ""
+    },
+    {
+     "label": "その他の包括利益累計額合計",
+     "row_id": "r25",
+     "period": "2025-03-31",
+     "expected": 2371,
+     "printed": 2371,
+     "difference": 0,
+     "bound": 1,
+     "items": 1,
+     "status": "pass",
+     "reason": ""
+    },
+    {
+     "label": "その他の包括利益累計額合計",
+     "row_id": "r25",
+     "period": "2026-03-31",
+     "expected": 3435,
+     "printed": 3435,
+     "difference": 0,
+     "bound": 1,
+     "items": 1,
+     "status": "pass",
+     "reason": ""
+    },
+    {
+     "label": "純資産合計",
+     "row_id": "r26",
+     "period": "2025-03-31",
+     "expected": 171355,
+     "printed": 171356,
+     "difference": 1,
+     "bound": 1,
+     "items": 2,
+     "status": "pass",
+     "reason": ""
+    },
+    {
+     "label": "純資産合計",
+     "row_id": "r26",
+     "period": "2026-03-31",
+     "expected": 150310,
+     "printed": 150310,
+     "difference": 0,
+     "bound": 1,
+     "items": 2,
+     "status": "pass",
+     "reason": ""
+    },
+    {
+     "label": "負債純資産合計",
+     "row_id": "r27",
+     "period": "2025-03-31",
+     "expected": 276422,
+     "printed": 276423,
+     "difference": 1,
+     "bound": 1,
+     "items": 2,
+     "status": "pass",
+     "reason": ""
+    },
+    {
+     "label": "負債純資産合計",
+     "row_id": "r27",
+     "period": "2026-03-31",
+     "expected": 275377,
+     "printed": 275378,
+     "difference": 1,
+     "bound": 1,
+     "items": 2,
+     "status": "pass",
+     "reason": ""
+    }
+   ],
+   "rows": [
+    {
+     "id": "r1",
+     "label": "負債の部",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "header",
+     "level": 0,
+     "parent": null,
+     "path": [],
+     "notes": []
+    },
+    {
+     "id": "r2",
+     "label": "流動負債",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "header",
+     "level": 1,
+     "parent": null,
+     "path": [
+      "負債の部"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r3",
+     "label": "買掛金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "負債の部",
+      "流動負債"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r4",
+     "label": "１年内返済予定の長期借入金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "負債の部",
+      "流動負債"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r5",
+     "label": "未払費用",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "負債の部",
+      "流動負債"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r6",
+     "label": "未払法人税等",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "負債の部",
+      "流動負債"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r7",
+     "label": "未払消費税等",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "負債の部",
+      "流動負債"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r8",
+     "label": "賞与引当金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "負債の部",
+      "流動負債"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r9",
+     "label": "その他",
+     "label_en": "Other",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "負債の部",
+      "流動負債"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r10",
+     "label": "流動負債合計",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "subtotal",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "負債の部",
+      "流動負債"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r11",
+     "label": "固定負債",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "header",
+     "level": 1,
+     "parent": null,
+     "path": [
+      "負債の部"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r12",
+     "label": "長期借入金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "負債の部",
+      "固定負債"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r13",
+     "label": "その他",
+     "label_en": "Other",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "負債の部",
+      "固定負債"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r14",
+     "label": "固定負債合計",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "subtotal",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "負債の部",
+      "固定負債"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r15",
+     "label": "負債合計",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "total",
+     "level": 1,
+     "parent": null,
+     "path": [
+      "負債の部"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r16",
+     "label": "純資産の部",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "header",
+     "level": 0,
+     "parent": null,
+     "path": [],
+     "notes": []
+    },
+    {
+     "id": "r17",
+     "label": "株主資本",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "header",
+     "level": 1,
+     "parent": null,
+     "path": [
+      "純資産の部"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r18",
+     "label": "資本金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "純資産の部",
+      "株主資本"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r19",
+     "label": "資本剰余金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "純資産の部",
+      "株主資本"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r20",
+     "label": "利益剰余金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "純資産の部",
+      "株主資本"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r21",
+     "label": "自己株式",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "純資産の部",
+      "株主資本"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r22",
+     "label": "株主資本合計",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "subtotal",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "純資産の部",
+      "株主資本"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r23",
+     "label": "その他の包括利益累計額",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "header",
+     "level": 1,
+     "parent": null,
+     "path": [
+      "純資産の部"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r24",
+     "label": "その他有価証券評価差額金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "純資産の部",
+      "その他の包括利益累計額"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r25",
+     "label": "その他の包括利益累計額合計",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "subtotal",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "純資産の部",
+      "その他の包括利益累計額"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r26",
+     "label": "純資産合計",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "total",
+     "level": 1,
+     "parent": null,
+     "path": [
+      "純資産の部"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r27",
+     "label": "負債純資産合計",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "subtotal",
+     "level": 0,
+     "parent": null,
+     "path": [],
+     "notes": []
+    }
+   ],
+   "records": [
+    {
+     "id": "r3|2025-03-31",
+     "path": [
+      "負債の部",
+      "流動負債"
+     ],
+     "label": "買掛金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 9932,
+     "kind": "value",
+     "raw": "9,932",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r3|2026-03-31",
+     "path": [
+      "負債の部",
+      "流動負債"
+     ],
+     "label": "買掛金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 12327,
+     "kind": "value",
+     "raw": "12,327",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r4|2025-03-31",
+     "path": [
+      "負債の部",
+      "流動負債"
+     ],
+     "label": "１年内返済予定の長期借入金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 16872,
+     "kind": "value",
+     "raw": "16,872",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r4|2026-03-31",
+     "path": [
+      "負債の部",
+      "流動負債"
+     ],
+     "label": "１年内返済予定の長期借入金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 18672,
+     "kind": "value",
+     "raw": "18,672",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r5|2025-03-31",
+     "path": [
+      "負債の部",
+      "流動負債"
+     ],
+     "label": "未払費用",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 14300,
+     "kind": "value",
+     "raw": "14,300",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r5|2026-03-31",
+     "path": [
+      "負債の部",
+      "流動負債"
+     ],
+     "label": "未払費用",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 18738,
+     "kind": "value",
+     "raw": "18,738",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r6|2025-03-31",
+     "path": [
+      "負債の部",
+      "流動負債"
+     ],
+     "label": "未払法人税等",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 2618,
+     "kind": "value",
+     "raw": "2,618",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r6|2026-03-31",
+     "path": [
+      "負債の部",
+      "流動負債"
+     ],
+     "label": "未払法人税等",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 340,
+     "kind": "value",
+     "raw": "340",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r7|2025-03-31",
+     "path": [
+      "負債の部",
+      "流動負債"
+     ],
+     "label": "未払消費税等",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 2542,
+     "kind": "value",
+     "raw": "2,542",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r7|2026-03-31",
+     "path": [
+      "負債の部",
+      "流動負債"
+     ],
+     "label": "未払消費税等",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 7378,
+     "kind": "value",
+     "raw": "7,378",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r8|2025-03-31",
+     "path": [
+      "負債の部",
+      "流動負債"
+     ],
+     "label": "賞与引当金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 9810,
+     "kind": "value",
+     "raw": "9,810",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r8|2026-03-31",
+     "path": [
+      "負債の部",
+      "流動負債"
+     ],
+     "label": "賞与引当金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 5122,
+     "kind": "value",
+     "raw": "5,122",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r9|2025-03-31",
+     "path": [
+      "負債の部",
+      "流動負債"
+     ],
+     "label": "その他",
+     "label_en": "Other",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 1266,
+     "kind": "value",
+     "raw": "1,266",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r9|2026-03-31",
+     "path": [
+      "負債の部",
+      "流動負債"
+     ],
+     "label": "その他",
+     "label_en": "Other",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 2486,
+     "kind": "value",
+     "raw": "2,486",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r10|2025-03-31",
+     "path": [
+      "負債の部",
+      "流動負債"
+     ],
+     "label": "流動負債合計",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "subtotal",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 57343,
+     "kind": "value",
+     "raw": "57,343",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r10|2026-03-31",
+     "path": [
+      "負債の部",
+      "流動負債"
+     ],
+     "label": "流動負債合計",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "subtotal",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 65066,
+     "kind": "value",
+     "raw": "65,066",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r12|2025-03-31",
+     "path": [
+      "負債の部",
+      "固定負債"
+     ],
+     "label": "長期借入金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 45806,
+     "kind": "value",
+     "raw": "45,806",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r12|2026-03-31",
+     "path": [
+      "負債の部",
+      "固定負債"
+     ],
+     "label": "長期借入金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 58084,
+     "kind": "value",
+     "raw": "58,084",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r13|2025-03-31",
+     "path": [
+      "負債の部",
+      "固定負債"
+     ],
+     "label": "その他",
+     "label_en": "Other",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 1917,
+     "kind": "value",
+     "raw": "1,917",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r13|2026-03-31",
+     "path": [
+      "負債の部",
+      "固定負債"
+     ],
+     "label": "その他",
+     "label_en": "Other",
+     "label_en_source": "translation_reviewed",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 1917,
+     "kind": "value",
+     "raw": "1,917",
+     "unit": "thousand_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r14|2025-03-31",
+     "path": [
+      "負債の部",
+      "固定負債"
+     ],
+     "label": "固定負債合計",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "subtotal",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 47723,
+     "kind": "value",
+     "raw": "47,723",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r14|2026-03-31",
+     "path": [
+      "負債の部",
+      "固定負債"
+     ],
+     "label": "固定負債合計",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "subtotal",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 60001,
+     "kind": "value",
+     "raw": "60,001",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r15|2025-03-31",
+     "path": [
+      "負債の部"
+     ],
+     "label": "負債合計",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "total",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 105066,
+     "kind": "value",
+     "raw": "105,066",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r15|2026-03-31",
+     "path": [
+      "負債の部"
+     ],
+     "label": "負債合計",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "total",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 125067,
+     "kind": "value",
+     "raw": "125,067",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r18|2025-03-31",
+     "path": [
+      "純資産の部",
+      "株主資本"
+     ],
+     "label": "資本金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 35000,
+     "kind": "value",
+     "raw": "35,000",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r18|2026-03-31",
+     "path": [
+      "純資産の部",
+      "株主資本"
+     ],
+     "label": "資本金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 35000,
+     "kind": "value",
+     "raw": "35,000",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r19|2025-03-31",
+     "path": [
+      "純資産の部",
+      "株主資本"
+     ],
+     "label": "資本剰余金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 15000,
+     "kind": "value",
+     "raw": "15,000",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r19|2026-03-31",
+     "path": [
+      "純資産の部",
+      "株主資本"
+     ],
+     "label": "資本剰余金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 15000,
+     "kind": "value",
+     "raw": "15,000",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r20|2025-03-31",
+     "path": [
+      "純資産の部",
+      "株主資本"
+     ],
+     "label": "利益剰余金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 120234,
+     "kind": "value",
+     "raw": "120,234",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r20|2026-03-31",
+     "path": [
+      "純資産の部",
+      "株主資本"
+     ],
+     "label": "利益剰余金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 98125,
+     "kind": "value",
+     "raw": "98,125",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r21|2025-03-31",
+     "path": [
+      "純資産の部",
+      "株主資本"
+     ],
+     "label": "自己株式",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": -1250,
+     "kind": "value",
+     "raw": "△1,250",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r21|2026-03-31",
+     "path": [
+      "純資産の部",
+      "株主資本"
+     ],
+     "label": "自己株式",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": -1250,
+     "kind": "value",
+     "raw": "△1,250",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r22|2025-03-31",
+     "path": [
+      "純資産の部",
+      "株主資本"
+     ],
+     "label": "株主資本合計",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "subtotal",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 168984,
+     "kind": "value",
+     "raw": "168,984",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r22|2026-03-31",
+     "path": [
+      "純資産の部",
+      "株主資本"
+     ],
+     "label": "株主資本合計",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "subtotal",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 146875,
+     "kind": "value",
+     "raw": "146,875",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r24|2025-03-31",
+     "path": [
+      "純資産の部",
+      "その他の包括利益累計額"
+     ],
+     "label": "その他有価証券評価差額金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 2371,
+     "kind": "value",
+     "raw": "2,371",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r24|2026-03-31",
+     "path": [
+      "純資産の部",
+      "その他の包括利益累計額"
+     ],
+     "label": "その他有価証券評価差額金",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 3435,
+     "kind": "value",
+     "raw": "3,435",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r25|2025-03-31",
+     "path": [
+      "純資産の部",
+      "その他の包括利益累計額"
+     ],
+     "label": "その他の包括利益累計額合計",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "subtotal",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 2371,
+     "kind": "value",
+     "raw": "2,371",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r25|2026-03-31",
+     "path": [
+      "純資産の部",
+      "その他の包括利益累計額"
+     ],
+     "label": "その他の包括利益累計額合計",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "subtotal",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 3435,
+     "kind": "value",
+     "raw": "3,435",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r26|2025-03-31",
+     "path": [
+      "純資産の部"
+     ],
+     "label": "純資産合計",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "total",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 171356,
+     "kind": "value",
+     "raw": "171,356",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r26|2026-03-31",
+     "path": [
+      "純資産の部"
+     ],
+     "label": "純資産合計",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "total",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 150310,
+     "kind": "value",
+     "raw": "150,310",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r27|2025-03-31",
+     "path": [],
+     "label": "負債純資産合計",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "subtotal",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 276423,
+     "kind": "value",
+     "raw": "276,423",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r27|2026-03-31",
+     "path": [],
+     "label": "負債純資産合計",
+     "label_en": null,
+     "label_en_source": "missing",
+     "role": "subtotal",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 275378,
+     "kind": "value",
+     "raw": "275,378",
+     "unit": "thousand_yen",
+     "warnings": [
+      "translation_missing"
+     ],
+     "notes": []
+    }
+   ],
+   "page": 7,
+   "pages_total": 13
+  }
+ ],
+ "cross_checks": [
+  {
+   "label": "資産合計 = 負債純資産合計",
+   "period": "2025-03-31",
+   "expected": 276423,
+   "printed": 276423,
+   "difference": 0,
+   "bound": 0,
+   "items": 1,
+   "status": "pass",
+   "reason": ""
+  },
+  {
+   "label": "負債純資産合計 = 負債合計 + 純資産合計",
+   "period": "2025-03-31",
+   "expected": 276422,
+   "printed": 276423,
+   "difference": 1,
+   "bound": 1,
+   "items": 2,
+   "status": "pass",
+   "reason": ""
+  },
+  {
+   "label": "資産合計 = 負債純資産合計",
+   "period": "2026-03-31",
+   "expected": 275378,
+   "printed": 275378,
+   "difference": 0,
+   "bound": 0,
+   "items": 1,
+   "status": "pass",
+   "reason": ""
+  },
+  {
+   "label": "負債純資産合計 = 負債合計 + 純資産合計",
+   "period": "2026-03-31",
+   "expected": 275377,
+   "printed": 275378,
+   "difference": 1,
+   "bound": 1,
+   "items": 2,
+   "status": "pass",
+   "reason": ""
+  }
+ ]
+}

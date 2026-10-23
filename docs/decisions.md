@@ -29,6 +29,9 @@ Proposed design for items 2 and 4, because the pieces sit on different pages (as
 - Statement status is the worst of the page statuses and the cross checks (unreadable over failed over ok). The JSON gets a `statement` object (pages, cross checks, status); the per-page outputs keep their shape.
 - On a single page, a total whose components are not all there is skipped with that reason; the statement-level check does the real work.
 
+### D21 implementation status
+All of D17 to D21 are built, test first, and the four held-out filings pass (see docs/report.md, "Held-out filings, after the fixes"). Built beyond the letter of the list while doing it: `scripts/run_pages.py` and `scripts/run_heldout.py`, the shared `analyse` and `analyse_statement` path used by the command line (`--page`, `--rounding`, `--statement`), the page and the script, `notes` on rows and records, and the `rounding`, `rounding_source`, `rounding_sentence` and `rounding_note` output fields.
+
 ## D20. Page numbers (agreed)
 - A label-only line is a page number, and is left out of the table, only when both hold: it is the LAST line of the table region (below every real row), and after width normalisation it is only a page number (a number alone, a number between dashes with or without spaces such as -5- or - 5 -, full-width forms, "Page 5", "5/12").
 - It is ignored the way unlabeled lines are today, with an informational `ignored_line` issue that says it looks like a page number. The issue does not change the page status.
