@@ -388,3 +388,14 @@ Please run the liabilities and equity pages too and add them to the
 "before" table.
 ```
 
+## 2026-10-23 15:22
+
+```
+<pasted_content id="0814">
+Yes to Q23 and to your additions in D21. The spec is agreed. Start with
+the crashes, then go through the rest in the order you listed. Commit
+after each fix, and rerun the held-out files at the end for the "after"
+table.
+</pasted_content id="0814">
+```
+

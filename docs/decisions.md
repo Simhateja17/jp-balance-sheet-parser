@@ -8,7 +8,7 @@
 - `label_en` is a translation for the human reader only. It is marked as a translation and is never used in any check or matching.
 - `parent` links a contra (accumulated depreciation) or net line to its item. Exact semantics: see D2.
 
-## D21. Held-out fixes, full list (PROPOSED: waiting for the owner to confirm before any code)
+## D21. Held-out fixes, full list (AGREED by the owner, including Q23 and the additions in items 5 to 7)
 Already agreed and only restated here: D17 aggregate contra line; D18 rounding setting (`round`, `cut`, `unstated`) with the shared cover hint and a recorded source; D19 net-suffix lines (stand-alone ones are items with a note); D20 page numbers (last line, pure pattern only).
 Also agreed (Q22): a group check. An `item` that has its own value and indented detail lines directly below it must equal the sum of those detail lines, with the same bound, status and skip rules. Detail lines introduced by うち, (うち or "of which" are not components: no check, and a note. The group line stays an `item` with no `parent`. Seen on the bank page: 有形固定資産 and 無形固定資産.
 
