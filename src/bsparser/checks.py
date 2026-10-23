@@ -23,6 +23,12 @@ def allowed_bound(items: int) -> int:
     return (items + 1) // 2
 
 
+def bound_for(items: int, rounding: str) -> int:
+    """D18. `cut`: each printed item and the total is off by less than 1 in either direction (a cut toward zero
+    flips the error sign on negative lines), so |difference| <= items. `round` and `unstated`: the strict bound."""
+    return items if rounding == "cut" else allowed_bound(items)
+
+
 def _status(difference: int, bound: int) -> str:
     return "failed" if abs(difference) > bound else "pass"
 
