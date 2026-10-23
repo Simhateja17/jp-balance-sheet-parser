@@ -44,7 +44,7 @@ def _skip_all(page: Page, row, reason: str) -> List[Check]:
     return [Check(row.label, row.id, period, None, None, None, 0, 0, "skipped", reason) for period in page.periods]
 
 
-def _net_checks(page: Page, row, by_id) -> List[Check]:
+def _net_checks(page: Page, row, by_id, rounding: str) -> List[Check]:
     checks: List[Check] = []
     contra = [r for r in page.rows if r.role == "contra" and r.parent == row.parent]
     gross = by_id[row.parent]
@@ -66,11 +66,11 @@ def _net_checks(page: Page, row, by_id) -> List[Check]:
             continue
         expected = gross.values[p].value + sum(c.values[p].value or 0 for c in contra)
         checks.append(Check(row.label, row.id, period, expected, printed, printed - expected,
-                            allowed_bound(2), 2, _status(printed - expected, allowed_bound(2))))
+                            bound_for(2, rounding), 2, _status(printed - expected, bound_for(2, rounding))))
     return checks
 
 
-def _total_checks(page: Page, row) -> List[Check]:
+def _total_checks(page: Page, row, rounding: str) -> List[Check]:
     checks: List[Check] = []
     contributors = []
     for r in page.rows:
@@ -100,8 +100,8 @@ def _total_checks(page: Page, row) -> List[Check]:
         amounts = [c.values[p].value for c in contributors if c.values[p].value is not None]
         expected = sum(amounts)
         checks.append(Check(row.label, row.id, period, expected, printed, printed - expected,
-                            allowed_bound(len(amounts)), len(amounts),
-                            _status(printed - expected, allowed_bound(len(amounts)))))
+                            bound_for(len(amounts), rounding), len(amounts),
+                            _status(printed - expected, bound_for(len(amounts), rounding))))
     return checks
 
 
@@ -113,13 +113,13 @@ def _guarded(page: Page, row, make) -> List[Check]:
         return _skip_all(page, row, f"check could not run: {type(exc).__name__}: {exc}")
 
 
-def run_checks(page: Page) -> List[Check]:
+def run_checks(page: Page, rounding: str = "unstated") -> List[Check]:
     by_id = {r.id: r for r in page.rows}
     checks: List[Check] = []
     for row in page.rows:
         if row.role == "net" and row.parent is not None:
-            checks.extend(_guarded(page, row, lambda row=row: _net_checks(page, row, by_id)))
+            checks.extend(_guarded(page, row, lambda row=row: _net_checks(page, row, by_id, rounding)))
     for row in page.rows:
         if row.role in ("subtotal", "total"):
-            checks.extend(_guarded(page, row, lambda row=row: _total_checks(page, row)))
+            checks.extend(_guarded(page, row, lambda row=row: _total_checks(page, row, rounding)))
     return checks
