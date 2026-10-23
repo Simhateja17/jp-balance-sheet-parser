@@ -248,11 +248,15 @@ def _app_for_file(path, patch=""):
                 return Path(pdf_path).read_bytes()
 
         st.file_uploader = lambda *args, **kwargs: Upload()
+        original = app.analyse_statement
         if patch == "boom":
             def boom(*args, **kwargs):
                 raise RuntimeError("internal detail 12345")
             app.analyse_statement = boom
-        app.main()
+        try:
+            app.main()
+        finally:
+            app.analyse_statement = original  # the module is shared between tests: never leave the patch behind
 
     return AppTest.from_function(script, args=(str(path), patch, str(ROOT)), default_timeout=90)
 
@@ -308,3 +312,24 @@ def test_the_page_choice_offers_the_my_page_isnt_listed_escape_next_to_the_stric
     at = _app_for(HELDOUT_4098).run()
     assert "My page isn't listed" in [e.label for e in at.expander]
     assert at.selectbox[0].options == [o for o in at.selectbox[0].options if o.startswith("page 6")]  # only page 6 is offered
+
+
+def test_every_page_of_the_statement_shows_its_image_beside_its_table():
+    at = _app_for(HELDOUT_4098).run()
+    assert not at.exception
+    assert len(at.get("imgs")) == 2  # page 6 and page 7
+
+
+def test_rows_of_a_failed_check_carry_a_why_in_the_table_the_user_sees():
+    at = _app_for(HELDOUT_4098).run()
+    first_table = at.dataframe[0].value
+    assert "why" in first_table.columns and (first_table["why"] == "").all()  # all checks pass under the cover's cut-off
+    at.selectbox[1].select("round").run()  # the strict bound fails current assets 2025 (difference 5, bound 4)
+    assert not at.exception
+    table = at.dataframe[0].value
+    marked = table[table["why"] != ""]
+    labels = [label.strip("\u00a0") for label in marked["label"]]
+    assert {"流動資産合計", "現金及び預金", "受取手形及び売掛金", "電子記録債権", "商品及び製品", "仕掛品", "原材料及び貯蔵品"} <= set(labels)
+    headers = table[table["role"] == "header"]
+    assert (headers["why"] == "").all()  # section headers never belong to a check
+    assert "off by 5 (allowed 4)" in marked.iloc[0]["why"]

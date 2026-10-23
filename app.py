@@ -83,22 +83,33 @@ FRIENDLY = {
 }
 
 
-def show_page(st, pd, output: dict) -> None:
-    """Unit, periods, table, checks and issues of one parsed page."""
+def show_page(st, pd, output: dict, source, why: dict) -> None:
+    """Unit, periods, the page image beside the table (rows of a failed check in red), checks and issues."""
+    from bsparser.pages import render_page_png
+
     left, mid, right = st.columns(3)
     left.metric("Unit", f"{output['unit'] or 'not found'}", output["unit_raw"] or None)
     mid.metric("Periods", ", ".join(output["periods"]) or "not found")
     right.metric("Rows / records", f"{len(output['rows'])} / {len(output['records'])}")
 
-    if not output["rows"]:
-        st.info(FRIENDLY["no_rows"])
-    else:
-        st.subheader("Table")
-        st.dataframe(pd.DataFrame(table_rows(output)), hide_index=True, width="stretch")
+    image_col, table_col = st.columns([2, 3])
+    try:
+        image_col.image(render_page_png(source, output["page"], dpi=90), caption=f"Page {output['page']} as printed",
+                        width="stretch")
+    except ValueError:
+        image_col.info("The page image could not be shown.")
+    with table_col:
+        if not output["rows"]:
+            st.info(FRIENDLY["no_rows"])
+        else:
+            st.subheader("Table")
+            if why:
+                st.caption("Rows in red belong to a failed check; the last column says why.")
+            st.dataframe(styled_table(table_rows(output, why)), hide_index=True, width="stretch")
 
     st.subheader(f"Checks ({len(output['checks'])})")
     if output["checks"]:
-        shown = pd.DataFrame(output["checks"]).drop(columns=["row_id"])
+        shown = pd.DataFrame(output["checks"]).drop(columns=["row_id", "row_ids"])
         shown.insert(0, "result", shown.pop("status").map({"pass": "pass", "failed": "FAILED", "skipped": "skipped"}))
         st.dataframe(shown, hide_index=True, width="stretch")
     else:
@@ -178,15 +189,16 @@ def main() -> None:
     st.subheader(f"Status: {status}")
     {"ok": st.success, "failed": st.error, "unreadable": st.warning}[status](STATUS_TEXT[status])
 
+    cross = statement["cross_checks"] if statement else None
     if len(pages) == 1:
-        show_page(st, pd, first)
+        show_page(st, pd, first, source, failed_rows(first, cross))
     else:
         for output in pages:
             st.markdown(f"### Page {output['page']}")
             st.caption(f"Page status: {output['status']}")
-            show_page(st, pd, output)
+            show_page(st, pd, output, source, failed_rows(output, cross))
         st.subheader(f"Cross-page checks ({len(statement['cross_checks'])})")
-        shown = pd.DataFrame(statement["cross_checks"])
+        shown = pd.DataFrame(statement["cross_checks"]).drop(columns=["rows"])
         shown.insert(0, "result", shown.pop("status").map({"pass": "pass", "failed": "FAILED", "skipped": "skipped"}))
         st.dataframe(shown, hide_index=True, width="stretch")
 
