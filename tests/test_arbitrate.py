@@ -74,3 +74,14 @@ def test_a_page_with_no_usable_text_goes_to_vision():
     chosen = arbitrate(text=empty_text, vision=good)
     assert chosen["extractor"] == "vision"
     assert "no usable text layer" in chosen["issues"][-1]["message"]
+
+
+def test_a_different_nil_glyph_is_not_a_disagreement_but_a_different_number_is():
+    text = build_output(FIXTURE_PDF)
+    vision = copy.deepcopy(text)
+    cip = [r for r in vision["records"] if r["label"] == "Construction in progress" and r["period"] == "2025-03-31"][0]
+    cip["raw"] = "—"  # em dash for the printed dash: both are nil
+    assert arbitrate(text=text, vision=vision)["disagreements"] == []
+    land = [r for r in vision["records"] if r["label"] == "Land" and r["period"] == "2026-03-31"][0]
+    land["raw"] = "705,404"
+    assert len(arbitrate(text=text, vision=vision)["disagreements"]) == 1

@@ -1,6 +1,8 @@
 import copy
 from typing import Dict
 
+from bsparser.amounts import same_printed_text
+
 
 def _score(output: Dict):
     """Lower is better: failed checks first, then skipped checks and unreadable values."""
@@ -21,7 +23,7 @@ def _flag_disagreements(winner: Dict, loser: Dict) -> None:
     winner["disagreements"] = []
     for rec in winner["records"]:
         theirs = other.get(_key(rec))
-        if theirs is None or theirs["raw"] != rec["raw"]:
+        if theirs is None or not same_printed_text(rec["raw"], theirs["raw"]):
             seen = "missing" if theirs is None else theirs["raw"]
             rec["warnings"].append(f"extractors_disagree: {winner['extractor']} {rec['raw']} vs {loser['extractor']} {seen}")
             winner["disagreements"].append({"key": list(_key(rec)), winner["extractor"]: rec["raw"], loser["extractor"]: seen})
