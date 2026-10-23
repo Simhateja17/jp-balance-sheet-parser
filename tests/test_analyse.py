@@ -47,3 +47,13 @@ def test_the_bank_page_goes_from_four_checks_to_eight_with_the_group_checks():
     assert len(labels) == 8 and {s for _, _, s in labels} == {"pass"}
     assert {l for l, _, _ in labels} == {"資産の部合計", "負債の部合計", "有形固定資産", "無形固定資産"}
     assert out["status"] == "ok"
+
+
+def test_the_real_bank_equity_page_passes_its_subtotals_and_skips_the_total_whose_liabilities_are_elsewhere():
+    out = analyse(HELDOUT / "tanshin202603.pdf", page=6)
+    by = {(c["label"], c["period"]): c for c in out["checks"]}
+    for label in ("株主資本合計", "その他の包括利益累計額合計", "純資産の部合計"):
+        assert by[(label, "2025-03-31")]["status"] == "pass" and by[(label, "2026-03-31")]["status"] == "pass", label
+    skipped = by[("負債及び純資産の部合計", "2025-03-31")]
+    assert skipped["status"] == "skipped" and "total liabilities" in skipped["reason"]
+    assert out["status"] == "ok"  # a skipped check because another page holds the piece is not a failure
