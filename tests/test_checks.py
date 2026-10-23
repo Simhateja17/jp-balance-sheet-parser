@@ -188,3 +188,31 @@ def test_an_unexpected_error_inside_one_check_becomes_a_skipped_check_with_the_e
     assert len(checks) == 20  # every check is still reported
     assert {c.status for c in checks} == {"skipped"}
     assert all("RuntimeError: boom" in c.reason for c in checks)
+
+
+def test_every_check_names_the_rows_it_used_so_a_failed_one_can_be_highlighted():
+    page = parse_page(FIXTURE_PDF)
+    ids = {r.label: r.id for r in page.rows}
+    checks = run_checks(page)
+    net = check_for(checks, "Buildings and structures, net", "2026-03-31")
+    assert net.row_ids == ["r18", "r16", "r17"]  # the net line, its gross line, its accumulated depreciation
+    current = check_for(checks, "Total current assets", "2025-03-31")
+    items = [r.id for r in page.rows[2:12]]  # cash ... allowance
+    assert current.row_ids[0] == ids["Total current assets"] and current.row_ids[1:] == items
+    assert check_for(checks, "Total assets", "2026-03-31").row_ids[0] == ids["Total assets"]
+
+
+def test_skipped_checks_also_name_their_rows():
+    from bsparser.page import parse_lines
+    from bsparser.pdf_lines import Line
+
+    page = parse_lines([
+        Line("(in thousands of yen)", 400.0, 70.0),
+        Line("(Mar. 31, 2025) (Mar. 31, 2026)", 300.0, 94.0),
+        Line("Assets", 60.0, 120.0),
+        Line("Current assets", 72.0, 134.0),
+        Line("Cash", 84.0, 148.0, ["100", "100"]),
+        Line("Total current assets", 84.0, 162.0, ["－", "100"]),
+    ])
+    nil_total = [c for c in run_checks(page) if c.status == "skipped"][0]
+    assert nil_total.row_ids and nil_total.row_ids[0] == "r4"

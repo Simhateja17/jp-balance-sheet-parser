@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List, Optional
 
 from bsparser.labels import is_uchi_label
@@ -18,6 +18,7 @@ class Check:
     items: int  # contributors that carry a rounded number
     status: str  # pass | failed | skipped
     reason: str = ""
+    row_ids: List[str] = field(default_factory=list)  # the printed total first, then every row it adds up
 
 
 def allowed_bound(items: int) -> int:
@@ -46,10 +47,21 @@ def _skip_all(page: Page, row, reason: str) -> List[Check]:
     return [Check(row.label, row.id, period, None, None, None, 0, 0, "skipped", reason) for period in page.periods]
 
 
+def _tag(checks: List[Check], rows) -> List[Check]:
+    ids = [r.id for r in rows]
+    for c in checks:
+        c.row_ids = list(ids)
+    return checks
+
+
 def _net_checks(page: Page, row, by_id, rounding: str) -> List[Check]:
-    checks: List[Check] = []
     contra = [r for r in page.rows if r.role == "contra" and r.parent == row.parent]
     gross = by_id[row.parent]
+    return _tag(_net_checks_untagged(page, row, gross, contra, rounding), [row, gross] + contra)
+
+
+def _net_checks_untagged(page: Page, row, gross, contra, rounding: str) -> List[Check]:
+    checks: List[Check] = []
     reason = _wrong_width([gross, row] + contra, page)
     if reason:
         return _skip_all(page, row, reason)
@@ -96,6 +108,10 @@ def _contributors(page: Page, row):
 
 def _sum_of_totals(page: Page, row, parts, rounding: str) -> List[Check]:
     """A total that is the sum of other printed totals (total liabilities and net assets = liabilities + net assets)."""
+    return _tag(_sum_of_totals_untagged(page, row, parts, rounding), [row] + parts)
+
+
+def _sum_of_totals_untagged(page: Page, row, parts, rounding: str) -> List[Check]:
     checks: List[Check] = []
     reason = _wrong_width(parts + [row], page)
     if reason:
@@ -120,15 +136,20 @@ def _la_na_checks(page: Page, row, rounding: str) -> List[Check]:
     pieces = {kind: [r for r in page.rows if r.values and kind_of_total(r.label) == kind] for kind in ("liabilities", "net_assets")}
     missing = [name for name, kind in (("liabilities", "liabilities"), ("net assets", "net_assets")) if not pieces[kind]]
     if missing:
-        return _skip_all(page, row, "total " + " and total ".join(missing) + " not on this page")
+        present = [pieces[kind][0] for kind in ("liabilities", "net_assets") if pieces[kind]]
+        return _tag(_skip_all(page, row, "total " + " and total ".join(missing) + " not on this page"), [row] + present)
     return _sum_of_totals(page, row, [pieces["liabilities"][0], pieces["net_assets"][0]], rounding)
 
 
 def _total_checks(page: Page, row, rounding: str) -> List[Check]:
     if kind_of_total(row.label) == "liabilities_net_assets":
         return _la_na_checks(page, row, rounding)
-    checks: List[Check] = []
     contributors = _contributors(page, row)
+    return _tag(_total_checks_untagged(page, row, contributors, rounding), [row] + contributors)
+
+
+def _total_checks_untagged(page: Page, row, contributors, rounding: str) -> List[Check]:
+    checks: List[Check] = []
     if not contributors:
         return _skip_all(page, row, "no components on this page")  # never a failure for lack of components
     reason = _wrong_width(contributors + [row], page)
@@ -159,6 +180,10 @@ def _group_checks(page: Page, row, rounding: str) -> List[Check]:
     children = [r for r in page.rows if r.role == "item" and r.values and r.path == row.path + [row.label]]
     if not children or any(is_uchi_label(c.label) for c in children):
         return []  # nothing to add up, or the detail is a partial breakdown (うち / of which)
+    return _tag(_group_checks_untagged(page, row, children, rounding), [row] + children)
+
+
+def _group_checks_untagged(page: Page, row, children, rounding: str) -> List[Check]:
     reason = _wrong_width(children + [row], page)
     if reason:
         return _skip_all(page, row, reason)
@@ -186,7 +211,7 @@ def _guarded(page: Page, row, make) -> List[Check]:
     try:
         return make()
     except Exception as exc:  # noqa: BLE001 - the point is to never crash
-        return _skip_all(page, row, f"check could not run: {type(exc).__name__}: {exc}")
+        return _tag(_skip_all(page, row, f"check could not run: {type(exc).__name__}: {exc}"), [row])
 
 
 def run_checks(page: Page, rounding: str = "unstated") -> List[Check]:
