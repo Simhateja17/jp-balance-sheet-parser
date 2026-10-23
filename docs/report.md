@@ -29,6 +29,10 @@ Parser silent errors: 0 of 74. Flagged errors: 0 of 74. The gold values themselv
 
 Other checks (no gold, structure only): the English fixture and the real Japanese page produce the same row count, roles, depth, parent links and values (parity test, D5). A messy English variant (shifted columns, x jitter, one wrapped label) parses like the clean one with one `wrapped_label_merged` issue. The English fixture's "gold" is its own source data, so it only shows nothing broke. It is not an accuracy measure.
 
+### Final cell-by-cell review of the output
+
+A separate reviewer session (Claude, not a human) compared all 74 output records against the page image, reading the image and the output CSV only, not the parser code or tests (`docs/final-review.md`). Result: every value, sign, nil, label and section path matches. Its one reported disagreement (role of 貸倒引当金, `item` in the output versus `contra`) is not a real one: the current gold template and decision D12 both say `item`, so the reviewer was most likely reading a copy older than D12. Its file is left unchanged. This review is another model reading the same image, so it adds a check on typing and transcription, not independence from model error.
+
 ## Why the baseline loses on repeated labels
 
 The baseline is deliberately naive: take the first line whose label matches, ignore the section, take the number in the column. It is exact on every unique label. All 14 of its errors are repeated labels after the first: その他 appears under current assets, tangible assets, intangible assets and investments; リース資産 under tangible and intangible; 減価償却累計額 under three gross items. First-match returns the first occurrence's number for every later one. The parser keeps the section path (from indentation levels clustered per page) and links each contra and net row to its gross row, so the same label in a different place is a different cell.

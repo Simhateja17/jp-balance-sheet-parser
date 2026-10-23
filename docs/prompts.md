@@ -223,3 +223,33 @@ Keep every line in page order, including section headers with no numbers and tot
 Do not add, fix or compute any value, and do not skip a line you cannot read: copy what you see.
 ```
 
+## 2026-10-23 14:33
+
+```
+Before anything new, send the reviewer session its Job 2: compare
+outputs for the real page against the page image cell by cell and save
+docs/final-review.md. Show me what it finds.
+```
+
+## 2026-10-23 14:34
+
+```
+- ur-ai-parser-setup-37, this is the one
+```
+
+## 2026-10-23 14:34
+
+```
+<cross-session-message from="uds:/tmp/cc-socks/25521.sock" from-name="ur-ai-parser-setup-e2" from-mode="prompting">
+Job 2: compare the outputs for the real page against the page image cell by cell. Outputs: /Users/teja/Desktop/ur-ai-parser-setup/outputs/balance_sheet_after_correction.json (records) and balance_sheet_after_correction.records.csv in the same folder. Page image (PDF, 1 page): /Users/teja/Desktop/ur-ai-parser-setup/data/balance_sheet_after_correction.pdf. Save to docs/final-review.md.
+</cross-session-message>
+```
+
+## 2026-10-23 14:35
+
+```
+<cross-session-message from="uds:/tmp/cc-socks/23965.sock" from-name="ur-ai-parser-setup-37" from-mode="prompting">
+Final review is done, saved to docs/final-review.md. I checked all 74 records against the page image: every value, sign, nil, label and section path matches. One difference: r12 貸倒引当金 has role "item", but the gold template says "contra". It is printed with △ in both years.
+</cross-session-message>
+```
+
