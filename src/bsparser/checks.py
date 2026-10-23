@@ -27,6 +27,17 @@ def _status(difference: int, bound: int) -> str:
     return "failed" if abs(difference) > bound else "pass"
 
 
+def _wrong_width(rows, page: Page) -> str:
+    """A reason when any of these rows has a different number of values than the page has period columns."""
+    odd = [r for r in rows if len(r.values) != len(page.periods)]
+    return "; ".join(f"row {r.id} has {len(r.values)} value{'s' if len(r.values) != 1 else ''} "
+                     f"but {len(page.periods)} period columns" for r in odd)
+
+
+def _skip_all(page: Page, row, reason: str) -> List[Check]:
+    return [Check(row.label, row.id, period, None, None, None, 0, 0, "skipped", reason) for period in page.periods]
+
+
 def run_checks(page: Page) -> List[Check]:
     by_id = {r.id: r for r in page.rows}
     checks = []
@@ -35,6 +46,10 @@ def run_checks(page: Page) -> List[Check]:
             continue
         contra = [r for r in page.rows if r.role == "contra" and r.parent == row.parent]
         gross = by_id[row.parent]
+        reason = _wrong_width([gross, row] + contra, page)
+        if reason:
+            checks.extend(_skip_all(page, row, reason))
+            continue
         for p, period in enumerate(page.periods):
             unreadable = [r for r in [gross, row] + contra if r.values[p].kind == "unreadable"]
             if unreadable:
@@ -58,6 +73,10 @@ def run_checks(page: Page) -> List[Check]:
             elif (r.role == "subtotal" and len(r.path) == len(row.path) + 1
                   and r.path[:len(row.path)] == row.path):
                 contributors.append(r)  # a sub-section total feeds the total above it
+        reason = _wrong_width(contributors + [row], page)
+        if reason:
+            checks.extend(_skip_all(page, row, reason))
+            continue
         for p, period in enumerate(page.periods):
             unreadable = [r for r in contributors + [row] if r.values[p].kind == "unreadable"]
             if unreadable:

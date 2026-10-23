@@ -134,3 +134,25 @@ def test_a_printed_total_that_is_nil_is_skipped_with_a_reason_and_never_crashes(
     assert nil_total.status == "skipped" and "printed total is nil" in nil_total.reason
     assert (nil_total.expected, nil_total.printed, nil_total.difference) == (None, None, None)
     assert check_for(checks, "Total current assets", "2026-03-31").status == "pass"
+
+
+def test_rows_with_fewer_values_than_periods_skip_the_checks_they_touch_instead_of_crashing():
+    from bsparser.page import parse_lines
+    from bsparser.pdf_lines import Line
+
+    def page_with(notes, total):
+        return parse_lines([
+            Line("(in thousands of yen)", 400.0, 70.0),
+            Line("(Mar. 31, 2025) (Mar. 31, 2026)", 300.0, 94.0),
+            Line("Assets", 60.0, 120.0),
+            Line("Current assets", 72.0, 134.0),
+            Line("Cash", 84.0, 148.0, ["100", "100"]),
+            Line("Notes receivable", 84.0, 162.0, notes),
+            Line("Total current assets", 84.0, 176.0, total),
+        ])
+
+    short_item = run_checks(page_with(["200"], ["300", "300"]))  # one value for two periods
+    assert [(c.period, c.status) for c in short_item] == [("2025-03-31", "skipped"), ("2026-03-31", "skipped")]
+    assert all("1 value" in c.reason and "2 period" in c.reason for c in short_item)
+    short_total = run_checks(page_with(["200", "200"], ["300"]))
+    assert [c.status for c in short_total] == ["skipped", "skipped"]
