@@ -22,6 +22,7 @@ class Row:
     path: List[str]
     parent: Optional[str] = None
     values: List[Amount] = field(default_factory=list)
+    notes: List[str] = field(default_factory=list)  # information, not issues (D19)
 
 
 @dataclass
@@ -40,6 +41,7 @@ class Page:
     unit_raw: str = ""
 
 
+NET_ONLY_NOTE = "printed as net, no gross shown"
 NET_SUFFIXES = ("\uff08\u7d14\u984d\uff09", ", net")  # （純額）, ", net"
 
 
@@ -95,7 +97,10 @@ def build_page(lines: List[Line]) -> Page:
         role = classify_role(line.label, has_values=bool(line.amounts), level=level)
         row = Row(id=f"r{n}", label=line.label, level=level, role=role, path=[r.label for r in stack],
                   values=[parse_amount(a) for a in line.amounts])
-        if role in ("contra", "net") and stack:
+        if role == "net" and (not stack or stack[-1].role != "item"):
+            row.role = "item"  # D19: nothing gross above it, so it is the only number printed for that asset
+            row.notes.append(NET_ONLY_NOTE)
+        elif role in ("contra", "net") and stack:
             gross = stack[-1]
             if role == "net" and not _is_gross_plus_net(gross.label, row.label):
                 issues.append(Issue("net_label_mismatch", row.id,
