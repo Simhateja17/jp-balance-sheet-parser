@@ -52,4 +52,16 @@ def cross_checks(pages: List[Dict], rounding: str = "unstated") -> List[Dict]:
             checks.append({"label": f"{assets['label']} = {lna['label']}", "period": period, "expected": assets["value"],
                            "printed": lna["value"], "difference": diff, "bound": 0, "items": 1,
                            "status": "pass" if diff == 0 else "failed", "reason": ""})
+        liabilities, net_assets = _find(pages, "liabilities", period), _find(pages, "net_assets", period)
+        reasons = [r for r in (_usable(lna, "total liabilities and net assets"), _usable(liabilities, "total liabilities"),
+                               _usable(net_assets, "total net assets")) if r]
+        if reasons:
+            checks.append(_skipped(B_LABEL, period, "; ".join(reasons)))
+        else:
+            expected = liabilities["value"] + net_assets["value"]
+            diff = lna["value"] - expected
+            bound = bound_for(2, rounding)
+            checks.append({"label": f"{lna['label']} = {liabilities['label']} + {net_assets['label']}", "period": period,
+                           "expected": expected, "printed": lna["value"], "difference": diff, "bound": bound, "items": 2,
+                           "status": "failed" if abs(diff) > bound else "pass", "reason": ""})
     return checks
