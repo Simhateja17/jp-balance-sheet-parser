@@ -41,3 +41,24 @@ def test_reply_text_with_code_fences_or_chatter_still_yields_the_json_and_garbag
         extract_reply("I could not read the page.")
     with pytest.raises(ValueError):
         extract_reply('{"header": ["h"]}')  # rows missing: wrong shape is never guessed
+
+
+def test_runner_renders_the_page_to_png_and_asks_headless_claude_to_read_only_the_image():
+    from bsparser.vision import run_vision
+
+    calls = []
+
+    def fake_runner(cmd):
+        png = [part for part in cmd if part.endswith(".png")] or [p for p in cmd[-1].split() if p.endswith(".png")]
+        calls.append((cmd, Path(png[0]).exists()))
+        return json.dumps(canned_reply(), ensure_ascii=False)
+
+    reply = run_vision(FIXTURES / "english_balance_sheet.pdf", runner=fake_runner)
+    (cmd, png_existed), = calls
+    assert png_existed  # the image was rendered before the model was called
+    assert cmd[0] == "claude" and "-p" in cmd
+    assert cmd[cmd.index("--allowedTools") + 1] == "Read"  # nothing else: no shell, no edits
+    prompt = cmd[-1]
+    assert ".png" in prompt and "english_balance_sheet" not in prompt  # image path only, not the PDF or its text
+    assert "exactly as printed" in prompt and "do not add, fix or compute" in prompt.lower()
+    assert reply["rows"][0]["label"] == "Assets"
