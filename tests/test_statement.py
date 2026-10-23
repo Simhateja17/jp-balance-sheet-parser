@@ -96,3 +96,16 @@ def test_all_four_held_out_statements_hold_together_across_pages(name, first_pag
     assert len(out["cross_checks"]) == 4 and {s for s, _ in statuses.values()} == {"pass"}, statuses
     assert [p["status"] for p in out["pages"]] == ["ok"] * len(pages)
     assert out["status"] == "ok"
+
+
+def test_cross_page_checks_name_the_page_and_row_of_every_total_they_used():
+    def rec(label, period, value, row):
+        return {"id": f"{row}|{period}", "label": label, "period": period, "value": value, "kind": "value", "raw": f"{value:,}"}
+
+    p5 = {"page": 5, "periods": ["2025-03-31"], "records": [rec("資産の部合計", "2025-03-31", 100, "r23"), rec("負債の部合計", "2025-03-31", 90, "r42")]}
+    p6 = {"page": 6, "periods": ["2025-03-31"], "records": [rec("純資産の部合計", "2025-03-31", 10, "r9"), rec("負債及び純資産の部合計", "2025-03-31", 100, "r10")]}
+    a, b = cross_checks([p5, p6], rounding="cut")
+    assert a["rows"] == [{"page": 5, "row_id": "r23"}, {"page": 6, "row_id": "r10"}]
+    assert b["rows"] == [{"page": 6, "row_id": "r10"}, {"page": 5, "row_id": "r42"}, {"page": 6, "row_id": "r9"}]
+    missing = cross_checks([p5], rounding="cut")
+    assert missing[0]["status"] == "skipped" and missing[0]["rows"] == [{"page": 5, "row_id": "r23"}]
