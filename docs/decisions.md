@@ -8,6 +8,13 @@
 - `label_en` is a translation for the human reader only. It is marked as a translation and is never used in any check or matching.
 - `parent` links a contra (accumulated depreciation) or net line to its item. Exact semantics: see D2.
 
+## D16. Vision prototype (agreed, built after the text parser; details decided while building)
+- Headless Claude Code, Read tool only, prompt on stdin (the variadic `--add-dir` option swallows a positional prompt). The prompt carries the PNG path only, never the PDF or its text. Production would use an API or a fine-tuned model.
+- The reply is JSON `{header, rows: [{label, depth, amounts}]}`. It is turned into the same lines as the text parser, so roles, checks, status and warnings are shared. Header lines are joined into one line so period dates on separate lines still split header from rows.
+- Routing (`pipeline.parse_with_fallback`): a clean text page (records present, status ok) never calls the model. No records, or any status other than ok, goes to vision. Arbitration is D7: fewer failed checks wins, text wins ties, both failed returns text as failed with vision attached, no text returns vision. Disagreeing cells are flagged on the chosen records and listed in `disagreements`.
+- Every nil mark (hyphen, em dash U+2014, full-width dash U+FF0D) is the same printed nil in all comparisons (gold, baseline, disagreement). Other marks stay distinct (`△0` is not `(0)`, nil is never 0).
+- Results: three real runs on the real page, all 20 checks pass, 74 of 74 gold exact, 0 cells differ from the text layer. Limits in docs/report.md.
+
 ## D15. How gold is compared (implemented, built before any gold values exist)
 - Gold is the filled cells of `data/gold/balance_sheet_after_correction.template.md`. The values are read from the image and typed as printed (raw text), by a separate Claude session (see D4). Key: (path, label, period). Never the row number.
 - Layer 1 (value): the printed text must match. Typing noise is ignored (full-width versus ASCII digits, spaces, a plain `-` for `－`). Marks are not noise: `△0` is not `(0)`.
@@ -84,7 +91,7 @@ Deadline Sun 25 Oct 2026, 11:59 pm IST. One vertical slice at a time (one failin
 
 ## D6. Failures, warnings and status (agreed)
 - The parser always returns every row exactly as read. It never adjusts a number to make a sum work, never drops a row, never guesses.
-- Each record has a value kind: `value`, `nil` (printed －/-/—, value None) or `unreadable` (could not parse, value None, raw text kept in `raw`, warning attached). A printed nil is never confused with an unreadable value.
+- Each record has a value kind: `value`, `nil` (printed full-width dash, hyphen or em dash, value None) or `unreadable` (could not parse, value None, raw text kept in `raw`, warning attached). A printed nil is never confused with an unreadable value.
 - The page reports a LIST of issues, not a single flag. Each issue names the rows involved.
 - Page status is the worst issue: unreadable over failed over ok.
 - An identity check that involves an unreadable value is marked `skipped`, not `failed`, with the reason stated (which row, why).

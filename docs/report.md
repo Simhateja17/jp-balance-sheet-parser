@@ -54,4 +54,23 @@ This PDF has a text layer, so no OCR or vision model is used on it. For pages th
 4. **Arbitration when both run.** Fewer failed checks wins, any `unreadable` counts against, a tie goes to text, no cell-by-cell merging. Both outputs are kept. Every cell where the two disagree is flagged, even when both pass, because two swapped rows in a section keep every sum intact, so agreement between extractors is extra evidence. If both fail, the text output is returned as `failed` with the vision output attached.
 5. **Prototype status and production.** The prototype uses Claude Code in headless mode because no API key was available. Production would use an API model or a fine-tuned model, with the identity checks as the filter and gold-based evaluation as the measure. Passing identities is a signal, not proof: a model can produce numbers that sum correctly and are still wrong, so gold stays the real measure.
 
-(Prototype results are added below once it is built.)
+### Vision prototype results
+
+Built as a small prototype (`src/bsparser/vision.py`, `arbitrate.py`, `pipeline.py`). The page is rendered to a 150 dpi PNG and headless Claude Code (Read tool only, prompt on stdin, image path only, never the PDF text) transcribes it into the same JSON schema. The same page rules, identity checks and gold judge the result. Three real runs on the real Japanese page, all forced through vision (normally a clean text page never calls the model):
+
+| run | status | checks passed | gold exact | cells differing from the text layer |
+|---|---|---|---|---|
+| run 1 | ok | 20 of 20 | 74 of 74 (100%) | 0 |
+| run 2 | ok | 20 of 20 | 74 of 74 (100%) | 0 |
+| run 3 | ok | 20 of 20 | 74 of 74 (100%) | 0 |
+
+Reproduce: `python -m bsparser.vision_eval <pdf> <gold> outputs/vision_reply_japanese_run1.json ...` (saved raw replies are in `outputs/`). Every label the model returned matched the printed text exactly. The only variation across runs was the nil glyph: run 1 wrote an em dash (U+2014) for the two printed full-width dashes (U+FF0D), runs 2 and 3 kept the full-width dash. All nil marks mean the same nil (hyphen, em dash, full-width dash), so comparison treats them as equal, but the model does not guarantee glyph fidelity.
+
+How to read this, honestly:
+- **The strong signal is the 0 differing cells against the text layer.** Two pipelines with different inputs (text layer versus pixels) agree on all 74 cells, and the 20 identity checks pass on the vision output too.
+- **Agreement with gold is weak evidence on its own.** The gold was read from the same image by a Claude chat, so a vision model and the gold reader are correlated.
+- **Clean page only.** This PDF is a crisp digital rendering. A real scan (skew, noise, low resolution) is untested. The scan routing is tested only with a synthetic image-only PDF and a canned reply, offline.
+- **Three runs, one page.** Model output varies between runs (the dash glyph did). No claim beyond this page.
+- **Cost and speed.** About 27 seconds per page through the CLI, and it needs a logged-in Claude Code. That is prototype-grade. Production would use an API or a fine-tuned model.
+- **Bugs the real run found that offline tests could not:** the prompt was swallowed by the variadic `--add-dir` option (fixed: prompt on stdin, failures now raise with stderr), and period dates on separate lines broke the header split (fixed: header lines are joined). The nil-glyph difference also exposed that my gold comparison was stricter than the domain rule (fixed: every nil mark equals any other).
+- **Identity checks cannot see swapped rows.** That is why every cell where the two extractors differ is flagged even when both pass.

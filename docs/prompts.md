@@ -193,3 +193,33 @@ Keep every line in page order, including section headers with no numbers and tot
 Do not add, fix or compute any value, and do not skip a line you cannot read: copy what you see.
 ```
 
+## 2026-10-23 14:23
+
+```
+Read the image file /var/folders/xx/1h44tn6n6rb489pnw27xlzgm0000gn/T/tmpx8_yzbx2/page.png (one page of a financial statement) and transcribe its table.
+Return ONLY one JSON object, no other text:
+{"header": [<each text line above the table: unit line, period column headings>],
+  "rows": [{"label": <label exactly as printed>, "depth": <indent level, 0 for the leftmost labels>,
+            "amounts": [<one string per period column exactly as printed, [] when the line has no numbers>]}]}
+Rules: copy every number exactly as printed, including marks such as a triangle, brackets, minus signs and dashes.
+A dash alone is a printed nil: keep it as the dash. Keep full-width characters as they are.
+A label wrapped over two lines is one row (join the two lines; the numbers belong to it).
+Keep every line in page order, including section headers with no numbers and totals.
+Do not add, fix or compute any value, and do not skip a line you cannot read: copy what you see.
+```
+
+## 2026-10-23 14:23
+
+```
+Read the image file /var/folders/xx/1h44tn6n6rb489pnw27xlzgm0000gn/T/tmps7nwigdg/page.png (one page of a financial statement) and transcribe its table.
+Return ONLY one JSON object, no other text:
+{"header": [<each text line above the table: unit line, period column headings>],
+  "rows": [{"label": <label exactly as printed>, "depth": <indent level, 0 for the leftmost labels>,
+            "amounts": [<one string per period column exactly as printed, [] when the line has no numbers>]}]}
+Rules: copy every number exactly as printed, including marks such as a triangle, brackets, minus signs and dashes.
+A dash alone is a printed nil: keep it as the dash. Keep full-width characters as they are.
+A label wrapped over two lines is one row (join the two lines; the numbers belong to it).
+Keep every line in page order, including section headers with no numbers and totals.
+Do not add, fix or compute any value, and do not skip a line you cannot read: copy what you see.
+```
+
