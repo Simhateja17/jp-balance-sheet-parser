@@ -12,10 +12,13 @@ from bsparser.status import page_status
 
 
 def build_output(pdf_path) -> Dict:
-    page = parse_page(pdf_path)
+    return output_from_page(parse_page(pdf_path), str(pdf_path))
+
+
+def output_from_page(page, source: str) -> Dict:
     checks = run_checks(page)
     return {
-        "source": str(pdf_path),
+        "source": source,
         "status": page_status(page, checks),
         "unit": page.unit,
         "unit_raw": page.unit_raw,
