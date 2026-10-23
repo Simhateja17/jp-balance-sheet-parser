@@ -73,3 +73,13 @@ def test_a_failing_claude_call_raises_with_its_stderr_not_a_bare_exit_code():
 
     with pytest.raises(RuntimeError, match="boom-from-stderr"):
         _claude_runner(["sh", "-c", "echo boom-from-stderr >&2; exit 3"], "ignored prompt")
+
+
+def test_header_lines_split_one_date_per_line_are_still_header_not_rows():
+    reply = canned_reply()
+    reply["header"] = ["Consolidated balance sheet", "(in thousands of yen)", "Prior fiscal year",
+                       "(Mar. 31, 2025)", "Current fiscal year", "(Mar. 31, 2026)"]
+    page = parse_lines(lines_from_vision(reply))
+    assert [r.label for r in page.rows][:2] == ["Assets", "Current assets"]
+    assert len(page.rows) == 43
+    assert page.periods == ["2025-03-31", "2026-03-31"] and page.unit == "thousand_yen"
