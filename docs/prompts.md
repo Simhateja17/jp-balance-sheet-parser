@@ -285,3 +285,17 @@ changing any code, run each one as it is and write a "before" table in
 the report: file, page, status, checks passed, and what went wrong.
 ```
 
+## 2026-10-23 15:13
+
+```
+<pasted_content id="0814">
+Yes to all of that. Also, about rounding: I checked the cover pages.
+4098, 4224 and the bank all say amounts below a million yen are cut off,
+not rounded. 2452 says the same, but only for its summary in millions;
+its balance sheet is in thousands, so treat that one as not stated. So
+the 4098 "off by 5" isn't a real error, it's the cut-off. Please also
+commit the four PDFs in data/heldout/ and delete the stray PDF in the
+root.
+</pasted_content id="0814">
+```
+

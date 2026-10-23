@@ -8,6 +8,11 @@
 - `label_en` is a translation for the human reader only. It is marked as a translation and is never used in any check or matching.
 - `parent` links a contra (accumulated depreciation) or net line to its item. Exact semantics: see D2.
 
+## D17. Held-out findings: aggregate contra (agreed) and rounding (facts recorded, rule open)
+- Aggregate contra: when a section prints its gross lines and then ONE 減価償却累計額 line at the same indent (no net line, not nested under a gross row), that line keeps role `contra`, has NO parent (D2: parent is only a single gross link), counts as an ordinary contributor to the section subtotal, raises no issue (it is a normal layout) and gets no gross-plus-contra-equals-net check. Seen in 4224 and 2452.
+- Rounding facts, from the project owner reading the cover pages (not read by Claude): 4098, 4224 and the bank (8544) say amounts below one million yen are cut off, not rounded. 2452 says the same only for its summary in millions; its balance sheet is in thousands, so for that file the rounding is NOT STATED. The 4098 current-assets difference of 5 (bound 4) is therefore the cut-off, not an extraction error.
+- Open: how the identity tolerance learns the rounding mode and what the bound is for a cut-off (D4's strict bound assumes rounding).
+
 ## D16. Vision prototype (agreed, built after the text parser; details decided while building)
 - Headless Claude Code, Read tool only, prompt on stdin (the variadic `--add-dir` option swallows a positional prompt). The prompt carries the PNG path only, never the PDF or its text. Production would use an API or a fine-tuned model.
 - The reply is JSON `{header, rows: [{label, depth, amounts}]}`. It is turned into the same lines as the text parser, so roles, checks, status and warnings are shared. Header lines are joined into one line so period dates on separate lines still split header from rows.
