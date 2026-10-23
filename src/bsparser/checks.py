@@ -38,65 +38,80 @@ def _skip_all(page: Page, row, reason: str) -> List[Check]:
     return [Check(row.label, row.id, period, None, None, None, 0, 0, "skipped", reason) for period in page.periods]
 
 
+def _net_checks(page: Page, row, by_id) -> List[Check]:
+    checks: List[Check] = []
+    contra = [r for r in page.rows if r.role == "contra" and r.parent == row.parent]
+    gross = by_id[row.parent]
+    reason = _wrong_width([gross, row] + contra, page)
+    if reason:
+        return _skip_all(page, row, reason)
+    for p, period in enumerate(page.periods):
+        unreadable = [r for r in [gross, row] + contra if r.values[p].kind == "unreadable"]
+        if unreadable:
+            ids = ", ".join(r.id for r in unreadable)
+            checks.append(Check(row.label, row.id, period, None, None, None, 0, 0, "skipped",
+                                f"unreadable value in {ids}"))
+            continue
+        printed = row.values[p].value
+        if printed is None or gross.values[p].value is None:
+            nil = row if printed is None else gross
+            checks.append(Check(row.label, row.id, period, None, None, None, 0, 0, "skipped",
+                                f"value is nil in {nil.id}"))
+            continue
+        expected = gross.values[p].value + sum(c.values[p].value or 0 for c in contra)
+        checks.append(Check(row.label, row.id, period, expected, printed, printed - expected,
+                            allowed_bound(2), 2, _status(printed - expected, allowed_bound(2))))
+    return checks
+
+
+def _total_checks(page: Page, row) -> List[Check]:
+    checks: List[Check] = []
+    contributors = []
+    for r in page.rows:
+        if r.role == "item" and r.values and r.path == row.path:
+            nets = [n for n in page.rows if n.role == "net" and n.parent == r.id]
+            contributors.append(nets[0] if nets else r)
+        elif (r.role == "subtotal" and len(r.path) == len(row.path) + 1
+              and r.path[:len(row.path)] == row.path):
+            contributors.append(r)  # a sub-section total feeds the total above it
+    reason = _wrong_width(contributors + [row], page)
+    if reason:
+        return _skip_all(page, row, reason)
+    for p, period in enumerate(page.periods):
+        unreadable = [r for r in contributors + [row] if r.values[p].kind == "unreadable"]
+        if unreadable:
+            ids = ", ".join(r.id for r in unreadable)
+            checks.append(Check(row.label, row.id, period, None, None, None, 0, 0, "skipped",
+                                f"unreadable value in {ids}"))
+            continue
+        printed = row.values[p].value
+        if printed is None:
+            checks.append(Check(row.label, row.id, period, None, None, None, 0, 0, "skipped",
+                                f"printed total is nil in {row.id}"))
+            continue
+        amounts = [c.values[p].value for c in contributors if c.values[p].value is not None]
+        expected = sum(amounts)
+        checks.append(Check(row.label, row.id, period, expected, printed, printed - expected,
+                            allowed_bound(len(amounts)), len(amounts),
+                            _status(printed - expected, allowed_bound(len(amounts)))))
+    return checks
+
+
+def _guarded(page: Page, row, make) -> List[Check]:
+    """A check that fails unexpectedly is reported as skipped with the error, so one bad row never costs the page."""
+    try:
+        return make()
+    except Exception as exc:  # noqa: BLE001 - the point is to never crash
+        return _skip_all(page, row, f"check could not run: {type(exc).__name__}: {exc}")
+
+
 def run_checks(page: Page) -> List[Check]:
     by_id = {r.id: r for r in page.rows}
-    checks = []
+    checks: List[Check] = []
     for row in page.rows:
-        if row.role != "net" or row.parent is None:
-            continue
-        contra = [r for r in page.rows if r.role == "contra" and r.parent == row.parent]
-        gross = by_id[row.parent]
-        reason = _wrong_width([gross, row] + contra, page)
-        if reason:
-            checks.extend(_skip_all(page, row, reason))
-            continue
-        for p, period in enumerate(page.periods):
-            unreadable = [r for r in [gross, row] + contra if r.values[p].kind == "unreadable"]
-            if unreadable:
-                ids = ", ".join(r.id for r in unreadable)
-                checks.append(Check(row.label, row.id, period, None, None, None, 0, 0, "skipped",
-                                    f"unreadable value in {ids}"))
-                continue
-            printed = row.values[p].value
-            if printed is None or gross.values[p].value is None:
-                nil = row if printed is None else gross
-                checks.append(Check(row.label, row.id, period, None, None, None, 0, 0, "skipped",
-                                    f"value is nil in {nil.id}"))
-                continue
-            expected = gross.values[p].value + sum(c.values[p].value or 0 for c in contra)
-            checks.append(Check(row.label, row.id, period, expected, printed, printed - expected,
-                                allowed_bound(2), 2,
-                                _status(printed - expected, allowed_bound(2))))
+        if row.role == "net" and row.parent is not None:
+            checks.extend(_guarded(page, row, lambda row=row: _net_checks(page, row, by_id)))
     for row in page.rows:
-        if row.role not in ("subtotal", "total"):
-            continue
-        contributors = []
-        for r in page.rows:
-            if r.role == "item" and r.values and r.path == row.path:
-                nets = [n for n in page.rows if n.role == "net" and n.parent == r.id]
-                contributors.append(nets[0] if nets else r)
-            elif (r.role == "subtotal" and len(r.path) == len(row.path) + 1
-                  and r.path[:len(row.path)] == row.path):
-                contributors.append(r)  # a sub-section total feeds the total above it
-        reason = _wrong_width(contributors + [row], page)
-        if reason:
-            checks.extend(_skip_all(page, row, reason))
-            continue
-        for p, period in enumerate(page.periods):
-            unreadable = [r for r in contributors + [row] if r.values[p].kind == "unreadable"]
-            if unreadable:
-                ids = ", ".join(r.id for r in unreadable)
-                checks.append(Check(row.label, row.id, period, None, None, None, 0, 0, "skipped",
-                                    f"unreadable value in {ids}"))
-                continue
-            printed = row.values[p].value
-            if printed is None:
-                checks.append(Check(row.label, row.id, period, None, None, None, 0, 0, "skipped",
-                                    f"printed total is nil in {row.id}"))
-                continue
-            amounts = [c.values[p].value for c in contributors if c.values[p].value is not None]
-            expected = sum(amounts)
-            checks.append(Check(row.label, row.id, period, expected, printed, printed - expected,
-                                allowed_bound(len(amounts)), len(amounts),
-                                _status(printed - expected, allowed_bound(len(amounts)))))
+        if row.role in ("subtotal", "total"):
+            checks.extend(_guarded(page, row, lambda row=row: _total_checks(page, row)))
     return checks

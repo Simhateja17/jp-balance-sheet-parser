@@ -175,3 +175,16 @@ def test_a_nil_net_line_or_nil_gross_skips_that_period_without_a_crash():
     net_checks = [c for c in checks if c.label == "Buildings, net"]
     assert [(c.period, c.status) for c in net_checks] == [("2025-03-31", "skipped"), ("2026-03-31", "skipped")]
     assert "nil" in net_checks[0].reason
+
+
+def test_an_unexpected_error_inside_one_check_becomes_a_skipped_check_with_the_error_text(monkeypatch):
+    import bsparser.checks as checks_module
+
+    def boom(items):
+        raise RuntimeError("boom")
+
+    monkeypatch.setattr(checks_module, "allowed_bound", boom)
+    checks = run_checks(parse_page(FIXTURE_PDF))  # must not raise
+    assert len(checks) == 20  # every check is still reported
+    assert {c.status for c in checks} == {"skipped"}
+    assert all("RuntimeError: boom" in c.reason for c in checks)
