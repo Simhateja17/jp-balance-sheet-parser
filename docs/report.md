@@ -48,7 +48,7 @@ There is no gold for these files. The table shows page choice, status and identi
 
 ### Other pages of the same filings (liabilities, net assets, equity statement), before any fix
 
-The first table only covered the assets pages. These pages were run as is as well (parser unchanged, a crash caught and shown). Raw results for the pages that did not crash: `outputs/heldout_before/`. Reproduce the page list with `.venv/bin/python scripts/run_pages.py`-style calls (`extract_page` then `build_output`).
+The first table only covered the assets pages. These pages were run as is as well (parser unchanged, a crash caught and shown). Raw results for the pages that did not crash: `outputs/heldout_before/`. Reproduce: `.venv/bin/python scripts/run_pages.py <out_dir> 140120260416505142.pdf:7 140120260416505142.pdf:11 140120260513529466.pdf:8 140120260514535920.pdf:7 140120260514535920.pdf:10 tanshin202603.pdf:6`.
 
 | file | page of | what the page is | status | checks passed | what went wrong |
 |---|---|---|---|---|---|
