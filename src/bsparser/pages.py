@@ -15,7 +15,9 @@ KEYWORDS = [  # (text, lowercase match, score)
 ]
 
 
-TITLE = re.compile(r"貸借対照表|balance sheet|financial position", re.I)
+# A summary section titled just "(2) Consolidated financial position" is not a balance sheet; the statement is titled
+# "Balance Sheet(s)" or "Statement(s) of Financial Position".
+TITLE = re.compile(r"貸借対照表|財政状態計算書|balance sheets?|statements? of financial position", re.I)
 ASSETS_PART = re.compile(r"資産の部|total assets|^\s*assets\s*$", re.I | re.M)
 TOTAL_ASSETS_LINE = re.compile(r"^\s*(?:資産合計|資産の部合計|total assets)", re.I | re.M)
 HEADING_WORDS = re.compile(r"財務諸表|financial statements|貸借対照表|balance sheet|financial position", re.I)

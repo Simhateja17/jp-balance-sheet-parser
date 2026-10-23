@@ -40,3 +40,29 @@ def test_a_page_renders_to_png_bytes_with_a_sensible_size_and_a_bad_page_is_an_e
     assert 300 < width < 600 and 400 < height < 800  # A4 at 60 dpi is about 496 x 702
     with pytest.raises(ValueError):
         render_page_png(HELDOUT / "tanshin202603.pdf", 999)
+
+
+FRESH = ROOT / "data" / "fresh"
+
+
+def test_summary_tables_titled_financial_position_are_not_offered_as_balance_sheets():
+    assert [c.page for c in find_balance_sheet_pages(FRESH / "vg1mvt19a00h4bsv.pdf")] == [15]  # not the summary pages 1 and 3
+    assert [c.page for c in find_balance_sheet_pages(FRESH / "ir_202603tanshin-en.pdf")] == [9]
+    assert [c.page for c in find_balance_sheet_pages(FRESH / "140120260508520388.pdf")] == [8]
+
+
+def test_a_statement_of_financial_position_is_still_a_balance_sheet_but_a_summary_heading_is_not(tmp_path):
+    from reportlab.lib.pagesizes import A4
+    from reportlab.pdfgen import canvas
+
+    path = tmp_path / "ifrs.pdf"
+    c = canvas.Canvas(str(path), pagesize=A4)
+    c.drawString(60, 780, "Consolidated Statements of Financial Position")
+    c.drawString(60, 760, "Assets")
+    c.drawString(60, 740, "Total assets 7,534,110 5,135,249 Cash 2,002,429 608,281")
+    c.showPage()
+    c.drawString(60, 780, "(2) Consolidated financial position")
+    c.drawString(60, 760, "Total assets   Net assets   Equity-to-asset ratio")
+    c.drawString(60, 740, "Total assets 7,534,110 Net assets 2,002,429")
+    c.save()
+    assert [p.page for p in find_balance_sheet_pages(path)] == [1]
