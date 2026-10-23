@@ -124,3 +124,13 @@ def test_wrong_value_on_a_row_that_has_an_issue_is_flagged_not_silent():
     output["issues"] = [{"kind": "ignored_line", "row_id": "", "message": ""}]
     (silent,) = evaluate(output, [gold("現金及び預金", "608,281")])
     assert (silent.status, silent.flagged) == ("wrong_value", False)  # an issue on another row does not flag it
+
+
+def test_an_em_dash_nil_matches_a_gold_nil_typed_as_a_plain_dash_or_the_printed_fullwidth_one():
+    record = {"id": "r26|2025-03-31", "path": ["資産の部", "固定資産", "有形固定資産"], "label": "建設仮勘定",
+              "period": "2025-03-31", "raw": "—", "role": "item", "warnings": []}
+    output = {"status": "ok", "records": [record], "issues": []}
+    nil_path = ("資産の部", "固定資産", "有形固定資産")
+    results = evaluate(output, [gold("建設仮勘定", "-", period="2025-03-31", path=nil_path),
+                                gold("建設仮勘定", "－", period="2025-03-31", path=nil_path)])
+    assert [r.status for r in results] == ["exact", "exact"]
