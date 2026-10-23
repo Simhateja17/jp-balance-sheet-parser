@@ -140,3 +140,19 @@ def test_the_page_shows_the_rounding_hint_and_lets_the_user_override_it_and_reco
     chosen = [m.value for m in at.info if m.value.startswith("Rounding:")][0]
     assert "round" in chosen and "chosen by you" in chosen
     assert at.subheader[0].value == "Status: failed"  # the strict bound fails the cut-off difference of 5
+
+
+def test_statement_mode_shows_every_page_a_cross_page_table_and_the_statement_status():
+    at = _app_for(HELDOUT_4098).run()
+    assert not at.exception
+    assert at.subheader[0].value == "Status: ok"  # the statement status
+    page_headers = [h.value for h in at.markdown if h.value.startswith("### Page ")]
+    assert page_headers == ["### Page 6", "### Page 7"]
+    cross = [s.value for s in at.subheader if s.value.startswith("Cross-page checks")]
+    assert cross == ["Cross-page checks (4)"]
+    assert len(at.get("download_button")) == 2
+    checkbox = at.checkbox[0]
+    assert checkbox.value is True
+    checkbox.uncheck().run()
+    assert [h.value for h in at.markdown if h.value.startswith("### Page ")] == []  # single page: no page headers
+    assert not [s for s in at.subheader if s.value.startswith("Cross-page checks")]

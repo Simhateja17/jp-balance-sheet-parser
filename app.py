@@ -11,8 +11,8 @@ sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 import pdfplumber  # noqa: E402
 
-from bsparser.analyse import analyse  # noqa: E402
-from bsparser.output import write_outputs  # noqa: E402
+from bsparser.analyse import analyse, analyse_statement  # noqa: E402
+from bsparser.output import write_outputs, write_statement_outputs  # noqa: E402
 from bsparser.pages import Candidate, extract_page, find_balance_sheet_pages  # noqa: E402,F401
 
 
@@ -33,6 +33,34 @@ STATUS_TEXT = {
     "failed": "failed: at least one identity check is beyond its bound",
     "unreadable": "unreadable: a value, unit, period or column could not be read; see the issues",
 }
+
+
+def show_page(st, pd, output: dict) -> None:
+    """Unit, periods, table, checks and issues of one parsed page."""
+    left, mid, right = st.columns(3)
+    left.metric("Unit", f"{output['unit'] or 'not found'}", output["unit_raw"] or None)
+    mid.metric("Periods", ", ".join(output["periods"]) or "not found")
+    right.metric("Rows / records", f"{len(output['rows'])} / {len(output['records'])}")
+
+    if not output["rows"]:
+        st.error("No table rows were found on this page. The parser needs a text layer; a scanned page has none.")
+    else:
+        st.subheader("Table")
+        st.dataframe(pd.DataFrame(table_rows(output)), hide_index=True, width="stretch")
+
+    st.subheader(f"Checks ({len(output['checks'])})")
+    if output["checks"]:
+        shown = pd.DataFrame(output["checks"]).drop(columns=["row_id"])
+        shown.insert(0, "result", shown.pop("status").map({"pass": "pass", "failed": "FAILED", "skipped": "skipped"}))
+        st.dataframe(shown, hide_index=True, width="stretch")
+    else:
+        st.info("No identity checks could be run on this page.")
+
+    st.subheader(f"Issues ({len(output['issues'])})")
+    if output["issues"]:
+        st.dataframe(pd.DataFrame(output["issues"]), hide_index=True, width="stretch")
+    else:
+        st.write("None.")
 
 
 def main() -> None:
@@ -64,39 +92,37 @@ def main() -> None:
 
     choice = st.selectbox("Rounding of the printed amounts (sets the tolerance of the checks)",
                           ["auto (from the cover page)", "round", "cut", "unstated"])
-    output = analyse(source, page=page, rounding="auto" if choice.startswith("auto") else choice)
+    rounding = "auto" if choice.startswith("auto") else choice
+    whole = st.checkbox("Also read the following pages of this statement (liabilities, net assets) and check across pages",
+                        value=True)
+    statement = analyse_statement(source, page=page, rounding=rounding) if whole else None
+    pages = statement["pages"] if statement else [analyse(source, page=page, rounding=rounding)]
+    first = pages[0]
     named = work / f"{Path(upload.name).stem}_p{page}.pdf"  # only its name is used, for the downloads
-    json_path, csv_path = write_outputs(named, work / "out", output=output)
-    origin = {"cover_sentence": "from the cover sentence", "user": "chosen by you", "unstated": "not stated"}
-    st.info(f"Rounding: {output['rounding']} ({output['rounding_source']}, {origin[output['rounding_source']]}). "
-            f"{output['rounding_sentence'] or output['rounding_note']}")
-
-    st.subheader(f"Status: {output['status']}")
-    {"ok": st.success, "failed": st.error, "unreadable": st.warning}[output["status"]](STATUS_TEXT[output["status"]])
-    left, mid, right = st.columns(3)
-    left.metric("Unit", f"{output['unit'] or 'not found'}", output["unit_raw"] or None)
-    mid.metric("Periods", ", ".join(output["periods"]) or "not found")
-    right.metric("Rows / records", f"{len(output['rows'])} / {len(output['records'])}")
-
-    if not output["rows"]:
-        st.error("No table rows were found on this page. The parser needs a text layer; a scanned page has none.")
+    if len(pages) > 1:
+        json_path, csv_path = write_statement_outputs({**statement, "source": str(named)}, work / "out")
     else:
-        st.subheader("Table")
-        st.dataframe(pd.DataFrame(table_rows(output)), hide_index=True, width="stretch")
+        json_path, csv_path = write_outputs(named, work / "out", output=first)
 
-    st.subheader(f"Checks ({len(output['checks'])})")
-    if output["checks"]:
-        shown = pd.DataFrame(output["checks"]).drop(columns=["row_id"])
+    origin = {"cover_sentence": "from the cover sentence", "user": "chosen by you", "unstated": "not stated"}
+    st.info(f"Rounding: {first['rounding']} ({first['rounding_source']}, {origin[first['rounding_source']]}). "
+            f"{first['rounding_sentence'] or first['rounding_note']}")
+
+    status = statement["status"] if statement else first["status"]
+    st.subheader(f"Status: {status}")
+    {"ok": st.success, "failed": st.error, "unreadable": st.warning}[status](STATUS_TEXT[status])
+
+    if len(pages) == 1:
+        show_page(st, pd, first)
+    else:
+        for output in pages:
+            st.markdown(f"### Page {output['page']}")
+            st.caption(f"Page status: {output['status']}")
+            show_page(st, pd, output)
+        st.subheader(f"Cross-page checks ({len(statement['cross_checks'])})")
+        shown = pd.DataFrame(statement["cross_checks"])
         shown.insert(0, "result", shown.pop("status").map({"pass": "pass", "failed": "FAILED", "skipped": "skipped"}))
         st.dataframe(shown, hide_index=True, width="stretch")
-    else:
-        st.info("No identity checks could be run on this page.")
-
-    st.subheader(f"Issues ({len(output['issues'])})")
-    if output["issues"]:
-        st.dataframe(pd.DataFrame(output["issues"]), hide_index=True, width="stretch")
-    else:
-        st.write("None.")
 
     down_csv, down_json = st.columns(2)
     down_csv.download_button("Download records CSV", csv_path.read_bytes(), file_name=csv_path.name, mime="text/csv")
