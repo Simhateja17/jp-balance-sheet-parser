@@ -61,3 +61,17 @@ def extract_page(pdf_path, page: int, out_path) -> Path:
     subprocess.run(["pdfseparate", "-f", str(page), "-l", str(page), str(pdf_path), str(out_path)],
                    check=True, capture_output=True)
     return Path(out_path)
+
+
+def render_page_png(pdf_path, page: int, dpi: int = 100) -> bytes:
+    """One page as PNG bytes, to show the page next to the parsed table."""
+    import tempfile
+
+    with tempfile.TemporaryDirectory(prefix="bsparser_img_") as tmp:
+        stem = Path(tmp) / "page"
+        done = subprocess.run(["pdftoppm", "-r", str(dpi), "-f", str(page), "-l", str(page), "-png", "-singlefile",
+                               str(pdf_path), str(stem)], capture_output=True)
+        png = Path(f"{stem}.png")
+        if done.returncode != 0 or not png.exists():
+            raise ValueError(f"page {page} could not be rendered: {done.stderr.decode(errors='replace').strip()[:200]}")
+        return png.read_bytes()
