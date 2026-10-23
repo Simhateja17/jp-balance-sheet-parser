@@ -138,16 +138,64 @@ def parse_page(pdf_path, page: int = 1) -> Page:
     return parse_lines(extract_lines(pdf_path, page))
 
 
+def _looks_like_page_number(amounts: List[str]) -> bool:
+    return bool(PAGE_NUMBER.match(unicodedata.normalize("NFKC", "".join(amounts)).replace(" ", "")))
+
+
+def _attach_orphan_numbers(lines: List[Line]):
+    """A wrapped label can print its numbers on a line of their own, between the two label lines (a label line
+    with no values, a numbers line with no label 6 points below it, the label's continuation 6 points further).
+    Attach the numbers to the label (both halves joined), or to the single label line just above them. Only with
+    tight spacing, and never for something that looks like a page number. Returns (lines, merged labels)."""
+    gaps = sorted(b.top - a.top for a, b in zip(lines, lines[1:]))
+    usual = gaps[len(gaps) // 2] if gaps else 0.0
+
+    def tight(a: Line, b: Line) -> bool:
+        return b.top - a.top < TIGHT_RATIO * usual
+
+    out: List[Line] = []
+    merged: List[str] = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        nxt = lines[i + 1] if i + 1 < len(lines) else None
+        after = lines[i + 2] if i + 2 < len(lines) else None
+        if (line.label and not line.amounts and nxt is not None and not nxt.label and nxt.amounts
+                and not _looks_like_page_number(nxt.amounts) and tight(line, nxt)):
+            if (after is not None and after.label and not after.amounts and tight(nxt, after)
+                    and abs(after.x0 - line.x0) <= LEVEL_TOLERANCE):
+                attached = Line(_join(line.label, after.label), line.x0, line.top, nxt.amounts)
+                i += 3
+            else:
+                attached = Line(line.label, line.x0, line.top, nxt.amounts)
+                i += 2
+            out.append(attached)
+            merged.append(attached.label)
+            continue
+        out.append(line)
+        i += 1
+    return out, merged
+
+
 def parse_lines(lines: List[Line]) -> Page:
     header, table = _split_header(lines)
+    table, attached_labels = _attach_orphan_numbers(table)
     ignored = [line for line in table if not line.label]
     kept = [line for line in table if line.label]
     page_number = None
     if kept and not kept[-1].amounts and PAGE_NUMBER.match(unicodedata.normalize("NFKC", kept[-1].label).replace(" ", "")):
         page_number = kept.pop()  # D20: only the last line, only a pure page-number pattern
     page = build_page(kept)
+    for label in attached_labels:
+        row = next(r for r in page.rows if r.label == label)
+        page.issues.append(Issue("wrapped_label_merged", row.id,
+                                 f"{label!r}: its numbers were printed on a line of their own and were attached to it"))
     for line in ignored:
-        page.issues.append(Issue("ignored_line", "", f"line without a label ignored (page number?): amounts {line.amounts}"))
+        if _looks_like_page_number(line.amounts):
+            message = f"line without a label ignored: amounts {line.amounts} look like a page number"
+        else:
+            message = f"numbers without a label were not attached to any row and are left out of the table: amounts {line.amounts}"
+        page.issues.append(Issue("ignored_line", "", message))
     if page_number is not None:
         page.issues.append(Issue("ignored_line", "", f"{page_number.label!r} looks like a page number and was left out"))
     header_text = " ".join(line.label for line in header)
