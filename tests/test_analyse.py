@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from bsparser.analyse import analyse
+from bsparser.analyse import analyse, analyse_statement
 
 HELDOUT = Path(__file__).parent.parent / "data" / "heldout"
 
@@ -78,3 +78,11 @@ def test_the_equity_statement_pages_that_used_to_crash_now_return_a_result_and_s
     assert out["status"] == "unreadable"
     assert any(i["kind"] == "column_count_mismatch" for i in out["issues"])  # the matrix has more columns than periods
     assert all(c["status"] == "skipped" and c["reason"] for c in out["checks"])  # skipped with a reason, never failed
+
+
+def test_the_encrypted_english_filing_is_read_without_the_page_cutting_step_that_crashed():
+    fresh = Path(__file__).parent.parent / "data" / "fresh" / "vg1mvt19a00h4bsv.pdf"  # Shimadzu, AES-encrypted
+    out = analyse_statement(fresh)  # used to raise PdfminerException: Invalid IV size (2) for CBC
+    assert [p["page"] for p in out["pages"]][0] == 15
+    assert out["pages"][0]["unit"] == "million_yen" and len(out["pages"][0]["records"]) > 20
+    assert out["status"] in ("ok", "failed", "unreadable")  # a result, not a crash

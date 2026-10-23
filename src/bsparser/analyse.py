@@ -17,8 +17,7 @@ ROUNDING_CHOICES = ("auto", "round", "cut", "unstated")
 def _page_output(pdf_path, page: int, pages_total: int, mode: str, source: str, sentence: str, note: str,
                  parsed=None) -> Dict:
     if parsed is None:
-        one_page = extract_page(pdf_path, page, Path(tempfile.mkdtemp(prefix="bsparser_")) / "page.pdf")
-        parsed = parse_page(one_page)
+        parsed = parse_page(pdf_path, page)
     out = output_from_page(parsed, str(pdf_path), rounding=mode, rounding_source=source,
                            rounding_sentence=sentence, rounding_note=note)
     out["page"], out["pages_total"] = page, pages_total
@@ -26,7 +25,7 @@ def _page_output(pdf_path, page: int, pages_total: int, mode: str, source: str, 
 
 
 def _parse(pdf_path, page: int):
-    return parse_page(extract_page(pdf_path, page, Path(tempfile.mkdtemp(prefix="bsparser_")) / "page.pdf"))
+    return parse_page(pdf_path, page)  # straight from the original file, no page cut out (encrypted PDFs)
 
 
 def _resolve_rounding(pdf_path, unit, rounding: str):

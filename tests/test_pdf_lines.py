@@ -60,3 +60,16 @@ def test_a_row_with_a_date_in_its_label_keeps_its_real_amounts():
     (line,) = lines_from_words(words)
     assert line.label == "Balance at March 31, 2025"
     assert line.amounts == ["100", "200"]
+
+
+def test_a_page_can_be_read_straight_from_the_original_file_without_cutting_a_new_pdf():
+    import tempfile
+
+    from bsparser.pages import extract_page
+    from bsparser.pdf_lines import extract_lines
+
+    bank = Path(__file__).parent.parent / "data" / "heldout" / "tanshin202603.pdf"
+    direct = extract_lines(bank, page=5)
+    cut = extract_lines(extract_page(bank, 5, Path(tempfile.mkdtemp()) / "p.pdf"))
+    assert [(l.label, l.amounts) for l in direct] == [(l.label, l.amounts) for l in cut]
+    assert any(l.label == "資産の部合計" for l in direct)

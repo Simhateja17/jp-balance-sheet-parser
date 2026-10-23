@@ -28,9 +28,11 @@ def _is_amount(word: str) -> bool:
     return parse_amount(word).kind in ("value", "nil") or _looks_like_garbled_amount(word)
 
 
-def extract_lines(pdf_path) -> List[Line]:
+def extract_lines(pdf_path, page: int = 1) -> List[Line]:
+    """Lines of one page (1-based), read straight from the file. No one-page copy is cut out first: cutting a page
+    out of an encrypted PDF left a file pdfminer could not read."""
     with pdfplumber.open(pdf_path) as pdf:
-        words = pdf.pages[0].extract_words()
+        words = pdf.pages[page - 1].extract_words()
     return lines_from_words(words)
 
 

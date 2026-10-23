@@ -134,8 +134,8 @@ def build_page(lines: List[Line]) -> Page:
     return Page(rows=rows, issues=issues)
 
 
-def parse_page(pdf_path) -> Page:
-    return parse_lines(extract_lines(pdf_path))
+def parse_page(pdf_path, page: int = 1) -> Page:
+    return parse_lines(extract_lines(pdf_path, page))
 
 
 def parse_lines(lines: List[Line]) -> Page:
