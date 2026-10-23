@@ -38,3 +38,12 @@ def test_the_note_on_stand_alone_net_lines_reaches_rows_and_records_without_beco
     assert [r["notes"] for r in out["records"] if not r["label"].endswith("（純額）")][0] == []
     assert out["issues"] == [i for i in out["issues"] if i["kind"] == "ignored_line"]  # no net_label_mismatch left
     assert (out["status"], sum(c["status"] == "pass" for c in out["checks"]), len(out["checks"])) == ("ok", 10, 10)
+
+
+def test_the_bank_page_goes_from_four_checks_to_eight_with_the_group_checks():
+    out = analyse(HELDOUT / "tanshin202603.pdf")
+    assert (out["page"], out["rounding"], out["rounding_source"]) == (5, "cut", "cover_sentence")
+    labels = [(c["label"], c["period"], c["status"]) for c in out["checks"]]
+    assert len(labels) == 8 and {s for _, _, s in labels} == {"pass"}
+    assert {l for l, _, _ in labels} == {"資産の部合計", "負債の部合計", "有形固定資産", "無形固定資産"}
+    assert out["status"] == "ok"
