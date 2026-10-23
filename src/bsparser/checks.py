@@ -105,6 +105,33 @@ def _total_checks(page: Page, row, rounding: str) -> List[Check]:
     return checks
 
 
+def _group_checks(page: Page, row, rounding: str) -> List[Check]:
+    """Q22: an item that has its own value and indented detail lines directly below it equals the sum of them."""
+    children = [r for r in page.rows if r.role == "item" and r.values and r.path == row.path + [row.label]]
+    if not children:
+        return []
+    reason = _wrong_width(children + [row], page)
+    if reason:
+        return _skip_all(page, row, reason)
+    checks: List[Check] = []
+    for p, period in enumerate(page.periods):
+        unreadable = [r for r in children + [row] if r.values[p].kind == "unreadable"]
+        if unreadable:
+            ids = ", ".join(r.id for r in unreadable)
+            checks.append(Check(row.label, row.id, period, None, None, None, 0, 0, "skipped", f"unreadable value in {ids}"))
+            continue
+        printed = row.values[p].value
+        if printed is None:
+            checks.append(Check(row.label, row.id, period, None, None, None, 0, 0, "skipped", f"printed total is nil in {row.id}"))
+            continue
+        amounts = [c.values[p].value for c in children if c.values[p].value is not None]
+        expected = sum(amounts)
+        checks.append(Check(row.label, row.id, period, expected, printed, printed - expected,
+                            bound_for(len(amounts), rounding), len(amounts),
+                            _status(printed - expected, bound_for(len(amounts), rounding))))
+    return checks
+
+
 def _guarded(page: Page, row, make) -> List[Check]:
     """A check that fails unexpectedly is reported as skipped with the error, so one bad row never costs the page."""
     try:
@@ -122,4 +149,7 @@ def run_checks(page: Page, rounding: str = "unstated") -> List[Check]:
     for row in page.rows:
         if row.role in ("subtotal", "total"):
             checks.extend(_guarded(page, row, lambda row=row: _total_checks(page, row, rounding)))
+    for row in page.rows:
+        if row.role == "item" and row.values:
+            checks.extend(_guarded(page, row, lambda row=row: _group_checks(page, row, rounding)))
     return checks
