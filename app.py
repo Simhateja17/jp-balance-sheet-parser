@@ -11,7 +11,8 @@ sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 import pdfplumber  # noqa: E402
 
-from bsparser.output import build_output, write_outputs  # noqa: E402
+from bsparser.analyse import analyse  # noqa: E402
+from bsparser.output import write_outputs  # noqa: E402
 from bsparser.pages import Candidate, extract_page, find_balance_sheet_pages  # noqa: E402,F401
 
 
@@ -61,9 +62,14 @@ def main() -> None:
         page = st.number_input("Page", min_value=1, max_value=total_pages, value=1, step=1)
     page = int(page)
 
-    one_page = extract_page(source, page, work / f"{Path(upload.name).stem}_p{page}.pdf")
-    output = build_output(one_page)
-    json_path, csv_path = write_outputs(one_page, work / "out")
+    choice = st.selectbox("Rounding of the printed amounts (sets the tolerance of the checks)",
+                          ["auto (from the cover page)", "round", "cut", "unstated"])
+    output = analyse(source, page=page, rounding="auto" if choice.startswith("auto") else choice)
+    named = work / f"{Path(upload.name).stem}_p{page}.pdf"  # only its name is used, for the downloads
+    json_path, csv_path = write_outputs(named, work / "out", output=output)
+    origin = {"cover_sentence": "from the cover sentence", "user": "chosen by you", "unstated": "not stated"}
+    st.info(f"Rounding: {output['rounding']} ({output['rounding_source']}, {origin[output['rounding_source']]}). "
+            f"{output['rounding_sentence'] or output['rounding_note']}")
 
     st.subheader(f"Status: {output['status']}")
     {"ok": st.success, "failed": st.error, "unreadable": st.warning}[output["status"]](STATUS_TEXT[output["status"]])

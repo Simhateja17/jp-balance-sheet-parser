@@ -98,3 +98,44 @@ def test_the_page_renders_status_table_checks_and_downloads_for_an_uploaded_pdf(
     assert at.success[0].value.startswith("ok:")
     assert len(at.dataframe) == 3  # table, checks, and the issues table (the printed page number is one issue)
     assert len(at.get("download_button")) == 2  # records CSV and full JSON
+
+
+HELDOUT_4098 = ROOT / "data" / "heldout" / "140120260416505142.pdf"
+
+
+def _app_for(pdf_path):
+    from streamlit.testing.v1 import AppTest
+
+    def script(pdf_path):
+        import sys
+        from pathlib import Path
+
+        import streamlit as st
+
+        sys.path.insert(0, str(Path(pdf_path).parent.parent.parent))
+        import app
+
+        class Upload:
+            name = Path(pdf_path).name
+
+            def getvalue(self):
+                return Path(pdf_path).read_bytes()
+
+        st.file_uploader = lambda *args, **kwargs: Upload()
+        app.main()
+
+    return AppTest.from_function(script, args=(str(pdf_path),), default_timeout=90)
+
+
+def test_the_page_shows_the_rounding_hint_and_lets_the_user_override_it_and_records_that():
+    at = _app_for(HELDOUT_4098).run()
+    assert not at.exception
+    rounding = [m.value for m in at.info if m.value.startswith("Rounding:")]
+    assert len(rounding) == 1 and "cut" in rounding[0] and "cover_sentence" in rounding[0]
+    assert "百万円未満切捨て" in rounding[0]
+    options = at.selectbox[1].options
+    assert options[0].startswith("auto") and set(options[1:]) == {"round", "cut", "unstated"}
+    at.selectbox[1].select("round").run()
+    chosen = [m.value for m in at.info if m.value.startswith("Rounding:")][0]
+    assert "round" in chosen and "chosen by you" in chosen
+    # status under cut versus round for 4098 is asserted after D19 (the net lines), when the page can be ok
