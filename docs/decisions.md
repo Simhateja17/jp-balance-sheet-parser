@@ -8,6 +8,13 @@
 - `label_en` is a translation for the human reader only. It is marked as a translation and is never used in any check or matching.
 - `parent` links a contra (accumulated depreciation) or net line to its item. Exact semantics: see D2.
 
+## D23. Fixes after the fresh filings (agreed by the owner: date line and unit wording, encrypted file, finder; built test first)
+- English dates: the day and year that complete a date stay in the label, not amounts (only when they add a date; a row such as "Balance at March 31, 2025  100  200" keeps its amounts).
+- English units: the leading "in" is optional, singular or plural: `Millions of yen`, `Thousands of yen`, `Unit: millions of yen`, `Million yen`. Kept as printed in `unit_raw`.
+- Encrypted PDFs: pages are read straight from the original file. `extract_lines` and `parse_page` take a page number, and `analyse` no longer cuts a one-page copy first (that copy stayed encrypted and pdfminer could not read it).
+- Finder: the title must be balance sheet(s), statement(s) of financial position, 貸借対照表 or 財政状態計算書. A summary section titled just "financial position" is not offered.
+- Found while verifying, NOT decided or built: the cover hint does not read English cut-off sentences; a wrapped label whose numbers sit on their own line loses its values to an "ignored line" issue.
+
 ## D22. App polish (agreed, built, tested)
 - Pages offered: only pages with a balance-sheet title (貸借対照表, balance sheet, financial position), an assets part (資産の部, Total assets, or an Assets heading) and a total-assets line (資産合計, 資産の部合計, Total assets). Each shows a heading so consolidated and parent-only statements read apart. Seen on the held-out files: 4098 page 6, 4224 page 7, 2452 page 6, the bank pages 5 (連結) and 14 (個別). Liabilities pages are not offered, they are read with their assets page.
 - Escape: an expander "My page isn't listed" takes any page number (0 = the one chosen above), so a false negative never blocks. `analyse` and `analyse_statement` fall back to the loose keyword list when the strict one finds nothing.

@@ -428,3 +428,21 @@ if anything, to fix.
 </pasted_content id="0814">
 ```
 
+## 2026-10-23 16:11
+
+```
+<pasted_content id="0814">
+Great, this is exactly the kind of honest result I wanted. Keep it in
+the report just like this, and go ahead and commit the three files.
+
+Now let's fix them one by one, with a failing test first each time.
+Start with the English date line and the "Millions of yen" wording.
+Then the encrypted-file crash; maybe reading the page straight from the
+original file avoids it. Last, stop the finder from offering those
+summary pages.
+
+When you're done, rerun the three files and add an "after fix" column,
+with a note that they aren't unseen anymore.
+</pasted_content id="0814">
+```
+
