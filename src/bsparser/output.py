@@ -11,15 +11,22 @@ from bsparser.records import make_records
 from bsparser.status import page_status
 
 
-def build_output(pdf_path) -> Dict:
-    return output_from_page(parse_page(pdf_path), str(pdf_path))
+def build_output(pdf_path, **rounding) -> Dict:
+    return output_from_page(parse_page(pdf_path), str(pdf_path), **rounding)
 
 
-def output_from_page(page, source: str) -> Dict:
-    checks = run_checks(page)
+def output_from_page(page, source: str, rounding: str = "unstated", rounding_source: str = "unstated",
+                     rounding_sentence: str = "", rounding_note: str = "") -> Dict:
+    checks = run_checks(page, rounding)
+    if rounding == "unstated" and not rounding_note:
+        rounding_note = "rounding: unstated, strict bound used"
     return {
         "source": source,
         "status": page_status(page, checks),
+        "rounding": rounding,
+        "rounding_source": rounding_source,
+        "rounding_sentence": rounding_sentence,
+        "rounding_note": rounding_note,
         "unit": page.unit,
         "unit_raw": page.unit_raw,
         "periods": page.periods,

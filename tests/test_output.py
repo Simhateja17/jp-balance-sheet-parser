@@ -63,3 +63,15 @@ def test_japanese_rows_and_records_carry_the_reviewed_translation_marked_as_such
     assert all(r["label_en"] for r in out["records"])  # every label on this page is in the dictionary
     english = build_output(FIXTURE_PDF)
     assert {r["label_en_source"] for r in english["records"]} == {"original"}
+
+
+def test_output_records_the_rounding_mode_and_where_it_came_from():
+    default = build_output(FIXTURE_PDF)
+    assert (default["rounding"], default["rounding_source"]) == ("unstated", "unstated")
+    assert "strict bound" in default["rounding_note"]
+    chosen = build_output(FIXTURE_PDF, rounding="cut", rounding_source="user")
+    assert (chosen["rounding"], chosen["rounding_source"]) == ("cut", "user")
+    assert chosen["checks"][0]["bound"] == 2  # the net check: 2 items under cut (1 under round)
+    hinted = build_output(FIXTURE_PDF, rounding="cut", rounding_source="cover_sentence",
+                          rounding_sentence="（百万円未満切捨て）")
+    assert hinted["rounding_sentence"] == "（百万円未満切捨て）"
