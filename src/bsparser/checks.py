@@ -57,8 +57,13 @@ def run_checks(page: Page) -> List[Check]:
                 checks.append(Check(row.label, row.id, period, None, None, None, 0, 0, "skipped",
                                     f"unreadable value in {ids}"))
                 continue
-            expected = gross.values[p].value + sum(c.values[p].value or 0 for c in contra)
             printed = row.values[p].value
+            if printed is None or gross.values[p].value is None:
+                nil = row if printed is None else gross
+                checks.append(Check(row.label, row.id, period, None, None, None, 0, 0, "skipped",
+                                    f"value is nil in {nil.id}"))
+                continue
+            expected = gross.values[p].value + sum(c.values[p].value or 0 for c in contra)
             checks.append(Check(row.label, row.id, period, expected, printed, printed - expected,
                                 allowed_bound(2), 2,
                                 _status(printed - expected, allowed_bound(2))))

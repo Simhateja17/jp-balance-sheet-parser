@@ -156,3 +156,22 @@ def test_rows_with_fewer_values_than_periods_skip_the_checks_they_touch_instead_
     assert all("1 value" in c.reason and "2 period" in c.reason for c in short_item)
     short_total = run_checks(page_with(["200", "200"], ["300"]))
     assert [c.status for c in short_total] == ["skipped", "skipped"]
+
+
+def test_a_nil_net_line_or_nil_gross_skips_that_period_without_a_crash():
+    from bsparser.page import parse_lines
+    from bsparser.pdf_lines import Line
+
+    page = parse_lines([
+        Line("(in thousands of yen)", 400.0, 70.0),
+        Line("(Mar. 31, 2025) (Mar. 31, 2026)", 300.0, 94.0),
+        Line("Assets", 60.0, 120.0),
+        Line("Fixed assets", 72.0, 134.0),
+        Line("Buildings", 84.0, 148.0, ["1,000", "－"]),
+        Line("Accumulated depreciation", 96.0, 162.0, ["(400)", "－"]),
+        Line("Buildings, net", 96.0, 176.0, ["－", "－"]),
+    ])
+    checks = run_checks(page)
+    net_checks = [c for c in checks if c.label == "Buildings, net"]
+    assert [(c.period, c.status) for c in net_checks] == [("2025-03-31", "skipped"), ("2026-03-31", "skipped")]
+    assert "nil" in net_checks[0].reason
