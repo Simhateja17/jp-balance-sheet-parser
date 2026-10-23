@@ -43,7 +43,7 @@ def analyse(pdf_path, page: Optional[int] = None, rounding: str = "auto") -> Dic
     with pdfplumber.open(pdf_path) as pdf:
         pages_total = len(pdf.pages)
     if page is None:
-        candidates = find_balance_sheet_pages(pdf_path)
+        candidates = find_balance_sheet_pages(pdf_path) or find_balance_sheet_pages(pdf_path, strict=False)
         page = candidates[0].page if candidates else 1
     parsed = _parse(pdf_path, page)
     mode, source, sentence, note = _resolve_rounding(pdf_path, parsed.unit, rounding)
@@ -63,7 +63,7 @@ def analyse_statement(pdf_path, page: Optional[int] = None, rounding: str = "aut
         pages_total = len(pdf.pages)
         texts = {n: pdf.pages[n - 1].extract_text() or "" for n in range(1, pages_total + 1)}
     if page is None:
-        candidates = find_balance_sheet_pages(pdf_path)
+        candidates = find_balance_sheet_pages(pdf_path) or find_balance_sheet_pages(pdf_path, strict=False)
         page = candidates[0].page if candidates else 1
     first = _parse(pdf_path, page)
     mode, source, sentence, note = _resolve_rounding(pdf_path, first.unit, rounding)
