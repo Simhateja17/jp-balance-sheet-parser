@@ -2,7 +2,8 @@ import unicodedata
 from dataclasses import dataclass
 from typing import Optional
 
-NIL_MARKS = {"-", "\u2014", "\uff0d"}
+# hyphen, en dash, em dash, horizontal bar (the long bar), minus sign, full-width hyphen: alone, each is a printed nil
+NIL_MARKS = {"-", "\u2013", "\u2014", "\u2015", "\u2212", "\uff0d"}
 
 
 @dataclass(frozen=True)
@@ -34,5 +35,5 @@ def same_printed_text(printed: str, other: str) -> bool:
     Other marks are not noise: a triangle zero is not (0), and nil is never 0."""
     def norm(text: str) -> str:
         text = unicodedata.normalize("NFKC", text).replace(" ", "")
-        return "-" if text in NIL_MARKS or text in {"\u2014", "-"} else text
+        return "-" if text in NIL_MARKS else text
     return norm(printed) == norm(other)

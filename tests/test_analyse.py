@@ -57,3 +57,13 @@ def test_the_real_bank_equity_page_passes_its_subtotals_and_skips_the_total_whos
     skipped = by[("負債及び純資産の部合計", "2025-03-31")]
     assert skipped["status"] == "skipped" and "total liabilities" in skipped["reason"]
     assert out["status"] == "ok"  # a skipped check because another page holds the piece is not a failure
+
+
+def test_the_long_bar_nil_on_4224s_liabilities_page_reads_as_nil_not_as_label_text():
+    out = analyse(HELDOUT / "140120260513529466.pdf", page=8)
+    rows = {r["label"]: r for r in out["rows"]}
+    assert "資産除去債務" in rows and "完成工事補償引当金" in rows  # the bar is no longer glued to the label
+    records = {(r["label"], r["period"]): r for r in out["records"]}
+    assert (records[("資産除去債務", "2025-03-31")]["kind"], records[("資産除去債務", "2025-03-31")]["value"]) == ("nil", None)
+    assert records[("資産除去債務", "2026-03-31")]["value"] == 44
+    assert [i["kind"] for i in out["issues"] if i["kind"] == "column_count_mismatch"] == []

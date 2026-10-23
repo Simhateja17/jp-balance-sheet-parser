@@ -49,3 +49,14 @@ def test_any_nil_mark_is_the_same_printed_nil_but_other_marks_are_not_interchang
     assert same_printed_text("608, 281", "608,281") and same_printed_text("６０８", "608"[:0] + "６０８")
     assert not same_printed_text("△0", "(0)")  # a zero with a mark is not another notation
     assert not same_printed_text("-", "0")  # nil is never zero
+
+
+def test_the_long_bar_en_dash_and_minus_sign_alone_are_nil_and_keep_their_raw_text():
+    for mark in ("―", "–", "−"):
+        amount = parse_amount(mark)
+        assert (amount.value, amount.kind, amount.raw) == (None, "nil", mark), hex(ord(mark))
+    from bsparser.amounts import same_printed_text
+
+    assert same_printed_text("―", "－") and same_printed_text("–", "-") and same_printed_text("−", "—")
+    assert parse_amount("−").value is None and parse_amount("-1,234").value == -1234  # before digits: unchanged
+    assert parse_amount("−1,234").kind == "unreadable"  # a minus sign before digits is not newly accepted
