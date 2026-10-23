@@ -3,6 +3,7 @@ from typing import List, Optional
 
 from bsparser.labels import is_uchi_label
 from bsparser.page import Page
+from bsparser.totals import kind_of_total
 
 
 @dataclass
@@ -71,7 +72,39 @@ def _net_checks(page: Page, row, by_id, rounding: str) -> List[Check]:
     return checks
 
 
+def _sum_of_totals(page: Page, row, parts, rounding: str) -> List[Check]:
+    """A total that is the sum of other printed totals (total liabilities and net assets = liabilities + net assets)."""
+    checks: List[Check] = []
+    reason = _wrong_width(parts + [row], page)
+    if reason:
+        return _skip_all(page, row, reason)
+    for p, period in enumerate(page.periods):
+        unreadable = [r for r in parts + [row] if r.values[p].kind == "unreadable"]
+        nil = [r for r in parts + [row] if r.values[p].value is None and r.values[p].kind != "unreadable"]
+        if unreadable or nil:
+            ids = ", ".join(r.id for r in (unreadable or nil))
+            checks.append(Check(row.label, row.id, period, None, None, None, 0, 0, "skipped",
+                                f"{'unreadable' if unreadable else 'nil'} value in {ids}"))
+            continue
+        expected = sum(r.values[p].value for r in parts)
+        printed = row.values[p].value
+        checks.append(Check(row.label, row.id, period, expected, printed, printed - expected,
+                            bound_for(len(parts), rounding), len(parts),
+                            _status(printed - expected, bound_for(len(parts), rounding))))
+    return checks
+
+
+def _la_na_checks(page: Page, row, rounding: str) -> List[Check]:
+    pieces = {kind: [r for r in page.rows if r.values and kind_of_total(r.label) == kind] for kind in ("liabilities", "net_assets")}
+    missing = [name for name, kind in (("liabilities", "liabilities"), ("net assets", "net_assets")) if not pieces[kind]]
+    if missing:
+        return _skip_all(page, row, "total " + " and total ".join(missing) + " not on this page")
+    return _sum_of_totals(page, row, [pieces["liabilities"][0], pieces["net_assets"][0]], rounding)
+
+
 def _total_checks(page: Page, row, rounding: str) -> List[Check]:
+    if kind_of_total(row.label) == "liabilities_net_assets":
+        return _la_na_checks(page, row, rounding)
     checks: List[Check] = []
     contributors = []
     for r in page.rows:
@@ -83,6 +116,8 @@ def _total_checks(page: Page, row, rounding: str) -> List[Check]:
         elif (r.role == "subtotal" and len(r.path) == len(row.path) + 1
               and r.path[:len(row.path)] == row.path):
             contributors.append(r)  # a sub-section total feeds the total above it
+    if not contributors:
+        return _skip_all(page, row, "no components on this page")  # never a failure for lack of components
     reason = _wrong_width(contributors + [row], page)
     if reason:
         return _skip_all(page, row, reason)
