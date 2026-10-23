@@ -299,3 +299,15 @@ root.
 </pasted_content id="0814">
 ```
 
+## 2026-10-23 15:15
+
+```
+<pasted_content id="0814">
+Yes. One addition: use the same cover-page hint in the held-out script
+and the command line, not only in the app, and record where the setting
+came from (from the cover sentence, chosen by the user, or unstated).
+Otherwise the "after" table would depend on someone picking the right
+option by hand.
+</pasted_content id="0814">
+```
+
