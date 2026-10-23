@@ -53,6 +53,15 @@ def table_rows(output: dict, why: dict = None) -> List[dict]:
     return rows
 
 
+def styled_table(rows: List[dict]):
+    """The table with a red background on every row that belongs to a failed check."""
+    import pandas as pd
+
+    frame = pd.DataFrame(rows)
+    return frame.style.apply(
+        lambda row: ["background-color: #fde2e2" if row["why"] else ""] * len(row), axis=1)
+
+
 STATUS_TEXT = {
     "ok": "ok: every identity check holds within the rounding bound",
     "failed": "failed: at least one identity check is beyond its bound",

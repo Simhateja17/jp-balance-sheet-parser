@@ -194,3 +194,35 @@ def test_rows_of_a_failed_check_are_marked_with_why_and_skipped_or_passing_check
     by_label = {r["label"].strip(): r for r in table}
     assert by_label["Cash"]["why"].startswith("Total current assets") and by_label["Assets"]["why"] == ""
     assert by_label["Total current assets"]["why"] != ""
+
+
+def test_a_failed_cross_page_check_marks_its_totals_only_on_their_own_page():
+    from app import failed_rows
+
+    out = failing_output("602")
+    out["page"] = 6
+    cross = [{"status": "failed", "label": "資産合計 = 負債純資産合計", "period": "2025-03-31", "printed": 101, "expected": 100,
+              "difference": 1, "bound": 0, "rows": [{"page": 5, "row_id": "r23"}, {"page": 6, "row_id": "r3"}]},
+             {"status": "skipped", "label": "x", "period": "2025-03-31", "printed": None, "expected": None,
+              "difference": None, "bound": 0, "rows": [{"page": 6, "row_id": "r4"}]}]
+    assert list(failed_rows(out, cross)) == ["r3"]  # page 6 only; page 5's row is marked on page 5; skipped marks nothing
+    out["page"] = 5
+    assert list(failed_rows(out, cross)) == ["r23"]
+
+
+def test_the_table_is_styled_with_a_red_background_only_on_rows_that_have_a_why():
+    from app import styled_table, table_rows
+
+    bad = failing_output("605")
+    from app import failed_rows
+
+    rows = table_rows(bad, failed_rows(bad))
+    html = styled_table(rows).to_html()
+    marked = sum(1 for r in rows if r["why"])
+    assert marked == 4
+    css = html[:html.index("</style>")]
+    assert css.count("background-color: #fde2e2") == marked  # one rule per marked row, covering its six cells
+    import re
+
+    coloured = sorted({int(n) for n in re.findall(r"_row(\d+)_col0", css)})
+    assert coloured == [2, 3, 4, 5]  # Cash, Notes receivable, Other, Total current assets; not Land or Total assets
