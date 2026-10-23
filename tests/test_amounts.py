@@ -40,3 +40,12 @@ def test_garbage_is_unreadable_and_keeps_raw_text():
     assert amount.value is None
     assert amount.kind == "unreadable"
     assert amount.raw == "1,2x4"
+
+
+def test_any_nil_mark_is_the_same_printed_nil_but_other_marks_are_not_interchangeable():
+    from bsparser.amounts import same_printed_text
+
+    assert same_printed_text("－", "-") and same_printed_text("—", "－") and same_printed_text("-", "—")
+    assert same_printed_text("608, 281", "608,281") and same_printed_text("６０８", "608"[:0] + "６０８")
+    assert not same_printed_text("△0", "(0)")  # a zero with a mark is not another notation
+    assert not same_printed_text("-", "0")  # nil is never zero

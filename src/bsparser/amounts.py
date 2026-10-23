@@ -1,3 +1,4 @@
+import unicodedata
 from dataclasses import dataclass
 from typing import Optional
 
@@ -26,3 +27,12 @@ def parse_amount(raw: str) -> Amount:
         return Amount(value=None, kind="unreadable", raw=raw)
     value = int(digits)
     return Amount(value=-value if negative else value, kind="value", raw=raw)
+
+
+def same_printed_text(printed: str, other: str) -> bool:
+    """Width and spacing are typing noise (full-width digits, spaces). Every nil mark is the same nil.
+    Other marks are not noise: a triangle zero is not (0), and nil is never 0."""
+    def norm(text: str) -> str:
+        text = unicodedata.normalize("NFKC", text).replace(" ", "")
+        return "-" if text in NIL_MARKS or text in {"\u2014", "-"} else text
+    return norm(printed) == norm(other)
