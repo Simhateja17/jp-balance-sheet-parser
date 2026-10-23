@@ -35,7 +35,7 @@ def output_from_page(page, source: str, rounding: str = "unstated", rounding_sou
         "rows": [
             {"id": r.id, "label": r.label, "label_en": english_label(r.label)[0],
              "label_en_source": english_label(r.label)[1],
-             "role": r.role, "level": r.level, "parent": r.parent, "path": list(r.path)}
+             "role": r.role, "level": r.level, "parent": r.parent, "path": list(r.path), "notes": list(r.notes)}
             for r in page.rows
         ],
         "records": make_records(page),
@@ -43,7 +43,7 @@ def output_from_page(page, source: str, rounding: str = "unstated", rounding_sou
 
 
 RECORD_COLUMNS = ["id", "path", "label", "label_en", "label_en_source", "role", "parent",
-                  "period", "value", "kind", "raw", "unit", "warnings"]
+                  "period", "value", "kind", "raw", "unit", "warnings", "notes"]
 
 
 def write_outputs(pdf_path, out_dir, output=None):
@@ -64,5 +64,6 @@ def write_outputs(pdf_path, out_dir, output=None):
             row["value"] = "" if rec["value"] is None else rec["value"]
             row["parent"] = rec["parent"] or ""
             row["warnings"] = "; ".join(rec["warnings"])
+            row["notes"] = "; ".join(rec["notes"])
             writer.writerow(row)
     return json_path, csv_path

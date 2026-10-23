@@ -25,3 +25,16 @@ def test_an_explicit_choice_is_recorded_as_user_and_unit_mismatch_stays_unstated
     mismatch = analyse(HELDOUT / "140120260514535920.pdf")  # 2452: cut-off stated in millions, sheet in thousands
     assert (mismatch["rounding"], mismatch["rounding_source"]) == ("unstated", "unstated")
     assert "million_yen" in mismatch["rounding_note"] and "thousand_yen" in mismatch["rounding_note"]
+
+
+def test_the_note_on_stand_alone_net_lines_reaches_rows_and_records_without_becoming_a_warning():
+    out = analyse(HELDOUT / "140120260416505142.pdf")  # 4098 prints net values only
+    net_rows = [r for r in out["rows"] if r["label"].endswith("（純額）")]
+    assert len(net_rows) == 4 and all(r["notes"] == ["printed as net, no gross shown"] for r in net_rows)
+    assert all(r["role"] == "item" and r["parent"] is None for r in net_rows)
+    records = [r for r in out["records"] if r["label"].endswith("（純額）")]
+    assert len(records) == 8
+    assert all(r["notes"] == ["printed as net, no gross shown"] and r["warnings"] == [] for r in records)
+    assert [r["notes"] for r in out["records"] if not r["label"].endswith("（純額）")][0] == []
+    assert out["issues"] == [i for i in out["issues"] if i["kind"] == "ignored_line"]  # no net_label_mismatch left
+    assert (out["status"], sum(c["status"] == "pass" for c in out["checks"]), len(out["checks"])) == ("ok", 10, 10)

@@ -17,6 +17,7 @@ def test_output_has_status_unit_periods_rows_records_checks_and_issues_and_seria
         "id": "r17", "label": "Accumulated depreciation", "label_en": "Accumulated depreciation",
         "label_en_source": "original", "role": "contra", "level": 4, "parent": "r16",
         "path": ["Assets", "Non-current assets", "Property, plant and equipment", "Buildings and structures"],
+        "notes": [],
     }
     assert json.loads(json.dumps(out, ensure_ascii=False)) == out
 

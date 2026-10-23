@@ -31,5 +31,6 @@ def make_records(page: Page) -> List[Dict]:
                 "raw": amount.raw,
                 "unit": page.unit,
                 "warnings": warnings,
+                "notes": list(row.notes),
             })
     return records

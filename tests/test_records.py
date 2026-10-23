@@ -23,6 +23,7 @@ def test_one_record_per_value_row_per_period_with_the_d1_fields():
         "raw": "608,281",
         "unit": "thousand_yen",
         "warnings": [],
+        "notes": [],
     }]
     assert len(records) == 37 * 2  # 43 rows minus 6 headers, two periods
 
