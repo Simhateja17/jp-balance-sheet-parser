@@ -277,3 +277,11 @@ anything.
 </pasted_content id="0814">
 ```
 
+## 2026-10-23 15:10
+
+```
+I put four new PDFs in data/heldout/ and tested them in the app. Before
+changing any code, run each one as it is and write a "before" table in
+the report: file, page, status, checks passed, and what went wrong.
+```
+
