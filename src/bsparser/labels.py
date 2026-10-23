@@ -1,5 +1,6 @@
 import json
 import re
+import unicodedata
 from pathlib import Path
 from typing import Optional, Tuple
 
@@ -30,3 +31,9 @@ def english_label(label: str) -> Tuple[Optional[str], str]:
         return None, "missing"
     status = "reviewed" if dictionary["review_status"] == "reviewed_by_reviewer_session" else "unreviewed"
     return translated, f"translation_{status}"
+
+
+def is_uchi_label(label: str) -> bool:
+    """A detail line introduced by うち, (うち or "of which": a partial breakdown, not a component of the line above."""
+    text = unicodedata.normalize("NFKC", label).strip().lstrip("(").strip().lower()
+    return text.startswith("\u3046\u3061") or text.startswith("of which")

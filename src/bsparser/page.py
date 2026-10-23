@@ -4,6 +4,7 @@ from dataclasses import dataclass, field
 from typing import List, Optional
 
 from bsparser.amounts import Amount, parse_amount
+from bsparser.labels import is_uchi_label
 from bsparser.levels import assign_levels, irregular_levels
 from bsparser.pdf_lines import Line, extract_lines
 from bsparser.periods import find_periods, find_unsupported_eras
@@ -43,6 +44,7 @@ class Page:
 
 
 PAGE_NUMBER = re.compile(r"^(?:[-\u2010-\u2015\u2212]?\d{1,3}[-\u2010-\u2015\u2212]?|page\d{1,3}|p\.?\d{1,3}|\d{1,3}/\d{1,3})$", re.I)
+UCHI_NOTE = "detail lines marked うち / of which are not components: no group check"
 NET_ONLY_NOTE = "printed as net, no gross shown"
 NET_SUFFIXES = ("\uff08\u7d14\u984d\uff09", ", net")  # （純額）, ", net"
 
@@ -113,6 +115,10 @@ def build_page(lines: List[Line]) -> Page:
                 row.parent = gross.id
         rows.append(row)
         stack.append(row)
+    for row in rows:
+        detail = [r for r in rows if r.role == "item" and r.values and r.path == row.path + [row.label]]
+        if row.role == "item" and row.values and any(is_uchi_label(r.label) for r in detail):
+            row.notes.append(UCHI_NOTE)
     odd_levels = set(irregular_levels([line.x0 for line in lines], LEVEL_TOLERANCE))
     for row in rows:
         if row.level in odd_levels:

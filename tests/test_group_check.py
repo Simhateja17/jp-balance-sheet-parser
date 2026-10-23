@@ -32,3 +32,11 @@ def test_the_group_line_stays_an_item_with_no_parent_and_the_section_total_ignor
     assert (group.role, group.parent) == ("item", None)
     total = [c for c in run_checks(page) if c.label == "資産の部合計"]
     assert [(c.items, c.difference, c.status) for c in total] == [(2, 0, "pass"), (2, 0, "pass")]  # 貸出金 + 有形固定資産
+
+
+def test_detail_lines_marked_uchi_or_of_which_are_not_components_so_no_group_check_and_a_note():
+    for marker in ("うち建物", "（うち建物）", "(うち建物)", "of which buildings"):
+        page = bank_like(detail_label=marker)
+        assert [c for c in run_checks(page) if c.label == "有形固定資産"] == [], marker
+        group = [r for r in page.rows if r.label == "有形固定資産"][0]
+        assert group.notes == ["detail lines marked うち / of which are not components: no group check"], marker

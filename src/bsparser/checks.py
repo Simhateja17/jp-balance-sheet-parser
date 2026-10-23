@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from typing import List, Optional
 
+from bsparser.labels import is_uchi_label
 from bsparser.page import Page
 
 
@@ -108,8 +109,8 @@ def _total_checks(page: Page, row, rounding: str) -> List[Check]:
 def _group_checks(page: Page, row, rounding: str) -> List[Check]:
     """Q22: an item that has its own value and indented detail lines directly below it equals the sum of them."""
     children = [r for r in page.rows if r.role == "item" and r.values and r.path == row.path + [row.label]]
-    if not children:
-        return []
+    if not children or any(is_uchi_label(c.label) for c in children):
+        return []  # nothing to add up, or the detail is a partial breakdown (うち / of which)
     reason = _wrong_width(children + [row], page)
     if reason:
         return _skip_all(page, row, reason)
