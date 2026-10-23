@@ -399,3 +399,21 @@ table.
 </pasted_content id="0814">
 ```
 
+## 2026-10-23 15:42
+
+```
+<pasted_content id="0814">
+Nice work. Now let's polish the app: only offer pages that are really
+balance sheets, turn the statement mode on by default so assets and
+liabilities pages are read together, show the page image next to the
+table, highlight rows in a failed check, and show a friendly message
+instead of an error.
+</pasted_content id="0814">
+```
+
+## 2026-10-23 15:43
+
+```
+Yes, sounds good. Go ahead.
+```
+

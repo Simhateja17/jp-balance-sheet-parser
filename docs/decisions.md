@@ -8,6 +8,15 @@
 - `label_en` is a translation for the human reader only. It is marked as a translation and is never used in any check or matching.
 - `parent` links a contra (accumulated depreciation) or net line to its item. Exact semantics: see D2.
 
+## D22. App polish (agreed, built, tested)
+- Pages offered: only pages with a balance-sheet title (貸借対照表, balance sheet, financial position), an assets part (資産の部, Total assets, or an Assets heading) and a total-assets line (資産合計, 資産の部合計, Total assets). Each shows a heading so consolidated and parent-only statements read apart. Seen on the held-out files: 4098 page 6, 4224 page 7, 2452 page 6, the bank pages 5 (連結) and 14 (個別). Liabilities pages are not offered, they are read with their assets page.
+- Escape: an expander "My page isn't listed" takes any page number (0 = the one chosen above), so a false negative never blocks. `analyse` and `analyse_statement` fall back to the loose keyword list when the strict one finds nothing.
+- Statement mode stays on by default (the checkbox starts ticked, under the page choice), so assets and liabilities pages are read together. It was already the default before this round.
+- Page image: each page's image sits to the left of its table.
+- Highlighting: rows of a FAILED check are red, meaning the printed total and every row it adds up (`row_ids` on each check). A failed cross-page check marks its totals on their own page (`rows` on each cross-page check). Skipped and passing checks mark nothing. The last column, `why`, says which check, the printed value, what it adds up to, the difference and the allowed bound.
+- Friendly messages, no red error boxes and no tracebacks: not a PDF, no text layer (scanned), no balance sheet page found, no table on the page, and an unexpected failure (plain words, technical details in a collapsed expander). Status texts reworded with a next step.
+- Not verified in a real browser by Claude: the browser upload tool failed twice (same error) and was stopped. The page is covered by Streamlit's own test harness (renders, images, tables, highlight data, friendly messages) and a headless server health check from the previous round. The look (colours, width of the image column) still needs a human glance.
+
 ## D21. Held-out fixes, full list (AGREED by the owner, including Q23 and the additions in items 5 to 7)
 Already agreed and only restated here: D17 aggregate contra line; D18 rounding setting (`round`, `cut`, `unstated`) with the shared cover hint and a recorded source; D19 net-suffix lines (stand-alone ones are items with a note); D20 page numbers (last line, pure pattern only).
 Also agreed (Q22): a group check. An `item` that has its own value and indented detail lines directly below it must equal the sum of those detail lines, with the same bound, status and skip rules. Detail lines introduced by うち, (うち or "of which" are not components: no check, and a note. The group line stays an `item` with no `parent`. Seen on the bank page: 有形固定資産 and 無形固定資産.

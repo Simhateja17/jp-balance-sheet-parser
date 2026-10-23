@@ -19,7 +19,8 @@ PYTHONPATH=src .venv/bin/python -m bsparser.accuracy data/balance_sheet_after_co
   data/gold/balance_sheet_after_correction.template.md "Japanese page" outputs/accuracy_japanese.md
 .venv/bin/python scripts/run_heldout.py outputs/heldout_after
 
-# try it in a browser: drop in a PDF, see the table, status, checks, issues, cross-page checks, CSV
+# try it in a browser: drop in a PDF. Only real balance sheet pages are offered, assets and liabilities pages are read
+# together, the page image sits beside each table, rows of a failed check are red with a why, and CSV/JSON download
 .venv/bin/streamlit run app.py
 ```
 
