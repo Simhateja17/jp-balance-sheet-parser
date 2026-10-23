@@ -65,3 +65,12 @@ def test_when_both_fail_the_text_output_is_returned_as_failed_with_vision_attach
     assert chosen["extractor"] == "text" and chosen["status"] == "failed"
     assert chosen["alternative"]["extractor"] == "vision"
     assert "both failed" in chosen["issues"][-1]["message"]
+
+
+def test_a_page_with_no_usable_text_goes_to_vision():
+    good = build_output(FIXTURE_PDF)
+    empty_text = {"source": "scan.pdf", "status": "ok", "unit": None, "unit_raw": "", "periods": [],
+                  "issues": [], "checks": [], "rows": [], "records": []}
+    chosen = arbitrate(text=empty_text, vision=good)
+    assert chosen["extractor"] == "vision"
+    assert "no usable text layer" in chosen["issues"][-1]["message"]

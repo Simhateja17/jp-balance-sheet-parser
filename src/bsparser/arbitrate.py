@@ -31,13 +31,16 @@ def arbitrate(text: Dict, vision: Dict) -> Dict:
     """D7: better check result wins, a tie goes to text. No cell-level merging. Both outputs are kept."""
     text, vision = copy.deepcopy(text), copy.deepcopy(vision)
     text["extractor"], vision["extractor"] = "text", "vision"
+    no_text = not text["records"] and bool(vision["records"])
     both_failed = _score(text)[0] > 0 and _score(vision)[0] > 0
-    winner, loser = (vision, text) if (_score(vision) < _score(text) and not both_failed) else (text, vision)
+    better_vision = _score(vision) < _score(text) and not both_failed
+    winner, loser = (vision, text) if (no_text or better_vision) else (text, vision)
     _flag_disagreements(winner, loser)
     winner["alternative"] = loser
     winner["issues"].append({
         "kind": "extractor_chosen", "row_id": "",
-        "message": ("both failed their checks: text returned, vision attached for review; " if both_failed else "")
+        "message": ("no usable text layer: vision used; " if no_text else "")
+                   + ("both failed their checks: text returned, vision attached for review; " if both_failed else "")
                    + f"{winner['extractor']} chosen: failed/doubtful checks {_score(winner)} against "
                    f"{loser['extractor']} {_score(loser)} (failed, skipped or unreadable)"})
     return winner
