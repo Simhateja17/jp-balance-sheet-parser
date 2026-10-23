@@ -23,7 +23,12 @@
    "bound": 1,
    "items": 2,
    "status": "pass",
-   "reason": ""
+   "reason": "",
+   "row_ids": [
+    "r18",
+    "r16",
+    "r17"
+   ]
   },
   {
    "label": "Buildings and structures, net",
@@ -35,7 +40,12 @@
    "bound": 1,
    "items": 2,
    "status": "pass",
-   "reason": ""
+   "reason": "",
+   "row_ids": [
+    "r18",
+    "r16",
+    "r17"
+   ]
   },
   {
    "label": "Machinery, equipment and vehicles, net",
@@ -47,7 +57,12 @@
    "bound": 1,
    "items": 2,
    "status": "pass",
-   "reason": ""
+   "reason": "",
+   "row_ids": [
+    "r21",
+    "r19",
+    "r20"
+   ]
   },
   {
    "label": "Machinery, equipment and vehicles, net",
@@ -59,7 +74,12 @@
    "bound": 1,
    "items": 2,
    "status": "pass",
-   "reason": ""
+   "reason": "",
+   "row_ids": [
+    "r21",
+    "r19",
+    "r20"
+   ]
   },
   {
    "label": "Lease assets, net",
@@ -71,7 +91,12 @@
    "bound": 1,
    "items": 2,
    "status": "pass",
-   "reason": ""
+   "reason": "",
+   "row_ids": [
+    "r25",
+    "r23",
+    "r24"
+   ]
   },
   {
    "label": "Lease assets, net",
@@ -83,7 +108,12 @@
    "bound": 1,
    "items": 2,
    "status": "pass",
-   "reason": ""
+   "reason": "",
+   "row_ids": [
+    "r25",
+    "r23",
+    "r24"
+   ]
   },
   {
    "label": "Other, net",
@@ -95,7 +125,12 @@
    "bound": 1,
    "items": 2,
    "status": "pass",
-   "reason": ""
+   "reason": "",
+   "row_ids": [
+    "r29",
+    "r27",
+    "r28"
+   ]
   },
   {
    "label": "Other, net",
@@ -107,7 +142,12 @@
    "bound": 1,
    "items": 2,
    "status": "pass",
-   "reason": ""
+   "reason": "",
+   "row_ids": [
+    "r29",
+    "r27",
+    "r28"
+   ]
   },
   {
    "label": "Total current assets",
@@ -119,7 +159,20 @@
    "bound": 5,
    "items": 10,
    "status": "pass",
-   "reason": ""
+   "reason": "",
+   "row_ids": [
+    "r13",
+    "r3",
+    "r4",
+    "r5",
+    "r6",
+    "r7",
+    "r8",
+    "r9",
+    "r10",
+    "r11",
+    "r12"
+   ]
   },
   {
    "label": "Total current assets",
@@ -131,7 +184,20 @@
    "bound": 5,
    "items": 10,
    "status": "pass",
-   "reason": ""
+   "reason": "",
+   "row_ids": [
+    "r13",
+    "r3",
+    "r4",
+    "r5",
+    "r6",
+    "r7",
+    "r8",
+    "r9",
+    "r10",
+    "r11",
+    "r12"
+   ]
   },
   {
    "label": "Total property, plant and equipment",
@@ -143,7 +209,16 @@
    "bound": 3,
    "items": 5,
    "status": "pass",
-   "reason": ""
+   "reason": "",
+   "row_ids": [
+    "r30",
+    "r18",
+    "r21",
+    "r22",
+    "r25",
+    "r26",
+    "r29"
+   ]
   },
   {
    "label": "Total property, plant and equipment",
@@ -155,7 +230,16 @@
    "bound": 3,
    "items": 6,
    "status": "pass",
-   "reason": ""
+   "reason": "",
+   "row_ids": [
+    "r30",
+    "r18",
+    "r21",
+    "r22",
+    "r25",
+    "r26",
+    "r29"
+   ]
   },
   {
    "label": "Total intangible assets",
@@ -167,7 +251,12 @@
    "bound": 1,
    "items": 2,
    "status": "pass",
-   "reason": ""
+   "reason": "",
+   "row_ids": [
+    "r34",
+    "r32",
+    "r33"
+   ]
   },
   {
    "label": "Total intangible assets",
@@ -179,7 +268,12 @@
    "bound": 1,
    "items": 2,
    "status": "pass",
-   "reason": ""
+   "reason": "",
+   "row_ids": [
+    "r34",
+    "r32",
+    "r33"
+   ]
   },
   {
    "label": "Total investments and other assets",
@@ -191,7 +285,15 @@
    "bound": 2,
    "items": 4,
    "status": "pass",
-   "reason": ""
+   "reason": "",
+   "row_ids": [
+    "r41",
+    "r36",
+    "r37",
+    "r38",
+    "r39",
+    "r40"
+   ]
   },
   {
    "label": "Total investments and other assets",
@@ -203,7 +305,15 @@
    "bound": 3,
    "items": 5,
    "status": "pass",
-   "reason": ""
+   "reason": "",
+   "row_ids": [
+    "r41",
+    "r36",
+    "r37",
+    "r38",
+    "r39",
+    "r40"
+   ]
   },
   {
    "label": "Total non-current assets",
@@ -215,7 +325,13 @@
    "bound": 2,
    "items": 3,
    "status": "pass",
-   "reason": ""
+   "reason": "",
+   "row_ids": [
+    "r42",
+    "r30",
+    "r34",
+    "r41"
+   ]
   },
   {
    "label": "Total non-current assets",
@@ -227,7 +343,13 @@
    "bound": 2,
    "items": 3,
    "status": "pass",
-   "reason": ""
+   "reason": "",
+   "row_ids": [
+    "r42",
+    "r30",
+    "r34",
+    "r41"
+   ]
   },
   {
    "label": "Total assets",
@@ -239,7 +361,12 @@
    "bound": 1,
    "items": 2,
    "status": "pass",
-   "reason": ""
+   "reason": "",
+   "row_ids": [
+    "r43",
+    "r13",
+    "r42"
+   ]
   },
   {
    "label": "Total assets",
@@ -251,7 +378,12 @@
    "bound": 1,
    "items": 2,
    "status": "pass",
-   "reason": ""
+   "reason": "",
+   "row_ids": [
+    "r43",
+    "r13",
+    "r42"
+   ]
   }
  ],
  "rows": [

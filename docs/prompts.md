@@ -446,3 +446,18 @@ with a note that they aren't unseen anymore.
 </pasted_content id="0814">
 ```
 
+## 2026-10-23 16:30
+
+```
+<pasted_content id="0814">
+Let's do the English cover hint first, since it clears Yokogawa too.
+Then the numbers on their own line, and fix that "page number?" message
+while you're there.
+
+After these two, let's freeze the code. Anything else we find goes into
+the report as a known limit, not a new fix. Then do a final tidy-up:
+make sure the README and report match what the code does now, and that
+all tests pass.
+</pasted_content id="0814">
+```
+

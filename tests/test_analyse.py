@@ -94,3 +94,14 @@ def test_yokogawa_now_passes_every_check_because_its_english_cover_states_the_cu
     assert (out["rounding"], out["rounding_source"]) == ("cut", "cover_sentence")
     assert out["status"] == "ok" and [p["status"] for p in out["pages"]] == ["ok", "ok"]
     assert all(c["status"] == "pass" for c in out["cross_checks"])
+
+
+def test_shimadzu_passes_once_the_numbers_printed_on_their_own_line_are_attached_to_their_labels():
+    fresh = Path(__file__).parent.parent / "data" / "fresh" / "vg1mvt19a00h4bsv.pdf"
+    out = analyse_statement(fresh)
+    assert (out["rounding"], out["rounding_source"]) == ("cut", "cover_sentence")
+    assert out["status"] == "ok" and [p["status"] for p in out["pages"]] == ["ok", "ok"]
+    first = out["pages"][0]
+    assert any(r["label"] == "Notes and accounts receivable - trade, and contract assets" for r in first["rows"])
+    assert [i["kind"] for i in first["issues"] if i["kind"] == "wrapped_label_merged"] == ["wrapped_label_merged"]
+    assert all(c["status"] == "pass" for c in out["cross_checks"])

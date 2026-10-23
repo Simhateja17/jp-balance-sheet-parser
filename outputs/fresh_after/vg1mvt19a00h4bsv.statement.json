@@ -1,18 +1,18 @@
 {
  "source": "data/fresh/vg1mvt19a00h4bsv.pdf",
- "status": "failed",
- "rounding": "unstated",
- "rounding_source": "unstated",
- "rounding_sentence": "",
- "rounding_note": "no cut-off sentence found on the first pages",
+ "status": "ok",
+ "rounding": "cut",
+ "rounding_source": "cover_sentence",
+ "rounding_sentence": "rounded down to millions",
+ "rounding_note": "",
  "pages": [
   {
    "source": "data/fresh/vg1mvt19a00h4bsv.pdf",
-   "status": "failed",
-   "rounding": "unstated",
-   "rounding_source": "unstated",
-   "rounding_sentence": "",
-   "rounding_note": "no cut-off sentence found on the first pages",
+   "status": "ok",
+   "rounding": "cut",
+   "rounding_source": "cover_sentence",
+   "rounding_sentence": "rounded down to millions",
+   "rounding_note": "",
    "unit": "million_yen",
    "unit_raw": "Millions of yen",
    "periods": [
@@ -21,250 +21,247 @@
    ],
    "issues": [
     {
-     "kind": "possible_wrapped_label",
-     "row_id": "r5",
-     "message": "'assets': next line at the same level has values; not merged"
+     "kind": "wrapped_label_merged",
+     "row_id": "r4",
+     "message": "'Notes and accounts receivable - trade, and contract assets': its numbers were printed on a line of their own and were attached to it"
     },
     {
      "kind": "ignored_line",
      "row_id": "",
-     "message": "line without a label ignored (page number?): amounts ['149,127', '156,326']"
-    },
-    {
-     "kind": "ignored_line",
-     "row_id": "",
-     "message": "line without a label ignored (page number?): amounts ['-', '11', '-']"
+     "message": "line without a label ignored: amounts ['-', '11', '-'] look like a page number"
     }
    ],
    "checks": [
     {
      "label": "Total current assets",
-     "row_id": "r11",
+     "row_id": "r10",
      "period": "2025-03-31",
-     "expected": 305329,
+     "expected": 454456,
      "printed": 454457,
-     "difference": 149128,
-     "bound": 3,
-     "items": 6,
-     "status": "failed",
+     "difference": 1,
+     "bound": 7,
+     "items": 7,
+     "status": "pass",
      "reason": "",
      "row_ids": [
-      "r11",
+      "r10",
       "r3",
+      "r4",
+      "r5",
       "r6",
       "r7",
       "r8",
-      "r9",
-      "r10"
+      "r9"
      ]
     },
     {
      "label": "Total current assets",
-     "row_id": "r11",
+     "row_id": "r10",
      "period": "2026-03-31",
-     "expected": 341400,
+     "expected": 497726,
      "printed": 497728,
-     "difference": 156328,
-     "bound": 3,
-     "items": 6,
-     "status": "failed",
+     "difference": 2,
+     "bound": 7,
+     "items": 7,
+     "status": "pass",
      "reason": "",
      "row_ids": [
-      "r11",
+      "r10",
       "r3",
+      "r4",
+      "r5",
       "r6",
       "r7",
       "r8",
-      "r9",
-      "r10"
+      "r9"
      ]
     },
     {
      "label": "Total property, plant and equipment",
-     "row_id": "r20",
+     "row_id": "r19",
      "period": "2025-03-31",
      "expected": 119557,
      "printed": 119559,
      "difference": 2,
-     "bound": 3,
+     "bound": 6,
      "items": 6,
      "status": "pass",
      "reason": "",
      "row_ids": [
-      "r20",
+      "r19",
+      "r13",
       "r14",
       "r15",
       "r16",
       "r17",
-      "r18",
-      "r19"
+      "r18"
      ]
     },
     {
      "label": "Total property, plant and equipment",
-     "row_id": "r20",
+     "row_id": "r19",
      "period": "2026-03-31",
      "expected": 122812,
      "printed": 122815,
      "difference": 3,
-     "bound": 3,
+     "bound": 6,
      "items": 6,
      "status": "pass",
      "reason": "",
      "row_ids": [
-      "r20",
+      "r19",
+      "r13",
       "r14",
       "r15",
       "r16",
       "r17",
-      "r18",
-      "r19"
+      "r18"
      ]
     },
     {
      "label": "Total intangible assets",
-     "row_id": "r24",
+     "row_id": "r23",
      "period": "2025-03-31",
      "expected": 23743,
      "printed": 23744,
      "difference": 1,
-     "bound": 1,
+     "bound": 2,
      "items": 2,
      "status": "pass",
      "reason": "",
      "row_ids": [
-      "r24",
-      "r22",
-      "r23"
+      "r23",
+      "r21",
+      "r22"
      ]
     },
     {
      "label": "Total intangible assets",
-     "row_id": "r24",
+     "row_id": "r23",
      "period": "2026-03-31",
      "expected": 23885,
      "printed": 23886,
      "difference": 1,
-     "bound": 1,
+     "bound": 2,
      "items": 2,
      "status": "pass",
      "reason": "",
      "row_ids": [
-      "r24",
-      "r22",
-      "r23"
+      "r23",
+      "r21",
+      "r22"
      ]
     },
     {
      "label": "Total investments and other assets",
-     "row_id": "r32",
+     "row_id": "r31",
      "period": "2025-03-31",
      "expected": 74413,
      "printed": 74416,
      "difference": 3,
-     "bound": 3,
+     "bound": 6,
      "items": 6,
      "status": "pass",
      "reason": "",
      "row_ids": [
-      "r32",
+      "r31",
+      "r25",
       "r26",
       "r27",
       "r28",
       "r29",
-      "r30",
-      "r31"
+      "r30"
      ]
     },
     {
      "label": "Total investments and other assets",
-     "row_id": "r32",
+     "row_id": "r31",
      "period": "2026-03-31",
      "expected": 93545,
      "printed": 93546,
      "difference": 1,
-     "bound": 3,
+     "bound": 6,
      "items": 6,
      "status": "pass",
      "reason": "",
      "row_ids": [
-      "r32",
+      "r31",
+      "r25",
       "r26",
       "r27",
       "r28",
       "r29",
-      "r30",
+      "r30"
+     ]
+    },
+    {
+     "label": "Total non-current assets",
+     "row_id": "r32",
+     "period": "2025-03-31",
+     "expected": 217719,
+     "printed": 217719,
+     "difference": 0,
+     "bound": 3,
+     "items": 3,
+     "status": "pass",
+     "reason": "",
+     "row_ids": [
+      "r32",
+      "r19",
+      "r23",
       "r31"
      ]
     },
     {
      "label": "Total non-current assets",
-     "row_id": "r33",
-     "period": "2025-03-31",
-     "expected": 217719,
-     "printed": 217719,
-     "difference": 0,
-     "bound": 2,
-     "items": 3,
-     "status": "pass",
-     "reason": "",
-     "row_ids": [
-      "r33",
-      "r20",
-      "r24",
-      "r32"
-     ]
-    },
-    {
-     "label": "Total non-current assets",
-     "row_id": "r33",
+     "row_id": "r32",
      "period": "2026-03-31",
      "expected": 240247,
      "printed": 240249,
      "difference": 2,
-     "bound": 2,
+     "bound": 3,
      "items": 3,
      "status": "pass",
      "reason": "",
      "row_ids": [
+      "r32",
+      "r19",
+      "r23",
+      "r31"
+     ]
+    },
+    {
+     "label": "Total assets",
+     "row_id": "r33",
+     "period": "2025-03-31",
+     "expected": 672176,
+     "printed": 672177,
+     "difference": 1,
+     "bound": 2,
+     "items": 2,
+     "status": "pass",
+     "reason": "",
+     "row_ids": [
       "r33",
-      "r20",
-      "r24",
+      "r10",
       "r32"
      ]
     },
     {
      "label": "Total assets",
-     "row_id": "r34",
-     "period": "2025-03-31",
-     "expected": 672176,
-     "printed": 672177,
-     "difference": 1,
-     "bound": 1,
-     "items": 2,
-     "status": "pass",
-     "reason": "",
-     "row_ids": [
-      "r34",
-      "r11",
-      "r33"
-     ]
-    },
-    {
-     "label": "Total assets",
-     "row_id": "r34",
+     "row_id": "r33",
      "period": "2026-03-31",
      "expected": 737977,
      "printed": 737978,
      "difference": 1,
-     "bound": 1,
+     "bound": 2,
      "items": 2,
      "status": "pass",
      "reason": "",
      "row_ids": [
-      "r34",
-      "r11",
-      "r33"
+      "r33",
+      "r10",
+      "r32"
      ]
     }
    ],
@@ -309,10 +306,10 @@
     },
     {
      "id": "r4",
-     "label": "Notes and accounts receivable - trade, and contract",
-     "label_en": "Notes and accounts receivable - trade, and contract",
+     "label": "Notes and accounts receivable - trade, and contract assets",
+     "label_en": "Notes and accounts receivable - trade, and contract assets",
      "label_en_source": "original",
-     "role": "header",
+     "role": "item",
      "level": 2,
      "parent": null,
      "path": [
@@ -323,20 +320,6 @@
     },
     {
      "id": "r5",
-     "label": "assets",
-     "label_en": "assets",
-     "label_en_source": "original",
-     "role": "header",
-     "level": 2,
-     "parent": null,
-     "path": [
-      "Assets",
-      "Current assets"
-     ],
-     "notes": []
-    },
-    {
-     "id": "r6",
      "label": "Merchandise and finished goods",
      "label_en": "Merchandise and finished goods",
      "label_en_source": "original",
@@ -350,7 +333,7 @@
      "notes": []
     },
     {
-     "id": "r7",
+     "id": "r6",
      "label": "Work in process",
      "label_en": "Work in process",
      "label_en_source": "original",
@@ -364,7 +347,7 @@
      "notes": []
     },
     {
-     "id": "r8",
+     "id": "r7",
      "label": "Raw materials and supplies",
      "label_en": "Raw materials and supplies",
      "label_en_source": "original",
@@ -378,7 +361,7 @@
      "notes": []
     },
     {
-     "id": "r9",
+     "id": "r8",
      "label": "Other",
      "label_en": "Other",
      "label_en_source": "original",
@@ -392,7 +375,7 @@
      "notes": []
     },
     {
-     "id": "r10",
+     "id": "r9",
      "label": "Allowance for doubtful accounts",
      "label_en": "Allowance for doubtful accounts",
      "label_en_source": "original",
@@ -406,7 +389,7 @@
      "notes": []
     },
     {
-     "id": "r11",
+     "id": "r10",
      "label": "Total current assets",
      "label_en": "Total current assets",
      "label_en_source": "original",
@@ -420,7 +403,7 @@
      "notes": []
     },
     {
-     "id": "r12",
+     "id": "r11",
      "label": "Non-current assets",
      "label_en": "Non-current assets",
      "label_en_source": "original",
@@ -433,7 +416,7 @@
      "notes": []
     },
     {
-     "id": "r13",
+     "id": "r12",
      "label": "Property, plant and equipment",
      "label_en": "Property, plant and equipment",
      "label_en_source": "original",
@@ -447,7 +430,7 @@
      "notes": []
     },
     {
-     "id": "r14",
+     "id": "r13",
      "label": "Buildings and structures, net",
      "label_en": "Buildings and structures, net",
      "label_en_source": "original",
@@ -464,7 +447,7 @@
      ]
     },
     {
-     "id": "r15",
+     "id": "r14",
      "label": "Machinery, equipment and vehicles, net",
      "label_en": "Machinery, equipment and vehicles, net",
      "label_en_source": "original",
@@ -481,7 +464,7 @@
      ]
     },
     {
-     "id": "r16",
+     "id": "r15",
      "label": "Land",
      "label_en": "Land",
      "label_en_source": "original",
@@ -496,7 +479,7 @@
      "notes": []
     },
     {
-     "id": "r17",
+     "id": "r16",
      "label": "Leased assets, net",
      "label_en": "Leased assets, net",
      "label_en_source": "original",
@@ -513,7 +496,7 @@
      ]
     },
     {
-     "id": "r18",
+     "id": "r17",
      "label": "Construction in progress",
      "label_en": "Construction in progress",
      "label_en_source": "original",
@@ -528,7 +511,7 @@
      "notes": []
     },
     {
-     "id": "r19",
+     "id": "r18",
      "label": "Other, net",
      "label_en": "Other, net",
      "label_en_source": "original",
@@ -545,7 +528,7 @@
      ]
     },
     {
-     "id": "r20",
+     "id": "r19",
      "label": "Total property, plant and equipment",
      "label_en": "Total property, plant and equipment",
      "label_en_source": "original",
@@ -560,7 +543,7 @@
      "notes": []
     },
     {
-     "id": "r21",
+     "id": "r20",
      "label": "Intangible assets",
      "label_en": "Intangible assets",
      "label_en_source": "original",
@@ -574,7 +557,7 @@
      "notes": []
     },
     {
-     "id": "r22",
+     "id": "r21",
      "label": "Goodwill",
      "label_en": "Goodwill",
      "label_en_source": "original",
@@ -589,7 +572,7 @@
      "notes": []
     },
     {
-     "id": "r23",
+     "id": "r22",
      "label": "Other",
      "label_en": "Other",
      "label_en_source": "original",
@@ -604,7 +587,7 @@
      "notes": []
     },
     {
-     "id": "r24",
+     "id": "r23",
      "label": "Total intangible assets",
      "label_en": "Total intangible assets",
      "label_en_source": "original",
@@ -619,7 +602,7 @@
      "notes": []
     },
     {
-     "id": "r25",
+     "id": "r24",
      "label": "Investments and other assets",
      "label_en": "Investments and other assets",
      "label_en_source": "original",
@@ -633,7 +616,7 @@
      "notes": []
     },
     {
-     "id": "r26",
+     "id": "r25",
      "label": "Investment securities",
      "label_en": "Investment securities",
      "label_en_source": "original",
@@ -648,7 +631,7 @@
      "notes": []
     },
     {
-     "id": "r27",
+     "id": "r26",
      "label": "Long-term loans receivable",
      "label_en": "Long-term loans receivable",
      "label_en_source": "original",
@@ -663,7 +646,7 @@
      "notes": []
     },
     {
-     "id": "r28",
+     "id": "r27",
      "label": "Retirement benefit asset",
      "label_en": "Retirement benefit asset",
      "label_en_source": "original",
@@ -678,7 +661,7 @@
      "notes": []
     },
     {
-     "id": "r29",
+     "id": "r28",
      "label": "Deferred tax assets",
      "label_en": "Deferred tax assets",
      "label_en_source": "original",
@@ -693,7 +676,7 @@
      "notes": []
     },
     {
-     "id": "r30",
+     "id": "r29",
      "label": "Other",
      "label_en": "Other",
      "label_en_source": "original",
@@ -708,7 +691,7 @@
      "notes": []
     },
     {
-     "id": "r31",
+     "id": "r30",
      "label": "Allowance for doubtful accounts",
      "label_en": "Allowance for doubtful accounts",
      "label_en_source": "original",
@@ -723,7 +706,7 @@
      "notes": []
     },
     {
-     "id": "r32",
+     "id": "r31",
      "label": "Total investments and other assets",
      "label_en": "Total investments and other assets",
      "label_en_source": "original",
@@ -738,7 +721,7 @@
      "notes": []
     },
     {
-     "id": "r33",
+     "id": "r32",
      "label": "Total non-current assets",
      "label_en": "Total non-current assets",
      "label_en_source": "original",
@@ -752,7 +735,7 @@
      "notes": []
     },
     {
-     "id": "r34",
+     "id": "r33",
      "label": "Total assets",
      "label_en": "Total assets",
      "label_en_source": "original",
@@ -805,7 +788,45 @@
      "notes": []
     },
     {
-     "id": "r6|2025-03-31",
+     "id": "r4|2025-03-31",
+     "path": [
+      "Assets",
+      "Current assets"
+     ],
+     "label": "Notes and accounts receivable - trade, and contract assets",
+     "label_en": "Notes and accounts receivable - trade, and contract assets",
+     "label_en_source": "original",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 149127,
+     "kind": "value",
+     "raw": "149,127",
+     "unit": "million_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r4|2026-03-31",
+     "path": [
+      "Assets",
+      "Current assets"
+     ],
+     "label": "Notes and accounts receivable - trade, and contract assets",
+     "label_en": "Notes and accounts receivable - trade, and contract assets",
+     "label_en_source": "original",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 156326,
+     "kind": "value",
+     "raw": "156,326",
+     "unit": "million_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r5|2025-03-31",
      "path": [
       "Assets",
       "Current assets"
@@ -824,7 +845,7 @@
      "notes": []
     },
     {
-     "id": "r6|2026-03-31",
+     "id": "r5|2026-03-31",
      "path": [
       "Assets",
       "Current assets"
@@ -843,7 +864,7 @@
      "notes": []
     },
     {
-     "id": "r7|2025-03-31",
+     "id": "r6|2025-03-31",
      "path": [
       "Assets",
       "Current assets"
@@ -862,7 +883,7 @@
      "notes": []
     },
     {
-     "id": "r7|2026-03-31",
+     "id": "r6|2026-03-31",
      "path": [
       "Assets",
       "Current assets"
@@ -881,7 +902,7 @@
      "notes": []
     },
     {
-     "id": "r8|2025-03-31",
+     "id": "r7|2025-03-31",
      "path": [
       "Assets",
       "Current assets"
@@ -900,7 +921,7 @@
      "notes": []
     },
     {
-     "id": "r8|2026-03-31",
+     "id": "r7|2026-03-31",
      "path": [
       "Assets",
       "Current assets"
@@ -919,7 +940,7 @@
      "notes": []
     },
     {
-     "id": "r9|2025-03-31",
+     "id": "r8|2025-03-31",
      "path": [
       "Assets",
       "Current assets"
@@ -938,7 +959,7 @@
      "notes": []
     },
     {
-     "id": "r9|2026-03-31",
+     "id": "r8|2026-03-31",
      "path": [
       "Assets",
       "Current assets"
@@ -957,7 +978,7 @@
      "notes": []
     },
     {
-     "id": "r10|2025-03-31",
+     "id": "r9|2025-03-31",
      "path": [
       "Assets",
       "Current assets"
@@ -976,7 +997,7 @@
      "notes": []
     },
     {
-     "id": "r10|2026-03-31",
+     "id": "r9|2026-03-31",
      "path": [
       "Assets",
       "Current assets"
@@ -995,7 +1016,7 @@
      "notes": []
     },
     {
-     "id": "r11|2025-03-31",
+     "id": "r10|2025-03-31",
      "path": [
       "Assets",
       "Current assets"
@@ -1014,7 +1035,7 @@
      "notes": []
     },
     {
-     "id": "r11|2026-03-31",
+     "id": "r10|2026-03-31",
      "path": [
       "Assets",
       "Current assets"
@@ -1033,7 +1054,7 @@
      "notes": []
     },
     {
-     "id": "r14|2025-03-31",
+     "id": "r13|2025-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1055,7 +1076,7 @@
      ]
     },
     {
-     "id": "r14|2026-03-31",
+     "id": "r13|2026-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1077,7 +1098,7 @@
      ]
     },
     {
-     "id": "r15|2025-03-31",
+     "id": "r14|2025-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1099,7 +1120,7 @@
      ]
     },
     {
-     "id": "r15|2026-03-31",
+     "id": "r14|2026-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1121,7 +1142,7 @@
      ]
     },
     {
-     "id": "r16|2025-03-31",
+     "id": "r15|2025-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1141,7 +1162,7 @@
      "notes": []
     },
     {
-     "id": "r16|2026-03-31",
+     "id": "r15|2026-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1161,7 +1182,7 @@
      "notes": []
     },
     {
-     "id": "r17|2025-03-31",
+     "id": "r16|2025-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1183,7 +1204,7 @@
      ]
     },
     {
-     "id": "r17|2026-03-31",
+     "id": "r16|2026-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1205,7 +1226,7 @@
      ]
     },
     {
-     "id": "r18|2025-03-31",
+     "id": "r17|2025-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1225,7 +1246,7 @@
      "notes": []
     },
     {
-     "id": "r18|2026-03-31",
+     "id": "r17|2026-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1245,7 +1266,7 @@
      "notes": []
     },
     {
-     "id": "r19|2025-03-31",
+     "id": "r18|2025-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1267,7 +1288,7 @@
      ]
     },
     {
-     "id": "r19|2026-03-31",
+     "id": "r18|2026-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1289,7 +1310,7 @@
      ]
     },
     {
-     "id": "r20|2025-03-31",
+     "id": "r19|2025-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1309,7 +1330,7 @@
      "notes": []
     },
     {
-     "id": "r20|2026-03-31",
+     "id": "r19|2026-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1329,7 +1350,7 @@
      "notes": []
     },
     {
-     "id": "r22|2025-03-31",
+     "id": "r21|2025-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1349,7 +1370,7 @@
      "notes": []
     },
     {
-     "id": "r22|2026-03-31",
+     "id": "r21|2026-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1369,7 +1390,7 @@
      "notes": []
     },
     {
-     "id": "r23|2025-03-31",
+     "id": "r22|2025-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1389,7 +1410,7 @@
      "notes": []
     },
     {
-     "id": "r23|2026-03-31",
+     "id": "r22|2026-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1409,7 +1430,7 @@
      "notes": []
     },
     {
-     "id": "r24|2025-03-31",
+     "id": "r23|2025-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1429,7 +1450,7 @@
      "notes": []
     },
     {
-     "id": "r24|2026-03-31",
+     "id": "r23|2026-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1449,7 +1470,7 @@
      "notes": []
     },
     {
-     "id": "r26|2025-03-31",
+     "id": "r25|2025-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1469,7 +1490,7 @@
      "notes": []
     },
     {
-     "id": "r26|2026-03-31",
+     "id": "r25|2026-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1489,7 +1510,7 @@
      "notes": []
     },
     {
-     "id": "r27|2025-03-31",
+     "id": "r26|2025-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1509,7 +1530,7 @@
      "notes": []
     },
     {
-     "id": "r27|2026-03-31",
+     "id": "r26|2026-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1529,7 +1550,7 @@
      "notes": []
     },
     {
-     "id": "r28|2025-03-31",
+     "id": "r27|2025-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1549,7 +1570,7 @@
      "notes": []
     },
     {
-     "id": "r28|2026-03-31",
+     "id": "r27|2026-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1569,7 +1590,7 @@
      "notes": []
     },
     {
-     "id": "r29|2025-03-31",
+     "id": "r28|2025-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1589,7 +1610,7 @@
      "notes": []
     },
     {
-     "id": "r29|2026-03-31",
+     "id": "r28|2026-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1609,7 +1630,7 @@
      "notes": []
     },
     {
-     "id": "r30|2025-03-31",
+     "id": "r29|2025-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1629,7 +1650,7 @@
      "notes": []
     },
     {
-     "id": "r30|2026-03-31",
+     "id": "r29|2026-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1649,7 +1670,7 @@
      "notes": []
     },
     {
-     "id": "r31|2025-03-31",
+     "id": "r30|2025-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1669,7 +1690,7 @@
      "notes": []
     },
     {
-     "id": "r31|2026-03-31",
+     "id": "r30|2026-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1689,7 +1710,7 @@
      "notes": []
     },
     {
-     "id": "r32|2025-03-31",
+     "id": "r31|2025-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1709,7 +1730,7 @@
      "notes": []
     },
     {
-     "id": "r32|2026-03-31",
+     "id": "r31|2026-03-31",
      "path": [
       "Assets",
       "Non-current assets",
@@ -1729,7 +1750,7 @@
      "notes": []
     },
     {
-     "id": "r33|2025-03-31",
+     "id": "r32|2025-03-31",
      "path": [
       "Assets",
       "Non-current assets"
@@ -1748,7 +1769,7 @@
      "notes": []
     },
     {
-     "id": "r33|2026-03-31",
+     "id": "r32|2026-03-31",
      "path": [
       "Assets",
       "Non-current assets"
@@ -1767,7 +1788,7 @@
      "notes": []
     },
     {
-     "id": "r34|2025-03-31",
+     "id": "r33|2025-03-31",
      "path": [
       "Assets"
      ],
@@ -1785,7 +1806,7 @@
      "notes": []
     },
     {
-     "id": "r34|2026-03-31",
+     "id": "r33|2026-03-31",
      "path": [
       "Assets"
      ],
@@ -1808,11 +1829,11 @@
   },
   {
    "source": "data/fresh/vg1mvt19a00h4bsv.pdf",
-   "status": "failed",
-   "rounding": "unstated",
-   "rounding_source": "unstated",
-   "rounding_sentence": "",
-   "rounding_note": "no cut-off sentence found on the first pages",
+   "status": "ok",
+   "rounding": "cut",
+   "rounding_source": "cover_sentence",
+   "rounding_sentence": "rounded down to millions",
+   "rounding_note": "",
    "unit": "million_yen",
    "unit_raw": "Millions of yen",
    "periods": [
@@ -1821,45 +1842,35 @@
    ],
    "issues": [
     {
-     "kind": "possible_wrapped_label",
-     "row_id": "r11",
-     "message": "'officers)': next line at the same level has values; not merged"
+     "kind": "wrapped_label_merged",
+     "row_id": "r10",
+     "message": "'Provision for bonuses for directors (and other officers)': its numbers were printed on a line of their own and were attached to it"
     },
     {
-     "kind": "possible_wrapped_label",
-     "row_id": "r20",
-     "message": "'other officers)': next line at the same level has values; not merged"
-    },
-    {
-     "kind": "ignored_line",
-     "row_id": "",
-     "message": "line without a label ignored (page number?): amounts ['378', '384']"
+     "kind": "wrapped_label_merged",
+     "row_id": "r18",
+     "message": "'Provision for retirement benefits for directors (and other officers)': its numbers were printed on a line of their own and were attached to it"
     },
     {
      "kind": "ignored_line",
      "row_id": "",
-     "message": "line without a label ignored (page number?): amounts ['131', '139']"
-    },
-    {
-     "kind": "ignored_line",
-     "row_id": "",
-     "message": "line without a label ignored (page number?): amounts ['-', '12', '-']"
+     "message": "line without a label ignored: amounts ['-', '12', '-'] look like a page number"
     }
    ],
    "checks": [
     {
      "label": "Total current liabilities",
-     "row_id": "r15",
+     "row_id": "r14",
      "period": "2025-03-31",
-     "expected": 150906,
+     "expected": 151284,
      "printed": 151288,
-     "difference": 382,
-     "bound": 5,
-     "items": 10,
-     "status": "failed",
+     "difference": 4,
+     "bound": 11,
+     "items": 11,
+     "status": "pass",
      "reason": "",
      "row_ids": [
-      "r15",
+      "r14",
       "r3",
       "r4",
       "r5",
@@ -1867,24 +1878,25 @@
       "r7",
       "r8",
       "r9",
+      "r10",
+      "r11",
       "r12",
-      "r13",
-      "r14"
+      "r13"
      ]
     },
     {
      "label": "Total current liabilities",
-     "row_id": "r15",
+     "row_id": "r14",
      "period": "2026-03-31",
-     "expected": 149859,
+     "expected": 150243,
      "printed": 150248,
-     "difference": 389,
-     "bound": 5,
-     "items": 9,
-     "status": "failed",
+     "difference": 5,
+     "bound": 10,
+     "items": 10,
+     "status": "pass",
      "reason": "",
      "row_ids": [
-      "r15",
+      "r14",
       "r3",
       "r4",
       "r5",
@@ -1892,227 +1904,230 @@
       "r7",
       "r8",
       "r9",
+      "r10",
+      "r11",
       "r12",
-      "r13",
-      "r14"
+      "r13"
      ]
     },
     {
      "label": "Total non-current liabilities",
-     "row_id": "r24",
+     "row_id": "r22",
      "period": "2025-03-31",
-     "expected": 22686,
+     "expected": 22817,
      "printed": 22821,
-     "difference": 135,
-     "bound": 3,
-     "items": 5,
-     "status": "failed",
+     "difference": 4,
+     "bound": 6,
+     "items": 6,
+     "status": "pass",
      "reason": "",
      "row_ids": [
-      "r24",
+      "r22",
+      "r16",
       "r17",
       "r18",
-      "r21",
-      "r22",
-      "r23"
+      "r19",
+      "r20",
+      "r21"
      ]
     },
     {
      "label": "Total non-current liabilities",
-     "row_id": "r24",
+     "row_id": "r22",
      "period": "2026-03-31",
-     "expected": 22424,
+     "expected": 22563,
      "printed": 22563,
-     "difference": 139,
-     "bound": 2,
-     "items": 3,
-     "status": "failed",
+     "difference": 0,
+     "bound": 4,
+     "items": 4,
+     "status": "pass",
      "reason": "",
      "row_ids": [
-      "r24",
+      "r22",
+      "r16",
       "r17",
       "r18",
-      "r21",
-      "r22",
-      "r23"
+      "r19",
+      "r20",
+      "r21"
      ]
     },
     {
      "label": "Total liabilities",
-     "row_id": "r25",
+     "row_id": "r23",
      "period": "2025-03-31",
      "expected": 174109,
      "printed": 174110,
      "difference": 1,
-     "bound": 1,
+     "bound": 2,
      "items": 2,
      "status": "pass",
      "reason": "",
      "row_ids": [
-      "r25",
-      "r15",
-      "r24"
+      "r23",
+      "r14",
+      "r22"
      ]
     },
     {
      "label": "Total liabilities",
-     "row_id": "r25",
+     "row_id": "r23",
      "period": "2026-03-31",
      "expected": 172811,
      "printed": 172811,
      "difference": 0,
-     "bound": 1,
+     "bound": 2,
      "items": 2,
      "status": "pass",
      "reason": "",
      "row_ids": [
-      "r25",
-      "r15",
-      "r24"
+      "r23",
+      "r14",
+      "r22"
      ]
     },
     {
      "label": "Total shareholders’ equity",
-     "row_id": "r32",
+     "row_id": "r30",
      "period": "2025-03-31",
      "expected": 447162,
      "printed": 447163,
      "difference": 1,
-     "bound": 2,
+     "bound": 4,
      "items": 4,
      "status": "pass",
      "reason": "",
      "row_ids": [
-      "r32",
-      "r28",
-      "r29",
       "r30",
-      "r31"
+      "r26",
+      "r27",
+      "r28",
+      "r29"
      ]
     },
     {
      "label": "Total shareholders’ equity",
-     "row_id": "r32",
+     "row_id": "r30",
      "period": "2026-03-31",
      "expected": 488107,
      "printed": 488108,
      "difference": 1,
-     "bound": 2,
+     "bound": 4,
      "items": 4,
      "status": "pass",
      "reason": "",
      "row_ids": [
-      "r32",
-      "r28",
-      "r29",
       "r30",
-      "r31"
+      "r26",
+      "r27",
+      "r28",
+      "r29"
      ]
     },
     {
      "label": "Total accumulated other comprehensive income",
-     "row_id": "r37",
+     "row_id": "r35",
      "period": "2025-03-31",
      "expected": 50894,
      "printed": 50895,
      "difference": 1,
-     "bound": 2,
+     "bound": 3,
      "items": 3,
      "status": "pass",
      "reason": "",
      "row_ids": [
-      "r37",
-      "r34",
       "r35",
-      "r36"
+      "r32",
+      "r33",
+      "r34"
      ]
     },
     {
      "label": "Total accumulated other comprehensive income",
-     "row_id": "r37",
+     "row_id": "r35",
      "period": "2026-03-31",
      "expected": 77047,
      "printed": 77048,
      "difference": 1,
-     "bound": 2,
+     "bound": 3,
+     "items": 3,
+     "status": "pass",
+     "reason": "",
+     "row_ids": [
+      "r35",
+      "r32",
+      "r33",
+      "r34"
+     ]
+    },
+    {
+     "label": "Total net assets",
+     "row_id": "r37",
+     "period": "2025-03-31",
+     "expected": 498065,
+     "printed": 498066,
+     "difference": 1,
+     "bound": 3,
      "items": 3,
      "status": "pass",
      "reason": "",
      "row_ids": [
       "r37",
-      "r34",
+      "r30",
       "r35",
       "r36"
      ]
     },
     {
      "label": "Total net assets",
-     "row_id": "r39",
-     "period": "2025-03-31",
-     "expected": 498065,
-     "printed": 498066,
-     "difference": 1,
-     "bound": 2,
-     "items": 3,
-     "status": "pass",
-     "reason": "",
-     "row_ids": [
-      "r39",
-      "r32",
-      "r37",
-      "r38"
-     ]
-    },
-    {
-     "label": "Total net assets",
-     "row_id": "r39",
+     "row_id": "r37",
      "period": "2026-03-31",
      "expected": 565165,
      "printed": 565166,
      "difference": 1,
-     "bound": 2,
+     "bound": 3,
      "items": 3,
      "status": "pass",
      "reason": "",
      "row_ids": [
-      "r39",
-      "r32",
       "r37",
-      "r38"
+      "r30",
+      "r35",
+      "r36"
      ]
     },
     {
      "label": "Total liabilities and net assets",
-     "row_id": "r40",
+     "row_id": "r38",
      "period": "2025-03-31",
      "expected": 672176,
      "printed": 672177,
      "difference": 1,
-     "bound": 1,
+     "bound": 2,
      "items": 2,
      "status": "pass",
      "reason": "",
      "row_ids": [
-      "r40",
-      "r25",
-      "r39"
+      "r38",
+      "r23",
+      "r37"
      ]
     },
     {
      "label": "Total liabilities and net assets",
-     "row_id": "r40",
+     "row_id": "r38",
      "period": "2026-03-31",
      "expected": 737977,
      "printed": 737978,
      "difference": 1,
-     "bound": 1,
+     "bound": 2,
      "items": 2,
      "status": "pass",
      "reason": "",
      "row_ids": [
-      "r40",
-      "r25",
-      "r39"
+      "r38",
+      "r23",
+      "r37"
      ]
     }
    ],
@@ -2241,10 +2256,10 @@
     },
     {
      "id": "r10",
-     "label": "Provision for bonuses for directors (and other",
-     "label_en": "Provision for bonuses for directors (and other",
+     "label": "Provision for bonuses for directors (and other officers)",
+     "label_en": "Provision for bonuses for directors (and other officers)",
      "label_en_source": "original",
-     "role": "header",
+     "role": "item",
      "level": 2,
      "parent": null,
      "path": [
@@ -2255,20 +2270,6 @@
     },
     {
      "id": "r11",
-     "label": "officers)",
-     "label_en": "officers)",
-     "label_en_source": "original",
-     "role": "header",
-     "level": 2,
-     "parent": null,
-     "path": [
-      "Liabilities",
-      "Current liabilities"
-     ],
-     "notes": []
-    },
-    {
-     "id": "r12",
      "label": "Provision for share awards",
      "label_en": "Provision for share awards",
      "label_en_source": "original",
@@ -2282,7 +2283,7 @@
      "notes": []
     },
     {
-     "id": "r13",
+     "id": "r12",
      "label": "Provision for recall",
      "label_en": "Provision for recall",
      "label_en_source": "original",
@@ -2296,7 +2297,7 @@
      "notes": []
     },
     {
-     "id": "r14",
+     "id": "r13",
      "label": "Other",
      "label_en": "Other",
      "label_en_source": "original",
@@ -2310,7 +2311,7 @@
      "notes": []
     },
     {
-     "id": "r15",
+     "id": "r14",
      "label": "Total current liabilities",
      "label_en": "Total current liabilities",
      "label_en_source": "original",
@@ -2324,7 +2325,7 @@
      "notes": []
     },
     {
-     "id": "r16",
+     "id": "r15",
      "label": "Non-current liabilities",
      "label_en": "Non-current liabilities",
      "label_en_source": "original",
@@ -2337,7 +2338,7 @@
      "notes": []
     },
     {
-     "id": "r17",
+     "id": "r16",
      "label": "Long-term borrowings",
      "label_en": "Long-term borrowings",
      "label_en_source": "original",
@@ -2351,7 +2352,7 @@
      "notes": []
     },
     {
-     "id": "r18",
+     "id": "r17",
      "label": "Lease liabilities",
      "label_en": "Lease liabilities",
      "label_en_source": "original",
@@ -2365,35 +2366,21 @@
      "notes": []
     },
     {
+     "id": "r18",
+     "label": "Provision for retirement benefits for directors (and other officers)",
+     "label_en": "Provision for retirement benefits for directors (and other officers)",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Liabilities",
+      "Non-current liabilities"
+     ],
+     "notes": []
+    },
+    {
      "id": "r19",
-     "label": "Provision for retirement benefits for directors (and",
-     "label_en": "Provision for retirement benefits for directors (and",
-     "label_en_source": "original",
-     "role": "header",
-     "level": 2,
-     "parent": null,
-     "path": [
-      "Liabilities",
-      "Non-current liabilities"
-     ],
-     "notes": []
-    },
-    {
-     "id": "r20",
-     "label": "other officers)",
-     "label_en": "other officers)",
-     "label_en_source": "original",
-     "role": "header",
-     "level": 2,
-     "parent": null,
-     "path": [
-      "Liabilities",
-      "Non-current liabilities"
-     ],
-     "notes": []
-    },
-    {
-     "id": "r21",
      "label": "Retirement benefit liability",
      "label_en": "Retirement benefit liability",
      "label_en_source": "original",
@@ -2407,7 +2394,7 @@
      "notes": []
     },
     {
-     "id": "r22",
+     "id": "r20",
      "label": "Provision for share awards",
      "label_en": "Provision for share awards",
      "label_en_source": "original",
@@ -2421,7 +2408,7 @@
      "notes": []
     },
     {
-     "id": "r23",
+     "id": "r21",
      "label": "Other",
      "label_en": "Other",
      "label_en_source": "original",
@@ -2435,7 +2422,7 @@
      "notes": []
     },
     {
-     "id": "r24",
+     "id": "r22",
      "label": "Total non-current liabilities",
      "label_en": "Total non-current liabilities",
      "label_en_source": "original",
@@ -2449,7 +2436,7 @@
      "notes": []
     },
     {
-     "id": "r25",
+     "id": "r23",
      "label": "Total liabilities",
      "label_en": "Total liabilities",
      "label_en_source": "original",
@@ -2462,7 +2449,7 @@
      "notes": []
     },
     {
-     "id": "r26",
+     "id": "r24",
      "label": "Net assets",
      "label_en": "Net assets",
      "label_en_source": "original",
@@ -2473,7 +2460,7 @@
      "notes": []
     },
     {
-     "id": "r27",
+     "id": "r25",
      "label": "Shareholders’ equity",
      "label_en": "Shareholders’ equity",
      "label_en_source": "original",
@@ -2486,7 +2473,7 @@
      "notes": []
     },
     {
-     "id": "r28",
+     "id": "r26",
      "label": "Share capital",
      "label_en": "Share capital",
      "label_en_source": "original",
@@ -2500,7 +2487,7 @@
      "notes": []
     },
     {
-     "id": "r29",
+     "id": "r27",
      "label": "Capital surplus",
      "label_en": "Capital surplus",
      "label_en_source": "original",
@@ -2514,7 +2501,7 @@
      "notes": []
     },
     {
-     "id": "r30",
+     "id": "r28",
      "label": "Retained earnings",
      "label_en": "Retained earnings",
      "label_en_source": "original",
@@ -2528,7 +2515,7 @@
      "notes": []
     },
     {
-     "id": "r31",
+     "id": "r29",
      "label": "Treasury shares",
      "label_en": "Treasury shares",
      "label_en_source": "original",
@@ -2542,7 +2529,7 @@
      "notes": []
     },
     {
-     "id": "r32",
+     "id": "r30",
      "label": "Total shareholders’ equity",
      "label_en": "Total shareholders’ equity",
      "label_en_source": "original",
@@ -2556,7 +2543,7 @@
      "notes": []
     },
     {
-     "id": "r33",
+     "id": "r31",
      "label": "Accumulated other comprehensive income",
      "label_en": "Accumulated other comprehensive income",
      "label_en_source": "original",
@@ -2569,7 +2556,7 @@
      "notes": []
     },
     {
-     "id": "r34",
+     "id": "r32",
      "label": "Valuation difference on available-for-sale securities",
      "label_en": "Valuation difference on available-for-sale securities",
      "label_en_source": "original",
@@ -2583,7 +2570,7 @@
      "notes": []
     },
     {
-     "id": "r35",
+     "id": "r33",
      "label": "Foreign currency translation adjustment",
      "label_en": "Foreign currency translation adjustment",
      "label_en_source": "original",
@@ -2597,7 +2584,7 @@
      "notes": []
     },
     {
-     "id": "r36",
+     "id": "r34",
      "label": "Remeasurements of defined benefit plans",
      "label_en": "Remeasurements of defined benefit plans",
      "label_en_source": "original",
@@ -2611,7 +2598,7 @@
      "notes": []
     },
     {
-     "id": "r37",
+     "id": "r35",
      "label": "Total accumulated other comprehensive income",
      "label_en": "Total accumulated other comprehensive income",
      "label_en_source": "original",
@@ -2625,7 +2612,7 @@
      "notes": []
     },
     {
-     "id": "r38",
+     "id": "r36",
      "label": "Non-controlling interests",
      "label_en": "Non-controlling interests",
      "label_en_source": "original",
@@ -2638,7 +2625,7 @@
      "notes": []
     },
     {
-     "id": "r39",
+     "id": "r37",
      "label": "Total net assets",
      "label_en": "Total net assets",
      "label_en_source": "original",
@@ -2651,7 +2638,7 @@
      "notes": []
     },
     {
-     "id": "r40",
+     "id": "r38",
      "label": "Total liabilities and net assets",
      "label_en": "Total liabilities and net assets",
      "label_en_source": "original",
@@ -2930,7 +2917,45 @@
      "notes": []
     },
     {
-     "id": "r12|2025-03-31",
+     "id": "r10|2025-03-31",
+     "path": [
+      "Liabilities",
+      "Current liabilities"
+     ],
+     "label": "Provision for bonuses for directors (and other officers)",
+     "label_en": "Provision for bonuses for directors (and other officers)",
+     "label_en_source": "original",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 378,
+     "kind": "value",
+     "raw": "378",
+     "unit": "million_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r10|2026-03-31",
+     "path": [
+      "Liabilities",
+      "Current liabilities"
+     ],
+     "label": "Provision for bonuses for directors (and other officers)",
+     "label_en": "Provision for bonuses for directors (and other officers)",
+     "label_en_source": "original",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 384,
+     "kind": "value",
+     "raw": "384",
+     "unit": "million_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r11|2025-03-31",
      "path": [
       "Liabilities",
       "Current liabilities"
@@ -2949,7 +2974,7 @@
      "notes": []
     },
     {
-     "id": "r12|2026-03-31",
+     "id": "r11|2026-03-31",
      "path": [
       "Liabilities",
       "Current liabilities"
@@ -2968,7 +2993,7 @@
      "notes": []
     },
     {
-     "id": "r13|2025-03-31",
+     "id": "r12|2025-03-31",
      "path": [
       "Liabilities",
       "Current liabilities"
@@ -2987,7 +3012,7 @@
      "notes": []
     },
     {
-     "id": "r13|2026-03-31",
+     "id": "r12|2026-03-31",
      "path": [
       "Liabilities",
       "Current liabilities"
@@ -3006,7 +3031,7 @@
      "notes": []
     },
     {
-     "id": "r14|2025-03-31",
+     "id": "r13|2025-03-31",
      "path": [
       "Liabilities",
       "Current liabilities"
@@ -3025,7 +3050,7 @@
      "notes": []
     },
     {
-     "id": "r14|2026-03-31",
+     "id": "r13|2026-03-31",
      "path": [
       "Liabilities",
       "Current liabilities"
@@ -3044,7 +3069,7 @@
      "notes": []
     },
     {
-     "id": "r15|2025-03-31",
+     "id": "r14|2025-03-31",
      "path": [
       "Liabilities",
       "Current liabilities"
@@ -3063,7 +3088,7 @@
      "notes": []
     },
     {
-     "id": "r15|2026-03-31",
+     "id": "r14|2026-03-31",
      "path": [
       "Liabilities",
       "Current liabilities"
@@ -3082,7 +3107,7 @@
      "notes": []
     },
     {
-     "id": "r17|2025-03-31",
+     "id": "r16|2025-03-31",
      "path": [
       "Liabilities",
       "Non-current liabilities"
@@ -3101,7 +3126,7 @@
      "notes": []
     },
     {
-     "id": "r17|2026-03-31",
+     "id": "r16|2026-03-31",
      "path": [
       "Liabilities",
       "Non-current liabilities"
@@ -3120,7 +3145,7 @@
      "notes": []
     },
     {
-     "id": "r18|2025-03-31",
+     "id": "r17|2025-03-31",
      "path": [
       "Liabilities",
       "Non-current liabilities"
@@ -3139,7 +3164,7 @@
      "notes": []
     },
     {
-     "id": "r18|2026-03-31",
+     "id": "r17|2026-03-31",
      "path": [
       "Liabilities",
       "Non-current liabilities"
@@ -3158,7 +3183,45 @@
      "notes": []
     },
     {
-     "id": "r21|2025-03-31",
+     "id": "r18|2025-03-31",
+     "path": [
+      "Liabilities",
+      "Non-current liabilities"
+     ],
+     "label": "Provision for retirement benefits for directors (and other officers)",
+     "label_en": "Provision for retirement benefits for directors (and other officers)",
+     "label_en_source": "original",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 131,
+     "kind": "value",
+     "raw": "131",
+     "unit": "million_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r18|2026-03-31",
+     "path": [
+      "Liabilities",
+      "Non-current liabilities"
+     ],
+     "label": "Provision for retirement benefits for directors (and other officers)",
+     "label_en": "Provision for retirement benefits for directors (and other officers)",
+     "label_en_source": "original",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 139,
+     "kind": "value",
+     "raw": "139",
+     "unit": "million_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r19|2025-03-31",
      "path": [
       "Liabilities",
       "Non-current liabilities"
@@ -3177,7 +3240,7 @@
      "notes": []
     },
     {
-     "id": "r21|2026-03-31",
+     "id": "r19|2026-03-31",
      "path": [
       "Liabilities",
       "Non-current liabilities"
@@ -3196,7 +3259,7 @@
      "notes": []
     },
     {
-     "id": "r22|2025-03-31",
+     "id": "r20|2025-03-31",
      "path": [
       "Liabilities",
       "Non-current liabilities"
@@ -3215,7 +3278,7 @@
      "notes": []
     },
     {
-     "id": "r22|2026-03-31",
+     "id": "r20|2026-03-31",
      "path": [
       "Liabilities",
       "Non-current liabilities"
@@ -3234,7 +3297,7 @@
      "notes": []
     },
     {
-     "id": "r23|2025-03-31",
+     "id": "r21|2025-03-31",
      "path": [
       "Liabilities",
       "Non-current liabilities"
@@ -3253,7 +3316,7 @@
      "notes": []
     },
     {
-     "id": "r23|2026-03-31",
+     "id": "r21|2026-03-31",
      "path": [
       "Liabilities",
       "Non-current liabilities"
@@ -3272,7 +3335,7 @@
      "notes": []
     },
     {
-     "id": "r24|2025-03-31",
+     "id": "r22|2025-03-31",
      "path": [
       "Liabilities",
       "Non-current liabilities"
@@ -3291,7 +3354,7 @@
      "notes": []
     },
     {
-     "id": "r24|2026-03-31",
+     "id": "r22|2026-03-31",
      "path": [
       "Liabilities",
       "Non-current liabilities"
@@ -3310,7 +3373,7 @@
      "notes": []
     },
     {
-     "id": "r25|2025-03-31",
+     "id": "r23|2025-03-31",
      "path": [
       "Liabilities"
      ],
@@ -3328,7 +3391,7 @@
      "notes": []
     },
     {
-     "id": "r25|2026-03-31",
+     "id": "r23|2026-03-31",
      "path": [
       "Liabilities"
      ],
@@ -3346,83 +3409,83 @@
      "notes": []
     },
     {
+     "id": "r26|2025-03-31",
+     "path": [
+      "Net assets",
+      "Shareholders’ equity"
+     ],
+     "label": "Share capital",
+     "label_en": "Share capital",
+     "label_en_source": "original",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 26648,
+     "kind": "value",
+     "raw": "26,648",
+     "unit": "million_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r26|2026-03-31",
+     "path": [
+      "Net assets",
+      "Shareholders’ equity"
+     ],
+     "label": "Share capital",
+     "label_en": "Share capital",
+     "label_en_source": "original",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 26648,
+     "kind": "value",
+     "raw": "26,648",
+     "unit": "million_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r27|2025-03-31",
+     "path": [
+      "Net assets",
+      "Shareholders’ equity"
+     ],
+     "label": "Capital surplus",
+     "label_en": "Capital surplus",
+     "label_en_source": "original",
+     "role": "item",
+     "parent": null,
+     "period": "2025-03-31",
+     "value": 34910,
+     "kind": "value",
+     "raw": "34,910",
+     "unit": "million_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
+     "id": "r27|2026-03-31",
+     "path": [
+      "Net assets",
+      "Shareholders’ equity"
+     ],
+     "label": "Capital surplus",
+     "label_en": "Capital surplus",
+     "label_en_source": "original",
+     "role": "item",
+     "parent": null,
+     "period": "2026-03-31",
+     "value": 34910,
+     "kind": "value",
+     "raw": "34,910",
+     "unit": "million_yen",
+     "warnings": [],
+     "notes": []
+    },
+    {
      "id": "r28|2025-03-31",
-     "path": [
-      "Net assets",
-      "Shareholders’ equity"
-     ],
-     "label": "Share capital",
-     "label_en": "Share capital",
-     "label_en_source": "original",
-     "role": "item",
-     "parent": null,
-     "period": "2025-03-31",
-     "value": 26648,
-     "kind": "value",
-     "raw": "26,648",
-     "unit": "million_yen",
-     "warnings": [],
-     "notes": []
-    },
-    {
-     "id": "r28|2026-03-31",
-     "path": [
-      "Net assets",
-      "Shareholders’ equity"
-     ],
-     "label": "Share capital",
-     "label_en": "Share capital",
-     "label_en_source": "original",
-     "role": "item",
-     "parent": null,
-     "period": "2026-03-31",
-     "value": 26648,
-     "kind": "value",
-     "raw": "26,648",
-     "unit": "million_yen",
-     "warnings": [],
-     "notes": []
-    },
-    {
-     "id": "r29|2025-03-31",
-     "path": [
-      "Net assets",
-      "Shareholders’ equity"
-     ],
-     "label": "Capital surplus",
-     "label_en": "Capital surplus",
-     "label_en_source": "original",
-     "role": "item",
-     "parent": null,
-     "period": "2025-03-31",
-     "value": 34910,
-     "kind": "value",
-     "raw": "34,910",
-     "unit": "million_yen",
-     "warnings": [],
-     "notes": []
-    },
-    {
-     "id": "r29|2026-03-31",
-     "path": [
-      "Net assets",
-      "Shareholders’ equity"
-     ],
-     "label": "Capital surplus",
-     "label_en": "Capital surplus",
-     "label_en_source": "original",
-     "role": "item",
-     "parent": null,
-     "period": "2026-03-31",
-     "value": 34910,
-     "kind": "value",
-     "raw": "34,910",
-     "unit": "million_yen",
-     "warnings": [],
-     "notes": []
-    },
-    {
-     "id": "r30|2025-03-31",
      "path": [
       "Net assets",
       "Shareholders’ equity"
@@ -3441,7 +3504,7 @@
      "notes": []
     },
     {
-     "id": "r30|2026-03-31",
+     "id": "r28|2026-03-31",
      "path": [
       "Net assets",
       "Shareholders’ equity"
@@ -3460,7 +3523,7 @@
      "notes": []
     },
     {
-     "id": "r31|2025-03-31",
+     "id": "r29|2025-03-31",
      "path": [
       "Net assets",
       "Shareholders’ equity"
@@ -3479,7 +3542,7 @@
      "notes": []
     },
     {
-     "id": "r31|2026-03-31",
+     "id": "r29|2026-03-31",
      "path": [
       "Net assets",
       "Shareholders’ equity"
@@ -3498,7 +3561,7 @@
      "notes": []
     },
     {
-     "id": "r32|2025-03-31",
+     "id": "r30|2025-03-31",
      "path": [
       "Net assets",
       "Shareholders’ equity"
@@ -3517,7 +3580,7 @@
      "notes": []
     },
     {
-     "id": "r32|2026-03-31",
+     "id": "r30|2026-03-31",
      "path": [
       "Net assets",
       "Shareholders’ equity"
@@ -3536,7 +3599,7 @@
      "notes": []
     },
     {
-     "id": "r34|2025-03-31",
+     "id": "r32|2025-03-31",
      "path": [
       "Net assets",
       "Accumulated other comprehensive income"
@@ -3555,7 +3618,7 @@
      "notes": []
     },
     {
-     "id": "r34|2026-03-31",
+     "id": "r32|2026-03-31",
      "path": [
       "Net assets",
       "Accumulated other comprehensive income"
@@ -3574,7 +3637,7 @@
      "notes": []
     },
     {
-     "id": "r35|2025-03-31",
+     "id": "r33|2025-03-31",
      "path": [
       "Net assets",
       "Accumulated other comprehensive income"
@@ -3593,7 +3656,7 @@
      "notes": []
     },
     {
-     "id": "r35|2026-03-31",
+     "id": "r33|2026-03-31",
      "path": [
       "Net assets",
       "Accumulated other comprehensive income"
@@ -3612,7 +3675,7 @@
      "notes": []
     },
     {
-     "id": "r36|2025-03-31",
+     "id": "r34|2025-03-31",
      "path": [
       "Net assets",
       "Accumulated other comprehensive income"
@@ -3631,7 +3694,7 @@
      "notes": []
     },
     {
-     "id": "r36|2026-03-31",
+     "id": "r34|2026-03-31",
      "path": [
       "Net assets",
       "Accumulated other comprehensive income"
@@ -3650,7 +3713,7 @@
      "notes": []
     },
     {
-     "id": "r37|2025-03-31",
+     "id": "r35|2025-03-31",
      "path": [
       "Net assets",
       "Accumulated other comprehensive income"
@@ -3669,7 +3732,7 @@
      "notes": []
     },
     {
-     "id": "r37|2026-03-31",
+     "id": "r35|2026-03-31",
      "path": [
       "Net assets",
       "Accumulated other comprehensive income"
@@ -3688,7 +3751,7 @@
      "notes": []
     },
     {
-     "id": "r38|2025-03-31",
+     "id": "r36|2025-03-31",
      "path": [
       "Net assets"
      ],
@@ -3706,7 +3769,7 @@
      "notes": []
     },
     {
-     "id": "r38|2026-03-31",
+     "id": "r36|2026-03-31",
      "path": [
       "Net assets"
      ],
@@ -3724,7 +3787,7 @@
      "notes": []
     },
     {
-     "id": "r39|2025-03-31",
+     "id": "r37|2025-03-31",
      "path": [
       "Net assets"
      ],
@@ -3742,7 +3805,7 @@
      "notes": []
     },
     {
-     "id": "r39|2026-03-31",
+     "id": "r37|2026-03-31",
      "path": [
       "Net assets"
      ],
@@ -3760,7 +3823,7 @@
      "notes": []
     },
     {
-     "id": "r40|2025-03-31",
+     "id": "r38|2025-03-31",
      "path": [],
      "label": "Total liabilities and net assets",
      "label_en": "Total liabilities and net assets",
@@ -3776,7 +3839,7 @@
      "notes": []
     },
     {
-     "id": "r40|2026-03-31",
+     "id": "r38|2026-03-31",
      "path": [],
      "label": "Total liabilities and net assets",
      "label_en": "Total liabilities and net assets",
@@ -3810,11 +3873,11 @@
    "rows": [
     {
      "page": 15,
-     "row_id": "r34"
+     "row_id": "r33"
     },
     {
      "page": 16,
-     "row_id": "r40"
+     "row_id": "r38"
     }
    ]
   },
@@ -3824,22 +3887,22 @@
    "expected": 672176,
    "printed": 672177,
    "difference": 1,
-   "bound": 1,
+   "bound": 2,
    "items": 2,
    "status": "pass",
    "reason": "",
    "rows": [
     {
      "page": 16,
-     "row_id": "r40"
+     "row_id": "r38"
     },
     {
      "page": 16,
-     "row_id": "r25"
+     "row_id": "r23"
     },
     {
      "page": 16,
-     "row_id": "r39"
+     "row_id": "r37"
     }
    ]
   },
@@ -3856,11 +3919,11 @@
    "rows": [
     {
      "page": 15,
-     "row_id": "r34"
+     "row_id": "r33"
     },
     {
      "page": 16,
-     "row_id": "r40"
+     "row_id": "r38"
     }
    ]
   },
@@ -3870,22 +3933,22 @@
    "expected": 737977,
    "printed": 737978,
    "difference": 1,
-   "bound": 1,
+   "bound": 2,
    "items": 2,
    "status": "pass",
    "reason": "",
    "rows": [
     {
      "page": 16,
-     "row_id": "r40"
+     "row_id": "r38"
     },
     {
      "page": 16,
-     "row_id": "r25"
+     "row_id": "r23"
     },
     {
      "page": 16,
-     "row_id": "r39"
+     "row_id": "r37"
     }
    ]
   }

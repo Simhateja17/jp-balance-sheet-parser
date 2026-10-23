@@ -23,7 +23,7 @@
     {
      "kind": "ignored_line",
      "row_id": "",
-     "message": "line without a label ignored (page number?): amounts ['-', '5', '-']"
+     "message": "line without a label ignored: amounts ['-', '5', '-'] look like a page number"
     }
    ],
    "checks": [
@@ -2544,7 +2544,7 @@
     {
      "kind": "ignored_line",
      "row_id": "",
-     "message": "line without a label ignored (page number?): amounts ['-', '6', '-']"
+     "message": "line without a label ignored: amounts ['-', '6', '-'] look like a page number"
     }
    ],
    "checks": [

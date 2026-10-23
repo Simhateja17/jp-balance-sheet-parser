@@ -23,7 +23,7 @@
     {
      "kind": "ignored_line",
      "row_id": "",
-     "message": "line without a label ignored (page number?): amounts ['4']"
+     "message": "line without a label ignored: amounts ['4'] look like a page number"
     }
    ],
    "checks": [
@@ -37,7 +37,13 @@
      "bound": 2,
      "items": 3,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r6",
+      "r3",
+      "r4",
+      "r5"
+     ]
     },
     {
      "label": "流動資産合計",
@@ -49,7 +55,13 @@
      "bound": 2,
      "items": 3,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r6",
+      "r3",
+      "r4",
+      "r5"
+     ]
     },
     {
      "label": "有形固定資産合計",
@@ -61,7 +73,14 @@
      "bound": 2,
      "items": 4,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r13",
+      "r9",
+      "r10",
+      "r11",
+      "r12"
+     ]
     },
     {
      "label": "有形固定資産合計",
@@ -73,7 +92,14 @@
      "bound": 2,
      "items": 4,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r13",
+      "r9",
+      "r10",
+      "r11",
+      "r12"
+     ]
     },
     {
      "label": "無形固定資産合計",
@@ -85,7 +111,12 @@
      "bound": 1,
      "items": 2,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r17",
+      "r15",
+      "r16"
+     ]
     },
     {
      "label": "無形固定資産合計",
@@ -97,7 +128,12 @@
      "bound": 1,
      "items": 2,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r17",
+      "r15",
+      "r16"
+     ]
     },
     {
      "label": "投資その他の資産合計",
@@ -109,7 +145,14 @@
      "bound": 2,
      "items": 4,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r23",
+      "r19",
+      "r20",
+      "r21",
+      "r22"
+     ]
     },
     {
      "label": "投資その他の資産合計",
@@ -121,7 +164,14 @@
      "bound": 2,
      "items": 4,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r23",
+      "r19",
+      "r20",
+      "r21",
+      "r22"
+     ]
     },
     {
      "label": "固定資産合計",
@@ -133,7 +183,13 @@
      "bound": 2,
      "items": 3,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r24",
+      "r13",
+      "r17",
+      "r23"
+     ]
     },
     {
      "label": "固定資産合計",
@@ -145,7 +201,13 @@
      "bound": 2,
      "items": 3,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r24",
+      "r13",
+      "r17",
+      "r23"
+     ]
     },
     {
      "label": "資産合計",
@@ -157,7 +219,12 @@
      "bound": 1,
      "items": 2,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r25",
+      "r6",
+      "r24"
+     ]
     },
     {
      "label": "資産合計",
@@ -169,7 +236,12 @@
      "bound": 1,
      "items": 2,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r25",
+      "r6",
+      "r24"
+     ]
     }
    ],
    "rows": [
@@ -1319,7 +1391,7 @@
     {
      "kind": "ignored_line",
      "row_id": "",
-     "message": "line without a label ignored (page number?): amounts ['5']"
+     "message": "line without a label ignored: amounts ['5'] look like a page number"
     }
    ],
    "checks": [
@@ -1333,7 +1405,17 @@
      "bound": 4,
      "items": 7,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r10",
+      "r3",
+      "r4",
+      "r5",
+      "r6",
+      "r7",
+      "r8",
+      "r9"
+     ]
     },
     {
      "label": "流動負債合計",
@@ -1345,7 +1427,17 @@
      "bound": 4,
      "items": 7,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r10",
+      "r3",
+      "r4",
+      "r5",
+      "r6",
+      "r7",
+      "r8",
+      "r9"
+     ]
     },
     {
      "label": "固定負債合計",
@@ -1357,7 +1449,12 @@
      "bound": 1,
      "items": 2,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r14",
+      "r12",
+      "r13"
+     ]
     },
     {
      "label": "固定負債合計",
@@ -1369,7 +1466,12 @@
      "bound": 1,
      "items": 2,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r14",
+      "r12",
+      "r13"
+     ]
     },
     {
      "label": "負債合計",
@@ -1381,7 +1483,12 @@
      "bound": 1,
      "items": 2,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r15",
+      "r10",
+      "r14"
+     ]
     },
     {
      "label": "負債合計",
@@ -1393,7 +1500,12 @@
      "bound": 1,
      "items": 2,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r15",
+      "r10",
+      "r14"
+     ]
     },
     {
      "label": "株主資本合計",
@@ -1405,7 +1517,14 @@
      "bound": 2,
      "items": 4,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r22",
+      "r18",
+      "r19",
+      "r20",
+      "r21"
+     ]
     },
     {
      "label": "株主資本合計",
@@ -1417,7 +1536,14 @@
      "bound": 2,
      "items": 4,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r22",
+      "r18",
+      "r19",
+      "r20",
+      "r21"
+     ]
     },
     {
      "label": "その他の包括利益累計額合計",
@@ -1429,7 +1555,11 @@
      "bound": 1,
      "items": 1,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r25",
+      "r24"
+     ]
     },
     {
      "label": "その他の包括利益累計額合計",
@@ -1441,7 +1571,11 @@
      "bound": 1,
      "items": 1,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r25",
+      "r24"
+     ]
     },
     {
      "label": "純資産合計",
@@ -1453,7 +1587,12 @@
      "bound": 1,
      "items": 2,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r26",
+      "r22",
+      "r25"
+     ]
     },
     {
      "label": "純資産合計",
@@ -1465,7 +1604,12 @@
      "bound": 1,
      "items": 2,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r26",
+      "r22",
+      "r25"
+     ]
     },
     {
      "label": "負債純資産合計",
@@ -1477,7 +1621,12 @@
      "bound": 1,
      "items": 2,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r27",
+      "r15",
+      "r26"
+     ]
     },
     {
      "label": "負債純資産合計",
@@ -1489,7 +1638,12 @@
      "bound": 1,
      "items": 2,
      "status": "pass",
-     "reason": ""
+     "reason": "",
+     "row_ids": [
+      "r27",
+      "r15",
+      "r26"
+     ]
     }
    ],
    "rows": [
@@ -2737,7 +2891,17 @@
    "bound": 0,
    "items": 1,
    "status": "pass",
-   "reason": ""
+   "reason": "",
+   "rows": [
+    {
+     "page": 6,
+     "row_id": "r25"
+    },
+    {
+     "page": 7,
+     "row_id": "r27"
+    }
+   ]
   },
   {
    "label": "負債純資産合計 = 負債合計 + 純資産合計",
@@ -2748,7 +2912,21 @@
    "bound": 1,
    "items": 2,
    "status": "pass",
-   "reason": ""
+   "reason": "",
+   "rows": [
+    {
+     "page": 7,
+     "row_id": "r27"
+    },
+    {
+     "page": 7,
+     "row_id": "r15"
+    },
+    {
+     "page": 7,
+     "row_id": "r26"
+    }
+   ]
   },
   {
    "label": "資産合計 = 負債純資産合計",
@@ -2759,7 +2937,17 @@
    "bound": 0,
    "items": 1,
    "status": "pass",
-   "reason": ""
+   "reason": "",
+   "rows": [
+    {
+     "page": 6,
+     "row_id": "r25"
+    },
+    {
+     "page": 7,
+     "row_id": "r27"
+    }
+   ]
   },
   {
    "label": "負債純資産合計 = 負債合計 + 純資産合計",
@@ -2770,7 +2958,21 @@
    "bound": 1,
    "items": 2,
    "status": "pass",
-   "reason": ""
+   "reason": "",
+   "rows": [
+    {
+     "page": 7,
+     "row_id": "r27"
+    },
+    {
+     "page": 7,
+     "row_id": "r15"
+    },
+    {
+     "page": 7,
+     "row_id": "r26"
+    }
+   ]
   }
  ]
 }
