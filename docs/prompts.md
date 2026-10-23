@@ -461,3 +461,27 @@ all tests pass.
 </pasted_content id="0814">
 ```
 
+## 2026-10-23 16:40
+
+```
+One last thing: ask the reviewer session to do its Job 2 on the final
+outputs for the original page, comparing against the page image, and
+add what it finds to the report.
+```
+
+## 2026-10-23 16:40
+
+```
+<cross-session-message from="uds:/tmp/cc-socks/25521.sock" from-name="ur-ai-parser-setup-e2" from-mode="prompting">
+Job 2 again, on the FINAL outputs for the original page: compare them against the page image cell by cell. Outputs: /Users/teja/Desktop/ur-ai-parser-setup/outputs/balance_sheet_after_correction.json (records) and balance_sheet_after_correction.records.csv in the same folder. Page image (PDF, 1 page): /Users/teja/Desktop/ur-ai-parser-setup/data/balance_sheet_after_correction.pdf. Save to docs/final-review-2.md (keep docs/final-review.md as it is).
+</cross-session-message>
+```
+
+## 2026-10-23 16:41
+
+```
+<cross-session-message from="uds:/tmp/cc-socks/23965.sock" from-name="ur-ai-parser-setup-37" from-mode="prompting">
+Final review 2 is done, saved to docs/final-review-2.md. All 74 records match the page image on value, sign, nil, raw text, label and path, with none missing and none extra. The only difference is the same as in review 1: r12 貸倒引当金 has role "item", but the gold template says "contra".
+</cross-session-message>
+```
+
