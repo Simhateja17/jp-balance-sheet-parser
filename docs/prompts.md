@@ -322,3 +322,23 @@ issue, and it doesn't change the status.
 </pasted_content id="0814">
 ```
 
+## 2026-10-23 15:17
+
+```
+<pasted_content id="0814">
+Yes, accept it as is. It's careful in the right way: it only drops a line that is both **at the very bottom** and **looks exactly like a page number**, so a real row can't be lost by accident. It also covers all the forms seen in your files: `- 4 -`, `-5-` and a bare `4`.
+
+Send:
+
+```
+Yes, agreed.
+```
+</pasted_content id="0814">
+```
+
+## 2026-10-23 15:17
+
+```
+Yes, Agreed
+```
+

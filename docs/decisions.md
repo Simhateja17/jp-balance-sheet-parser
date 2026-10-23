@@ -8,6 +8,12 @@
 - `label_en` is a translation for the human reader only. It is marked as a translation and is never used in any check or matching.
 - `parent` links a contra (accumulated depreciation) or net line to its item. Exact semantics: see D2.
 
+## D20. Page numbers (agreed)
+- A label-only line is a page number, and is left out of the table, only when both hold: it is the LAST line of the table region (below every real row), and after width normalisation it is only a page number (a number alone, a number between dashes with or without spaces such as -5- or - 5 -, full-width forms, "Page 5", "5/12").
+- It is ignored the way unlabeled lines are today, with an informational `ignored_line` issue that says it looks like a page number. The issue does not change the page status.
+- A line in the middle of the table that looks like a number is never dropped.
+- Seen: `- 4 -` (4098 and the original page), `4` (2452) and `-5-` (4224, which wrongly stayed as a row with an `irregular_indent` issue).
+
 ## D19. Net-suffix lines (agreed; the mismatch rule was agreed earlier in conversation and is recorded here for the first time)
 - `net` role only when the nearest shallower row is a gross item and the label is that item's label plus the net suffix (（純額） or ", net"). The line then gets `parent` = the gross row.
 - If the nearest shallower row is a gross item but the label is not gross plus suffix: the line is flagged `net_label_mismatch` and not linked (earlier decision, unchanged).
