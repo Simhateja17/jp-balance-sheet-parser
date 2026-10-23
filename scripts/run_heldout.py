@@ -2,9 +2,10 @@
 page, read the following pages of the statement, set the rounding mode from the cover hint, parse with the parser
 unchanged, run the page checks and the cross-page checks. Nothing is picked by hand.
 
-Run from the repo root: .venv/bin/python scripts/run_heldout.py <out_dir>
+Run from the repo root: .venv/bin/python scripts/run_heldout.py <out_dir> [<in_dir>]   (in_dir defaults to data/heldout)
 """
 import sys
+import traceback
 from collections import Counter
 from pathlib import Path
 
@@ -14,8 +15,17 @@ from bsparser.analyse import analyse_statement  # noqa: E402
 from bsparser.output import write_statement_outputs  # noqa: E402
 
 out_dir = Path(sys.argv[1])
-for pdf in sorted(Path("data/heldout").glob("*.pdf")):
-    statement = analyse_statement(pdf)
+in_dir = Path(sys.argv[2]) if len(sys.argv) > 2 else Path("data/heldout")
+for pdf in sorted(in_dir.glob("*.pdf")):
+    try:
+        statement = analyse_statement(pdf)
+    except Exception as exc:  # noqa: BLE001 - a crash is a result, shown and recorded, never hidden
+        trace = traceback.format_exc().strip().splitlines()
+        print("=" * 100)
+        print(f"{pdf.name}: CRASH {type(exc).__name__}: {exc}")
+        print("   ", trace[-3].strip())
+        print("   ", trace[-2].strip()[:150])
+        continue
     json_path, _ = write_statement_outputs(statement, out_dir)
     print("=" * 100)
     print(f"{pdf.name}: statement {statement['status']} | pages {[p['page'] for p in statement['pages']]} | "

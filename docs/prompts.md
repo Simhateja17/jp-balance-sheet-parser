@@ -417,3 +417,14 @@ instead of an error.
 Yes, sounds good. Go ahead.
 ```
 
+## 2026-10-23 16:03
+
+```
+<pasted_content id="0814">
+I put fresh filings in data/fresh/ that the parser has never seen. Run
+each once, as is, with no fixes. Add the results to the report as the
+real held-out test, whatever they show. Then we'll decide together what,
+if anything, to fix.
+</pasted_content id="0814">
+```
+

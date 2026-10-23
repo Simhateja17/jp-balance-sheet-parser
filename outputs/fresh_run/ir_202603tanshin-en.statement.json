@@ -1,0 +1,1789 @@
+{
+ "source": "data/fresh/ir_202603tanshin-en.pdf",
+ "status": "unreadable",
+ "rounding": "unstated",
+ "rounding_source": "unstated",
+ "rounding_sentence": "",
+ "rounding_note": "no cut-off sentence found on the first pages",
+ "pages": [
+  {
+   "source": "data/fresh/ir_202603tanshin-en.pdf",
+   "status": "unreadable",
+   "rounding": "unstated",
+   "rounding_source": "unstated",
+   "rounding_sentence": "",
+   "rounding_note": "no cut-off sentence found on the first pages",
+   "unit": null,
+   "unit_raw": "",
+   "periods": [],
+   "issues": [
+    {
+     "kind": "irregular_indent",
+     "row_id": "r2",
+     "message": "'Yokogawa Electric Corporation': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r5",
+     "message": "'(Millions of yen)': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r6",
+     "message": "'As of March 31, 2025 As of March': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r7",
+     "message": "'Assets': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r9",
+     "message": "'Cash and deposits': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r10",
+     "message": "'Notes receivable - trade': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r11",
+     "message": "'Accounts receivable - trade': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r12",
+     "message": "'Contract assets': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r13",
+     "message": "'Merchandise and finished goods': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r14",
+     "message": "'Work in process': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r15",
+     "message": "'Raw materials and supplies': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r16",
+     "message": "'Other': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r17",
+     "message": "'Allowance for doubtful accounts': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r18",
+     "message": "'Total current assets': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r20",
+     "message": "'Property, plant and equipment': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r29",
+     "message": "'Intangible assets': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r34",
+     "message": "'Investments and other assets': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r40",
+     "message": "'Total non-current assets': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "ignored_line",
+     "row_id": "",
+     "message": "line without a label ignored (page number?): amounts ['-', '9', '-']"
+    },
+    {
+     "kind": "unit_missing",
+     "row_id": "",
+     "message": "no known unit found in the header; none assumed"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r2",
+     "message": "1 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r6",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r9",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r10",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r11",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r12",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r13",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r14",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r15",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r16",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r17",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r18",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r21",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r22",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r23",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r24",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r25",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r26",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r27",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r28",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r30",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r31",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r32",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r33",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r35",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r36",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r37",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r38",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r39",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r40",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r41",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    }
+   ],
+   "checks": [],
+   "rows": [
+    {
+     "id": "r1",
+     "label": "Consolidated Financial Results for the FY2025",
+     "label_en": "Consolidated Financial Results for the FY2025",
+     "label_en_source": "original",
+     "role": "header",
+     "level": 6,
+     "parent": null,
+     "path": [],
+     "notes": []
+    },
+    {
+     "id": "r2",
+     "label": "Yokogawa Electric Corporation",
+     "label_en": "Yokogawa Electric Corporation",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 7,
+     "parent": null,
+     "path": [
+      "Consolidated Financial Results for the FY2025"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r3",
+     "label": "3. Consolidated Financial Statements",
+     "label_en": "3. Consolidated Financial Statements",
+     "label_en_source": "original",
+     "role": "header",
+     "level": 0,
+     "parent": null,
+     "path": [],
+     "notes": []
+    },
+    {
+     "id": "r4",
+     "label": "(1) Consolidated Balance Sheets",
+     "label_en": "(1) Consolidated Balance Sheets",
+     "label_en_source": "original",
+     "role": "header",
+     "level": 0,
+     "parent": null,
+     "path": [],
+     "notes": []
+    },
+    {
+     "id": "r5",
+     "label": "(Millions of yen)",
+     "label_en": "(Millions of yen)",
+     "label_en_source": "original",
+     "role": "header",
+     "level": 8,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r6",
+     "label": "As of March 31, 2025 As of March",
+     "label_en": "As of March 31, 2025 As of March",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 5,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r7",
+     "label": "Assets",
+     "label_en": "Assets",
+     "label_en_source": "original",
+     "role": "header",
+     "level": 1,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r8",
+     "label": "Current assets",
+     "label_en": "Current assets",
+     "label_en_source": "original",
+     "role": "header",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r9",
+     "label": "Cash and deposits",
+     "label_en": "Cash and deposits",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Current assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r10",
+     "label": "Notes receivable - trade",
+     "label_en": "Notes receivable - trade",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Current assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r11",
+     "label": "Accounts receivable - trade",
+     "label_en": "Accounts receivable - trade",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Current assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r12",
+     "label": "Contract assets",
+     "label_en": "Contract assets",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Current assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r13",
+     "label": "Merchandise and finished goods",
+     "label_en": "Merchandise and finished goods",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Current assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r14",
+     "label": "Work in process",
+     "label_en": "Work in process",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Current assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r15",
+     "label": "Raw materials and supplies",
+     "label_en": "Raw materials and supplies",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Current assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r16",
+     "label": "Other",
+     "label_en": "Other",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Current assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r17",
+     "label": "Allowance for doubtful accounts",
+     "label_en": "Allowance for doubtful accounts",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Current assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r18",
+     "label": "Total current assets",
+     "label_en": "Total current assets",
+     "label_en_source": "original",
+     "role": "subtotal",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Current assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r19",
+     "label": "Non-current assets",
+     "label_en": "Non-current assets",
+     "label_en_source": "original",
+     "role": "header",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r20",
+     "label": "Property, plant and equipment",
+     "label_en": "Property, plant and equipment",
+     "label_en_source": "original",
+     "role": "header",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Non-current assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r21",
+     "label": "Buildings and structures, net",
+     "label_en": "Buildings and structures, net",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 4,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Non-current assets",
+      "Property, plant and equipment"
+     ],
+     "notes": [
+      "printed as net, no gross shown"
+     ]
+    },
+    {
+     "id": "r22",
+     "label": "Machinery, equipment and vehicles, net",
+     "label_en": "Machinery, equipment and vehicles, net",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 4,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Non-current assets",
+      "Property, plant and equipment"
+     ],
+     "notes": [
+      "printed as net, no gross shown"
+     ]
+    },
+    {
+     "id": "r23",
+     "label": "Tools, furniture and fixtures, net",
+     "label_en": "Tools, furniture and fixtures, net",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 4,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Non-current assets",
+      "Property, plant and equipment"
+     ],
+     "notes": [
+      "printed as net, no gross shown"
+     ]
+    },
+    {
+     "id": "r24",
+     "label": "Land",
+     "label_en": "Land",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 4,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Non-current assets",
+      "Property, plant and equipment"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r25",
+     "label": "Leased assets, net",
+     "label_en": "Leased assets, net",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 4,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Non-current assets",
+      "Property, plant and equipment"
+     ],
+     "notes": [
+      "printed as net, no gross shown"
+     ]
+    },
+    {
+     "id": "r26",
+     "label": "Right-of-use assets, net",
+     "label_en": "Right-of-use assets, net",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 4,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Non-current assets",
+      "Property, plant and equipment"
+     ],
+     "notes": [
+      "printed as net, no gross shown"
+     ]
+    },
+    {
+     "id": "r27",
+     "label": "Construction in progress",
+     "label_en": "Construction in progress",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 4,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Non-current assets",
+      "Property, plant and equipment"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r28",
+     "label": "Total property, plant and equipment",
+     "label_en": "Total property, plant and equipment",
+     "label_en_source": "original",
+     "role": "subtotal",
+     "level": 4,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Non-current assets",
+      "Property, plant and equipment"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r29",
+     "label": "Intangible assets",
+     "label_en": "Intangible assets",
+     "label_en_source": "original",
+     "role": "header",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Non-current assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r30",
+     "label": "Software",
+     "label_en": "Software",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 4,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Non-current assets",
+      "Intangible assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r31",
+     "label": "Goodwill",
+     "label_en": "Goodwill",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 4,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Non-current assets",
+      "Intangible assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r32",
+     "label": "Other",
+     "label_en": "Other",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 4,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Non-current assets",
+      "Intangible assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r33",
+     "label": "Total intangible assets",
+     "label_en": "Total intangible assets",
+     "label_en_source": "original",
+     "role": "subtotal",
+     "level": 4,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Non-current assets",
+      "Intangible assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r34",
+     "label": "Investments and other assets",
+     "label_en": "Investments and other assets",
+     "label_en_source": "original",
+     "role": "header",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Non-current assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r35",
+     "label": "Investment securities",
+     "label_en": "Investment securities",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 4,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Non-current assets",
+      "Investments and other assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r36",
+     "label": "Deferred tax assets",
+     "label_en": "Deferred tax assets",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 4,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Non-current assets",
+      "Investments and other assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r37",
+     "label": "Other",
+     "label_en": "Other",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 4,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Non-current assets",
+      "Investments and other assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r38",
+     "label": "Allowance for doubtful accounts",
+     "label_en": "Allowance for doubtful accounts",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 4,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Non-current assets",
+      "Investments and other assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r39",
+     "label": "Total investments and other assets",
+     "label_en": "Total investments and other assets",
+     "label_en_source": "original",
+     "role": "subtotal",
+     "level": 4,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Non-current assets",
+      "Investments and other assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r40",
+     "label": "Total non-current assets",
+     "label_en": "Total non-current assets",
+     "label_en_source": "original",
+     "role": "subtotal",
+     "level": 3,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets",
+      "Non-current assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r41",
+     "label": "Total assets",
+     "label_en": "Total assets",
+     "label_en_source": "original",
+     "role": "subtotal",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "(1) Consolidated Balance Sheets",
+      "Assets"
+     ],
+     "notes": []
+    }
+   ],
+   "records": [],
+   "page": 9,
+   "pages_total": 22
+  },
+  {
+   "source": "data/fresh/ir_202603tanshin-en.pdf",
+   "status": "unreadable",
+   "rounding": "unstated",
+   "rounding_source": "unstated",
+   "rounding_sentence": "",
+   "rounding_note": "no cut-off sentence found on the first pages",
+   "unit": null,
+   "unit_raw": "",
+   "periods": [],
+   "issues": [
+    {
+     "kind": "irregular_indent",
+     "row_id": "r1",
+     "message": "'Consolidated Financial Results for the FY2025': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r7",
+     "message": "'Notes and accounts payable - trade': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r8",
+     "message": "'Electronically recorded obligations - operating': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r9",
+     "message": "'Short-term borrowings': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r10",
+     "message": "'Accounts payable - other': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r11",
+     "message": "'Income taxes payable': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r12",
+     "message": "'Contract liabilities': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r13",
+     "message": "'Lease liabilities': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r14",
+     "message": "'Provision for bonuses': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r15",
+     "message": "'Provision for loss on construction contracts': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r16",
+     "message": "'Other': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r17",
+     "message": "'Total current liabilities': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r19",
+     "message": "'Long-term borrowings': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r20",
+     "message": "'Deferred tax liabilities': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r21",
+     "message": "'Retirement benefit liability': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r22",
+     "message": "'Lease liabilities': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r23",
+     "message": "'Other': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r24",
+     "message": "'Total non-current liabilities': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r28",
+     "message": "'Share capital': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r29",
+     "message": "'Capital surplus': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r30",
+     "message": "'Retained earnings': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r31",
+     "message": "'Treasury shares': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r32",
+     "message": "'Total shareholders’ equity': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r34",
+     "message": "'Valuation difference on available-for-sale securities': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r35",
+     "message": "'Deferred gains or losses on hedges': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r36",
+     "message": "'Foreign currency translation adjustment': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r37",
+     "message": "'Remeasurements of defined benefit plans': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "irregular_indent",
+     "row_id": "r38",
+     "message": "'Total accumulated other comprehensive income': indent is far from the page's regular level step; role and path may be wrong"
+    },
+    {
+     "kind": "ignored_line",
+     "row_id": "",
+     "message": "line without a label ignored (page number?): amounts ['-', '10', '-']"
+    },
+    {
+     "kind": "unit_missing",
+     "row_id": "",
+     "message": "no known unit found in the header; none assumed"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r2",
+     "message": "1 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r4",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r7",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r8",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r9",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r10",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r11",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r12",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r13",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r14",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r15",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r16",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r17",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r19",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r20",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r21",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r22",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r23",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r24",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r25",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r28",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r29",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r30",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r31",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r32",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r34",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r35",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r36",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r37",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r38",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r39",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r40",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    },
+    {
+     "kind": "column_count_mismatch",
+     "row_id": "r41",
+     "message": "2 values but 0 period columns; none assigned by guess"
+    }
+   ],
+   "checks": [],
+   "rows": [
+    {
+     "id": "r1",
+     "label": "Consolidated Financial Results for the FY2025",
+     "label_en": "Consolidated Financial Results for the FY2025",
+     "label_en_source": "original",
+     "role": "header",
+     "level": 4,
+     "parent": null,
+     "path": [],
+     "notes": []
+    },
+    {
+     "id": "r2",
+     "label": "Yokogawa Electric Corporation",
+     "label_en": "Yokogawa Electric Corporation",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 5,
+     "parent": null,
+     "path": [
+      "Consolidated Financial Results for the FY2025"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r3",
+     "label": "(Millions of yen)",
+     "label_en": "(Millions of yen)",
+     "label_en_source": "original",
+     "role": "header",
+     "level": 6,
+     "parent": null,
+     "path": [
+      "Consolidated Financial Results for the FY2025",
+      "Yokogawa Electric Corporation"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r4",
+     "label": "As of March 31, 2025 As of March",
+     "label_en": "As of March 31, 2025 As of March",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 3,
+     "parent": null,
+     "path": [],
+     "notes": []
+    },
+    {
+     "id": "r5",
+     "label": "Liabilities",
+     "label_en": "Liabilities",
+     "label_en_source": "original",
+     "role": "header",
+     "level": 0,
+     "parent": null,
+     "path": [],
+     "notes": []
+    },
+    {
+     "id": "r6",
+     "label": "Current liabilities",
+     "label_en": "Current liabilities",
+     "label_en_source": "original",
+     "role": "header",
+     "level": 1,
+     "parent": null,
+     "path": [
+      "Liabilities"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r7",
+     "label": "Notes and accounts payable - trade",
+     "label_en": "Notes and accounts payable - trade",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Liabilities",
+      "Current liabilities"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r8",
+     "label": "Electronically recorded obligations - operating",
+     "label_en": "Electronically recorded obligations - operating",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Liabilities",
+      "Current liabilities"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r9",
+     "label": "Short-term borrowings",
+     "label_en": "Short-term borrowings",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Liabilities",
+      "Current liabilities"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r10",
+     "label": "Accounts payable - other",
+     "label_en": "Accounts payable - other",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Liabilities",
+      "Current liabilities"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r11",
+     "label": "Income taxes payable",
+     "label_en": "Income taxes payable",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Liabilities",
+      "Current liabilities"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r12",
+     "label": "Contract liabilities",
+     "label_en": "Contract liabilities",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Liabilities",
+      "Current liabilities"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r13",
+     "label": "Lease liabilities",
+     "label_en": "Lease liabilities",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Liabilities",
+      "Current liabilities"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r14",
+     "label": "Provision for bonuses",
+     "label_en": "Provision for bonuses",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Liabilities",
+      "Current liabilities"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r15",
+     "label": "Provision for loss on construction contracts",
+     "label_en": "Provision for loss on construction contracts",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Liabilities",
+      "Current liabilities"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r16",
+     "label": "Other",
+     "label_en": "Other",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Liabilities",
+      "Current liabilities"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r17",
+     "label": "Total current liabilities",
+     "label_en": "Total current liabilities",
+     "label_en_source": "original",
+     "role": "subtotal",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Liabilities",
+      "Current liabilities"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r18",
+     "label": "Non-current liabilities",
+     "label_en": "Non-current liabilities",
+     "label_en_source": "original",
+     "role": "header",
+     "level": 1,
+     "parent": null,
+     "path": [
+      "Liabilities"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r19",
+     "label": "Long-term borrowings",
+     "label_en": "Long-term borrowings",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Liabilities",
+      "Non-current liabilities"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r20",
+     "label": "Deferred tax liabilities",
+     "label_en": "Deferred tax liabilities",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Liabilities",
+      "Non-current liabilities"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r21",
+     "label": "Retirement benefit liability",
+     "label_en": "Retirement benefit liability",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Liabilities",
+      "Non-current liabilities"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r22",
+     "label": "Lease liabilities",
+     "label_en": "Lease liabilities",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Liabilities",
+      "Non-current liabilities"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r23",
+     "label": "Other",
+     "label_en": "Other",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Liabilities",
+      "Non-current liabilities"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r24",
+     "label": "Total non-current liabilities",
+     "label_en": "Total non-current liabilities",
+     "label_en_source": "original",
+     "role": "subtotal",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Liabilities",
+      "Non-current liabilities"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r25",
+     "label": "Total liabilities",
+     "label_en": "Total liabilities",
+     "label_en_source": "original",
+     "role": "total",
+     "level": 1,
+     "parent": null,
+     "path": [
+      "Liabilities"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r26",
+     "label": "Net assets",
+     "label_en": "Net assets",
+     "label_en_source": "original",
+     "role": "header",
+     "level": 0,
+     "parent": null,
+     "path": [],
+     "notes": []
+    },
+    {
+     "id": "r27",
+     "label": "Shareholders’ equity",
+     "label_en": "Shareholders’ equity",
+     "label_en_source": "original",
+     "role": "header",
+     "level": 1,
+     "parent": null,
+     "path": [
+      "Net assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r28",
+     "label": "Share capital",
+     "label_en": "Share capital",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Net assets",
+      "Shareholders’ equity"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r29",
+     "label": "Capital surplus",
+     "label_en": "Capital surplus",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Net assets",
+      "Shareholders’ equity"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r30",
+     "label": "Retained earnings",
+     "label_en": "Retained earnings",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Net assets",
+      "Shareholders’ equity"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r31",
+     "label": "Treasury shares",
+     "label_en": "Treasury shares",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Net assets",
+      "Shareholders’ equity"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r32",
+     "label": "Total shareholders’ equity",
+     "label_en": "Total shareholders’ equity",
+     "label_en_source": "original",
+     "role": "subtotal",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Net assets",
+      "Shareholders’ equity"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r33",
+     "label": "Accumulated other comprehensive income",
+     "label_en": "Accumulated other comprehensive income",
+     "label_en_source": "original",
+     "role": "header",
+     "level": 1,
+     "parent": null,
+     "path": [
+      "Net assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r34",
+     "label": "Valuation difference on available-for-sale securities",
+     "label_en": "Valuation difference on available-for-sale securities",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Net assets",
+      "Accumulated other comprehensive income"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r35",
+     "label": "Deferred gains or losses on hedges",
+     "label_en": "Deferred gains or losses on hedges",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Net assets",
+      "Accumulated other comprehensive income"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r36",
+     "label": "Foreign currency translation adjustment",
+     "label_en": "Foreign currency translation adjustment",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Net assets",
+      "Accumulated other comprehensive income"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r37",
+     "label": "Remeasurements of defined benefit plans",
+     "label_en": "Remeasurements of defined benefit plans",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Net assets",
+      "Accumulated other comprehensive income"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r38",
+     "label": "Total accumulated other comprehensive income",
+     "label_en": "Total accumulated other comprehensive income",
+     "label_en_source": "original",
+     "role": "subtotal",
+     "level": 2,
+     "parent": null,
+     "path": [
+      "Net assets",
+      "Accumulated other comprehensive income"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r39",
+     "label": "Non-controlling interests",
+     "label_en": "Non-controlling interests",
+     "label_en_source": "original",
+     "role": "item",
+     "level": 1,
+     "parent": null,
+     "path": [
+      "Net assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r40",
+     "label": "Total net assets",
+     "label_en": "Total net assets",
+     "label_en_source": "original",
+     "role": "total",
+     "level": 1,
+     "parent": null,
+     "path": [
+      "Net assets"
+     ],
+     "notes": []
+    },
+    {
+     "id": "r41",
+     "label": "Total liabilities and net assets",
+     "label_en": "Total liabilities and net assets",
+     "label_en_source": "original",
+     "role": "subtotal",
+     "level": 0,
+     "parent": null,
+     "path": [],
+     "notes": []
+    }
+   ],
+   "records": [],
+   "page": 10,
+   "pages_total": 22
+  }
+ ],
+ "cross_checks": []
+}
