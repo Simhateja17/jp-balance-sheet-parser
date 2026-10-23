@@ -1,4 +1,5 @@
 import re
+import unicodedata
 from dataclasses import dataclass, field
 from typing import List, Optional
 
@@ -41,6 +42,7 @@ class Page:
     unit_raw: str = ""
 
 
+PAGE_NUMBER = re.compile(r"^(?:[-\u2010-\u2015\u2212]?\d{1,3}[-\u2010-\u2015\u2212]?|page\d{1,3}|p\.?\d{1,3}|\d{1,3}/\d{1,3})$", re.I)
 NET_ONLY_NOTE = "printed as net, no gross shown"
 NET_SUFFIXES = ("\uff08\u7d14\u984d\uff09", ", net")  # （純額）, ", net"
 
@@ -133,9 +135,15 @@ def parse_page(pdf_path) -> Page:
 def parse_lines(lines: List[Line]) -> Page:
     header, table = _split_header(lines)
     ignored = [line for line in table if not line.label]
-    page = build_page([line for line in table if line.label])
+    kept = [line for line in table if line.label]
+    page_number = None
+    if kept and not kept[-1].amounts and PAGE_NUMBER.match(unicodedata.normalize("NFKC", kept[-1].label).replace(" ", "")):
+        page_number = kept.pop()  # D20: only the last line, only a pure page-number pattern
+    page = build_page(kept)
     for line in ignored:
         page.issues.append(Issue("ignored_line", "", f"line without a label ignored (page number?): amounts {line.amounts}"))
+    if page_number is not None:
+        page.issues.append(Issue("ignored_line", "", f"{page_number.label!r} looks like a page number and was left out"))
     header_text = " ".join(line.label for line in header)
     page.periods = find_periods(header_text)
     for era_date in find_unsupported_eras(header_text):
