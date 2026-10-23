@@ -133,9 +133,10 @@ def test_the_page_shows_the_rounding_hint_and_lets_the_user_override_it_and_reco
     rounding = [m.value for m in at.info if m.value.startswith("Rounding:")]
     assert len(rounding) == 1 and "cut" in rounding[0] and "cover_sentence" in rounding[0]
     assert "百万円未満切捨て" in rounding[0]
+    assert at.subheader[0].value == "Status: ok"  # 4098 passes under the cover's cut-off bound
     options = at.selectbox[1].options
     assert options[0].startswith("auto") and set(options[1:]) == {"round", "cut", "unstated"}
     at.selectbox[1].select("round").run()
     chosen = [m.value for m in at.info if m.value.startswith("Rounding:")][0]
     assert "round" in chosen and "chosen by you" in chosen
-    # status under cut versus round for 4098 is asserted after D19 (the net lines), when the page can be ok
+    assert at.subheader[0].value == "Status: failed"  # the strict bound fails the cut-off difference of 5
