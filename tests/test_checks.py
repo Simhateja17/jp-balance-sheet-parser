@@ -114,3 +114,23 @@ def test_english_fixture_has_20_checks_all_pass_with_the_pages_real_rounding():
     assert all(abs(c.difference) <= c.bound for c in checks)
     assert max(abs(c.difference) for c in checks) == 3
     assert sum(1 for c in checks if abs(c.difference) == c.bound) >= 3  # edge cases are really hit
+
+
+def test_a_printed_total_that_is_nil_is_skipped_with_a_reason_and_never_crashes():
+    from bsparser.page import parse_lines
+    from bsparser.pdf_lines import Line
+
+    page = parse_lines([
+        Line("(in thousands of yen)", 400.0, 70.0),
+        Line("(Mar. 31, 2025) (Mar. 31, 2026)", 300.0, 94.0),
+        Line("Assets", 60.0, 120.0),
+        Line("Current assets", 72.0, 134.0),
+        Line("Cash", 84.0, 148.0, ["100", "100"]),
+        Line("Notes receivable", 84.0, 162.0, ["200", "200"]),
+        Line("Total current assets", 84.0, 176.0, ["－", "300"]),  # nil total in 2025
+    ])
+    checks = run_checks(page)
+    nil_total = check_for(checks, "Total current assets", "2025-03-31")
+    assert nil_total.status == "skipped" and "printed total is nil" in nil_total.reason
+    assert (nil_total.expected, nil_total.printed, nil_total.difference) == (None, None, None)
+    assert check_for(checks, "Total current assets", "2026-03-31").status == "pass"
