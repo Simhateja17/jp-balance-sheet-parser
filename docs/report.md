@@ -46,6 +46,26 @@ There is no gold for these files. The table shows page choice, status and identi
 | 140120260514535920.pdf (2452, thousand yen) | 6 of 13 | failed | 10 of 12 | The same aggregate contra line, here 減価償却累計額及び減損損失累計額 (△42,117 and △68,778): false failures in 有形固定資産合計, differences -42,117 and -68,777 against a bound of 2. The page number `4` alone was correctly ignored. |
 | tanshin202603.pdf (8544, a bank, million yen) | 5 of 35 | ok | 4 of 4 | No failure shown, but the page is thin. The only checks are 資産の部合計 and 負債の部合計 for both periods (differences +4 to +7, bounds 7 and 8). There are no section subtotals to check. The page also carries a liabilities part (the net assets part is on the next page), which the parser has no notion of. Lines such as 有形固定資産 carry their own value and have indented detail lines below them: they are typed `item` and the sums handle them by path. A few rows were compared with the image by eye and matched. No gold, so cell accuracy is unmeasured. The finder tied pages 5 and 14 (score 8.0) and chose 5 by page order. |
 
+### Other pages of the same filings (liabilities, net assets, equity statement), before any fix
+
+The first table only covered the assets pages. These pages were run as is as well (parser unchanged, a crash caught and shown). Raw results for the pages that did not crash: `outputs/heldout_before/`. Reproduce the page list with `.venv/bin/python scripts/run_pages.py`-style calls (`extract_page` then `build_output`).
+
+| file | page of | what the page is | status | checks passed | what went wrong |
+|---|---|---|---|---|---|
+| 140120260416505142.pdf (4098) | 7 of 14 | liabilities and net assets | failed | 12 of 14 | 負債純資産合計 (total liabilities and net assets) has no component rows on this page, so the expected sum is 0 and the check fails with differences 13,992 and 13,731 against a bound of 0. It should be skipped, or checked as 負債合計 plus 純資産合計. |
+| 140120260416505142.pdf (4098) | 11 of 14 | statement of changes in equity (5 amount columns, not a balance sheet) | CRASH | none | `TypeError: unsupported operand type(s) for -: 'NoneType' and 'int'` at `checks.py` line 71 (`printed - expected`). The 当期変動額合計 row prints `－` (nil) in its first columns, so the printed total is None and the check subtracts from it. |
+| 140120260513529466.pdf (4224) | 8 of 18 | liabilities and net assets | CRASH | none | `IndexError: list index out of range` at `checks.py` line 62 (`r.values[p]`). Two rows (資産除去債務 and 完成工事補償引当金, prior year) print a long horizontal bar, U+2015, as their nil. It is not in the nil marks, so it stays glued to the label and each row has one value for two periods. The parser raises the column-count issue, but the sum check still indexes the missing second value. |
+| 140120260514535920.pdf (2452) | 7 of 13 | liabilities and net assets | failed | 12 of 14 | Same as 4098 page 7: 負債純資産合計 has nothing to add up on the page, so it fails with differences 276,423 and 275,378 against a bound of 0. |
+| 140120260514535920.pdf (2452) | 10 of 13 | statement of changes in equity (8 amount columns, two stacked period blocks, not a balance sheet) | CRASH | none | Same `TypeError` as 4098 page 11: a 当期変動額合計 row prints `－` in its first columns. Four period dates were found (one block per year). |
+| tanshin202603.pdf (8544, bank) | 6 of 35 | net assets and total liabilities and net assets | failed | 2 of 8 | (1) The subtotals have no heading above them, so 株主資本合計 and その他の包括利益累計額合計 each add every item above them: differences -24,694 / -34,319 and -292,765 / -302,694. They should add only the items since the previous subtotal. (2) 負債及び純資産の部合計 has nothing to add up on this page (負債の部合計 is on page 5), so it fails with 6,561,710 and 6,653,408 against a bound of 0. |
+
+What these pages add to the picture:
+- **Three crashes, two causes.** A subtotal or total whose printed value is nil crashes the sum check. A row with fewer values than period columns crashes it too, even though the column-count issue was already raised.
+- **A total with nothing to add up is reported as failed**, because the expected sum is 0. That is a false failure, not a finding.
+- **Subtotals with no heading above them add too much.** The path-based rule assumes every sub-section has a heading.
+- **The statement of changes in equity is not a balance sheet.** Its wide matrix layout is out of scope for this parser. It must at least not crash.
+- **Nothing here is checked across pages yet.** Total assets on one page should equal total liabilities and net assets on another. The project owner states this holds on all four companies.
+
 What the four runs show:
 - **The page finder chose the consolidated balance sheet page in all four files**, confirmed by looking at the page images.
 - **Two structures the parser does not handle, both visible in this table.** An aggregate accumulated-depreciation line at item level (two files), and net lines that stand alone with no gross row (one file). Both give false identity failures, because the lines are excluded from the sum.

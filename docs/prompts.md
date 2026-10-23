@@ -342,3 +342,49 @@ Yes, agreed.
 Yes, Agreed
 ```
 
+## 2026-10-23 15:17
+
+```
+<pasted_content id="0814">
+Yes. Before you write the full list, add what we found on the other
+pages, since the "before" run only covered the assets pages:
+
+- Crashes: a blank total (4098 page 11, 2452 page 10) and the long
+  horizontal bar used as a "nothing" dash (4224 page 8). Never crash,
+  just skip the check with a reason.
+- A total with nothing to add up (2452 page 7, total liabilities and net
+  assets) is marked failed. It should be skipped, or better, checked as
+  total liabilities plus total net assets.
+- The bank's equity page (page 6) has subtotals with no heading above
+  them, so each subtotal adds everything above it. It should only add the
+  items since the previous subtotal.
+- Add a check that total assets equal total liabilities plus net assets.
+  This holds on all four companies.
+
+Please run the liabilities and equity pages too and add them to the
+"before" table.
+</pasted_content id="0814">
+```
+
+## 2026-10-23 15:18
+
+```
+Yes. Before you write the full list, add what we found on the other
+pages, since the "before" run only covered the assets pages:
+
+1)Crashes: a blank total (4098 page 11, 2452 page 10) and the long
+  horizontal bar used as a "nothing" dash (4224 page 8). Never crash,
+  just skip the check with a reason.
+2)A total with nothing to add up (2452 page 7, total liabilities and net
+  assets) is marked failed. It should be skipped, or better, checked as
+  total liabilities plus total net assets.
+ 3)The bank's equity page (page 6) has subtotals with no heading above
+  them, so each subtotal adds everything above it. It should only add the
+  items since the previous subtotal.
+ 4)Add a check that total assets equal total liabilities plus net assets.
+  This holds on all four companies.
+
+Please run the liabilities and equity pages too and add them to the
+"before" table.
+```
+
