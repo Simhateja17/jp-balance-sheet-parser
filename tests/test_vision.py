@@ -26,3 +26,18 @@ def test_a_vision_reply_becomes_the_same_page_as_the_text_parser_gives():
     assert [[(a.value, a.kind) for a in r.values] for r in vision.rows] == [
         [(a.value, a.kind) for a in r.values] for r in text.rows]
     assert (vision.periods, vision.unit, vision.issues) == (text.periods, text.unit, text.issues)
+
+
+def test_reply_text_with_code_fences_or_chatter_still_yields_the_json_and_garbage_is_an_error():
+    import pytest
+
+    from bsparser.vision import extract_reply
+
+    payload = {"header": ["h"], "rows": []}
+    raw = json.dumps(payload, ensure_ascii=False)
+    assert extract_reply(raw) == payload
+    assert extract_reply(f"Here is the table:\n```json\n{raw}\n```\nDone.") == payload
+    with pytest.raises(ValueError):
+        extract_reply("I could not read the page.")
+    with pytest.raises(ValueError):
+        extract_reply('{"header": ["h"]}')  # rows missing: wrong shape is never guessed
