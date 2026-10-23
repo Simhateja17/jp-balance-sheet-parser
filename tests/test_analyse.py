@@ -67,3 +67,14 @@ def test_the_long_bar_nil_on_4224s_liabilities_page_reads_as_nil_not_as_label_te
     assert (records[("資産除去債務", "2025-03-31")]["kind"], records[("資産除去債務", "2025-03-31")]["value"]) == ("nil", None)
     assert records[("資産除去債務", "2026-03-31")]["value"] == 44
     assert [i["kind"] for i in out["issues"] if i["kind"] == "column_count_mismatch"] == []
+
+
+import pytest
+
+
+@pytest.mark.parametrize("name,page", [("140120260416505142.pdf", 11), ("140120260514535920.pdf", 10)])
+def test_the_equity_statement_pages_that_used_to_crash_now_return_a_result_and_say_why_they_are_unreadable(name, page):
+    out = analyse(HELDOUT / name, page=page)  # must not raise
+    assert out["status"] == "unreadable"
+    assert any(i["kind"] == "column_count_mismatch" for i in out["issues"])  # the matrix has more columns than periods
+    assert all(c["status"] == "skipped" and c["reason"] for c in out["checks"])  # skipped with a reason, never failed
