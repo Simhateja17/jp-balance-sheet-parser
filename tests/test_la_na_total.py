@@ -37,3 +37,10 @@ def test_when_liabilities_are_not_on_the_page_the_total_is_skipped_naming_the_mi
     checks = run_checks(liabilities_page(with_liabilities=False))
     c = check(checks, "負債純資産合計", "2025-03-31")
     assert c.status == "skipped" and "total liabilities" in c.reason and "not on this page" in c.reason
+
+
+def test_any_total_with_nothing_to_add_up_is_skipped_not_failed():
+    page = parse_lines(HEADER + [Line("資産の部", 60.0, 120.0), Line("謎の合計", 72.0, 134.0, ["10", "10"])])
+    (first, second) = run_checks(page)
+    assert (first.status, second.status) == ("skipped", "skipped")
+    assert "no components" in first.reason
