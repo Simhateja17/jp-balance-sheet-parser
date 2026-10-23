@@ -221,8 +221,9 @@ def test_the_table_is_styled_with_a_red_background_only_on_rows_that_have_a_why(
     marked = sum(1 for r in rows if r["why"])
     assert marked == 4
     css = html[:html.index("</style>")]
-    assert css.count("background-color: #fde2e2") == marked  # one rule per marked row, covering its six cells
     import re
 
-    coloured = sorted({int(n) for n in re.findall(r"_row(\d+)_col0", css)})
+    cells = re.findall(r"_row(\d+)_col(\d+)", css)
+    assert "background-color: #fde2e2" in css and len(cells) == marked * 6  # label, label_en, role, two periods, why
+    coloured = sorted({int(row) for row, col in cells})
     assert coloured == [2, 3, 4, 5]  # Cash, Notes receivable, Other, Total current assets; not Land or Total assets
