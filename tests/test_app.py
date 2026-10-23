@@ -95,7 +95,7 @@ def test_the_page_renders_status_table_checks_and_downloads_for_an_uploaded_pdf(
     at = AppTest.from_function(script, args=(str(REAL_PDF),), default_timeout=60).run()
     assert not at.exception
     assert [s.value for s in at.subheader][:1] == ["Status: ok"]
-    assert at.success[0].value.startswith("ok:")
+    assert "adds up" in at.success[0].value  # the friendlier status text
     assert len(at.dataframe) == 3  # table, checks, and the issues table (the printed page number is one issue)
     assert len(at.get("download_button")) == 2  # records CSV and full JSON
 
@@ -227,3 +227,84 @@ def test_the_table_is_styled_with_a_red_background_only_on_rows_that_have_a_why(
     assert "background-color: #fde2e2" in css and len(cells) == marked * 6  # label, label_en, role, two periods, why
     coloured = sorted({int(row) for row, col in cells})
     assert coloured == [2, 3, 4, 5]  # Cash, Notes receivable, Other, Total current assets; not Land or Total assets
+
+
+def _app_for_file(path, patch=""):
+    from streamlit.testing.v1 import AppTest
+
+    def script(pdf_path, patch, root):
+        import sys
+        from pathlib import Path
+
+        import streamlit as st
+
+        sys.path.insert(0, root)
+        import app
+
+        class Upload:
+            name = Path(pdf_path).name
+
+            def getvalue(self):
+                return Path(pdf_path).read_bytes()
+
+        st.file_uploader = lambda *args, **kwargs: Upload()
+        if patch == "boom":
+            def boom(*args, **kwargs):
+                raise RuntimeError("internal detail 12345")
+            app.analyse_statement = boom
+        app.main()
+
+    return AppTest.from_function(script, args=(str(path), patch, str(ROOT)), default_timeout=90)
+
+
+def test_a_file_that_is_not_a_pdf_gets_a_friendly_message_and_no_error_or_traceback(tmp_path):
+    junk = tmp_path / "notes.pdf"
+    junk.write_bytes(b"this is not a pdf at all")
+    at = _app_for_file(junk).run()
+    assert not at.exception and not at.error
+    assert len(at.warning) == 1 and "couldn't open" in at.warning[0].value and "PDF" in at.warning[0].value
+
+
+def test_a_scanned_pdf_without_a_text_layer_is_explained_not_reported_as_an_error(tmp_path):
+    import subprocess
+
+    from reportlab.lib.pagesizes import A4
+    from reportlab.pdfgen import canvas
+
+    stem = tmp_path / "page"
+    subprocess.run(["pdftoppm", "-r", "80", "-png", "-singlefile", str(ROOT / "data" / "fixtures" / "english_balance_sheet.pdf"), str(stem)], check=True)
+    scan = tmp_path / "scan.pdf"
+    c = canvas.Canvas(str(scan), pagesize=A4)
+    c.drawImage(f"{stem}.png", 0, 0, width=A4[0], height=A4[1])
+    c.save()
+    at = _app_for_file(scan).run()
+    assert not at.exception and not at.error
+    assert len(at.warning) == 1 and "no text layer" in at.warning[0].value and "scanned" in at.warning[0].value
+
+
+def test_a_document_with_text_but_no_balance_sheet_points_to_the_my_page_isnt_listed_escape(tmp_path):
+    from reportlab.lib.pagesizes import A4
+    from reportlab.pdfgen import canvas
+
+    path = tmp_path / "minutes.pdf"
+    c = canvas.Canvas(str(path), pagesize=A4)
+    c.drawString(60, 780, "Meeting minutes. Agenda item one.")
+    c.save()
+    at = _app_for_file(path).run()
+    assert not at.exception and not at.error
+    assert any("No page looks like a balance sheet" in m.value for m in at.info)
+    assert [e.label for e in at.expander] == ["My page isn't listed"]
+
+
+def test_an_unexpected_failure_shows_plain_words_and_hides_the_technical_detail():
+    at = _app_for_file(HELDOUT_4098, patch="boom").run()
+    assert not at.exception and not at.error
+    assert len(at.warning) == 1 and "went wrong" in at.warning[0].value and "12345" not in at.warning[0].value
+    details = [e for e in at.expander if e.label == "Technical details"]
+    assert len(details) == 1 and any("internal detail 12345" in c.value for c in details[0].code)
+
+
+def test_the_page_choice_offers_the_my_page_isnt_listed_escape_next_to_the_strict_list():
+    at = _app_for(HELDOUT_4098).run()
+    assert "My page isn't listed" in [e.label for e in at.expander]
+    assert at.selectbox[0].options == [o for o in at.selectbox[0].options if o.startswith("page 6")]  # only page 6 is offered
