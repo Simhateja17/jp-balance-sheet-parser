@@ -8,6 +8,12 @@
 - `label_en` is a translation for the human reader only. It is marked as a translation and is never used in any check or matching.
 - `parent` links a contra (accumulated depreciation) or net line to its item. Exact semantics: see D2.
 
+## D19. Net-suffix lines (agreed; the mismatch rule was agreed earlier in conversation and is recorded here for the first time)
+- `net` role only when the nearest shallower row is a gross item and the label is that item's label plus the net suffix (（純額） or ", net"). The line then gets `parent` = the gross row.
+- If the nearest shallower row is a gross item but the label is not gross plus suffix: the line is flagged `net_label_mismatch` and not linked (earlier decision, unchanged).
+- A net-suffix line whose nearest shallower row is a header or a total is a plain `item`: no parent, no issue (a normal layout, seen in 4098 where the page prints net values only). Same principle as D12: `net` and `contra` are reserved for lines that have a gross row on the page.
+- Those rows carry a note, for example "printed as net, no gross shown", so a reader knows the value is already net of depreciation. Notes go in a separate `notes` list on rows and records. They are information, not issues: they are NOT in `warnings`, do not change the page status, and do not make a wrong cell count as "flagged" in the gold evaluation.
+
 ## D18. Rounding mode of the identity tolerance (agreed)
 - A per-document setting `rounding` with three values. `round`: the strict bound floor(0.5 x (items + 1)) (D4). `cut` (切り捨て): the bound is the number of items counted, two-sided, because each printed item and the printed total is off by less than 1 and a cut toward zero flips the error sign on negative lines. `unstated`: the default, uses the `round` bound, and the output says "rounding: unstated, strict bound used".
 - The parser never guesses the mode. The setting and where it came from are recorded in the output: `rounding`, `rounding_source` (`cover_sentence`, `user`, or `unstated`) and `rounding_sentence` (the cover sentence, when there is one).

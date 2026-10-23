@@ -311,3 +311,14 @@ option by hand.
 </pasted_content id="0814">
 ```
 
+## 2026-10-23 15:16
+
+```
+<pasted_content id="0814">
+Yes. One addition: keep a small note on those rows (for example
+"printed as net, no gross shown"), so anyone reading the table knows
+these values are already net of depreciation. It's information, not an
+issue, and it doesn't change the status.
+</pasted_content id="0814">
+```
+
