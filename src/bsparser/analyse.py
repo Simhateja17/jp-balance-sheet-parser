@@ -1,3 +1,4 @@
+import re
 import tempfile
 from pathlib import Path
 from typing import Dict, Optional
@@ -8,8 +9,31 @@ from bsparser.output import output_from_page
 from bsparser.page import parse_page
 from bsparser.pages import extract_page, find_balance_sheet_pages
 from bsparser.rounding import find_rounding_hint
+from bsparser.statement import cross_checks
 
 ROUNDING_CHOICES = ("auto", "round", "cut", "unstated")
+
+
+def _page_output(pdf_path, page: int, pages_total: int, mode: str, source: str, sentence: str, note: str,
+                 parsed=None) -> Dict:
+    if parsed is None:
+        one_page = extract_page(pdf_path, page, Path(tempfile.mkdtemp(prefix="bsparser_")) / "page.pdf")
+        parsed = parse_page(one_page)
+    out = output_from_page(parsed, str(pdf_path), rounding=mode, rounding_source=source,
+                           rounding_sentence=sentence, rounding_note=note)
+    out["page"], out["pages_total"] = page, pages_total
+    return out
+
+
+def _parse(pdf_path, page: int):
+    return parse_page(extract_page(pdf_path, page, Path(tempfile.mkdtemp(prefix="bsparser_")) / "page.pdf"))
+
+
+def _resolve_rounding(pdf_path, unit, rounding: str):
+    if rounding == "auto":
+        hint = find_rounding_hint(pdf_path, unit)
+        return hint.mode, hint.source, hint.sentence, hint.note
+    return rounding, "user", "", ""
 
 
 def analyse(pdf_path, page: Optional[int] = None, rounding: str = "auto") -> Dict:
@@ -21,14 +45,38 @@ def analyse(pdf_path, page: Optional[int] = None, rounding: str = "auto") -> Dic
     if page is None:
         candidates = find_balance_sheet_pages(pdf_path)
         page = candidates[0].page if candidates else 1
-    one_page = extract_page(pdf_path, page, Path(tempfile.mkdtemp(prefix="bsparser_")) / "page.pdf")
-    parsed = parse_page(one_page)
-    if rounding == "auto":
-        hint = find_rounding_hint(pdf_path, parsed.unit)
-        mode, source, sentence, note = hint.mode, hint.source, hint.sentence, hint.note
-    else:
-        mode, source, sentence, note = rounding, "user", "", ""
-    out = output_from_page(parsed, str(pdf_path), rounding=mode, rounding_source=source,
-                           rounding_sentence=sentence, rounding_note=note)
-    out["page"], out["pages_total"] = page, pages_total
-    return out
+    parsed = _parse(pdf_path, page)
+    mode, source, sentence, note = _resolve_rounding(pdf_path, parsed.unit, rounding)
+    return _page_output(pdf_path, page, pages_total, mode, source, sentence, note, parsed=parsed)
+
+
+CONTINUES = re.compile(r"負債の部|純資産の部|負債合計|純資産合計|負債純資産合計|total liabilities|total net assets|total equity", re.I)
+MAX_FOLLOWING = 2
+RANK = {"ok": 0, "failed": 1, "unreadable": 2}
+
+
+def analyse_statement(pdf_path, page: Optional[int] = None, rounding: str = "auto") -> Dict:
+    """Q23. The assets page plus the following pages (up to 2) with the same unit and periods that carry liabilities
+    or net assets wording, each parsed page by page with the parser unchanged, then checked across pages.
+    The rounding mode is resolved once, from the assets page, so every page uses the same one."""
+    with pdfplumber.open(pdf_path) as pdf:
+        pages_total = len(pdf.pages)
+        texts = {n: pdf.pages[n - 1].extract_text() or "" for n in range(1, pages_total + 1)}
+    if page is None:
+        candidates = find_balance_sheet_pages(pdf_path)
+        page = candidates[0].page if candidates else 1
+    first = _parse(pdf_path, page)
+    mode, source, sentence, note = _resolve_rounding(pdf_path, first.unit, rounding)
+    outputs = [_page_output(pdf_path, page, pages_total, mode, source, sentence, note, parsed=first)]
+    for nxt in range(page + 1, min(page + MAX_FOLLOWING, pages_total) + 1):
+        if not CONTINUES.search(texts[nxt]):
+            break
+        parsed = _parse(pdf_path, nxt)
+        if (parsed.unit, parsed.periods) != (first.unit, first.periods):
+            break
+        outputs.append(_page_output(pdf_path, nxt, pages_total, mode, source, sentence, note, parsed=parsed))
+    cross = cross_checks(outputs, mode)
+    worst = max([o["status"] for o in outputs] + (["failed"] if any(c["status"] == "failed" for c in cross) else []),
+                key=RANK.get)
+    return {"source": str(pdf_path), "status": worst, "rounding": mode, "rounding_source": source,
+            "rounding_sentence": sentence, "rounding_note": note, "pages": outputs, "cross_checks": cross}

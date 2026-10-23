@@ -57,3 +57,21 @@ def test_check_b_is_skipped_naming_the_missing_total_and_failed_beyond_its_bound
                *both("負債及び純資産の部合計", 6561714, 6653408))  # 4 off in 2025, bound for 2 items under round is 1
     failed = [c for c in cross_checks([off], rounding="unstated") if "+" in c["label"]]
     assert (failed[0]["difference"], failed[0]["bound"], failed[0]["status"]) == (4, 1, "failed")
+
+
+from pathlib import Path
+
+HELDOUT = Path(__file__).parent.parent / "data" / "heldout"
+
+
+def test_a_statement_is_built_from_the_assets_page_and_the_following_pages_with_cross_checks():
+    from bsparser.analyse import analyse_statement
+
+    out = analyse_statement(HELDOUT / "140120260416505142.pdf")  # 4098: assets p6, liabilities and net assets p7
+    assert [p["page"] for p in out["pages"]] == [6, 7]
+    assert (out["rounding"], out["rounding_source"]) == ("cut", "cover_sentence")
+    assert {p["rounding"] for p in out["pages"]} == {"cut"} and {p["rounding_source"] for p in out["pages"]} == {"cover_sentence"}
+    assert [(c["period"], c["status"]) for c in out["cross_checks"]] == [
+        ("2025-03-31", "pass"), ("2025-03-31", "pass"), ("2026-03-31", "pass"), ("2026-03-31", "pass")]
+    assert [p["status"] for p in out["pages"]] == ["ok", "ok"]
+    assert out["status"] == "ok"
