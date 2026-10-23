@@ -52,3 +52,16 @@ def test_a_tie_goes_to_text_and_cells_where_the_extractors_disagree_are_flagged_
     assert cash["warnings"] == ["extractors_disagree: text 608,281 vs vision 26,333"]
     agreed = [r for r in chosen["records"] if r["label"] == "Land" and r["period"] == "2026-03-31"][0]
     assert agreed["warnings"] == []
+
+
+def test_when_both_fail_the_text_output_is_returned_as_failed_with_vision_attached():
+    good = build_output(FIXTURE_PDF)
+    text = break_a_total(good)
+    for c in text["checks"]:
+        if c["label"] == "Total assets" and c["period"] == "2026-03-31":
+            c["status"] = "failed"  # text has two failed checks
+    vision = break_a_total(good)  # vision has one: better than text, but both fail
+    chosen = arbitrate(text=text, vision=vision)
+    assert chosen["extractor"] == "text" and chosen["status"] == "failed"
+    assert chosen["alternative"]["extractor"] == "vision"
+    assert "both failed" in chosen["issues"][-1]["message"]
