@@ -71,6 +71,8 @@ def _total_checks(page: Page, row) -> List[Check]:
         if r.role == "item" and r.values and r.path == row.path:
             nets = [n for n in page.rows if n.role == "net" and n.parent == r.id]
             contributors.append(nets[0] if nets else r)
+        elif r.role == "contra" and r.parent is None and r.values and r.path == row.path:
+            contributors.append(r)  # an aggregate contra line is an ordinary contributor (D17)
         elif (r.role == "subtotal" and len(r.path) == len(row.path) + 1
               and r.path[:len(row.path)] == row.path):
             contributors.append(r)  # a sub-section total feeds the total above it

@@ -100,6 +100,8 @@ def build_page(lines: List[Line]) -> Page:
             if role == "net" and not _is_gross_plus_net(gross.label, row.label):
                 issues.append(Issue("net_label_mismatch", row.id,
                                     f"net label {row.label!r} is not {gross.label!r} plus a net suffix; not linked"))
+            elif role == "contra" and gross.role != "item":
+                pass  # one line for the whole section (D17): no single gross row, so no parent
             else:
                 row.parent = gross.id
         rows.append(row)
