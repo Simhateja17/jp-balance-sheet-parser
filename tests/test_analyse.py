@@ -86,3 +86,11 @@ def test_the_encrypted_english_filing_is_read_without_the_page_cutting_step_that
     assert [p["page"] for p in out["pages"]][0] == 15
     assert out["pages"][0]["unit"] == "million_yen" and len(out["pages"][0]["records"]) > 20
     assert out["status"] in ("ok", "failed", "unreadable")  # a result, not a crash
+
+
+def test_yokogawa_now_passes_every_check_because_its_english_cover_states_the_cut_off():
+    fresh = Path(__file__).parent.parent / "data" / "fresh" / "ir_202603tanshin-en.pdf"
+    out = analyse_statement(fresh)
+    assert (out["rounding"], out["rounding_source"]) == ("cut", "cover_sentence")
+    assert out["status"] == "ok" and [p["status"] for p in out["pages"]] == ["ok", "ok"]
+    assert all(c["status"] == "pass" for c in out["cross_checks"])
