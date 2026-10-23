@@ -1,0 +1,2236 @@
+{
+ "source": "data/fixtures/english_balance_sheet.pdf",
+ "status": "ok",
+ "unit": "thousand_yen",
+ "unit_raw": "in thousands of yen",
+ "periods": [
+  "2025-03-31",
+  "2026-03-31"
+ ],
+ "issues": [],
+ "checks": [
+  {
+   "label": "Buildings and structures, net",
+   "row_id": "r18",
+   "period": "2025-03-31",
+   "expected": 197775,
+   "printed": 197775,
+   "difference": 0,
+   "bound": 1,
+   "items": 2,
+   "status": "pass",
+   "reason": ""
+  },
+  {
+   "label": "Buildings and structures, net",
+   "row_id": "r18",
+   "period": "2026-03-31",
+   "expected": 239829,
+   "printed": 239828,
+   "difference": -1,
+   "bound": 1,
+   "items": 2,
+   "status": "pass",
+   "reason": ""
+  },
+  {
+   "label": "Machinery, equipment and vehicles, net",
+   "row_id": "r21",
+   "period": "2025-03-31",
+   "expected": 390757,
+   "printed": 390757,
+   "difference": 0,
+   "bound": 1,
+   "items": 2,
+   "status": "pass",
+   "reason": ""
+  },
+  {
+   "label": "Machinery, equipment and vehicles, net",
+   "row_id": "r21",
+   "period": "2026-03-31",
+   "expected": 336708,
+   "printed": 336708,
+   "difference": 0,
+   "bound": 1,
+   "items": 2,
+   "status": "pass",
+   "reason": ""
+  },
+  {
+   "label": "Lease assets, net",
+   "row_id": "r25",
+   "period": "2025-03-31",
+   "expected": 63147,
+   "printed": 63146,
+   "difference": -1,
+   "bound": 1,
+   "items": 2,
+   "status": "pass",
+   "reason": ""
+  },
+  {
+   "label": "Lease assets, net",
+   "row_id": "r25",
+   "period": "2026-03-31",
+   "expected": 41873,
+   "printed": 41872,
+   "difference": -1,
+   "bound": 1,
+   "items": 2,
+   "status": "pass",
+   "reason": ""
+  },
+  {
+   "label": "Other, net",
+   "row_id": "r29",
+   "period": "2025-03-31",
+   "expected": 8439,
+   "printed": 8439,
+   "difference": 0,
+   "bound": 1,
+   "items": 2,
+   "status": "pass",
+   "reason": ""
+  },
+  {
+   "label": "Other, net",
+   "row_id": "r29",
+   "period": "2026-03-31",
+   "expected": 24243,
+   "printed": 24243,
+   "difference": 0,
+   "bound": 1,
+   "items": 2,
+   "status": "pass",
+   "reason": ""
+  },
+  {
+   "label": "Total current assets",
+   "row_id": "r13",
+   "period": "2025-03-31",
+   "expected": 5863681,
+   "printed": 5863684,
+   "difference": 3,
+   "bound": 5,
+   "items": 10,
+   "status": "pass",
+   "reason": ""
+  },
+  {
+   "label": "Total current assets",
+   "row_id": "r13",
+   "period": "2026-03-31",
+   "expected": 3377405,
+   "printed": 3377407,
+   "difference": 2,
+   "bound": 5,
+   "items": 10,
+   "status": "pass",
+   "reason": ""
+  },
+  {
+   "label": "Total property, plant and equipment",
+   "row_id": "r30",
+   "period": "2025-03-31",
+   "expected": 1429093,
+   "printed": 1429094,
+   "difference": 1,
+   "bound": 3,
+   "items": 5,
+   "status": "pass",
+   "reason": ""
+  },
+  {
+   "label": "Total property, plant and equipment",
+   "row_id": "r30",
+   "period": "2026-03-31",
+   "expected": 1352607,
+   "printed": 1352610,
+   "difference": 3,
+   "bound": 3,
+   "items": 6,
+   "status": "pass",
+   "reason": ""
+  },
+  {
+   "label": "Total intangible assets",
+   "row_id": "r34",
+   "period": "2025-03-31",
+   "expected": 44260,
+   "printed": 44261,
+   "difference": 1,
+   "bound": 1,
+   "items": 2,
+   "status": "pass",
+   "reason": ""
+  },
+  {
+   "label": "Total intangible assets",
+   "row_id": "r34",
+   "period": "2026-03-31",
+   "expected": 35868,
+   "printed": 35869,
+   "difference": 1,
+   "bound": 1,
+   "items": 2,
+   "status": "pass",
+   "reason": ""
+  },
+  {
+   "label": "Total investments and other assets",
+   "row_id": "r41",
+   "period": "2025-03-31",
+   "expected": 197068,
+   "printed": 197069,
+   "difference": 1,
+   "bound": 2,
+   "items": 4,
+   "status": "pass",
+   "reason": ""
+  },
+  {
+   "label": "Total investments and other assets",
+   "row_id": "r41",
+   "period": "2026-03-31",
+   "expected": 369361,
+   "printed": 369362,
+   "difference": 1,
+   "bound": 3,
+   "items": 5,
+   "status": "pass",
+   "reason": ""
+  },
+  {
+   "label": "Total non-current assets",
+   "row_id": "r42",
+   "period": "2025-03-31",
+   "expected": 1670424,
+   "printed": 1670426,
+   "difference": 2,
+   "bound": 2,
+   "items": 3,
+   "status": "pass",
+   "reason": ""
+  },
+  {
+   "label": "Total non-current assets",
+   "row_id": "r42",
+   "period": "2026-03-31",
+   "expected": 1757841,
+   "printed": 1757841,
+   "difference": 0,
+   "bound": 2,
+   "items": 3,
+   "status": "pass",
+   "reason": ""
+  },
+  {
+   "label": "Total assets",
+   "row_id": "r43",
+   "period": "2025-03-31",
+   "expected": 7534110,
+   "printed": 7534110,
+   "difference": 0,
+   "bound": 1,
+   "items": 2,
+   "status": "pass",
+   "reason": ""
+  },
+  {
+   "label": "Total assets",
+   "row_id": "r43",
+   "period": "2026-03-31",
+   "expected": 5135248,
+   "printed": 5135249,
+   "difference": 1,
+   "bound": 1,
+   "items": 2,
+   "status": "pass",
+   "reason": ""
+  }
+ ],
+ "rows": [
+  {
+   "id": "r1",
+   "label": "Assets",
+   "label_en": "Assets",
+   "label_en_source": "original",
+   "role": "header",
+   "level": 0,
+   "parent": null,
+   "path": []
+  },
+  {
+   "id": "r2",
+   "label": "Current assets",
+   "label_en": "Current assets",
+   "label_en_source": "original",
+   "role": "header",
+   "level": 1,
+   "parent": null,
+   "path": [
+    "Assets"
+   ]
+  },
+  {
+   "id": "r3",
+   "label": "Cash and deposits",
+   "label_en": "Cash and deposits",
+   "label_en_source": "original",
+   "role": "item",
+   "level": 2,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Current assets"
+   ]
+  },
+  {
+   "id": "r4",
+   "label": "Notes receivable",
+   "label_en": "Notes receivable",
+   "label_en_source": "original",
+   "role": "item",
+   "level": 2,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Current assets"
+   ]
+  },
+  {
+   "id": "r5",
+   "label": "Accounts receivable",
+   "label_en": "Accounts receivable",
+   "label_en_source": "original",
+   "role": "item",
+   "level": 2,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Current assets"
+   ]
+  },
+  {
+   "id": "r6",
+   "label": "Electronically recorded monetary claims",
+   "label_en": "Electronically recorded monetary claims",
+   "label_en_source": "original",
+   "role": "item",
+   "level": 2,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Current assets"
+   ]
+  },
+  {
+   "id": "r7",
+   "label": "Merchandise and finished goods",
+   "label_en": "Merchandise and finished goods",
+   "label_en_source": "original",
+   "role": "item",
+   "level": 2,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Current assets"
+   ]
+  },
+  {
+   "id": "r8",
+   "label": "Work in process",
+   "label_en": "Work in process",
+   "label_en_source": "original",
+   "role": "item",
+   "level": 2,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Current assets"
+   ]
+  },
+  {
+   "id": "r9",
+   "label": "Raw materials and supplies",
+   "label_en": "Raw materials and supplies",
+   "label_en_source": "original",
+   "role": "item",
+   "level": 2,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Current assets"
+   ]
+  },
+  {
+   "id": "r10",
+   "label": "Short-term loans receivable",
+   "label_en": "Short-term loans receivable",
+   "label_en_source": "original",
+   "role": "item",
+   "level": 2,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Current assets"
+   ]
+  },
+  {
+   "id": "r11",
+   "label": "Other",
+   "label_en": "Other",
+   "label_en_source": "original",
+   "role": "item",
+   "level": 2,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Current assets"
+   ]
+  },
+  {
+   "id": "r12",
+   "label": "Allowance for doubtful accounts",
+   "label_en": "Allowance for doubtful accounts",
+   "label_en_source": "original",
+   "role": "item",
+   "level": 2,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Current assets"
+   ]
+  },
+  {
+   "id": "r13",
+   "label": "Total current assets",
+   "label_en": "Total current assets",
+   "label_en_source": "original",
+   "role": "subtotal",
+   "level": 2,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Current assets"
+   ]
+  },
+  {
+   "id": "r14",
+   "label": "Non-current assets",
+   "label_en": "Non-current assets",
+   "label_en_source": "original",
+   "role": "header",
+   "level": 1,
+   "parent": null,
+   "path": [
+    "Assets"
+   ]
+  },
+  {
+   "id": "r15",
+   "label": "Property, plant and equipment",
+   "label_en": "Property, plant and equipment",
+   "label_en_source": "original",
+   "role": "header",
+   "level": 2,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Non-current assets"
+   ]
+  },
+  {
+   "id": "r16",
+   "label": "Buildings and structures",
+   "label_en": "Buildings and structures",
+   "label_en_source": "original",
+   "role": "item",
+   "level": 3,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment"
+   ]
+  },
+  {
+   "id": "r17",
+   "label": "Accumulated depreciation",
+   "label_en": "Accumulated depreciation",
+   "label_en_source": "original",
+   "role": "contra",
+   "level": 4,
+   "parent": "r16",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment",
+    "Buildings and structures"
+   ]
+  },
+  {
+   "id": "r18",
+   "label": "Buildings and structures, net",
+   "label_en": "Buildings and structures, net",
+   "label_en_source": "original",
+   "role": "net",
+   "level": 4,
+   "parent": "r16",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment",
+    "Buildings and structures"
+   ]
+  },
+  {
+   "id": "r19",
+   "label": "Machinery, equipment and vehicles",
+   "label_en": "Machinery, equipment and vehicles",
+   "label_en_source": "original",
+   "role": "item",
+   "level": 3,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment"
+   ]
+  },
+  {
+   "id": "r20",
+   "label": "Accumulated depreciation",
+   "label_en": "Accumulated depreciation",
+   "label_en_source": "original",
+   "role": "contra",
+   "level": 4,
+   "parent": "r19",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment",
+    "Machinery, equipment and vehicles"
+   ]
+  },
+  {
+   "id": "r21",
+   "label": "Machinery, equipment and vehicles, net",
+   "label_en": "Machinery, equipment and vehicles, net",
+   "label_en_source": "original",
+   "role": "net",
+   "level": 4,
+   "parent": "r19",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment",
+    "Machinery, equipment and vehicles"
+   ]
+  },
+  {
+   "id": "r22",
+   "label": "Land",
+   "label_en": "Land",
+   "label_en_source": "original",
+   "role": "item",
+   "level": 3,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment"
+   ]
+  },
+  {
+   "id": "r23",
+   "label": "Lease assets",
+   "label_en": "Lease assets",
+   "label_en_source": "original",
+   "role": "item",
+   "level": 3,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment"
+   ]
+  },
+  {
+   "id": "r24",
+   "label": "Accumulated depreciation",
+   "label_en": "Accumulated depreciation",
+   "label_en_source": "original",
+   "role": "contra",
+   "level": 4,
+   "parent": "r23",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment",
+    "Lease assets"
+   ]
+  },
+  {
+   "id": "r25",
+   "label": "Lease assets, net",
+   "label_en": "Lease assets, net",
+   "label_en_source": "original",
+   "role": "net",
+   "level": 4,
+   "parent": "r23",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment",
+    "Lease assets"
+   ]
+  },
+  {
+   "id": "r26",
+   "label": "Construction in progress",
+   "label_en": "Construction in progress",
+   "label_en_source": "original",
+   "role": "item",
+   "level": 3,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment"
+   ]
+  },
+  {
+   "id": "r27",
+   "label": "Other",
+   "label_en": "Other",
+   "label_en_source": "original",
+   "role": "item",
+   "level": 3,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment"
+   ]
+  },
+  {
+   "id": "r28",
+   "label": "Accumulated depreciation",
+   "label_en": "Accumulated depreciation",
+   "label_en_source": "original",
+   "role": "contra",
+   "level": 4,
+   "parent": "r27",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment",
+    "Other"
+   ]
+  },
+  {
+   "id": "r29",
+   "label": "Other, net",
+   "label_en": "Other, net",
+   "label_en_source": "original",
+   "role": "net",
+   "level": 4,
+   "parent": "r27",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment",
+    "Other"
+   ]
+  },
+  {
+   "id": "r30",
+   "label": "Total property, plant and equipment",
+   "label_en": "Total property, plant and equipment",
+   "label_en_source": "original",
+   "role": "subtotal",
+   "level": 3,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment"
+   ]
+  },
+  {
+   "id": "r31",
+   "label": "Intangible assets",
+   "label_en": "Intangible assets",
+   "label_en_source": "original",
+   "role": "header",
+   "level": 2,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Non-current assets"
+   ]
+  },
+  {
+   "id": "r32",
+   "label": "Lease assets",
+   "label_en": "Lease assets",
+   "label_en_source": "original",
+   "role": "item",
+   "level": 3,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Intangible assets"
+   ]
+  },
+  {
+   "id": "r33",
+   "label": "Other",
+   "label_en": "Other",
+   "label_en_source": "original",
+   "role": "item",
+   "level": 3,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Intangible assets"
+   ]
+  },
+  {
+   "id": "r34",
+   "label": "Total intangible assets",
+   "label_en": "Total intangible assets",
+   "label_en_source": "original",
+   "role": "subtotal",
+   "level": 3,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Intangible assets"
+   ]
+  },
+  {
+   "id": "r35",
+   "label": "Investments and other assets",
+   "label_en": "Investments and other assets",
+   "label_en_source": "original",
+   "role": "header",
+   "level": 2,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Non-current assets"
+   ]
+  },
+  {
+   "id": "r36",
+   "label": "Investment securities",
+   "label_en": "Investment securities",
+   "label_en_source": "original",
+   "role": "item",
+   "level": 3,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Investments and other assets"
+   ]
+  },
+  {
+   "id": "r37",
+   "label": "Shares of affiliates",
+   "label_en": "Shares of affiliates",
+   "label_en_source": "original",
+   "role": "item",
+   "level": 3,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Investments and other assets"
+   ]
+  },
+  {
+   "id": "r38",
+   "label": "Long-term loans receivable",
+   "label_en": "Long-term loans receivable",
+   "label_en_source": "original",
+   "role": "item",
+   "level": 3,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Investments and other assets"
+   ]
+  },
+  {
+   "id": "r39",
+   "label": "Assets related to retirement benefits",
+   "label_en": "Assets related to retirement benefits",
+   "label_en_source": "original",
+   "role": "item",
+   "level": 3,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Investments and other assets"
+   ]
+  },
+  {
+   "id": "r40",
+   "label": "Other",
+   "label_en": "Other",
+   "label_en_source": "original",
+   "role": "item",
+   "level": 3,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Investments and other assets"
+   ]
+  },
+  {
+   "id": "r41",
+   "label": "Total investments and other assets",
+   "label_en": "Total investments and other assets",
+   "label_en_source": "original",
+   "role": "subtotal",
+   "level": 3,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Investments and other assets"
+   ]
+  },
+  {
+   "id": "r42",
+   "label": "Total non-current assets",
+   "label_en": "Total non-current assets",
+   "label_en_source": "original",
+   "role": "subtotal",
+   "level": 2,
+   "parent": null,
+   "path": [
+    "Assets",
+    "Non-current assets"
+   ]
+  },
+  {
+   "id": "r43",
+   "label": "Total assets",
+   "label_en": "Total assets",
+   "label_en_source": "original",
+   "role": "total",
+   "level": 1,
+   "parent": null,
+   "path": [
+    "Assets"
+   ]
+  }
+ ],
+ "records": [
+  {
+   "id": "r3|2025-03-31",
+   "path": [
+    "Assets",
+    "Current assets"
+   ],
+   "label": "Cash and deposits",
+   "label_en": "Cash and deposits",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 2002429,
+   "kind": "value",
+   "raw": "2,002,429",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r3|2026-03-31",
+   "path": [
+    "Assets",
+    "Current assets"
+   ],
+   "label": "Cash and deposits",
+   "label_en": "Cash and deposits",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 608281,
+   "kind": "value",
+   "raw": "608,281",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r4|2025-03-31",
+   "path": [
+    "Assets",
+    "Current assets"
+   ],
+   "label": "Notes receivable",
+   "label_en": "Notes receivable",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 20659,
+   "kind": "value",
+   "raw": "20,659",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r4|2026-03-31",
+   "path": [
+    "Assets",
+    "Current assets"
+   ],
+   "label": "Notes receivable",
+   "label_en": "Notes receivable",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 26333,
+   "kind": "value",
+   "raw": "26,333",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r5|2025-03-31",
+   "path": [
+    "Assets",
+    "Current assets"
+   ],
+   "label": "Accounts receivable",
+   "label_en": "Accounts receivable",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 2019476,
+   "kind": "value",
+   "raw": "2,019,476",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r5|2026-03-31",
+   "path": [
+    "Assets",
+    "Current assets"
+   ],
+   "label": "Accounts receivable",
+   "label_en": "Accounts receivable",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 884339,
+   "kind": "value",
+   "raw": "884,339",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r6|2025-03-31",
+   "path": [
+    "Assets",
+    "Current assets"
+   ],
+   "label": "Electronically recorded monetary claims",
+   "label_en": "Electronically recorded monetary claims",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 564667,
+   "kind": "value",
+   "raw": "564,667",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r6|2026-03-31",
+   "path": [
+    "Assets",
+    "Current assets"
+   ],
+   "label": "Electronically recorded monetary claims",
+   "label_en": "Electronically recorded monetary claims",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 370468,
+   "kind": "value",
+   "raw": "370,468",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r7|2025-03-31",
+   "path": [
+    "Assets",
+    "Current assets"
+   ],
+   "label": "Merchandise and finished goods",
+   "label_en": "Merchandise and finished goods",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 589488,
+   "kind": "value",
+   "raw": "589,488",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r7|2026-03-31",
+   "path": [
+    "Assets",
+    "Current assets"
+   ],
+   "label": "Merchandise and finished goods",
+   "label_en": "Merchandise and finished goods",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 1019663,
+   "kind": "value",
+   "raw": "1,019,663",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r8|2025-03-31",
+   "path": [
+    "Assets",
+    "Current assets"
+   ],
+   "label": "Work in process",
+   "label_en": "Work in process",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 186748,
+   "kind": "value",
+   "raw": "186,748",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r8|2026-03-31",
+   "path": [
+    "Assets",
+    "Current assets"
+   ],
+   "label": "Work in process",
+   "label_en": "Work in process",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 55344,
+   "kind": "value",
+   "raw": "55,344",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r9|2025-03-31",
+   "path": [
+    "Assets",
+    "Current assets"
+   ],
+   "label": "Raw materials and supplies",
+   "label_en": "Raw materials and supplies",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 370403,
+   "kind": "value",
+   "raw": "370,403",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r9|2026-03-31",
+   "path": [
+    "Assets",
+    "Current assets"
+   ],
+   "label": "Raw materials and supplies",
+   "label_en": "Raw materials and supplies",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 136082,
+   "kind": "value",
+   "raw": "136,082",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r10|2025-03-31",
+   "path": [
+    "Assets",
+    "Current assets"
+   ],
+   "label": "Short-term loans receivable",
+   "label_en": "Short-term loans receivable",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 7530,
+   "kind": "value",
+   "raw": "7,530",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r10|2026-03-31",
+   "path": [
+    "Assets",
+    "Current assets"
+   ],
+   "label": "Short-term loans receivable",
+   "label_en": "Short-term loans receivable",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 30000,
+   "kind": "value",
+   "raw": "30,000",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r11|2025-03-31",
+   "path": [
+    "Assets",
+    "Current assets"
+   ],
+   "label": "Other",
+   "label_en": "Other",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 105260,
+   "kind": "value",
+   "raw": "105,260",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r11|2026-03-31",
+   "path": [
+    "Assets",
+    "Current assets"
+   ],
+   "label": "Other",
+   "label_en": "Other",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 246895,
+   "kind": "value",
+   "raw": "246,895",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r12|2025-03-31",
+   "path": [
+    "Assets",
+    "Current assets"
+   ],
+   "label": "Allowance for doubtful accounts",
+   "label_en": "Allowance for doubtful accounts",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": -2979,
+   "kind": "value",
+   "raw": "(2,979)",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r12|2026-03-31",
+   "path": [
+    "Assets",
+    "Current assets"
+   ],
+   "label": "Allowance for doubtful accounts",
+   "label_en": "Allowance for doubtful accounts",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 0,
+   "kind": "value",
+   "raw": "(0)",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r13|2025-03-31",
+   "path": [
+    "Assets",
+    "Current assets"
+   ],
+   "label": "Total current assets",
+   "label_en": "Total current assets",
+   "label_en_source": "original",
+   "role": "subtotal",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 5863684,
+   "kind": "value",
+   "raw": "5,863,684",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r13|2026-03-31",
+   "path": [
+    "Assets",
+    "Current assets"
+   ],
+   "label": "Total current assets",
+   "label_en": "Total current assets",
+   "label_en_source": "original",
+   "role": "subtotal",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 3377407,
+   "kind": "value",
+   "raw": "3,377,407",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r16|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment"
+   ],
+   "label": "Buildings and structures",
+   "label_en": "Buildings and structures",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 2121360,
+   "kind": "value",
+   "raw": "2,121,360",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r16|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment"
+   ],
+   "label": "Buildings and structures",
+   "label_en": "Buildings and structures",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 1880082,
+   "kind": "value",
+   "raw": "1,880,082",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r17|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment",
+    "Buildings and structures"
+   ],
+   "label": "Accumulated depreciation",
+   "label_en": "Accumulated depreciation",
+   "label_en_source": "original",
+   "role": "contra",
+   "parent": "r16|2025-03-31",
+   "period": "2025-03-31",
+   "value": -1923585,
+   "kind": "value",
+   "raw": "(1,923,585)",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r17|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment",
+    "Buildings and structures"
+   ],
+   "label": "Accumulated depreciation",
+   "label_en": "Accumulated depreciation",
+   "label_en_source": "original",
+   "role": "contra",
+   "parent": "r16|2026-03-31",
+   "period": "2026-03-31",
+   "value": -1640253,
+   "kind": "value",
+   "raw": "(1,640,253)",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r18|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment",
+    "Buildings and structures"
+   ],
+   "label": "Buildings and structures, net",
+   "label_en": "Buildings and structures, net",
+   "label_en_source": "original",
+   "role": "net",
+   "parent": "r16|2025-03-31",
+   "period": "2025-03-31",
+   "value": 197775,
+   "kind": "value",
+   "raw": "197,775",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r18|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment",
+    "Buildings and structures"
+   ],
+   "label": "Buildings and structures, net",
+   "label_en": "Buildings and structures, net",
+   "label_en_source": "original",
+   "role": "net",
+   "parent": "r16|2026-03-31",
+   "period": "2026-03-31",
+   "value": 239828,
+   "kind": "value",
+   "raw": "239,828",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r19|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment"
+   ],
+   "label": "Machinery, equipment and vehicles",
+   "label_en": "Machinery, equipment and vehicles",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 4024922,
+   "kind": "value",
+   "raw": "4,024,922",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r19|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment"
+   ],
+   "label": "Machinery, equipment and vehicles",
+   "label_en": "Machinery, equipment and vehicles",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 2250799,
+   "kind": "value",
+   "raw": "2,250,799",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r20|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment",
+    "Machinery, equipment and vehicles"
+   ],
+   "label": "Accumulated depreciation",
+   "label_en": "Accumulated depreciation",
+   "label_en_source": "original",
+   "role": "contra",
+   "parent": "r19|2025-03-31",
+   "period": "2025-03-31",
+   "value": -3634165,
+   "kind": "value",
+   "raw": "(3,634,165)",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r20|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment",
+    "Machinery, equipment and vehicles"
+   ],
+   "label": "Accumulated depreciation",
+   "label_en": "Accumulated depreciation",
+   "label_en_source": "original",
+   "role": "contra",
+   "parent": "r19|2026-03-31",
+   "period": "2026-03-31",
+   "value": -1914091,
+   "kind": "value",
+   "raw": "(1,914,091)",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r21|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment",
+    "Machinery, equipment and vehicles"
+   ],
+   "label": "Machinery, equipment and vehicles, net",
+   "label_en": "Machinery, equipment and vehicles, net",
+   "label_en_source": "original",
+   "role": "net",
+   "parent": "r19|2025-03-31",
+   "period": "2025-03-31",
+   "value": 390757,
+   "kind": "value",
+   "raw": "390,757",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r21|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment",
+    "Machinery, equipment and vehicles"
+   ],
+   "label": "Machinery, equipment and vehicles, net",
+   "label_en": "Machinery, equipment and vehicles, net",
+   "label_en_source": "original",
+   "role": "net",
+   "parent": "r19|2026-03-31",
+   "period": "2026-03-31",
+   "value": 336708,
+   "kind": "value",
+   "raw": "336,708",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r22|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment"
+   ],
+   "label": "Land",
+   "label_en": "Land",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 768976,
+   "kind": "value",
+   "raw": "768,976",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r22|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment"
+   ],
+   "label": "Land",
+   "label_en": "Land",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 705403,
+   "kind": "value",
+   "raw": "705,403",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r23|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment"
+   ],
+   "label": "Lease assets",
+   "label_en": "Lease assets",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 210746,
+   "kind": "value",
+   "raw": "210,746",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r23|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment"
+   ],
+   "label": "Lease assets",
+   "label_en": "Lease assets",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 213939,
+   "kind": "value",
+   "raw": "213,939",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r24|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment",
+    "Lease assets"
+   ],
+   "label": "Accumulated depreciation",
+   "label_en": "Accumulated depreciation",
+   "label_en_source": "original",
+   "role": "contra",
+   "parent": "r23|2025-03-31",
+   "period": "2025-03-31",
+   "value": -147599,
+   "kind": "value",
+   "raw": "(147,599)",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r24|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment",
+    "Lease assets"
+   ],
+   "label": "Accumulated depreciation",
+   "label_en": "Accumulated depreciation",
+   "label_en_source": "original",
+   "role": "contra",
+   "parent": "r23|2026-03-31",
+   "period": "2026-03-31",
+   "value": -172066,
+   "kind": "value",
+   "raw": "(172,066)",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r25|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment",
+    "Lease assets"
+   ],
+   "label": "Lease assets, net",
+   "label_en": "Lease assets, net",
+   "label_en_source": "original",
+   "role": "net",
+   "parent": "r23|2025-03-31",
+   "period": "2025-03-31",
+   "value": 63146,
+   "kind": "value",
+   "raw": "63,146",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r25|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment",
+    "Lease assets"
+   ],
+   "label": "Lease assets, net",
+   "label_en": "Lease assets, net",
+   "label_en_source": "original",
+   "role": "net",
+   "parent": "r23|2026-03-31",
+   "period": "2026-03-31",
+   "value": 41872,
+   "kind": "value",
+   "raw": "41,872",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r26|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment"
+   ],
+   "label": "Construction in progress",
+   "label_en": "Construction in progress",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": null,
+   "kind": "nil",
+   "raw": "-",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r26|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment"
+   ],
+   "label": "Construction in progress",
+   "label_en": "Construction in progress",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 4553,
+   "kind": "value",
+   "raw": "4,553",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r27|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment"
+   ],
+   "label": "Other",
+   "label_en": "Other",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 848814,
+   "kind": "value",
+   "raw": "848,814",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r27|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment"
+   ],
+   "label": "Other",
+   "label_en": "Other",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 446126,
+   "kind": "value",
+   "raw": "446,126",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r28|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment",
+    "Other"
+   ],
+   "label": "Accumulated depreciation",
+   "label_en": "Accumulated depreciation",
+   "label_en_source": "original",
+   "role": "contra",
+   "parent": "r27|2025-03-31",
+   "period": "2025-03-31",
+   "value": -840375,
+   "kind": "value",
+   "raw": "(840,375)",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r28|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment",
+    "Other"
+   ],
+   "label": "Accumulated depreciation",
+   "label_en": "Accumulated depreciation",
+   "label_en_source": "original",
+   "role": "contra",
+   "parent": "r27|2026-03-31",
+   "period": "2026-03-31",
+   "value": -421883,
+   "kind": "value",
+   "raw": "(421,883)",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r29|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment",
+    "Other"
+   ],
+   "label": "Other, net",
+   "label_en": "Other, net",
+   "label_en_source": "original",
+   "role": "net",
+   "parent": "r27|2025-03-31",
+   "period": "2025-03-31",
+   "value": 8439,
+   "kind": "value",
+   "raw": "8,439",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r29|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment",
+    "Other"
+   ],
+   "label": "Other, net",
+   "label_en": "Other, net",
+   "label_en_source": "original",
+   "role": "net",
+   "parent": "r27|2026-03-31",
+   "period": "2026-03-31",
+   "value": 24243,
+   "kind": "value",
+   "raw": "24,243",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r30|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment"
+   ],
+   "label": "Total property, plant and equipment",
+   "label_en": "Total property, plant and equipment",
+   "label_en_source": "original",
+   "role": "subtotal",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 1429094,
+   "kind": "value",
+   "raw": "1,429,094",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r30|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Property, plant and equipment"
+   ],
+   "label": "Total property, plant and equipment",
+   "label_en": "Total property, plant and equipment",
+   "label_en_source": "original",
+   "role": "subtotal",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 1352610,
+   "kind": "value",
+   "raw": "1,352,610",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r32|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Intangible assets"
+   ],
+   "label": "Lease assets",
+   "label_en": "Lease assets",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 34190,
+   "kind": "value",
+   "raw": "34,190",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r32|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Intangible assets"
+   ],
+   "label": "Lease assets",
+   "label_en": "Lease assets",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 21402,
+   "kind": "value",
+   "raw": "21,402",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r33|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Intangible assets"
+   ],
+   "label": "Other",
+   "label_en": "Other",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 10070,
+   "kind": "value",
+   "raw": "10,070",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r33|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Intangible assets"
+   ],
+   "label": "Other",
+   "label_en": "Other",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 14466,
+   "kind": "value",
+   "raw": "14,466",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r34|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Intangible assets"
+   ],
+   "label": "Total intangible assets",
+   "label_en": "Total intangible assets",
+   "label_en_source": "original",
+   "role": "subtotal",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 44261,
+   "kind": "value",
+   "raw": "44,261",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r34|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Intangible assets"
+   ],
+   "label": "Total intangible assets",
+   "label_en": "Total intangible assets",
+   "label_en_source": "original",
+   "role": "subtotal",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 35869,
+   "kind": "value",
+   "raw": "35,869",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r36|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Investments and other assets"
+   ],
+   "label": "Investment securities",
+   "label_en": "Investment securities",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 44180,
+   "kind": "value",
+   "raw": "44,180",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r36|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Investments and other assets"
+   ],
+   "label": "Investment securities",
+   "label_en": "Investment securities",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 218836,
+   "kind": "value",
+   "raw": "218,836",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r37|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Investments and other assets"
+   ],
+   "label": "Shares of affiliates",
+   "label_en": "Shares of affiliates",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 1123,
+   "kind": "value",
+   "raw": "1,123",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r37|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Investments and other assets"
+   ],
+   "label": "Shares of affiliates",
+   "label_en": "Shares of affiliates",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 1123,
+   "kind": "value",
+   "raw": "1,123",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r38|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Investments and other assets"
+   ],
+   "label": "Long-term loans receivable",
+   "label_en": "Long-term loans receivable",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": null,
+   "kind": "nil",
+   "raw": "-",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r38|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Investments and other assets"
+   ],
+   "label": "Long-term loans receivable",
+   "label_en": "Long-term loans receivable",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 62000,
+   "kind": "value",
+   "raw": "62,000",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r39|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Investments and other assets"
+   ],
+   "label": "Assets related to retirement benefits",
+   "label_en": "Assets related to retirement benefits",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 18404,
+   "kind": "value",
+   "raw": "18,404",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r39|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Investments and other assets"
+   ],
+   "label": "Assets related to retirement benefits",
+   "label_en": "Assets related to retirement benefits",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 16435,
+   "kind": "value",
+   "raw": "16,435",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r40|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Investments and other assets"
+   ],
+   "label": "Other",
+   "label_en": "Other",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 133361,
+   "kind": "value",
+   "raw": "133,361",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r40|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Investments and other assets"
+   ],
+   "label": "Other",
+   "label_en": "Other",
+   "label_en_source": "original",
+   "role": "item",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 70967,
+   "kind": "value",
+   "raw": "70,967",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r41|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Investments and other assets"
+   ],
+   "label": "Total investments and other assets",
+   "label_en": "Total investments and other assets",
+   "label_en_source": "original",
+   "role": "subtotal",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 197069,
+   "kind": "value",
+   "raw": "197,069",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r41|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets",
+    "Investments and other assets"
+   ],
+   "label": "Total investments and other assets",
+   "label_en": "Total investments and other assets",
+   "label_en_source": "original",
+   "role": "subtotal",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 369362,
+   "kind": "value",
+   "raw": "369,362",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r42|2025-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets"
+   ],
+   "label": "Total non-current assets",
+   "label_en": "Total non-current assets",
+   "label_en_source": "original",
+   "role": "subtotal",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 1670426,
+   "kind": "value",
+   "raw": "1,670,426",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r42|2026-03-31",
+   "path": [
+    "Assets",
+    "Non-current assets"
+   ],
+   "label": "Total non-current assets",
+   "label_en": "Total non-current assets",
+   "label_en_source": "original",
+   "role": "subtotal",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 1757841,
+   "kind": "value",
+   "raw": "1,757,841",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r43|2025-03-31",
+   "path": [
+    "Assets"
+   ],
+   "label": "Total assets",
+   "label_en": "Total assets",
+   "label_en_source": "original",
+   "role": "total",
+   "parent": null,
+   "period": "2025-03-31",
+   "value": 7534110,
+   "kind": "value",
+   "raw": "7,534,110",
+   "unit": "thousand_yen",
+   "warnings": []
+  },
+  {
+   "id": "r43|2026-03-31",
+   "path": [
+    "Assets"
+   ],
+   "label": "Total assets",
+   "label_en": "Total assets",
+   "label_en_source": "original",
+   "role": "total",
+   "parent": null,
+   "period": "2026-03-31",
+   "value": 5135249,
+   "kind": "value",
+   "raw": "5,135,249",
+   "unit": "thousand_yen",
+   "warnings": []
+  }
+ ]
+}

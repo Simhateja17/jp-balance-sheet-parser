@@ -152,3 +152,23 @@ prototype until those are done.
 </pasted_content id="0814">
 ```
 
+## 2026-10-23 14:15
+
+```
+<pasted_content id="0814">
+Nice work. Before the vision part, let's lock in what we already have.
+
+Write docs/report.md and a short README first. Cover how we decided what
+"correct" means, the results table, why the baseline loses on repeated
+labels, and the honest limits. One limit to mention: the gold values were
+read by a Claude chat that had already seen this page's text through
+Google Drive earlier, so they're not fully independent. Also say nobody
+who reads Japanese checked the labels, and that the page is in-sample.
+Add a short section on how scanned pages would go to a vision model.
+
+Then commit the final outputs for the real page and the English fixture.
+After that, build the vision prototype, kept small, with the same
+identity checks judging its output.
+</pasted_content id="0814">
+```
+
