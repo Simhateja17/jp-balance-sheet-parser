@@ -16,14 +16,39 @@ from bsparser.output import write_outputs, write_statement_outputs  # noqa: E402
 from bsparser.pages import Candidate, extract_page, find_balance_sheet_pages  # noqa: E402,F401
 
 
-def table_rows(output: dict) -> List[dict]:
-    """One display row per table row: indented label, English reading label, role, and the printed value per period."""
+def failed_rows(output: dict, cross_checks: List[dict] = None) -> dict:
+    """Rows that belong to a FAILED check (the printed total and what it adds up), with why. Skipped and passing
+    checks mark nothing. A failed cross-page check marks its totals on their own page."""
+    why: dict = {}
+    for check in output["checks"]:
+        if check["status"] != "failed":
+            continue
+        text = (f"{check['label']} {check['period']}: printed {check['printed']}, adds up to {check['expected']}, "
+                f"off by {check['difference']} (allowed {check['bound']})")
+        for row_id in check.get("row_ids", []):
+            why.setdefault(row_id, []).append(text)
+    for check in cross_checks or []:
+        if check["status"] != "failed":
+            continue
+        text = (f"{check['label']} {check['period']}: printed {check['printed']}, expected {check['expected']}, "
+                f"off by {check['difference']} (allowed {check['bound']})")
+        for ref in check.get("rows", []):
+            if ref["page"] == output.get("page"):
+                why.setdefault(ref["row_id"], []).append(text)
+    return why
+
+
+def table_rows(output: dict, why: dict = None) -> List[dict]:
+    """One display row per table row: indented label, English reading label, role, the printed value per period,
+    and, for rows in a failed check, why."""
+    why = why or {}
     raw = {(r["id"].split("|")[0], r["period"]): r["raw"] for r in output["records"]}
     rows = []
     for row in output["rows"]:
-        line = {"label": "   " * row["level"] + row["label"], "label_en": row["label_en"] or "", "role": row["role"]}
+        line = {"label": "\u00a0\u00a0\u00a0" * row["level"] + row["label"], "label_en": row["label_en"] or "", "role": row["role"]}
         for period in output["periods"]:
             line[period] = raw.get((row["id"], period), "")
+        line["why"] = " | ".join(why.get(row["id"], []))
         rows.append(line)
     return rows
 

@@ -156,3 +156,41 @@ def test_statement_mode_shows_every_page_a_cross_page_table_and_the_statement_st
     checkbox.uncheck().run()
     assert [h.value for h in at.markdown if h.value.startswith("### Page ")] == []  # single page: no page headers
     assert not [s for s in at.subheader if s.value.startswith("Cross-page checks")]
+
+
+def failing_output(total_prior="602"):
+    from bsparser.output import output_from_page
+    from bsparser.page import parse_lines
+    from bsparser.pdf_lines import Line
+
+    page = parse_lines([
+        Line("(in thousands of yen)", 400.0, 70.0),
+        Line("(Mar. 31, 2025) (Mar. 31, 2026)", 300.0, 94.0),
+        Line("Assets", 60.0, 120.0),
+        Line("Current assets", 72.0, 134.0),
+        Line("Cash", 84.0, 148.0, ["100", "100"]),
+        Line("Notes receivable", 84.0, 162.0, ["200", "200"]),
+        Line("Other", 84.0, 176.0, ["300", "300"]),
+        Line("Total current assets", 84.0, 190.0, [total_prior, "600"]),  # 2025: 3 items, bound 2: 602 passes, 605 fails
+        Line("Land", 72.0, 204.0, ["50", "50"]),
+        Line("Total assets", 72.0, 218.0, [str(int(total_prior) + 50), "650"]),  # follows the printed subtotal plus Land
+    ])
+    out = output_from_page(page, "synthetic.pdf")
+    out["page"] = 1
+    return out
+
+
+def test_rows_of_a_failed_check_are_marked_with_why_and_skipped_or_passing_checks_mark_nothing():
+    from app import failed_rows, table_rows
+
+    ok = failing_output("602")
+    assert failed_rows(ok) == {}
+    bad = failing_output("605")  # 605 against 600: difference 5, bound 2
+    why = failed_rows(bad)
+    ids = {r["label"]: r["id"] for r in bad["rows"]}
+    assert set(why) == {ids["Total current assets"], ids["Cash"], ids["Notes receivable"], ids["Other"]}  # total assets passes
+    assert "Total current assets" in why[ids["Cash"]][0] and "2025-03-31" in why[ids["Cash"]][0] and "5" in why[ids["Cash"]][0]
+    table = table_rows(bad, why)
+    by_label = {r["label"].strip(): r for r in table}
+    assert by_label["Cash"]["why"].startswith("Total current assets") and by_label["Assets"]["why"] == ""
+    assert by_label["Total current assets"]["why"] != ""
