@@ -99,3 +99,21 @@ def test_command_line_rejects_an_unknown_rounding_value(tmp_path):
     with pytest.raises(SystemExit) as stop:
         main([str(FIXTURE_PDF), str(tmp_path), "--rounding", "sometimes"])
     assert stop.value.code == 2
+
+
+def test_command_line_statement_mode_writes_one_json_with_pages_and_cross_checks_and_one_csv(tmp_path, capsys):
+    import csv
+
+    from bsparser.__main__ import main
+
+    heldout = Path(__file__).parent.parent / "data" / "heldout" / "140120260416505142.pdf"
+    assert main([str(heldout), str(tmp_path), "--statement"]) == 0
+    saved = json.loads((tmp_path / "140120260416505142.statement.json").read_text(encoding="utf-8"))
+    assert [p["page"] for p in saved["pages"]] == [6, 7]
+    assert len(saved["cross_checks"]) == 4 and saved["status"] == "ok"
+    assert (saved["rounding"], saved["rounding_source"]) == ("cut", "cover_sentence")
+    with (tmp_path / "140120260416505142.statement.records.csv").open(encoding="utf-8", newline="") as f:
+        rows = list(csv.DictReader(f))
+    assert list(rows[0].keys())[0] == "page" and {r["page"] for r in rows} == {"6", "7"}
+    out = capsys.readouterr().out
+    assert "statement: ok" in out and "pages: 6, 7" in out and "cross checks: 4 (4 pass)" in out

@@ -67,3 +67,27 @@ def write_outputs(pdf_path, out_dir, output=None):
             row["notes"] = "; ".join(rec["notes"])
             writer.writerow(row)
     return json_path, csv_path
+
+
+def write_statement_outputs(statement, out_dir):
+    """A statement spans several pages: one JSON (pages, cross-page checks, status) and one CSV of all records."""
+    out_dir = Path(out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    stem = Path(statement["source"]).stem
+    json_path = out_dir / f"{stem}.statement.json"
+    json_path.write_text(json.dumps(statement, ensure_ascii=False, indent=1), encoding="utf-8")
+    csv_path = out_dir / f"{stem}.statement.records.csv"
+    with csv_path.open("w", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=["page"] + RECORD_COLUMNS)
+        writer.writeheader()
+        for page in statement["pages"]:
+            for rec in page["records"]:
+                row = dict(rec)
+                row["page"] = page["page"]
+                row["path"] = " / ".join(rec["path"])
+                row["value"] = "" if rec["value"] is None else rec["value"]
+                row["parent"] = rec["parent"] or ""
+                row["warnings"] = "; ".join(rec["warnings"])
+                row["notes"] = "; ".join(rec["notes"])
+                writer.writerow(row)
+    return json_path, csv_path
