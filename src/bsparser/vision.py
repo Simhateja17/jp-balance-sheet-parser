@@ -48,8 +48,12 @@ Keep every line in page order, including section headers with no numbers and tot
 Do not add, fix or compute any value, and do not skip a line you cannot read: copy what you see."""
 
 
-def _claude_runner(cmd) -> str:
-    return subprocess.run(cmd, capture_output=True, text=True, timeout=300, check=True).stdout
+def _claude_runner(cmd, prompt: str) -> str:
+    """The prompt goes on stdin: --add-dir takes several values and would swallow a positional prompt."""
+    done = subprocess.run(cmd, input=prompt, capture_output=True, text=True, timeout=300)
+    if done.returncode != 0:
+        raise RuntimeError(f"{cmd[0]} exited {done.returncode}: {done.stderr.strip() or done.stdout.strip()}")
+    return done.stdout
 
 
 def run_vision(pdf_path, runner=_claude_runner, dpi: int = 150) -> Dict:
@@ -60,5 +64,5 @@ def run_vision(pdf_path, runner=_claude_runner, dpi: int = 150) -> Dict:
         subprocess.run(["pdftoppm", "-r", str(dpi), "-f", "1", "-l", "1", "-png", "-singlefile", str(pdf_path), str(stem)],
                        check=True, capture_output=True)
         png = f"{stem}.png"
-        cmd = ["claude", "-p", "--allowedTools", "Read", "--add-dir", tmp, PROMPT.format(png=png)]
-        return extract_reply(runner(cmd))
+        cmd = ["claude", "-p", "--allowedTools", "Read", "--add-dir", tmp]
+        return extract_reply(runner(cmd, PROMPT.format(png=png)))

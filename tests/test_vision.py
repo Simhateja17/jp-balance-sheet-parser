@@ -48,17 +48,28 @@ def test_runner_renders_the_page_to_png_and_asks_headless_claude_to_read_only_th
 
     calls = []
 
-    def fake_runner(cmd):
-        png = [part for part in cmd if part.endswith(".png")] or [p for p in cmd[-1].split() if p.endswith(".png")]
-        calls.append((cmd, Path(png[0]).exists()))
+    def fake_runner(cmd, prompt):
+        png = [word for word in prompt.split() if word.endswith(".png")]
+        calls.append((cmd, prompt, Path(png[0]).exists()))
         return json.dumps(canned_reply(), ensure_ascii=False)
 
     reply = run_vision(FIXTURES / "english_balance_sheet.pdf", runner=fake_runner)
-    (cmd, png_existed), = calls
+    (cmd, prompt, png_existed), = calls
     assert png_existed  # the image was rendered before the model was called
     assert cmd[0] == "claude" and "-p" in cmd
     assert cmd[cmd.index("--allowedTools") + 1] == "Read"  # nothing else: no shell, no edits
-    prompt = cmd[-1]
+    assert prompt not in cmd  # the prompt goes on stdin: --add-dir takes several values and would swallow it
     assert ".png" in prompt and "english_balance_sheet" not in prompt  # image path only, not the PDF or its text
     assert "exactly as printed" in prompt and "do not add, fix or compute" in prompt.lower()
     assert reply["rows"][0]["label"] == "Assets"
+
+
+def test_a_failing_claude_call_raises_with_its_stderr_not_a_bare_exit_code():
+    import subprocess
+
+    import pytest
+
+    from bsparser.vision import _claude_runner
+
+    with pytest.raises(RuntimeError, match="boom-from-stderr"):
+        _claude_runner(["sh", "-c", "echo boom-from-stderr >&2; exit 3"], "ignored prompt")

@@ -33,7 +33,7 @@ def make_scan(tmp_path):
 
 def test_a_clean_text_page_never_calls_the_vision_model():
     calls = []
-    out = parse_with_fallback(CLEAN_PDF, runner=lambda cmd: calls.append(cmd))
+    out = parse_with_fallback(CLEAN_PDF, runner=lambda cmd, prompt: calls.append(cmd))
     assert calls == []
     assert out["extractor"] == "text" and out["status"] == "ok"
     assert "alternative" not in out
@@ -43,7 +43,7 @@ def test_an_image_only_scan_has_no_text_records_and_is_routed_to_vision(tmp_path
     scan = make_scan(tmp_path)
     calls = []
 
-    def fake_runner(cmd):
+    def fake_runner(cmd, prompt):
         calls.append(cmd)
         return json.dumps(canned_reply(), ensure_ascii=False)
 
