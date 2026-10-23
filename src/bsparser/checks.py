@@ -72,6 +72,28 @@ def _net_checks(page: Page, row, by_id, rounding: str) -> List[Check]:
     return checks
 
 
+def _contributors(page: Page, row):
+    """What a subtotal or total adds up. Walking the section in page order: items (a net line replaces its gross),
+    aggregate contra lines and sub-section totals go into the current run. A subtotal printed with no heading above
+    it adds only the run since the previous subtotal. The section's last total adds the earlier subtotals plus the
+    run not yet covered by one (D21 item 3)."""
+    section_totals = [r for r in page.rows if r.role in ("subtotal", "total") and r.values and r.path == row.path]
+    is_last = bool(section_totals) and section_totals[-1] is row
+    covered, run = [], []
+    for r in page.rows[:page.rows.index(row)]:
+        if r in section_totals:
+            covered.append(r)
+            run = []
+        elif r.role == "item" and r.values and r.path == row.path:
+            nets = [n for n in page.rows if n.role == "net" and n.parent == r.id]
+            run.append(nets[0] if nets else r)
+        elif r.role == "contra" and r.parent is None and r.values and r.path == row.path:
+            run.append(r)  # an aggregate contra line is an ordinary contributor (D17)
+        elif r.role == "subtotal" and len(r.path) == len(row.path) + 1 and r.path[:len(row.path)] == row.path:
+            run.append(r)  # a sub-section total feeds the total above it
+    return covered + run if is_last else run
+
+
 def _sum_of_totals(page: Page, row, parts, rounding: str) -> List[Check]:
     """A total that is the sum of other printed totals (total liabilities and net assets = liabilities + net assets)."""
     checks: List[Check] = []
@@ -106,16 +128,7 @@ def _total_checks(page: Page, row, rounding: str) -> List[Check]:
     if kind_of_total(row.label) == "liabilities_net_assets":
         return _la_na_checks(page, row, rounding)
     checks: List[Check] = []
-    contributors = []
-    for r in page.rows:
-        if r.role == "item" and r.values and r.path == row.path:
-            nets = [n for n in page.rows if n.role == "net" and n.parent == r.id]
-            contributors.append(nets[0] if nets else r)
-        elif r.role == "contra" and r.parent is None and r.values and r.path == row.path:
-            contributors.append(r)  # an aggregate contra line is an ordinary contributor (D17)
-        elif (r.role == "subtotal" and len(r.path) == len(row.path) + 1
-              and r.path[:len(row.path)] == row.path):
-            contributors.append(r)  # a sub-section total feeds the total above it
+    contributors = _contributors(page, row)
     if not contributors:
         return _skip_all(page, row, "no components on this page")  # never a failure for lack of components
     reason = _wrong_width(contributors + [row], page)
