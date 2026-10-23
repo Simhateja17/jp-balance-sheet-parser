@@ -10,11 +10,29 @@ def _score(output: Dict):
     return (failed, doubtful)
 
 
+def _key(record: Dict):
+    return (tuple(record["path"]), record["label"], record["period"])
+
+
+def _flag_disagreements(winner: Dict, loser: Dict) -> None:
+    """Every cell the two extractors read differently is flagged, even when both pass every check:
+    two swapped rows in a section keep all sums intact, so agreement is extra evidence."""
+    other = {_key(r): r for r in loser["records"]}
+    winner["disagreements"] = []
+    for rec in winner["records"]:
+        theirs = other.get(_key(rec))
+        if theirs is None or theirs["raw"] != rec["raw"]:
+            seen = "missing" if theirs is None else theirs["raw"]
+            rec["warnings"].append(f"extractors_disagree: {winner['extractor']} {rec['raw']} vs {loser['extractor']} {seen}")
+            winner["disagreements"].append({"key": list(_key(rec)), winner["extractor"]: rec["raw"], loser["extractor"]: seen})
+
+
 def arbitrate(text: Dict, vision: Dict) -> Dict:
     """D7: better check result wins, a tie goes to text. No cell-level merging. Both outputs are kept."""
     text, vision = copy.deepcopy(text), copy.deepcopy(vision)
     text["extractor"], vision["extractor"] = "text", "vision"
     winner, loser = (vision, text) if _score(vision) < _score(text) else (text, vision)
+    _flag_disagreements(winner, loser)
     winner["alternative"] = loser
     winner["issues"].append({
         "kind": "extractor_chosen", "row_id": "",
