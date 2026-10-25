@@ -512,3 +512,20 @@ vision fallback in the app). Keep it clean and easy to read.
 </pasted_content id="0814">
 ```
 
+## 2026-10-25 11:34
+
+```
+<pasted_content id="0814">
+echo "# jp-balance-sheet-parser" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Simhateja17/jp-balance-sheet-parser.git
+git push -u origin main
+</pasted_content id="0814">
+
+
+Use this repo, and please don;t add yourself as co author of commits
+```
+
