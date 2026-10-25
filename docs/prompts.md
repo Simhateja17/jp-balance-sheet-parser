@@ -1,5 +1,210 @@
 # Prompts I sent (verbatim, in order)
 
+## 2026-10-22 (design session, before the logging hook; time not recorded)
+
+```
+I got a take-home from Ur AI. I have to design a parser that turns one
+page of a Japanese consolidated balance sheet (連結貸借対照表) into a
+correct table. They said many PDFs like this will come, some in more
+complex formats. How I define and measure "correct" is up to me, and they
+don't expect a complete solution.
+
+I want to start with English balance sheets to understand the problem,
+then move to Japanese. Read CLAUDE.md first. Interview me about what the
+output should look like and how we decide the parser is correct. Write
+what we agree to docs/decisions.md. No code yet.
+
+
+You can /grill-me
+```
+
+## 2026-10-22 (design session, before the logging hook; time not recorded)
+
+```
+I got a take-home from Ur AI. I have to design a parser that turns one
+page of a Japanese consolidated balance sheet  into a
+correct table. They said many PDFs like this will come, some in more
+complex formats. How I define and measure "correct" is up to me, and they
+don't expect a complete solution.
+
+I want to start with English balance sheets to understand the problem,
+then move to Japanese. Read CLAUDE.md first. Interview me about what the
+output should look like and how we decide the parser is correct. Write
+what we agree to docs/decisions.md. No code yet.
+
+It is at @balance_sheet_after_correction.pdf   You can /grill-me
+```
+
+## 2026-10-22 (design session, before the logging hook; time not recorded)
+
+```
+Yes, long records with JSON as the source of truth and CSV as a view.
+Keep values in the printed unit.
+
+Please add two fields: "parent" so a depreciation or net line points to
+its item, and "label_en", an English translation of each label, marked as
+a translation and never used in the checks. I can't read Japanese, so I
+need the English to follow the output.
+```
+
+## 2026-10-22 (design session, before the logging hook; time not recorded)
+
+```
+Mostly yes. Two changes. First, parent shouldn't mean two different
+things. The section is already in path, so parent should only be used for
+the gross, contra and net link, and be empty for everything else. Second,
+always put the row's position on the page in the id (a plain ordinal),
+not only when there's a collision, so ids never change when a page gets
+a new row or a repeated label.
+```
+
+## 2026-10-22 (design session, before the logging hook; time not recorded)
+
+```
+Yes to (a), the ordinal as the id. One condition: the hand-written gold
+answers must not use the ordinal. They should be keyed by section path,
+label and period, the way a person would ask the question. The ordinal
+is only for parent links inside one parse.
+```
+
+## 2026-10-22 (design session, before the logging hook; time not recorded)
+
+```
+Yes to the three layers and the headline. Two additions.
+
+First, define the rounding tolerance up front: a subtotal may differ from
+the sum of its items by at most half a unit per item, because the page
+rounds each number. Anything larger is a failure, not a warning.
+
+Second, the gold answers must come from the printed page itself, read by
+me from the PDF image, not from the same extracted text the parser reads.
+Otherwise the test just agrees with itself. Use 20 to 30 gold records,
+and include every tricky case: nil, the zero with a negative mark,
+repeated labels, and the depreciation lines.
+```
+
+## 2026-10-22 (design session, before the logging hook; time not recorded)
+
+```
+I have a second Claude Code session open in another terminal. It will be
+the reviewer.  You can test, if you are able to initiate a conversation with the other terminal and Build the gold template, and pass it to that session
+to check the labels against the page image once. After that, it reviews
+the final output too. You don't need to do the label check here.
+```
+
+## 2026-10-22 (design session, before the logging hook; time not recorded)
+
+```
+ur-ai-parser-setup-7c, started 4 minutes ago. This is the reviewer. It
+already has its instructions and knows its role, so just send it the
+template path and the page image, and ask it to do the label check
+(Job 1). Don't add any other instructions. Tell me when it's sent.
+```
+
+## 2026-10-22 (design session, before the logging hook; time not recorded)
+
+```
+Yes. Two notes. First, the parity check can't compare paths as text,
+since the English and Japanese labels differ. Compare by structure:
+same number of rows, same roles, same depth, same parent links, same
+values. Second, in the English version, a dash alone means nil but a
+dash before digits means negative. Add a test for both so they can't
+get mixed up.
+```
+
+## 2026-10-22 (design session, before the logging hook; time not recorded)
+
+```
+Yes. One change: a page can have both a failed check and an unreadable
+value, so don't force one status. Report a list of issues, and set the
+status to the worst one (unreadable over failed over ok). If a check
+involves an unreadable value, mark that check as "skipped", not failed,
+and say why.
+```
+
+## 2026-10-22 (design session, before the logging hook; time not recorded)
+
+```
+Mostly yes. Text-layer PDFs are the core. But this role is about VLMs, so
+don't stop at "OCR out of scope". Design the routing: if a page has no
+usable text layer, or the identity checks fail, send it to a vision
+fallback that reads the page image and returns the same JSON schema. The
+same identity checks then judge its output, so the checks are the
+confidence signal for any extractor, text or vision.
+
+For the vision model, use Claude Code in headless mode for now, since I
+don't have an API key. Build it only as a small prototype after the text
+parser works. In the report, say that production would use an API or a
+fine-tuned model.
+
+Multi-page tables are listed as both in scope and out of scope. Make them
+out of scope for now, and flag them when detected. Liabilities and
+equity, other statements, and merged cells stay out of scope, flagged
+where cheap.
+```
+
+## 2026-10-22 (design session, before the logging hook; time not recorded)
+
+```
+Yes. One addition: if both outputs pass the checks but disagree on
+some cells, still flag those cells. The checks can pass even when two
+rows are swapped inside a section, because the sum stays the same, so
+agreement between text and vision is extra evidence. And keep this
+simple: the selection logic is part of the prototype, built after the
+text parser is done and tested.
+```
+
+## 2026-10-22 (design session, before the logging hook; time not recorded)
+
+```
+Yes. Two additions. Show raw counts next to every percentage (for example
+"9 of 10", not just "90%"), because the slices are small and percentages
+would overstate it. And if time allows, add a second baseline: give the
+raw page text to Claude in headless mode and ask it the same gold
+questions. That shows whether the parser beats a plain LLM, not just a
+naive lookup.
+```
+
+## 2026-10-22 (design session, before the logging hook; time not recorded)
+
+```
+Yes, use the strict bound, floor(0.5 × (items + 1)), for every sum
+check, and show the allowed bound next to each difference. Add a test
+with a page where values sit exactly on a half, so the edge case is
+covered.
+```
+
+## 2026-10-22 (design session, before the logging hook; time not recorded)
+
+```
+Yes. Two changes. Add millions of yen to the recognised units, since
+it's very common in Japanese filings and costs one more mapping. And
+support Japanese era dates for the Reiwa era, because many filings use
+them and the conversion is simple (Reiwa 1 is 2019). Other eras stay
+flagged. Also check that the number of period columns in the header
+matches the number of values in each row, and raise an issue if not.
+```
+
+## 2026-10-22 (design session, before the logging hook; time not recorded)
+
+```
+Yes, with three changes. First, the Japanese page is the actual task, so
+put it before the messy English variant in step 4. If time runs out,
+cut the messy English variant before anything Japanese. Second, step 4
+must use the real PDF in data/, extracted with pdfplumber, not a text
+copy. Third, export the AI log at the end of every phase, not only at
+the end, so a crash or a long session can't lose it.
+```
+
+## 2026-10-22 (design session, before the logging hook; time not recorded)
+
+```
+The spec is agreed. Move the PDF into data/ as you said. Start with the
+English fixture and the number and nil tokens, since those don't need my
+gold values. I'll fill in the gold values from the image in parallel and
+tell you when they're done.
+```
+
 ## 2026-10-22 11:17
 
 ```
