@@ -469,5 +469,3 @@ Use Mermaid so it renders on GitHub. Only draw what the code really
 does, and mark anything that's designed but not wired in yet (like the
 vision fallback in the app). Keep it clean and easy to read.
 ```
-
-
