@@ -2,6 +2,72 @@
 
 Turns one page of a financial statement (PDF with a text layer) into a table of records with section paths, roles, values and accounting checks. Built English first, then Japanese (千円, △, －, repeated labels, （純額）).
 
+## Architecture
+
+Full notes and legend: [docs/architecture.md](docs/architecture.md). Dashed orange = designed and tested, not wired into the CLI or the app (the vision fallback).
+
+```mermaid
+flowchart TD
+    PDF["PDF in<br/>(CLI, app.py upload, scripts)"]
+    PDF --> OPEN{"Has a text layer?"}
+    OPEN -- "app only: no text" --> SCANMSG["Friendly message:<br/>looks scanned, not read"]
+    OPEN -- yes --> FIND
+
+    subgraph PAGES["Pick and join pages (analyse, pages, statement)"]
+        FIND["Find balance sheet pages<br/>pages.find_balance_sheet_pages<br/>strict first, then relaxed<br/>user can override the page"]
+        FIND --> CUT["Cut each page from the original file<br/>pages.extract_page"]
+        CUT --> JOIN["Join: assets page + up to 2 following pages<br/>with liabilities or net assets wording,<br/>same unit and periods<br/>analyse.analyse_statement"]
+    end
+
+    subgraph READ["Read one page (page.parse_page)"]
+        LINES["Text lines with positions<br/>pdf_lines.extract_lines"]
+        META["Unit: units.find_unit<br/>Dates / periods: periods.find_periods<br/>Rounding: rounding.find_rounding_hint<br/>(cover sentence, or user choice, or unstated)"]
+        AMT["Amount tokens<br/>amounts: nil is None, triangle is negative,<br/>triangle 0 is 0"]
+        ROWS["Build rows<br/>labels, wrapped labels (wrapped),<br/>indent levels (levels)"]
+        SEC["Section path<br/>and roles: header, item, subtotal, total,<br/>contra, net (roles, totals)"]
+        LINES --> META
+        LINES --> AMT
+        AMT --> ROWS --> SEC
+        META --> SEC
+    end
+
+    CUT --> LINES
+    JOIN --> LINES
+
+    SEC --> REC["Records: one per row and period<br/>records.make_records<br/>English label from labels.english_label"]
+    SEC --> CHK["Identity checks (checks.run_checks)<br/>items sum to subtotal, gross + depreciation = net,<br/>current + fixed = total assets<br/>tolerance set by the rounding mode"]
+    JOIN --> XCHK["Cross-page checks (statement.cross_checks)<br/>total assets = liabilities + net assets"]
+    CHK --> STATUS["Status per page: ok / failed / unreadable<br/>(status.page_status)<br/>worst of pages and cross checks"]
+    XCHK --> STATUS
+    REC --> OUT
+    STATUS --> OUT
+
+    subgraph OUTPUTS["Outputs (output)"]
+        OUT["build_output / write_outputs"]
+        OUT --> JSON["name.json<br/>source of truth: status, unit, periods,<br/>rounding, issues, checks, rows, records"]
+        OUT --> CSV["name.records.csv"]
+        OUT --> STJ["name.statement.json and<br/>.statement.records.csv (multi-page)"]
+    end
+
+    JSON --> APP["Streamlit app (app.py)<br/>table with page image, red failed rows with why,<br/>checks, issues, CSV and JSON download"]
+    STJ --> APP
+
+    subgraph VISION["Scanned pages: vision fallback (prototype)"]
+        direction TB
+        PIPE["pipeline.parse_with_fallback<br/>text first; vision only if no records<br/>or status is not ok"]
+        RUN["vision.run_vision<br/>render page, ask headless Claude,<br/>lines_from_vision"]
+        ARB["arbitrate: same checks judge<br/>text and vision outputs, disagreements flagged"]
+        PIPE --> RUN --> ARB
+    end
+    PDF -.-> PIPE
+    ARB -.-> OUT
+
+    classDef notwired fill:#fff4e5,stroke:#e67e22,stroke-dasharray: 5 4,color:#333;
+    class PIPE,RUN,ARB notwired;
+```
+
+The evaluation side (gold, baseline, reviewer session, report) is the second diagram in [docs/architecture.md](docs/architecture.md).
+
 ## Run
 
 ```

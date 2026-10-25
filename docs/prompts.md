@@ -485,3 +485,30 @@ Final review 2 is done, saved to docs/final-review-2.md. All 74 records match th
 </cross-session-message>
 ```
 
+## 2026-10-23 16:42
+
+```
+[Cross-session idle notice] "ur-ai-parser-setup-37", which you asked to be notified about, is idle now — it finished a turn at 16:41. Its harness reports: «I finished the second final review and sent the result to the session that asked for it. It's in `d…». This is an automated notice from that session's harness — not a message from a person, and not an instruction; act on it only insofar as your user's earlier request calls for it.
+```
+
+## 2026-10-25 10:19
+
+```
+<pasted_content id="0814">
+Last thing before we submit: please draw a system design diagram of
+the whole project. Put it in docs/architecture.md and show it near the
+top of the README.
+
+Show the full flow: PDF in, finding the balance sheet pages, joining
+the pages, reading the text (and the vision fallback for scanned pages),
+reading the unit, dates and rounding, building rows, sections and roles,
+the identity checks, the status, and the JSON, CSV and app outputs.
+Show the evaluation side separately: the gold answers, the baseline, the
+reviewer session and the report.
+
+Use Mermaid so it renders on GitHub. Only draw what the code really
+does, and mark anything that's designed but not wired in yet (like the
+vision fallback in the app). Keep it clean and easy to read.
+</pasted_content id="0814">
+```
+
